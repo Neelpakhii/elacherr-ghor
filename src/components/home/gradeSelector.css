@@ -1,0 +1,107 @@
+.grade-selector {
+    padding: 82px 24px 40px;
+    background: #fff;
+    color: #555;
+    font-family: "Montserrat", sans-serif;
+}
+
+.grade-selector__intro {
+    width: min(100%, 670px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.grade-selector__intro h2 {
+    margin: 0 0 25px;
+    color: #343a32;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.grade-selector__intro p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.grade-selector__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: min(100%, 550px);
+    margin: 15px auto 0;
+}
+
+.grade-selector__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+}
+
+.grade-selector__image {
+    display: block;
+    width: 60px;
+    height: auto;
+}
+
+.grade-selector__item h3 {
+    margin: 8px 0 0;
+    color: #555;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.grade-selector__item:hover h3 {
+    color: #687b43;
+}
+
+.grade-selector__button {
+    display: table;
+    margin: 60px auto 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #687b43;
+    color: #687b43;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.grade-selector__button:hover {
+    color: #a88736;
+    border-color: #a88736;
+}
+
+.grade-selector__item:focus-visible,
+.grade-selector__button:focus-visible {
+    outline: 2px solid #a88736;
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .grade-selector {
+        padding: 40px 20px;
+    }
+
+    .grade-selector__grid {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 22px;
+    }
+
+    .grade-selector__button {
+        margin-top: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .grade-selector * {
+        scroll-behavior: auto;
+    }
+}

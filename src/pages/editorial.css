@@ -1,0 +1,1158 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+.editorial-page {
+    --editorial-ink: #202820;
+    --editorial-green: #304b3b;
+    --editorial-green-deep: #1d3429;
+    --editorial-gold: #b48643;
+    --editorial-paper: #f7f4ec;
+    --editorial-muted: #697169;
+    color: var(--editorial-ink);
+    background: var(--site-ash-white, #f4f4f2);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.editorial-page *,
+.editorial-page *::before,
+.editorial-page *::after {
+    box-sizing: border-box;
+}
+
+.editorial-page img {
+    display: block;
+    max-width: 100%;
+}
+
+.editorial-page a {
+    color: inherit;
+}
+
+.editorial-message {
+    min-height: 45vh;
+    display: grid;
+    place-content: center;
+    gap: 18px;
+    padding: 48px 24px;
+    color: #304b3b;
+    font-family: "DM Sans", Arial, sans-serif;
+    text-align: center;
+}
+
+.editorial-message h1 {
+    font: 600 clamp(30px, 5vw, 54px)/1.1 "Playfair Display", Georgia, serif;
+}
+
+.editorial-hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #334d3c;
+    color: #fff;
+}
+
+.editorial-hero > img,
+.csr-hero > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.editorial-hero--recipes > img {
+    object-position: center 54%;
+}
+
+.editorial-hero__shade,
+.csr-hero__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(19, 37, 27, .88) 0%, rgba(20, 38, 28, .71) 42%, rgba(20, 38, 28, .08) 100%);
+}
+
+.editorial-hero__content {
+    position: relative;
+    z-index: 1;
+    width: min(1240px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 150px 0 64px;
+}
+
+.editorial-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 66px;
+    color: rgba(255, 255, 255, .78);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.editorial-breadcrumb a {
+    text-decoration: none;
+}
+
+.editorial-breadcrumb a:hover {
+    color: #fff;
+}
+
+.editorial-hero .editorial-eyebrow,
+.csr-hero .editorial-eyebrow {
+    color: #e0c089;
+}
+
+.editorial-eyebrow {
+    margin: 0 0 14px;
+    color: var(--editorial-gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.editorial-eyebrow--green {
+    color: #788d67;
+}
+
+.editorial-hero h1,
+.csr-hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font: 600 clamp(42px, 6.5vw, 78px)/1.04 "Playfair Display", Georgia, serif;
+    letter-spacing: -.035em;
+}
+
+.editorial-hero__description {
+    max-width: 550px;
+    margin: 22px 0 30px;
+    color: rgba(255, 255, 255, .85);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.editorial-button {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 22px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.editorial-button--light {
+    border-color: rgba(255, 255, 255, .78);
+    color: #fff;
+}
+
+.editorial-button--light:hover {
+    background: #fff;
+    color: var(--editorial-green-deep);
+}
+
+.photo-credit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 9px;
+    margin-top: 13px;
+    color: rgba(255, 255, 255, .72);
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.photo-credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(255,255,255,.45);
+    text-underline-offset: 2px;
+}
+
+.editorial-section {
+    width: min(1240px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 92px 0;
+}
+
+.editorial-section__heading {
+    margin-bottom: 30px;
+}
+
+.editorial-section__heading--row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.editorial-section__heading h2,
+.csr-intro h2,
+.csr-community h2,
+.recipe-detail-layout h2 {
+    margin: 0;
+    color: var(--editorial-green-deep);
+    font: 600 clamp(31px, 4vw, 48px)/1.13 "Playfair Display", Georgia, serif;
+    letter-spacing: -.025em;
+}
+
+.editorial-section__heading > div > p:last-child {
+    margin: 12px 0 0;
+    color: var(--editorial-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.editorial-search {
+    width: min(320px, 100%);
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    border-bottom: 1px solid #c9cec5;
+    color: #647261;
+}
+
+.editorial-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--editorial-ink);
+    font: inherit;
+    font-size: 13px;
+}
+
+.editorial-search:focus-within {
+    border-color: var(--editorial-gold);
+}
+
+.editorial-filters,
+.journal-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 30px;
+}
+
+.editorial-filters > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 6px;
+    color: #5e685e;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.editorial-filters button,
+.journal-filter-row button {
+    min-height: 34px;
+    padding: 0 13px;
+    border: 1px solid #d9ded5;
+    border-radius: 99px;
+    background: #fff;
+    color: #556154;
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.editorial-filters button:hover,
+.editorial-filters button.is-active,
+.journal-filter-row button:hover,
+.journal-filter-row button.is-active {
+    border-color: var(--editorial-green);
+    background: var(--editorial-green);
+    color: #fff;
+}
+
+.editorial-featured-card,
+.journal-featured {
+    display: grid;
+    grid-template-columns: 1.16fr .84fr;
+    min-height: 390px;
+    margin-bottom: 40px;
+    background: var(--editorial-paper);
+}
+
+.editorial-featured-card__image,
+.journal-featured__image,
+.editorial-card__image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #e7e3d9;
+}
+
+.editorial-featured-card__image img,
+.journal-featured__image img,
+.editorial-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.editorial-featured-card__image:hover img,
+.journal-featured__image:hover img,
+.editorial-card__image:hover img {
+    transform: scale(1.035);
+}
+
+.editorial-featured-card__body,
+.journal-featured__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(28px, 5vw, 62px);
+}
+
+.editorial-card-kicker {
+    margin: 0 0 13px;
+    color: #718164;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.editorial-card-kicker span {
+    margin: 0 5px;
+    color: var(--editorial-gold);
+}
+
+.editorial-featured-card h3,
+.journal-featured h3 {
+    margin: 0;
+    color: var(--editorial-green-deep);
+    font: 600 clamp(27px, 3vw, 40px)/1.13 "Playfair Display", Georgia, serif;
+}
+
+.editorial-featured-card h3 a,
+.journal-featured h3 a,
+.editorial-card h3 a {
+    text-decoration: none;
+}
+
+.editorial-featured-card h3 a:hover,
+.journal-featured h3 a:hover,
+.editorial-card h3 a:hover {
+    color: #98703e;
+}
+
+.editorial-card-copy {
+    margin: 13px 0 0;
+    color: #606b61;
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.recipe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin-top: 25px;
+    color: #536353;
+    font-size: 12px;
+}
+
+.recipe-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.recipe-meta--compact {
+    gap: 8px 18px;
+    margin-top: 18px;
+}
+
+.editorial-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--editorial-gold);
+    color: var(--editorial-green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.editorial-text-link:hover {
+    color: #99723b;
+}
+
+.editorial-featured-card .photo-credit,
+.journal-featured .photo-credit,
+.editorial-card .photo-credit,
+.article-cover .photo-credit {
+    margin-top: auto;
+    padding-top: 17px;
+    color: #7a8279;
+}
+
+.editorial-featured-card .photo-credit a,
+.journal-featured .photo-credit a,
+.editorial-card .photo-credit a,
+.article-cover .photo-credit a {
+    text-decoration-color: #aab0a7;
+}
+
+.editorial-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.editorial-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e9ebe5;
+}
+
+.editorial-card__image {
+    aspect-ratio: 1.33 / 1;
+}
+
+.editorial-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 22px 18px;
+}
+
+.editorial-card h3 {
+    margin: 0;
+    color: var(--editorial-green-deep);
+    font: 600 23px/1.2 "Playfair Display", Georgia, serif;
+}
+
+.editorial-card .editorial-text-link {
+    margin-top: 20px;
+}
+
+.editorial-empty {
+    padding: 32px;
+    background: var(--editorial-paper);
+    color: #536353;
+    text-align: center;
+}
+
+.recipe-detail-page,
+.article-page {
+    padding: 42px 0 96px;
+}
+
+.detail-topline {
+    width: min(1180px, calc(100% - 64px));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto 35px;
+}
+
+.editorial-back-link,
+.detail-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 0;
+    background: transparent;
+    color: #566752;
+    font: inherit;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.editorial-back-link:hover,
+.detail-print:hover {
+    color: #a77c42;
+}
+
+.recipe-detail-hero {
+    width: min(1180px, calc(100% - 64px));
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    align-items: center;
+    gap: 54px;
+    margin: 0 auto 74px;
+}
+
+.recipe-detail-hero h1,
+.article-heading h1 {
+    margin: 0;
+    color: var(--editorial-green-deep);
+    font: 600 clamp(38px, 5vw, 64px)/1.08 "Playfair Display", Georgia, serif;
+    letter-spacing: -.03em;
+}
+
+.recipe-detail-hero__excerpt,
+.article-deck {
+    margin: 18px 0 0;
+    color: #697269;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.recipe-detail-hero__image {
+    margin: 0;
+}
+
+.recipe-detail-hero__image img {
+    width: 100%;
+    aspect-ratio: 1.35 / 1;
+    object-fit: cover;
+}
+
+.recipe-detail-hero__image figcaption {
+    padding-top: 4px;
+}
+
+.recipe-detail-layout {
+    width: min(1180px, calc(100% - 64px));
+    display: grid;
+    grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+    align-items: start;
+    gap: 80px;
+    margin: 0 auto;
+}
+
+.ingredients-panel {
+    position: sticky;
+    top: 28px;
+    padding: 28px;
+    background: var(--editorial-paper);
+}
+
+.ingredients-panel h2,
+.recipe-method h2 {
+    margin-bottom: 8px;
+}
+
+.ingredients-panel__hint {
+    margin: 0 0 22px;
+    color: #738071;
+    font-size: 12px;
+}
+
+.ingredients-panel ul {
+    display: grid;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ingredients-panel li {
+    border-top: 1px solid #e0e2d8;
+}
+
+.ingredients-panel label {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 12px 0;
+    color: #495448;
+    font-size: 13px;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.ingredients-panel input {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    margin: 2px 0 0;
+    accent-color: var(--editorial-green);
+}
+
+.ingredients-panel label.is-checked span {
+    color: #8b9387;
+    text-decoration: line-through;
+}
+
+.recipe-method ol {
+    display: grid;
+    gap: 25px;
+    padding: 28px 0 0;
+    list-style: none;
+}
+
+.recipe-method ol li {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.recipe-step-number {
+    color: #af854c;
+    font: 600 18px/1 "Playfair Display", Georgia, serif;
+}
+
+.recipe-method ol p {
+    margin: -4px 0 0;
+    color: #515b52;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.recipe-tip {
+    margin-top: 32px;
+    padding: 20px 23px;
+    border-left: 3px solid var(--editorial-gold);
+    background: var(--editorial-paper);
+}
+
+.recipe-tip strong {
+    color: var(--editorial-green);
+    font: 600 19px "Playfair Display", Georgia, serif;
+}
+
+.recipe-tip p {
+    margin: 7px 0 0;
+    color: #606b61;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.journal-section {
+    padding-top: 80px;
+}
+
+.journal-filter-row {
+    margin-top: -8px;
+}
+
+.journal-featured {
+    grid-template-columns: 1.06fr .94fr;
+    background: #f2f1e8;
+}
+
+.journal-featured__image {
+    min-height: 360px;
+}
+
+.journal-date {
+    margin: 13px 0 0;
+    color: #7a8278;
+    font-size: 11px;
+    letter-spacing: .04em;
+}
+
+.editorial-card-grid--journal .editorial-card__image {
+    aspect-ratio: 1.43 / 1;
+}
+
+.article-heading {
+    width: min(820px, calc(100% - 48px));
+    margin: 0 auto 36px;
+    text-align: center;
+}
+
+.article-heading .editorial-back-link {
+    margin-bottom: 42px;
+}
+
+.article-heading h1 {
+    max-width: 790px;
+    margin: 0 auto;
+}
+
+.article-byline {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 22px;
+    color: #798177;
+    font-size: 12px;
+}
+
+.article-byline span:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.article-cover {
+    width: min(1080px, calc(100% - 64px));
+    margin: 0 auto;
+}
+
+.article-cover img {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+}
+
+.article-body {
+    width: min(710px, calc(100% - 48px));
+    margin: 54px auto 0;
+}
+
+.article-opening {
+    color: #405344 !important;
+    font: 500 21px/1.65 "Playfair Display", Georgia, serif !important;
+}
+
+.article-body section {
+    margin: 35px 0;
+}
+
+.article-body h2 {
+    margin: 0 0 12px;
+    color: var(--editorial-green-deep);
+    font: 600 28px/1.2 "Playfair Display", Georgia, serif;
+}
+
+.article-body p {
+    margin: 0 0 16px;
+    color: #555f55;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.csr-hero {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #304b3b;
+    color: #fff;
+}
+
+.csr-hero__shade {
+    background: linear-gradient(90deg, rgba(21, 39, 27, .82) 0%, rgba(21, 39, 27, .53) 54%, rgba(21, 39, 27, .04) 100%);
+}
+
+.csr-hero__copy {
+    position: relative;
+    z-index: 1;
+    width: min(1240px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 148px 0 58px;
+}
+
+.csr-hero h1 {
+    max-width: 680px;
+}
+
+.csr-hero__copy > p:not(.editorial-eyebrow):not(.editorial-breadcrumb) {
+    max-width: 570px;
+    margin: 22px 0 28px;
+    color: rgba(255,255,255,.87);
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+.csr-intro {
+    display: grid;
+    grid-template-columns: .42fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding-top: 105px;
+    padding-bottom: 105px;
+}
+
+.csr-intro__mark {
+    width: 175px;
+    height: 175px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #c6b28b;
+    border-radius: 50%;
+    color: #526a4f;
+    font: 600 52px "Playfair Display", Georgia, serif;
+    letter-spacing: -.08em;
+}
+
+.csr-intro__copy {
+    max-width: 760px;
+}
+
+.csr-intro__copy > p:last-child,
+.csr-community__copy > p:not(.editorial-eyebrow):not(.csr-community__note) {
+    margin: 20px 0 0;
+    color: #616b61;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.csr-commitments {
+    padding: 85px max(32px, calc((100vw - 1240px) / 2)) 96px;
+    background: var(--editorial-green-deep);
+    color: #fff;
+}
+
+.csr-commitments__heading {
+    max-width: 650px;
+    margin-bottom: 40px;
+}
+
+.csr-commitments__heading .editorial-eyebrow {
+    color: #d1b177;
+}
+
+.csr-commitments__heading h2 {
+    margin: 0;
+    font: 600 clamp(32px, 4vw, 48px)/1.13 "Playfair Display", Georgia, serif;
+}
+
+.csr-commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.2);
+}
+
+.csr-commitment {
+    min-height: 250px;
+    padding: 28px;
+    background: var(--editorial-green-deep);
+}
+
+.csr-commitment__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 38px;
+    color: #d1b177;
+}
+
+.csr-commitment__top span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+
+.csr-commitment h3 {
+    margin: 0 0 11px;
+    color: #fff;
+    font: 600 24px/1.2 "Playfair Display", Georgia, serif;
+}
+
+.csr-commitment p {
+    max-width: 360px;
+    margin: 0;
+    color: rgba(255,255,255,.73);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.csr-community {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 75px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.csr-community__image img {
+    width: 100%;
+    aspect-ratio: 1.15 / 1;
+    object-fit: cover;
+}
+
+.csr-community__copy {
+    position: relative;
+    max-width: 500px;
+}
+
+.csr-community__copy h2 {
+    max-width: 480px;
+}
+
+.csr-community__copy .photo-credit {
+    color: #7a8279;
+}
+
+.csr-quote-mark {
+    height: 60px;
+    margin-top: 32px;
+    color: #c0a474;
+    font: 100px/.8 "Playfair Display", Georgia, serif;
+}
+
+.csr-community__note {
+    margin: 10px 0 0;
+    color: #52624f;
+    font: 500 19px/1.55 "Playfair Display", Georgia, serif;
+}
+
+.csr-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    padding: 70px max(32px, calc((100vw - 1240px) / 2));
+    background: #a97d43;
+    color: #fff;
+}
+
+.csr-contact .editorial-eyebrow {
+    color: #f4e5c9;
+}
+
+.csr-contact h2 {
+    margin: 0;
+    font: 600 clamp(30px, 4vw, 44px)/1.15 "Playfair Display", Georgia, serif;
+}
+
+.csr-contact p:not(.editorial-eyebrow) {
+    max-width: 670px;
+    margin: 12px 0 0;
+    color: rgba(255,255,255,.83);
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+@media (max-width: 850px) {
+    .editorial-section__heading--row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .editorial-search {
+        width: min(440px, 100%);
+    }
+
+    .editorial-featured-card,
+    .journal-featured {
+        grid-template-columns: 1fr;
+    }
+
+    .editorial-featured-card__image,
+    .journal-featured__image {
+        min-height: 320px;
+    }
+
+    .editorial-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .recipe-detail-hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .recipe-detail-hero__image {
+        order: -1;
+    }
+
+    .recipe-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .ingredients-panel {
+        position: static;
+    }
+
+    .csr-intro {
+        grid-template-columns: 150px 1fr;
+        gap: 35px;
+    }
+
+    .csr-intro__mark {
+        width: 140px;
+        height: 140px;
+        font-size: 42px;
+    }
+
+    .csr-community {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .editorial-hero {
+        min-height: 540px;
+    }
+
+    .editorial-hero__content,
+    .csr-hero__copy {
+        width: calc(100% - 40px);
+        padding-top: 82px;
+    }
+
+    .editorial-breadcrumb {
+        margin-bottom: 60px;
+    }
+
+    .editorial-hero__description {
+        max-width: 420px;
+        font-size: 14px;
+    }
+
+    .editorial-section {
+        width: calc(100% - 40px);
+        padding: 66px 0;
+    }
+
+    .editorial-card-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .editorial-card__image {
+        aspect-ratio: 1.6 / 1;
+    }
+
+    .editorial-featured-card__image,
+    .journal-featured__image {
+        min-height: 230px;
+    }
+
+    .editorial-featured-card__body,
+    .journal-featured__body {
+        padding: 28px 24px;
+    }
+
+    .detail-topline,
+    .recipe-detail-hero,
+    .recipe-detail-layout,
+    .article-cover {
+        width: calc(100% - 40px);
+    }
+
+    .recipe-detail-page,
+    .article-page {
+        padding-top: 28px;
+    }
+
+    .recipe-detail-hero {
+        margin-bottom: 48px;
+    }
+
+    .recipe-detail-hero__image img {
+        aspect-ratio: 1.2 / 1;
+    }
+
+    .ingredients-panel {
+        padding: 23px;
+    }
+
+    .article-heading {
+        width: calc(100% - 40px);
+    }
+
+    .article-heading .editorial-back-link {
+        margin-bottom: 34px;
+    }
+
+    .article-body {
+        width: calc(100% - 40px);
+        margin-top: 38px;
+    }
+
+    .article-body p {
+        font-size: 14px;
+    }
+
+    .csr-hero {
+        min-height: 600px;
+    }
+
+    .csr-hero__shade {
+        background: linear-gradient(90deg, rgba(21, 39, 27, .82), rgba(21, 39, 27, .28));
+    }
+
+    .csr-intro {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .csr-intro__mark {
+        width: 90px;
+        height: 90px;
+        font-size: 29px;
+    }
+
+    .csr-commitments {
+        padding: 65px 20px;
+    }
+
+    .csr-commitment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .csr-commitment {
+        min-height: unset;
+        padding: 24px;
+    }
+
+    .csr-commitment__top {
+        margin-bottom: 22px;
+    }
+
+    .csr-community {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .csr-contact {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 52px 20px;
+    }
+}
+
+@media print {
+    .navbar,
+    .site-footer,
+    .detail-topline,
+    .photo-credit,
+    .editorial-back-link,
+    .detail-print {
+        display: none !important;
+    }
+
+    .editorial-page {
+        color: #000;
+    }
+
+    .recipe-detail-hero,
+    .recipe-detail-layout {
+        width: 100%;
+    }
+
+    .ingredients-panel {
+        position: static;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .editorial-page *,
+    .editorial-page *::before,
+    .editorial-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}

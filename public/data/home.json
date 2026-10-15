@@ -1,0 +1,315 @@
+{
+  "navbar": {
+    "logo": "/images/home/elacher_ghor_logo1.png"
+  },
+  "hero": [
+    {
+      "id": "1",
+      "image": "/images/home/hero1.png"
+    },
+    {
+      "id": "2",
+      "image": "/images/home/hero2.png"
+    }
+  ],
+  "products": [
+    {
+      "id": "purple",
+      "name": "Purple Grade (8 mm & above) Cardamom",
+      "price": 479,
+      "originalPrice": 999,
+      "image": "/images/home/purple-card.png"
+    },
+    {
+      "id": "pink",
+      "name": "Pink Grade (7.5 mm & above) Cardamom",
+      "price": 439,
+      "originalPrice": 949,
+      "image": "/images/home/pink-card.png"
+    },
+    {
+      "id": "green",
+      "name": "Green Grade (7-8mm) Cardamom",
+      "price": 399,
+      "originalPrice": 899,
+      "image": "/images/home/green-card.png"
+    },
+    {
+      "id": "orange",
+      "name": "Orange Grade (6.5-7.5mm) Cardamom",
+      "price": 1899,
+      "originalPrice": 3000,
+      "image": "/images/home/orange-card.png"
+    },
+    {
+      "id": "red",
+      "name": "Red Grade (6-7mm) Cardamom",
+      "price": 999,
+      "originalPrice": 1500,
+      "image": "/images/home/red-card.png"
+    }
+  ],
+  "chefSection": {
+    "heading": "Anupama Mukherjee’s Favourite",
+    "description": "Elacher Ghor Cardamom is celebrated by chef Anupama Mukherjee, whose passion for Bengali cuisine and traditional flavours brings a special touch to every creation. Inspired by Bengal’s rich culinary heritage, Elacher Ghor brings the authentic aroma of cardamom to every kitchen.",
+    "quote": "The aroma is amazing",
+    "buttonText": "BUY NOW",
+    "buttonUrl": "#products",
+    "image": "/images/home/Anupama’s Favorite Cardamom Delight.png",
+    "imageAlt": "Chef Anupama mukherjee with Elacher ghor Cardamom"
+  },
+  "gradeSelector": {
+    "heading": "Graded to your Requirement",
+    "description": "‘One size doesn’t fit all’ is true in the case of cardamom as well. Because of their multiple uses and benefits, cardamom pods of different sizes are used in different applications. That is why Elacher Ghor Cardamom is graded by size. However, the grading is never about quality. Whatever the size, quality remains world class.",
+    "grades": [
+      {
+        "id": "purple",
+        "name": "Purple Grade",
+        "image": "/images/home/grade-purple.png",
+        "imageAlt": "Purple Grade cardamom, 8 mm and above",
+        "href": "#products"
+      },
+      {
+        "id": "pink",
+        "name": "Pink Grade",
+        "image": "/images/home/grade-pink.png",
+        "imageAlt": "Pink Grade cardamom, 7.5 mm and above",
+        "href": "#products"
+      },
+      {
+        "id": "green",
+        "name": "Green Grade",
+        "image": "/images/home/grade-green.png",
+        "imageAlt": "Green Grade cardamom, 7–8 mm",
+        "href": "#products"
+      },
+      {
+        "id": "orange",
+        "name": "Orange Grade",
+        "image": "/images/home/grade-orange.png",
+        "imageAlt": "Orange Grade cardamom, 6.5–7.5 mm",
+        "href": "#products"
+      },
+      {
+        "id": "red",
+        "name": "Red Grade",
+        "image": "/images/home/grade-red.png",
+        "imageAlt": "Red Grade cardamom, 6–7 mm",
+        "href": "#products"
+      }
+    ],
+    "buttonText": "SETTING STANDARDS FOR OTHERS TO FOLLOW",
+    "buttonUrl": ""
+  },
+  "worldBestCardamom": {
+    "heading": "The World’s Best Cardamom",
+    "description": "A treasure trove of aroma, flavour and health.",
+    "video": "/images/video.mp4",
+    "poster": "/images/Discover the Magic of Cardamom2.png",
+    "buttonText": "Read More",
+    "buttonUrl": ""
+  },
+  "whyBest": {
+    "eyebrow": "The Elacher Ghor Difference",
+    "heading": "WHAT MAKES US WORLD’S BEST CARDAMOM",
+    "featureHeading": "Freshness Sealed",
+    "description": "Every pod holds a world of fragrance. Our carefully designed packaging helps keep the natural freshness and distinctive aroma of premium green cardamom intact.",
+    "provenance": "From the lush green plantations of South India, our cardamom is selected for its rich fragrance, refreshing flavour, and exceptional character. Every pack brings the authentic essence of fine Indian cardamom to your kitchen.",
+    "linkText": "Discover the freshness",
+    "linkUrl": "",
+    "qualities": [
+      {
+        "id": "aroma-lock",
+        "title": "Freashness Sealed",
+        "image": "/images/home/aroma.png",
+        "alt": "Special Aroma Lock Pack",
+        "heading": "Freshness Sealed",
+        "description": "Every pod holds a world of fragrance. Our carefully designed packaging helps keep the natural freshness and distinctive aroma of premium green cardamom intact.",
+        "provenance": "Thoughtfully packed to help protect its distinctive fragrance, bringing the captivating aroma of cardamom to every cup and every creation.",
+        "linkText": "Discover the freshness"
+      },
+      {
+        "id": "natural",
+        "title": "100% Natural",
+        "image": "/images/home/natural.png",
+        "alt": "100% Natural",
+        "heading": "100% Natural",
+        "description": "Experience cardamom in its natural form, celebrated for its refreshing aroma, distinctive flavour, and timeless place in Indian kitchens.",
+        "provenance": "From everyday tea to traditional Bengali sweets and festive delicacies, our green cardamom adds a naturally aromatic touch to every recipe.",
+        "linkText": "Discover natural goodness"
+      },
+      {
+        "id": "quality",
+        "title": "Premium Quality",
+        "image": "/images/home/premium.png",
+        "alt": "Premium Quality",
+        "heading": "Premium Quality",
+        "description": "Exceptional flavour begins with careful selection. Our premium green cardamom is chosen for its distinctive fragrance, rich character, and appealing appearance.",
+        "provenance": "Inspired by the rich cardamom-growing heritage of South India, Elaicher Ghor brings refined aroma and authentic flavour to everyday meals and special occasions.",
+        "linkText": "Explore our quality"
+      }
+    ]
+  },
+  "doctor": {
+    "heading": "Doctor of Spices",
+    "description": "Cardamom has a long history of traditional use. Explore its aroma, heritage, and the health benefits associated with this remarkable spice.",
+    "image": "/images/home/doctor.png",
+    "imageAlt": "Emperor Akbar cardamom pack with cardamom and spice ingredients",
+    "buttonText": "Health Benefits",
+    "buttonUrl": ""
+  },
+  "originShagun": {
+    "ariaLabel": "Cardamom origin and gifting",
+    "cards": [
+      {
+        "id": "origin",
+        "heading": "Origin of World’s Best Cardamom",
+        "description": "Queen of spice, green gold or a secret healer?",
+        "image": "/images/home/Cardamom Gift Basket in Bengali Branding.png",
+        "imageAlt": "Elacher Ghor cardamom pack in a gift basket",
+        "buttonText": "Explore",
+        "buttonUrl": ""
+      },
+      {
+        "id": "shagun",
+        "heading": "A Family Tradition of Prosperity",
+        "description": "Celebrate love, togetherness, and good fortune with Elacher Ghor Green Cardamom. Share the warmth of family traditions and the finest green cardamom with every gift.",
+        "image": "/images/home/Family’s Cardamom Tradition.png",
+        "imageAlt": "A family presenting Emperor Akbar Cardamom as a gift",
+        "buttonText": "Buy Now",
+        "buttonUrl": "#products"
+      }
+    ]
+  },
+  "recipes": {
+    "heading": "Create Your Own Magic",
+    "featured": {
+      "id": "rasmalai",
+      "title": "Cardamom Rasmalai by Shimi’s Kitchen",
+      "description": "We collaborated with Shimi’s Kitchen to create a soft and aromatic Cardamom Rasmalai that brings together the creaminess of whipped cream and the fragrance of cardamom.",
+      "image": "/images/home/rosomalai-1.png",
+      "imageAlt": "Cardamom rasmalai being prepared and served",
+      "linkText": "Read More",
+      "url": "/recipes/cardamom-rasmalai"
+    },
+    "sideRecipes": [
+      {
+        "id": "pistachio-latte",
+        "title": "Cardamom Pistachio Latte by Shimi's Kitchen",
+        "description": "We collaborated with Shimi’s Kitchen to create a smooth and aromatic Cardamom Pistachio Latte with creamy pistachio and cardamom.",
+        "image": "/images/home/rosomalai-2.png",
+        "imageAlt": "Cardamom pistachio latte recipe collage",
+        "linkText": "Read More",
+        "url": "/recipes/cardamom-pistachio-latte"
+      },
+      {
+        "id": "elaichi-milk-tea",
+        "title": "Elaichi Milk Tea by Shimi’s Kitchen",
+        "description": "We collaborated with Shimi’s Kitchen to bring you a comforting and fragrant Elaichi Milk Tea, a classic chai with cardamom.",
+        "image": "/images/home/rosomalai-3.png",
+        "imageAlt": "Elaichi milk tea recipe collage",
+        "linkText": "Read More",
+        "url": "/recipes/elaichi-milk-tea"
+      },
+      {
+        "id": "elaichi-payasam",
+        "title": "Elaichi Payasam By Shimi’s Kitchen",
+        "description": "We collaborated with Shimi’s Kitchen to create a rich and elegant Elaichi Payasam with festive flavour and cardamom.",
+        "image": "/images/home/rosomalai-4.png",
+        "imageAlt": "Elaichi payasam recipe collage",
+        "linkText": "Read More",
+        "url": "/recipes/elaichi-payasam"
+      }
+    ]
+  },
+  "newsletter": {
+    "heading": "Subscribe for new offers",
+    "inputLabel": "Email address",
+    "placeholder": "Email address",
+    "buttonText": "Subscribe"
+  },
+  "journey": {
+    "heading": "From Plantation to Kitchen...",
+    "description": "Tracking the journey of the world’s best cardamom",
+    "image": "/images/home/এলাচের ঘর in a Misty Cardamom Forest.png",
+    "imageAlt": "Elacher Ghor cardamom pack among cardamom plants and spices",
+    "buttonText": "Know More",
+    "buttonUrl": ""
+  },
+  "footer": {
+    "contactHeading": "Contact",
+    "address": "Street Number 18, EP Block, Sector V, \nBidhannagar, Kolkata, West Bengal 700091",
+    "phone": "+91 9835110687",
+    "email": "elacher@ghor.com",
+    "quickLinksHeading": "Quick Links",
+    "quickLinks": [
+      {
+        "label": "Search",
+        "url": "/search"
+      },
+      {
+        "label": "Shop Now",
+        "url": "/shop"
+      },
+      {
+        "label": "Recipes",
+        "url": "/recipes"
+      },
+      {
+        "label": "FAQs",
+        "url": "/pages/faqs"
+      },
+      {
+        "label": "Blogs",
+        "url": "/blogs"
+      },
+      {
+        "label": "CSR",
+        "url": "/csr"
+      }
+    ],
+    "policiesHeading": "Legal Policies",
+    "policies": [
+      {
+        "label": "Return and refund policy",
+        "url": "/policies/refund-policy"
+      },
+      {
+        "label": "Privacy policy",
+        "url": "/policies/privacy-policy"
+      },
+      {
+        "label": "Terms of service",
+        "url": "/policies/terms-of-service"
+      },
+      {
+        "label": "Shipping policy",
+        "url": "/policies/shipping-policy"
+      }
+    ],
+    "credit": {
+      "text": "Crafted by",
+      "mark": "W",
+      "url": "https://www.waterindia.in/"
+    },
+    "socialLinks": [
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://facebook.com/"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://youtube.com/"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://instagram.com/"
+      }
+    ],
+    "copyrightName": "Elacher Ghor"
+  }
+}

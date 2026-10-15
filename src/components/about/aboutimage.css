@@ -1,0 +1,35 @@
+.about-image {
+    width: 100%;
+    overflow: hidden;
+    background: #f8f6f0;
+}
+
+.about-image__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .about-image__photo {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .about-image {
+        height: 320px; /* Increase this to make the image section taller */
+    }
+
+    .about-image__photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Slightly crops the image to fill the taller section */
+        object-position: center;
+    }
+}

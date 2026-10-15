@@ -1,0 +1,18 @@
+:root {
+    --site-ash-white: #f4f4f2;
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--site-ash-white);
+}
+
+main {
+    background-color: var(--site-ash-white);
+}

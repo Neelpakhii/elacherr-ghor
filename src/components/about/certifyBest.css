@@ -1,0 +1,118 @@
+.certify-best {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: min(calc(100% - 48px), 1200px);
+    aspect-ratio: 2 / 1;
+    margin: 48px auto;
+    font-family: "Montserrat", sans-serif;
+}
+
+.certify-best__visual {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background: #e7eee2;
+}
+
+.certify-best__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.certify-best__content {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 100px 60px;
+    background: #f4f4f4;
+    color: #4c5663;
+}
+
+.certify-best__content h2 {
+    margin: 0 0 24px;
+    color: #27313d;
+    font-size: clamp(24px, 2vw, 28px);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.certify-best__content p {
+    margin: 0 0 20px;
+    font-size: clamp(15px, 1.05vw, 16px);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.certify-best__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tablet and mobile: text above image */
+@media (max-width: 1024px) {
+    .certify-best {
+        grid-template-columns: 1fr;
+        aspect-ratio: auto;
+    }
+
+    .certify-best__content {
+        grid-row: 1;
+    }
+
+    .certify-best__visual {
+        grid-row: 2;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+/* Tablet */
+@media (min-width: 801px) and (max-width: 1024px) {
+    .certify-best {
+        width: min(calc(100% - 40px), 760px);
+        margin: 40px auto;
+    }
+
+    .certify-best__content {
+        padding: 40px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+    .certify-best {
+        width: min(calc(100% - 32px), 620px);
+        margin: 36px auto;
+    }
+
+    .certify-best__content {
+        padding: 32px 26px;
+    }
+
+    .certify-best__content h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    .certify-best__content p {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+}
+
+@media (max-width: 480px) {
+    .certify-best {
+        width: calc(100% - 24px);
+        margin: 24px auto;
+    }
+
+    .certify-best__content {
+        padding: 26px 20px;
+    }
+
+    .certify-best__content h2 {
+        font-size: 23px;
+    }
+}

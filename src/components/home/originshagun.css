@@ -1,0 +1,287 @@
+/* ========================================
+   GOOGLE FONTS
+======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
+
+/* ========================================
+   MAIN SECTION
+======================================== */
+.origin-shagun {
+    width: min(calc(100% - 48px), 1200px);
+    margin: 48px auto;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+/* ========================================
+   TWO-COLUMN GRID
+======================================== */
+.origin-shagun__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+}
+
+
+/* ========================================
+   CARD CONTAINER
+======================================== */
+.origin-shagun__card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 440px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #17251c;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/* ========================================
+   BACKGROUND IMAGE
+======================================== */
+.origin-shagun__image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1);
+    transition: transform 900ms cubic-bezier(0.2, 0.65, 0.3, 1);
+    will-change: transform;
+}
+
+
+/* Image zoom on hover */
+.origin-shagun__card:hover .origin-shagun__image {
+    transform: scale(1.055);
+}
+
+
+/* ========================================
+   IMAGE OVERLAY
+======================================== */
+.origin-shagun__shade {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+    transition: background 650ms ease;
+}
+
+
+/* Darken image on hover */
+.origin-shagun__card:hover .origin-shagun__shade,
+.origin-shagun__card:focus-within .origin-shagun__shade {
+    background: rgba(0, 0, 0, 0.50);
+}
+
+
+/* ========================================
+   CONTENT - TOP CENTER, HIDDEN INITIALLY
+======================================== */
+.origin-shagun__content {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 64px);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 42px 0 32px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-15px);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+    transition:
+        opacity 650ms ease,
+        transform 650ms cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+
+/* Reveal content on hover */
+.origin-shagun__card:hover .origin-shagun__content,
+.origin-shagun__card:focus-within .origin-shagun__content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+.origin-shagun__content h2 {
+    margin: 0 0 16px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(28px, 2.5vw, 38px);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    color: #fff;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+.origin-shagun__content p {
+    max-width: 520px;
+    margin: 0 auto;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(14px, 1.15vw, 17px);
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.015em;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+
+/* ========================================
+   EXPLORE / BUY NOW BUTTON
+======================================== */
+.origin-shagun__button {
+    display: table;
+    width: fit-content;
+    margin: 24px auto 0;
+    padding: 0 0 7px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+        color 250ms ease,
+        border-color 250ms ease,
+        letter-spacing 250ms ease;
+}
+
+
+/* Button hover */
+.origin-shagun__button:hover {
+    color: #e6d19a;
+    border-bottom-color: #e6d19a;
+    letter-spacing: 0.17em;
+}
+
+
+/* Keyboard accessibility */
+.origin-shagun__button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 6px;
+}
+
+
+/* ========================================
+   TABLET RESPONSIVE
+======================================== */
+@media (max-width: 1024px) {
+    .origin-shagun__card {
+        min-height: 400px;
+    }
+
+    .origin-shagun__content {
+        width: calc(100% - 44px);
+        padding-top: 36px;
+    }
+
+    .origin-shagun__content h2 {
+        font-size: clamp(25px, 3vw, 32px);
+    }
+
+    .origin-shagun__content p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+}
+
+
+/* ========================================
+   MOBILE RESPONSIVE
+======================================== */
+@media (max-width: 700px) {
+    .origin-shagun {
+        width: 100%;
+        margin: 32px auto;
+    }
+
+    .origin-shagun__grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .origin-shagun__card {
+        min-height: 380px;
+    }
+
+    /* Keep content visible on touchscreens */
+    .origin-shagun__content {
+        width: calc(100% - 40px);
+        max-width: 520px;
+        padding: 30px 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .origin-shagun__content h2 {
+        font-size: clamp(26px, 7vw, 34px);
+        margin-bottom: 14px;
+    }
+
+    .origin-shagun__content p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .origin-shagun__button {
+        margin-top: 20px;
+    }
+
+    .origin-shagun__shade {
+        background: rgba(0, 0, 0, 0.42);
+    }
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+@media (max-width: 380px) {
+    .origin-shagun__card {
+        min-height: 340px;
+    }
+
+    .origin-shagun__content {
+        width: calc(100% - 32px);
+        padding-top: 26px;
+    }
+
+    .origin-shagun__content h2 {
+        font-size: 25px;
+    }
+
+    .origin-shagun__content p {
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION ACCESSIBILITY
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+    .origin-shagun__image,
+    .origin-shagun__shade,
+    .origin-shagun__content,
+    .origin-shagun__button {
+        transition: none;
+    }
+}

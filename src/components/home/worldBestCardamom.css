@@ -1,0 +1,86 @@
+.world-best-cardamom {
+    position: relative;
+    display: grid;
+    min-height: 620px;
+    overflow: hidden;
+    place-items: center;
+    isolation: isolate;
+    background: #263a20;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.world-best-cardamom__video {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    background: #263a20;
+    pointer-events: none;
+}
+
+.world-best-cardamom__video::after {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.28);
+    content: "";
+}
+
+.world-best-cardamom__video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.world-best-cardamom__overlay {
+    position: relative;
+    z-index: 1;
+    width: min(90%, 900px);
+    padding: 80px 24px;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.world-best-cardamom__overlay h2 {
+    margin: 0 0 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 6vw, 78px);
+    font-weight: 500;
+    line-height: 1.08;
+}
+
+.world-best-cardamom__overlay p {
+    margin: 0;
+    font-size: clamp(16px, 2vw, 23px);
+    line-height: 1.6;
+}
+
+.world-best-cardamom__overlay a {
+    display: inline-block;
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.world-best-cardamom__overlay a:hover {
+    border-color: #d7c27a;
+    color: #d7c27a;
+}
+
+@media (max-width: 700px) {
+    .world-best-cardamom {
+        min-height: 480px;
+    }
+
+    .world-best-cardamom__overlay {
+        padding: 60px 20px;
+    }
+}

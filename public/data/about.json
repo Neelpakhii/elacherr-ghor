@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "image": "/images/about/Cardamom Heritage by the Riverside.png",
+    "alt": "Cardamom growing in a plantation"
+  },
+  "award": {
+  "image": "/images/about/award.jpg"
+},
+"story": {
+  "image": "/images/about/story.jpg"
+},
+"pioneer": {
+  "image": "/images/about/pioneer.png"
+},
+"certifyBest": {
+  "image": "/images/about/certify-best.jpg"
+},
+"threeStar": {
+  "image": "/images/about/three-star.jpg"
+}
+
+
+}

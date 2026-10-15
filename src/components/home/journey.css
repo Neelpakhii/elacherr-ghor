@@ -1,0 +1,110 @@
+.journey-section {
+    position: relative;
+    display: grid;
+    min-height: clamp(560px, 78vh, 900px);
+    overflow: hidden;
+    place-items: center;
+    isolation: isolate;
+    background: #24302f;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+}
+
+.journey-section__image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.journey-section__overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgba(13, 22, 29, 0.4);
+}
+
+.journey-section__content {
+    width: min(calc(100% - 40px), 1000px);
+    padding: 70px 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.journey-section__content h2 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.journey-section__content p {
+    margin: 40px 0 0;
+    font-size: clamp(16px, 1.7vw, 23px);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Know More button */
+.journey-section__button {
+    display: inline-block;
+    margin-top: 38px;
+    padding: 20px 36px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: none;
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+.journey-section__button:hover {
+    background: #fff;
+    color: #29313b;
+}
+
+.journey-section__button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .journey-section__content p {
+        margin-top: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .journey-section {
+        min-height: 500px;
+    }
+
+    .journey-section__content {
+        padding: 56px 0;
+    }
+
+    .journey-section__content p {
+        margin-top: 26px;
+    }
+
+    .journey-section__button {
+        margin-top: 28px;
+        padding: 16px 28px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .journey-section__button {
+        transition: none;
+    }
+}

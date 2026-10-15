@@ -1,0 +1,267 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 130px);
+    overflow: hidden;
+    background-color: #243521;
+}
+
+/* Hero Images */
+.hero-image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 500ms ease;
+    z-index: 0;
+}
+
+.hero-image.is-previous {
+    opacity: 1;
+    z-index: 1;
+}
+
+.hero-image.is-active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Navigation Arrows */
+.hero-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    transform: translateY(-50%);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 300ms ease,
+        visibility 300ms ease,
+        background-color 300ms ease;
+}
+
+/* Show arrows on hover */
+.hero:hover .hero-arrow {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Arrow hover effect */
+.hero-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+/* Previous Arrow */
+.hero-prev {
+    left: 24px;
+}
+
+/* Next Arrow */
+.hero-next {
+    right: 24px;
+}
+
+/* Slider Dots */
+.hero-dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    z-index: 3;
+
+    display: flex;
+    gap: 10px;
+
+    transform: translateX(-50%);
+}
+
+/* Individual Dots */
+.hero-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform 200ms ease,
+        background-color 200ms ease;
+}
+
+/* Active Dot */
+.hero-dot.active {
+    transform: scale(1.2);
+    background-color: #fff;
+}
+
+/* Keyboard Accessibility */
+.hero-arrow:focus-visible,
+.hero-dot:focus-visible {
+    outline: 2px solid #e0c17a;
+    outline-offset: 4px;
+}
+
+/* =====================================
+   TABLET + MOBILE (up to 1024px)
+   Picture fills the hero from the top,
+   navbar overlays it
+===================================== */
+
+@media (max-width: 1024px) {
+    .hero {
+        --visible: 0.9;
+
+        /* Which part is kept when cropping.
+           50% = equal from both sides
+           0%  = keep the left, crop only the right
+           100% = keep the right, crop only the left */
+        --focus:50%;
+
+        /* Height / width of your banner image (about 0.424 for your banner).
+           Change only if your banner has a different shape. */
+        --banner-ratio: 0.63;
+
+        /* Logo bar height, used to center the arrows */
+        --navbar-space: 72px;
+
+        /* ---------------------------------- */
+
+        height: calc(100vw * var(--banner-ratio) / var(--visible));
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: auto;
+        background: #243521;
+        margin: 0;
+    }
+
+    .hero-image,
+    .hero-image.is-active,
+    .hero-image.is-previous {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--focus) center;
+    }
+
+    .hero-arrow {
+        top: calc(50% + (var(--navbar-space) / 2));
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .hero-prev {
+        left: 16px;
+    }
+
+    .hero-next {
+        right: 16px;
+    }
+
+    .hero-dots {
+        bottom: 56px;   /* above the white card that overlaps */
+    }
+}
+
+/* =====================================
+   MOBILE (up to 700px)
+===================================== */
+
+@media (max-width: 700px) {
+    .hero {
+        --visible: 0.85;          /* phone crop: change this */
+        --navbar-space: 90px;
+    }
+
+    .hero-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .hero-prev {
+        left: 10px;
+    }
+
+    .hero-next {
+        right: 10px;
+    }
+
+    .hero-dots {
+        gap: 8px;
+    }
+
+    .hero-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* =====================================
+   TOUCH DEVICES (no hover)
+===================================== */
+
+@media (hover: none) {
+    .hero-arrow {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* =====================================
+   SMALL PHONES
+===================================== */
+
+@media (max-width: 480px) {
+    .hero-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .hero-prev {
+        left: 6px;
+    }
+
+    .hero-next {
+        right: 6px;
+    }
+}
+
+/* =====================================
+   REDUCED MOTION ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-image,
+    .hero-arrow,
+    .hero-dot {
+        transition: none;
+    }
+}

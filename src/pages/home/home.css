@@ -1,0 +1,15 @@
+.home-page {
+    --home-ash-white: var(--site-ash-white, #f4f4f2);
+    min-height: 100vh;
+    background-color: var(--home-ash-white);
+}
+
+.home-page .product-section,
+.home-page .grade-selector,
+.home-page .newsletter {
+    background-color: var(--home-ash-white);
+}
+
+.home-page .recipe-section {
+    background: transparent;
+}
