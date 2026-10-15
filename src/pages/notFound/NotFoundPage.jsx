@@ -13,7 +13,6 @@ function NotFoundPage() {
       </div>
 
       <div className="not-found-page__content">
-        <p className="not-found-page__eyebrow">A little detour</p>
         <p className="not-found-page__code">404</p>
         <h1 id="not-found-title">This page wandered off the path.</h1>
         <p className="not-found-page__copy">
