@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppHref } from "../../config";
 import "./gradeSelector.css";
 
 const GradeSelector = () => {
@@ -44,7 +44,7 @@ const GradeSelector = () => {
                     section.grades.map((grade) => (
                         <a
                             className="grade-selector__item"
-                            href={grade.href || "#products"}
+                            href={getAppHref(grade.href || "#products")}
                             key={grade.id}
                         >
                             {grade.image && (
@@ -63,7 +63,7 @@ const GradeSelector = () => {
             {section.buttonUrl && (
                 <a
                     className="grade-selector__button"
-                    href={section.buttonUrl}
+                    href={getAppHref(section.buttonUrl)}
                 >
                     {section.buttonText ||
                         "Setting standards for others to follow"}

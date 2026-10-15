@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { getImageUrl } from "../../config";
-import { useBag } from "../../context/BagContext.jsx";
+import useBag from "../../hooks/useBag.js";
 import "./bag.css";
 
 const formatPrice = (value) => `Rs. ${Number(value || 0).toFixed(2)}`;

@@ -2,27 +2,27 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getImageUrl } from "../../config";
-import { useBag } from "../../context/BagContext.jsx";
+import useBag from "../../hooks/useBag.js";
 import "./productDetail.css";
 
 const ProductDetailPage = () => {
     const { productId } = useParams();
-    const [product, setProduct] = useState(null);
-    const [details, setDetails] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-    const [quantity, setQuantity] = useState(1);
-    const [added, setAdded] = useState(false);
+    const [productResult, setProductResult] = useState(null);
+    const [quantityState, setQuantityState] = useState({ productId, quantity: 1 });
+    const [addedProductId, setAddedProductId] = useState(null);
     const { addItem } = useBag();
     const navigate = useNavigate();
 
+    const currentResult = productResult?.productId === productId ? productResult : null;
+    const loading = !currentResult;
+    const product = currentResult?.product || null;
+    const details = currentResult?.details || null;
+    const error = currentResult?.error || "";
+    const quantity = quantityState.productId === productId ? quantityState.quantity : 1;
+    const added = addedProductId === productId;
+
     useEffect(() => {
         const controller = new AbortController();
-        setLoading(true);
-        setError("");
-        setProduct(null);
-        setDetails(null);
-        setQuantity(1);
 
         const loadProduct = async () => {
             try {
@@ -32,13 +32,19 @@ const ProductDetailPage = () => {
                 const found = data.products?.find((item) => item.id === productId);
                 if (!found) throw new Error("We couldn’t find that product.");
 
-                setProduct(found);
                 const detailsResponse = await fetch(`${PRODUCT_DETAILS_URL}${encodeURIComponent(productId)}.json`, { signal: controller.signal });
-                if (detailsResponse.ok) setDetails(await detailsResponse.json());
+                const detailsData = detailsResponse.ok ? await detailsResponse.json() : null;
+                if (controller.signal.aborted) return;
+                setProductResult({ productId, product: found, details: detailsData, error: "" });
             } catch (loadError) {
-                if (loadError.name !== "AbortError") setError(loadError.message || "This product could not be loaded.");
-            } finally {
-                if (!controller.signal.aborted) setLoading(false);
+                if (loadError.name !== "AbortError" && !controller.signal.aborted) {
+                    setProductResult({
+                        productId,
+                        product: null,
+                        details: null,
+                        error: loadError.message || "This product could not be loaded.",
+                    });
+                }
             }
         };
 
@@ -49,8 +55,16 @@ const ProductDetailPage = () => {
     const addToBag = () => {
         if (!product) return;
         addItem(product, quantity);
-        setAdded(true);
-        window.setTimeout(() => setAdded(false), 1500);
+        setAddedProductId(productId);
+        window.setTimeout(() => {
+            setAddedProductId((currentId) => currentId === productId ? null : currentId);
+        }, 1500);
+    };
+
+    const changeQuantity = (update) => {
+        const currentQuantity = quantityState.productId === productId ? quantityState.quantity : 1;
+        const nextQuantity = typeof update === "function" ? update(currentQuantity) : update;
+        setQuantityState({ productId, quantity: Math.max(1, Number(nextQuantity) || 1) });
     };
 
     const buyNow = () => {
@@ -97,9 +111,9 @@ const ProductDetailPage = () => {
 
                         <div className="product-detail-hero__purchase">
                             <div className="product-detail-quantity" aria-label={`Quantity: ${quantity}`}>
-                                <button type="button" aria-label="Decrease quantity" disabled={quantity <= 1} onClick={() => setQuantity((current) => Math.max(1, current - 1))}><Minus size={15} /></button>
+                                <button type="button" aria-label="Decrease quantity" disabled={quantity <= 1} onClick={() => changeQuantity((current) => Math.max(1, current - 1))}><Minus size={15} /></button>
                                 <span>{quantity}</span>
-                                <button type="button" aria-label="Increase quantity" onClick={() => setQuantity((current) => current + 1)}><Plus size={15} /></button>
+                                <button type="button" aria-label="Increase quantity" onClick={() => changeQuantity((current) => current + 1)}><Plus size={15} /></button>
                             </div>
                             <button type="button" className="product-detail-button product-detail-button--outline" onClick={addToBag}>
                                 <ShoppingBag size={17} /> {added ? "Added to bag" : "Add to bag"}

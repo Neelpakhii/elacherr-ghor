@@ -1,7 +1,7 @@
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import BagContext from "./bagContext.js";
 
 const STORAGE_KEY = "elacher-ghor-bag";
-const BagContext = createContext(null);
 
 const readSavedItems = () => {
     try {
@@ -67,10 +67,4 @@ export const BagProvider = ({ children }) => {
     }), [items, addItem, removeItem, setQuantity, clearBag]);
 
     return <BagContext.Provider value={value}>{children}</BagContext.Provider>;
-};
-
-export const useBag = () => {
-    const context = useContext(BagContext);
-    if (!context) throw new Error("useBag must be used inside BagProvider.");
-    return context;
 };

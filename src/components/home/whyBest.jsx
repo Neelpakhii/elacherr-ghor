@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppHref } from "../../config";
 import "./whyBest.css";
 
 const ROTATION_INTERVAL = 4000;
@@ -155,7 +155,7 @@ const WhyBest = () => {
                         {linkUrl && (
                             <a
                                 className="why-best__link"
-                                href={linkUrl}
+                                href={getAppHref(linkUrl)}
                             >
                                 {linkText}
                                 <span aria-hidden="true">

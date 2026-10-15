@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HOME_DATA_URL, getImageUrl } from "../../config";
+import { HOME_DATA_URL, getAppHref, getImageUrl } from "../../config";
 import "./chefSection.css";
 
 const ChefSection = () => {
@@ -35,7 +35,7 @@ const ChefSection = () => {
                 )}
 
                 {chef.buttonUrl && (
-                    <a className="chef-section__button" href={chef.buttonUrl}>
+                    <a className="chef-section__button" href={getAppHref(chef.buttonUrl)}>
                         {chef.buttonText || "BUY NOW"}
                     </a>
                 )}

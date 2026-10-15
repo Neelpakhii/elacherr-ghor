@@ -5,11 +5,13 @@ import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
+const EMPTY_LIST = [];
+
 const RecipesPage = () => {
     const { data, error } = useEditorialData();
     const [category, setCategory] = useState("All recipes");
     const [query, setQuery] = useState("");
-    const recipes = data?.recipes || [];
+    const recipes = data?.recipes ?? EMPTY_LIST;
     const page = data?.recipesPage;
 
     const categories = useMemo(

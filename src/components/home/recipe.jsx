@@ -3,6 +3,17 @@ import { Link } from "react-router-dom";
 import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
 import "./recipe.css";
 
+const getImageUrl = (image) => {
+    if (!image) return "";
+    return image.startsWith("http") ? image : `${ASSET_BASE_URL}${image}`;
+};
+
+const RecipeLink = ({ recipe, className = "" }) => (
+    <Link className={className} to={recipe.url || "/recipes"}>
+        {recipe.linkText || "Read More"}
+    </Link>
+);
+
 const Recipe = () => {
     const [section, setSection] = useState(null);
 
@@ -22,17 +33,6 @@ const Recipe = () => {
     }, []);
 
     if (!section) return null;
-
-    const getImageUrl = (image) => {
-        if (!image) return "";
-        return image.startsWith("http") ? image : `${ASSET_BASE_URL}${image}`;
-    };
-
-    const RecipeLink = ({ recipe, className = "" }) => (
-        <Link className={className} to={recipe.url || "/recipes"}>
-            {recipe.linkText || "Read More"}
-        </Link>
-    );
 
     return (
         <section className="recipe-section" id="recipes">

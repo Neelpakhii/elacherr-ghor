@@ -1,5 +1,4 @@
 import { ArrowRight, HeartHandshake, Leaf, UsersRound } from "lucide-react";
-import { Link } from "react-router-dom";
 import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";

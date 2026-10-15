@@ -1,19 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { HOME_DATA_URL } from "../../config";
 import ProductCard from "../../components/home/productCard.jsx";
 import "./search.css";
 
 const SearchPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
     const query = searchParams.get("q") || "";
-    const [input, setInput] = useState(query);
+    const [draft, setDraft] = useState({ locationKey: location.key, value: query });
+    const input = draft.locationKey === location.key ? draft.value : query;
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-
-    useEffect(() => setInput(query), [query]);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -55,7 +55,7 @@ const SearchPage = () => {
                     <input
                         type="search"
                         value={input}
-                        onChange={(event) => setInput(event.target.value)}
+                        onChange={(event) => setDraft({ locationKey: location.key, value: event.target.value })}
                         placeholder="Try purple, green, or cardamom"
                         aria-label="Search cardamom products"
                     />

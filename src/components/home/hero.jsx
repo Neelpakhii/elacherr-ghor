@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
 import "./hero.css";
 
@@ -8,7 +8,7 @@ const Hero = () => {
     const [previousIndex, setPreviousIndex] = useState(null);
     const transitionTimer = useRef(null);
 
-    const goToSlide = (nextIndex) => {
+    const goToSlide = useCallback((nextIndex) => {
         if (images.length <= 1 || nextIndex === currentIndex) return;
 
         setPreviousIndex(currentIndex);
@@ -18,7 +18,7 @@ const Hero = () => {
         transitionTimer.current = setTimeout(() => {
             setPreviousIndex(null);
         }, 500);
-    };
+    }, [currentIndex, images.length]);
 
         useEffect(() => {
             fetch(HOME_DATA_URL)
@@ -52,7 +52,7 @@ const Hero = () => {
         }, 7000);
 
         return () => clearInterval(interval);
-    }, [images.length, currentIndex]);
+    }, [goToSlide, images.length, currentIndex]);
 
     useEffect(() => {
         return () => clearTimeout(transitionTimer.current);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppHref } from "../../config";
 import "./worldBestCardamom.css";
 
 const WorldBestCardamom = () => {
@@ -47,7 +47,7 @@ const WorldBestCardamom = () => {
                 <p>{section.description}</p>
 
                 {section.buttonUrl && (
-                    <a href={section.buttonUrl}>
+                    <a href={getAppHref(section.buttonUrl)}>
                         {section.buttonText || "Read More"}
                     </a>
                 )}

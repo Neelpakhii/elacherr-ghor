@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppHref } from "../../config";
 import "./originshagun.css";
 
 const OriginShagun = () => {
@@ -71,7 +71,7 @@ const OriginShagun = () => {
 
                             <a
                                 className="origin-shagun__button"
-                                href={card.buttonUrl || "#"}
+                                href={getAppHref(card.buttonUrl || "#")}
                                 aria-label={
                                     `${card.buttonText || "Explore"}: ${card.heading || "Learn more"}`
                                 }

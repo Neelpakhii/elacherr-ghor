@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HOME_DATA_URL, getImageUrl } from "../../config";
+import { HOME_DATA_URL, getAppHref, getImageUrl } from "../../config";
 import "./doctor.css";
 
 const Doctor = () => {
@@ -32,7 +32,7 @@ const Doctor = () => {
                 {section.buttonUrl && (
                     <a
                         className="doctor-section__button"
-                        href={section.buttonUrl}
+                        href={getAppHref(section.buttonUrl)}
                     >
                         {section.buttonText || "Health Benefits"}
                     </a>

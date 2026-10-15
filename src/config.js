@@ -8,6 +8,14 @@ export const SHOP_URL = `${basePath}data/shop.json`;
 export const PRODUCT_DETAILS_URL = `${basePath}data/products/`;
 export const EDITORIAL_DATA_URL = `${basePath}data/editorial.json`;
 
+export const getAppHref = (href) => {
+    if (typeof href !== "string" || !href) return basePath;
+    if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href) || href.startsWith("#")) return href;
+
+    const appPath = href.startsWith("/") ? href : `/${href}`;
+    return `${ASSET_BASE_URL}${appPath}`;
+};
+
 export const getImageUrl = (imagePath) => {
     if (!imagePath) return "";
 

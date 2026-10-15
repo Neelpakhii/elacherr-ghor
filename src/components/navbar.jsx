@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, getImageUrl } from "../config";
-import { useBag } from "../context/BagContext.jsx";
+import useBag from "../hooks/useBag.js";
 import "./navbar.css";
 
 const navLinks = [
@@ -16,7 +16,7 @@ const navLinks = [
 
 const Navbar = () => {
     const [logo, setLogo] = useState("");
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 30);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +27,11 @@ const Navbar = () => {
     const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr"].includes(location.pathname)
         || location.pathname.startsWith("/recipes/")
         || location.pathname.startsWith("/blogs/");
+
+    const closeOverlays = () => {
+        setMenuOpen(false);
+        setSearchOpen(false);
+    };
 
     useEffect(() => {
         const controller = new AbortController();
@@ -44,15 +49,11 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 30);
-        handleScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     useEffect(() => {
-        setMenuOpen(false);
-        setSearchOpen(false);
-        setIsScrolled(false);
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
@@ -85,7 +86,7 @@ const Navbar = () => {
     return (
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
-                <NavLink to="/" aria-label="Elacher Ghor Home">
+                <NavLink to="/" aria-label="Elacher Ghor Home" onClick={closeOverlays}>
                     {logo && <img src={logo} alt="Elacher Ghor" />}
                 </NavLink>
             </div>
@@ -113,6 +114,7 @@ const Navbar = () => {
                     to="/bag"
                     className={({ isActive }) => `navbar-icon navbar-bag-link ${isActive ? "active" : ""}`}
                     aria-label={`Shopping bag, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
+                    onClick={closeOverlays}
                 >
                     <ShoppingBag />
                     {itemCount > 0 && <span className="navbar-bag-count" aria-hidden="true">{itemCount > 99 ? "99+" : itemCount}</span>}
@@ -154,6 +156,7 @@ const Navbar = () => {
                         key={link.path}
                         to={link.path}
                         end={link.end}
+                        onClick={closeOverlays}
                         className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}
                     >
                         {link.name}

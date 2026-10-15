@@ -5,6 +5,8 @@ import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
+const EMPTY_LIST = [];
+
 const formatDate = (value) => new Intl.DateTimeFormat("en", {
     month: "long",
     day: "numeric",
@@ -15,7 +17,7 @@ const BlogsPage = () => {
     const { data, error } = useEditorialData();
     const [category, setCategory] = useState("All stories");
     const [query, setQuery] = useState("");
-    const articles = data?.blogs || [];
+    const articles = data?.blogs ?? EMPTY_LIST;
     const page = data?.blogsPage;
     const categories = useMemo(
         () => ["All stories", ...new Set(articles.map((article) => article.category))],

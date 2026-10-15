@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../config";
-import { useBag } from "../../context/BagContext.jsx";
+import useBag from "../../hooks/useBag.js";
 import "./productCard.css";
 
 const ProductCard = ({ product }) => {

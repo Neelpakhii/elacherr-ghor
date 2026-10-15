@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { HOME_DATA_URL } from "../config";
+import { HOME_DATA_URL, getAppHref } from "../config";
 import "./footer.css";
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 const SocialIcon = ({ name }) => {
     switch (name.toLowerCase()) {
@@ -85,7 +87,7 @@ const Footer = () => {
                         <ul>
                             {footer.quickLinks?.map((link) => (
                                 <li key={link.label}>
-                                    <a href={link.url}>{link.label}</a>
+                                    <a href={getAppHref(link.url)}>{link.label}</a>
                                 </li>
                             ))}
                         </ul>
@@ -96,7 +98,7 @@ const Footer = () => {
                         <ul>
                             {footer.policies?.map((link) => (
                                 <li key={link.label}>
-                                    <a href={link.url}>{link.label}</a>
+                                    <a href={getAppHref(link.url)}>{link.label}</a>
                                 </li>
                             ))}
                         </ul>
@@ -130,7 +132,7 @@ const Footer = () => {
             <div className="site-footer__bottom">
                 <div className="site-footer__bottom-inner">
                     <p>
-                        © {new Date().getFullYear()} {footer.copyrightName}
+                        © {CURRENT_YEAR} {footer.copyrightName}
                     </p>
                 </div>
             </div>

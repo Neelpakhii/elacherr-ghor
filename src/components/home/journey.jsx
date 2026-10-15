@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppHref } from "../../config";
 import "./journey.css";
 
 const Journey = () => {
@@ -46,7 +46,7 @@ const Journey = () => {
                 {/* Always shown. Falls back to /about if the backend sends no link */}
                 <a
                     className="journey-section__button"
-                    href={section.buttonUrl || "/about"}
+                    href={getAppHref(section.buttonUrl || "/about")}
                 >
                     {section.buttonText || "Know More"}
                 </a>
