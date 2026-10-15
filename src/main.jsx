@@ -9,9 +9,11 @@ if ("scrollRestoration" in window.history) {
 }
 
 window.scrollTo(0, 0); 
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <App />
     </BrowserRouter>
   </StrictMode>,
