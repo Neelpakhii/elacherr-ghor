@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { ArrowRight, Leaf, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, getImageUrl } from "../config";
 import useBag from "../hooks/useBag.js";
 import scrollToTop from "../utils/scrollToTop.js";
@@ -17,6 +17,9 @@ const navLinks = [
 
 const Navbar = () => {
     const [logo, setLogo] = useState("");
+    const [products, setProducts] = useState([]);
+    const [productsLoading, setProductsLoading] = useState(true);
+    const [productsError, setProductsError] = useState(false);
     const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 30);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -28,6 +31,13 @@ const Navbar = () => {
     const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr"].includes(location.pathname)
         || location.pathname.startsWith("/recipes/")
         || location.pathname.startsWith("/blogs/");
+    const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
+    const searchResults = useMemo(() => {
+        if (!normalizedSearchQuery) return products.slice(0, 5);
+        return products
+            .filter((product) => `${product.name || ""} ${product.id || ""}`.toLocaleLowerCase().includes(normalizedSearchQuery))
+            .slice(0, 5);
+    }, [normalizedSearchQuery, products]);
 
     const closeOverlays = () => {
         setMenuOpen(false);
@@ -46,12 +56,30 @@ const Navbar = () => {
                 if (!response.ok) throw new Error("Failed to load navbar data");
                 return response.json();
             })
-            .then((data) => setLogo(getImageUrl(data.navbar?.logo)))
+            .then((data) => {
+                setLogo(getImageUrl(data.navbar?.logo));
+                setProducts(Array.isArray(data.products) ? data.products : []);
+            })
             .catch((error) => {
-                if (error.name !== "AbortError") console.error("Navbar error:", error);
+                if (error.name !== "AbortError") {
+                    setProductsError(true);
+                    console.error("Navbar error:", error);
+                }
+            })
+            .finally(() => {
+                if (!controller.signal.aborted) setProductsLoading(false);
             });
         return () => controller.abort();
     }, []);
+
+    useEffect(() => {
+        if (!searchOpen) return undefined;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [searchOpen]);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 30);
@@ -138,18 +166,108 @@ const Navbar = () => {
             </div>
 
             {searchOpen && (
-                <form id="navbar-search-panel" className="navbar-search-panel" role="search" onSubmit={submitSearch}>
-                    <Search size={20} aria-hidden="true" />
-                    <input
-                        ref={searchInputRef}
-                        type="search"
-                        value={searchQuery}
-                        onChange={(event) => setSearchQuery(event.target.value)}
-                        placeholder="Search cardamom grades…"
-                        aria-label="Search products"
+                <div className="search-overlay" id="navbar-search-panel">
+                    <button
+                        type="button"
+                        className="search-overlay__scrim"
+                        aria-label="Close search"
+                        onClick={() => setSearchOpen(false)}
                     />
-                    <button type="submit">Search</button>
-                </form>
+                    <aside className="search-drawer" role="dialog" aria-modal="true" aria-labelledby="navbar-search-title">
+                        <div className="search-drawer__top">
+                            <div>
+                                <p className="search-drawer__eyebrow"><Leaf size={14} aria-hidden="true" /> The cardamom edit</p>
+                                <h2 id="navbar-search-title">Search our store</h2>
+                                <p className="search-drawer__intro">Find the perfect grade for your kitchen.</p>
+                            </div>
+                            <button
+                                type="button"
+                                className="search-drawer__close"
+                                aria-label="Close search"
+                                onClick={() => setSearchOpen(false)}
+                            >
+                                <X size={22} aria-hidden="true" />
+                            </button>
+                        </div>
+
+                        <form className="search-drawer__form" role="search" onSubmit={submitSearch}>
+                            <div className="search-drawer__field">
+                                <Leaf className="search-drawer__leaf" size={21} aria-hidden="true" />
+                                <input
+                                    ref={searchInputRef}
+                                    type="search"
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                    placeholder="Try purple, pink, or green"
+                                    aria-label="Search cardamom products"
+                                />
+                                {searchQuery && (
+                                    <button type="button" className="search-drawer__clear" aria-label="Clear search" onClick={() => setSearchQuery("")}>
+                                        <X size={17} aria-hidden="true" />
+                                    </button>
+                                )}
+                            </div>
+                            <button className="search-drawer__submit" type="submit">
+                                <span>Search</span>
+                                <ArrowRight size={17} aria-hidden="true" />
+                            </button>
+                        </form>
+
+                        <div className="search-drawer__results-heading">
+                            <h3>{normalizedSearchQuery ? "Matching grades" : "Popular grades"}</h3>
+                            {!productsLoading && !productsError && (
+                                <span>{searchResults.length} {searchResults.length === 1 ? "grade" : "grades"}</span>
+                            )}
+                        </div>
+
+                        {productsLoading && <p className="search-drawer__message">Loading cardamom grades…</p>}
+                        {!productsLoading && productsError && (
+                            <p className="search-drawer__message" role="alert">We couldn’t load the products. Please try again.</p>
+                        )}
+                        {!productsLoading && !productsError && searchResults.length > 0 && (
+                            <div className="search-drawer__results">
+                                {searchResults.map((product) => (
+                                    <Link
+                                        className="search-result"
+                                        key={product.id}
+                                        to={`/products/${product.id}`}
+                                        onClick={handlePageNavigation}
+                                    >
+                                        <span className="search-result__image">
+                                            {product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}
+                                        </span>
+                                        <span className="search-result__details">
+                                            <span className="search-result__name">{product.name}</span>
+                                            <span className="search-result__prices">
+                                                <span>Rs. {Number(product.price).toLocaleString("en-IN", { maximumFractionDigits: 2 })}</span>
+                                                {product.originalPrice != null && (
+                                                    <span className="search-result__original">Rs. {Number(product.originalPrice).toLocaleString("en-IN", { maximumFractionDigits: 2 })}</span>
+                                                )}
+                                            </span>
+                                        </span>
+                                        <ArrowRight className="search-result__arrow" size={18} aria-hidden="true" />
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                        {!productsLoading && !productsError && searchResults.length === 0 && (
+                            <div className="search-drawer__empty">
+                                <Leaf size={24} aria-hidden="true" />
+                                <p>No grades found for “{searchQuery.trim()}”.</p>
+                                <span>Try purple, pink, green, orange, or red.</span>
+                            </div>
+                        )}
+
+                        <Link
+                            className="search-drawer__all-results"
+                            to={searchQuery.trim() ? `/search?q=${encodeURIComponent(searchQuery.trim())}` : "/search"}
+                            onClick={handlePageNavigation}
+                        >
+                            <span>{searchQuery.trim() ? "See all results" : "Browse all grades"}</span>
+                            <ArrowRight size={17} aria-hidden="true" />
+                        </Link>
+                    </aside>
+                </div>
             )}
 
             <nav id="main-navigation" className={`navbar-menu ${menuOpen ? "show" : ""}`} aria-label="Main navigation">
