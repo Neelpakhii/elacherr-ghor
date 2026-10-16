@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, getImageUrl } from "../config";
 import useBag from "../hooks/useBag.js";
+import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
 
 const navLinks = [
@@ -33,6 +34,11 @@ const Navbar = () => {
         setSearchOpen(false);
     };
 
+    const handlePageNavigation = () => {
+        closeOverlays();
+        scrollToTop();
+    };
+
     useEffect(() => {
         const controller = new AbortController();
         fetch(HOME_DATA_URL, { signal: controller.signal })
@@ -52,10 +58,6 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
 
     useEffect(() => {
         if (searchOpen) searchInputRef.current?.focus();
@@ -86,7 +88,7 @@ const Navbar = () => {
     return (
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
-                <NavLink to="/" aria-label="Elacher Ghor Home" onClick={closeOverlays}>
+                <NavLink to="/" aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
                     {logo && <img src={logo} alt="Elacher Ghor" />}
                 </NavLink>
             </div>
@@ -114,7 +116,7 @@ const Navbar = () => {
                     to="/bag"
                     className={({ isActive }) => `navbar-icon navbar-bag-link ${isActive ? "active" : ""}`}
                     aria-label={`Shopping bag, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
-                    onClick={closeOverlays}
+                    onClick={handlePageNavigation}
                 >
                     <ShoppingBag />
                     {itemCount > 0 && <span className="navbar-bag-count" aria-hidden="true">{itemCount > 99 ? "99+" : itemCount}</span>}
@@ -156,7 +158,7 @@ const Navbar = () => {
                         key={link.path}
                         to={link.path}
                         end={link.end}
-                        onClick={closeOverlays}
+                        onClick={handlePageNavigation}
                         className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}
                     >
                         {link.name}

@@ -14,10 +14,12 @@ import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
 import BagPage from "./pages/bag/BagPage.jsx";
 import SearchPage from "./pages/search/SearchPage.jsx";
 import ProductDetailPage from "./pages/products/ProductDetailPage.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   return (
     <BagProvider>
+      <ScrollToTop />
       <Navbar />
       <main>
         <Routes>
