@@ -1,15 +1,15 @@
 {
   "navbar": {
-    "logo": "/images/home/elacher_ghor_logo1.png"
+    "logo": "/images/home/elacher_ghor_logo1.webp"
   },
   "hero": [
     {
       "id": "1",
-      "image": "/images/home/hero1.png"
+      "image": "/images/home/hero1.webp"
     },
     {
       "id": "2",
-      "image": "/images/home/hero2.png"
+      "image": "/images/home/hero2.webp"
     }
   ],
   "products": [
@@ -18,35 +18,45 @@
       "name": "Purple Grade (8 mm & above) Cardamom",
       "price": 479,
       "originalPrice": 999,
-      "image": "/images/home/purple-card.png"
+      "image": "/images/home/purple-card.webp"
     },
     {
       "id": "pink",
       "name": "Pink Grade (7.5 mm & above) Cardamom",
       "price": 439,
       "originalPrice": 949,
-      "image": "/images/home/pink-card.png"
+      "image": "/images/home/pink-card.webp"
     },
     {
       "id": "green",
       "name": "Green Grade (7-8mm) Cardamom",
       "price": 399,
       "originalPrice": 899,
-      "image": "/images/home/green-card.png"
+      "image": "/images/home/green-card.webp"
     },
     {
       "id": "orange",
       "name": "Orange Grade (6.5-7.5mm) Cardamom",
       "price": 1899,
       "originalPrice": 3000,
-      "image": "/images/home/orange-card.png"
+      "image": "/images/home/orange-card.webp"
     },
     {
       "id": "red",
       "name": "Red Grade (6-7mm) Cardamom",
       "price": 999,
       "originalPrice": 1500,
-      "image": "/images/home/red-card.png"
+      "image": "/images/home/red-card.webp"
+    },
+    {
+      "id": "yellow-grade-9-mm-above-cardamom",
+      "name": "Yellow Grade (9 mm & above) Cardamom",
+      "category": "Cardamom",
+      "price": 1199,
+      "image": "/images/admin-uploads/yellow-cardamom-pouch-and-bowl-1792145329272.webp",
+      "available": true,
+      "originalPrice": 1500,
+      "imageAlt": "yellow"
     }
   ],
   "chefSection": {
@@ -55,7 +65,7 @@
     "quote": "The aroma is amazing",
     "buttonText": "BUY NOW",
     "buttonUrl": "#products",
-    "image": "/images/home/Anupama’s Favorite Cardamom Delight.png",
+    "image": "/images/home/Anupama’s Favorite Cardamom Delight.webp",
     "imageAlt": "Chef Anupama mukherjee with Elacher ghor Cardamom"
   },
   "gradeSelector": {
@@ -105,7 +115,7 @@
     "heading": "The World’s Best Cardamom",
     "description": "A treasure trove of aroma, flavour and health.",
     "video": "/images/video.mp4",
-    "poster": "/images/Discover the Magic of Cardamom2.png",
+    "poster": "/images/Discover the Magic of Cardamom2.webp",
     "buttonText": "Read More",
     "buttonUrl": ""
   },
@@ -153,7 +163,7 @@
   "doctor": {
     "heading": "Doctor of Spices",
     "description": "Cardamom has a long history of traditional use. Explore its aroma, heritage, and the health benefits associated with this remarkable spice.",
-    "image": "/images/home/doctor.png",
+    "image": "/images/home/doctor.webp",
     "imageAlt": "Emperor Akbar cardamom pack with cardamom and spice ingredients",
     "buttonText": "Health Benefits",
     "buttonUrl": ""
@@ -165,7 +175,7 @@
         "id": "origin",
         "heading": "Origin of World’s Best Cardamom",
         "description": "Queen of spice, green gold or a secret healer?",
-        "image": "/images/home/Cardamom Gift Basket in Bengali Branding.png",
+        "image": "/images/home/Cardamom Gift Basket in Bengali Branding.webp",
         "imageAlt": "Elacher Ghor cardamom pack in a gift basket",
         "buttonText": "Explore",
         "buttonUrl": ""
@@ -174,7 +184,7 @@
         "id": "shagun",
         "heading": "A Family Tradition of Prosperity",
         "description": "Celebrate love, togetherness, and good fortune with Elacher Ghor Green Cardamom. Share the warmth of family traditions and the finest green cardamom with every gift.",
-        "image": "/images/home/Family’s Cardamom Tradition.png",
+        "image": "/images/home/Family’s Cardamom Tradition.webp",
         "imageAlt": "A family presenting Emperor Akbar Cardamom as a gift",
         "buttonText": "Buy Now",
         "buttonUrl": "#products"
@@ -187,7 +197,7 @@
       "id": "rasmalai",
       "title": "Cardamom Rasmalai by Shimi’s Kitchen",
       "description": "We collaborated with Shimi’s Kitchen to create a soft and aromatic Cardamom Rasmalai that brings together the creaminess of whipped cream and the fragrance of cardamom.",
-      "image": "/images/home/rosomalai-1.png",
+      "image": "/images/home/rosomalai-1.webp",
       "imageAlt": "Cardamom rasmalai being prepared and served",
       "linkText": "Read More",
       "url": "/recipes/cardamom-rasmalai"
@@ -206,7 +216,7 @@
         "id": "elaichi-milk-tea",
         "title": "Elaichi Milk Tea by Shimi’s Kitchen",
         "description": "We collaborated with Shimi’s Kitchen to bring you a comforting and fragrant Elaichi Milk Tea, a classic chai with cardamom.",
-        "image": "/images/home/rosomalai-3.png",
+        "image": "/images/home/rosomalai-3.webp",
         "imageAlt": "Elaichi milk tea recipe collage",
         "linkText": "Read More",
         "url": "/recipes/elaichi-milk-tea"
@@ -215,7 +225,7 @@
         "id": "elaichi-payasam",
         "title": "Elaichi Payasam By Shimi’s Kitchen",
         "description": "We collaborated with Shimi’s Kitchen to create a rich and elegant Elaichi Payasam with festive flavour and cardamom.",
-        "image": "/images/home/rosomalai-4.png",
+        "image": "/images/home/rosomalai-4.webp",
         "imageAlt": "Elaichi payasam recipe collage",
         "linkText": "Read More",
         "url": "/recipes/elaichi-payasam"
@@ -231,7 +241,7 @@
   "journey": {
     "heading": "From Plantation to Kitchen...",
     "description": "Tracking the journey of the world’s best cardamom",
-    "image": "/images/home/এলাচের ঘর in a Misty Cardamom Forest.png",
+    "image": "/images/home/এলাচের ঘর in a Misty Cardamom Forest.webp",
     "imageAlt": "Elacher Ghor cardamom pack among cardamom plants and spices",
     "buttonText": "Know More",
     "buttonUrl": ""

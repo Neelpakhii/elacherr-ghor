@@ -44,6 +44,7 @@
 
 .product-detail-button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 20px; border: 1px solid #304b3b; cursor: pointer; font: 700 11px/1 "DM Sans", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease, color .2s ease, transform .2s ease; }
 .product-detail-button:hover { transform: translateY(-1px); }
+.product-detail-button:disabled { cursor: not-allowed; opacity: .5; transform: none; }
 .product-detail-button--outline { background: transparent; color: #304b3b; }
 .product-detail-button--outline:hover { background: #e9ede5; }
 .product-detail-button--solid { width: 100%; margin-top: 10px; background: #304b3b; color: #fff; }

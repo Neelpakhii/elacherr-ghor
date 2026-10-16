@@ -15,7 +15,11 @@ export default function useEditorialData() {
                 }
                 return response.json();
             })
-            .then(setData)
+            .then((content) => setData({
+                ...content,
+                recipes: (content.recipes || []).filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
+                blogs: (content.blogs || []).filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
+            }))
             .catch((loadError) => {
                 if (loadError.name !== "AbortError") {
                     setError(loadError.message);

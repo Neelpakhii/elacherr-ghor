@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HOME_DATA_URL } from "../../config.js";
 import ProductCard from "./productCard.jsx";
+import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productSection.css";
 
 const ProductSection = () => {
@@ -19,7 +20,9 @@ const ProductSection = () => {
                 return response.json();
             })
             .then((data) => {
-                setProducts(Array.isArray(data.products) ? data.products : []);
+                setProducts(Array.isArray(data.products)
+                    ? data.products.filter(isProductAvailable)
+                    : []);
             })
             .catch((err) => {
                 setError(err.message);

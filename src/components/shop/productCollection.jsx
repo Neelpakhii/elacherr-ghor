@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { HOME_DATA_URL } from "../../config";
 import ProductCard from "../home/productCard.jsx";
+import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productCollection.css";
 
 const sortOptions = [
@@ -104,7 +105,9 @@ const ProductCollection = () => {
                 const data = await response.json();
 
                 setProducts(
-                    Array.isArray(data.products) ? data.products : []
+                    Array.isArray(data.products)
+                        ? data.products.filter(isProductAvailable)
+                        : []
                 );
             } catch (fetchError) {
                 if (fetchError.name !== "AbortError") {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productCard.css";
 
 const ProductCard = ({ product }) => {
@@ -10,14 +11,17 @@ const ProductCard = ({ product }) => {
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
     const detailPath = `/products/${product.id}`;
+    const unavailable = !isProductAvailable(product);
 
     const handleAddToBag = () => {
+        if (unavailable) return;
         addItem(product);
         setAdded(true);
         window.setTimeout(() => setAdded(false), 1300);
     };
 
     const handleBuyNow = () => {
+        if (unavailable) return;
         addItem(product);
         navigate("/bag");
     };
@@ -39,6 +43,7 @@ const ProductCard = ({ product }) => {
 
             <div className="product-card__content">
                 <p className="product-card__eyebrow">Alleppey Premium Cardamom</p>
+                {unavailable && <p className="product-card__availability">Currently unavailable</p>}
                 <Link className="product-card__name-link" to={detailPath}>
                     <h3 className="product-card__name">{product.name}</h3>
                 </Link>
@@ -56,10 +61,10 @@ const ProductCard = ({ product }) => {
                 )}
 
                 <div className="product-card__actions">
-                    <button type="button" className="product-card__add-button" onClick={handleAddToBag}>
+                    <button type="button" className="product-card__add-button" onClick={handleAddToBag} disabled={unavailable}>
                         {added ? "Added to bag ✓" : "Add to bag"}
                     </button>
-                    <button type="button" className="product-card__buy-button" onClick={handleBuyNow}>
+                    <button type="button" className="product-card__buy-button" onClick={handleBuyNow} disabled={unavailable}>
                         Buy now
                     </button>
                 </div>

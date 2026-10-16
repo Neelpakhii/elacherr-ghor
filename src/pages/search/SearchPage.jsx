@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { HOME_DATA_URL } from "../../config";
 import ProductCard from "../../components/home/productCard.jsx";
+import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./search.css";
 
 const SearchPage = () => {
@@ -23,7 +24,9 @@ const SearchPage = () => {
                 if (!response.ok) throw new Error("Could not load products.");
                 return response.json();
             })
-            .then((data) => setProducts(Array.isArray(data.products) ? data.products : []))
+            .then((data) => setProducts(Array.isArray(data.products)
+                ? data.products.filter(isProductAvailable)
+                : []))
             .catch((fetchError) => {
                 if (fetchError.name !== "AbortError") setError("We couldn’t load the products. Please try again.");
             })

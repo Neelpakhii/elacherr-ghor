@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import { BagProvider } from "./context/BagContext.jsx";
@@ -15,14 +15,20 @@ import BagPage from "./pages/bag/BagPage.jsx";
 import SearchPage from "./pages/search/SearchPage.jsx";
 import ProductDetailPage from "./pages/products/ProductDetailPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import AdminPage from "./admin-tool/AdminPage.jsx";
 
 function App() {
+  const location = useLocation();
+  const isAdminPage = location.pathname === "/admin" || location.pathname.startsWith("/admin/");
+
   return (
     <BagProvider>
       <ScrollToTop />
-      <Navbar />
-      <main>
+      {!isAdminPage && <Navbar />}
+      <main className={isAdminPage ? "app-main--admin" : ""}>
         <Routes>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/:section" element={<AdminPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About/>}/>
           <Route path="/shop" element={<Shop/>}/>
@@ -41,7 +47,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      <Footer />
+      {!isAdminPage && <Footer />}
     </BagProvider>
   );
 }

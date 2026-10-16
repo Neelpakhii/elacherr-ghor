@@ -19,6 +19,10 @@ To create a production build, run `npm run build`. The generated site is in `dis
 - Recipes, journal articles and CSR page: `public/data/editorial.json`
 - Images and video: `public/images/` (editorial photography is linked from Unsplash in the JSON)
 
+## Admin dashboard
+
+Run the project locally and open `/admin` to manage products, stock, homepage content, recipes, blogs, and the low-stock threshold. See [`src/admin-tool/README.md`](src/admin-tool/README.md) for save instructions and current limits. Orders and customer accounts need a backend and are not available in this frontend-only project.
+
 Recipe cards open their own pages. Journal cards open full articles. The Recipes, Blogs and CSR pages are linked in the navbar.
 
 The JSON files and images are public. Anyone who can access the deployed site can view them. The newsletter form is presentation-only and does not send or store email addresses; saving submissions or processing orders requires a service that can receive and store that information.

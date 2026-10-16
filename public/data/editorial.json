@@ -281,7 +281,7 @@
       "date": "2026-08-27",
       "readTime": "5 min read",
       "excerpt": "Choose the right form for chai, a slow-cooked curry, a delicate dessert or a quick weekday bake.",
-      "image": "https://images.unsplash.com/photo-1683533698664-12ee473e8c9d?auto=format&fit=crop&w=1400&q=85",
+      "image": "https://sandhyahariharan.co.uk/wp-content/uploads/2023/02/ground-cardamom-step-by-step-5.jpg",
       "imageAlt": "A spiced tea served in a cup",
       "imageCredit": "Ananthan Chithiraikani",
       "imageCreditUrl": "https://unsplash.com/photos/DPBWHb2X81w",
@@ -304,7 +304,8 @@
             "A whole pod gives a gentle, gradual note. Ground cardamom reaches every bite and tastes more immediate. When a recipe is flexible, begin with a small amount and adjust to taste."
           ]
         }
-      ]
+      ],
+      "status": "published"
     },
     {
       "slug": "cardamom-in-everyday-rituals",

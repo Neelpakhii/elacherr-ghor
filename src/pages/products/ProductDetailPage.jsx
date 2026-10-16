@@ -3,6 +3,7 @@ import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productDetail.css";
 
 const ProductDetailPage = () => {
@@ -20,6 +21,7 @@ const ProductDetailPage = () => {
     const error = currentResult?.error || "";
     const quantity = quantityState.productId === productId ? quantityState.quantity : 1;
     const added = addedProductId === productId;
+    const unavailable = !isProductAvailable(product);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -53,7 +55,7 @@ const ProductDetailPage = () => {
     }, [productId]);
 
     const addToBag = () => {
-        if (!product) return;
+        if (!product || unavailable) return;
         addItem(product, quantity);
         setAddedProductId(productId);
         window.setTimeout(() => {
@@ -68,7 +70,7 @@ const ProductDetailPage = () => {
     };
 
     const buyNow = () => {
-        if (!product) return;
+        if (!product || unavailable) return;
         addItem(product, quantity);
         navigate("/bag");
     };
@@ -101,6 +103,7 @@ const ProductDetailPage = () => {
                         <p className="product-detail-hero__eyebrow">Elacher Ghor · Alleppey Green</p>
                         <h1>{product.name}</h1>
                         {details?.grade && <p className="product-detail-hero__grade">Grade size <strong>{details.grade}</strong></p>}
+                        {product.weight && <p className="product-detail-hero__grade">Pack size <strong>{product.weight}</strong></p>}
                         <div className="product-detail-hero__price">
                             <strong>Rs. {Number(product.price || 0).toFixed(2)}</strong>
                             {product.originalPrice != null && <del>Rs. {Number(product.originalPrice).toFixed(2)}</del>}
@@ -115,11 +118,12 @@ const ProductDetailPage = () => {
                                 <span>{quantity}</span>
                                 <button type="button" aria-label="Increase quantity" onClick={() => changeQuantity((current) => current + 1)}><Plus size={15} /></button>
                             </div>
-                            <button type="button" className="product-detail-button product-detail-button--outline" onClick={addToBag}>
-                                <ShoppingBag size={17} /> {added ? "Added to bag" : "Add to bag"}
+                            <button type="button" className="product-detail-button product-detail-button--outline" onClick={addToBag} disabled={unavailable}>
+                                <ShoppingBag size={17} /> {unavailable ? "Unavailable" : added ? "Added to bag" : "Add to bag"}
                             </button>
                         </div>
-                        <button type="button" className="product-detail-button product-detail-button--solid" onClick={buyNow}>Buy now</button>
+                        <button type="button" className="product-detail-button product-detail-button--solid" onClick={buyNow} disabled={unavailable}>Buy now</button>
+                        {unavailable && <p className="product-detail-hero__local-note">This product is currently unavailable.</p>}
                         <p className="product-detail-hero__local-note">Your bag is saved on this device.</p>
                     </div>
                 </section>
