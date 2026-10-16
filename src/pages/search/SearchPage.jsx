@@ -11,6 +11,7 @@ const SearchPage = () => {
     const query = searchParams.get("q") || "";
     const [draft, setDraft] = useState({ locationKey: location.key, value: query });
     const input = draft.locationKey === location.key ? draft.value : query;
+    const activeSearchTerm = query.trim();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -33,10 +34,10 @@ const SearchPage = () => {
     }, []);
 
     const results = useMemo(() => {
-        const term = query.trim().toLocaleLowerCase();
-        if (!term) return products;
-        return products.filter((product) => `${product.name} ${product.id}`.toLocaleLowerCase().includes(term));
-    }, [products, query]);
+        const term = activeSearchTerm.toLocaleLowerCase();
+        if (!term) return [];
+        return products.filter((product) => `${product.name || ""} ${product.id || ""}`.toLocaleLowerCase().includes(term));
+    }, [activeSearchTerm, products]);
 
     const submitSearch = (event) => {
         event.preventDefault();
@@ -62,16 +63,21 @@ const SearchPage = () => {
                     <button type="submit">Search</button>
                 </form>
 
-                {query && <p className="search-page__count">{loading ? "Searching…" : `${results.length} ${results.length === 1 ? "product" : "products"} for “${query}”`}</p>}
-                {loading && <p className="search-page__message">Loading products…</p>}
-                {!loading && error && <p className="search-page__message" role="alert">{error}</p>}
-                {!loading && !error && results.length > 0 && (
+                {activeSearchTerm && <p className="search-page__count">{loading ? "Searching…" : `${results.length} ${results.length === 1 ? "product" : "products"} for “${activeSearchTerm}”`}</p>}
+                {activeSearchTerm && !loading && error && <p className="search-page__message" role="alert">{error}</p>}
+                {activeSearchTerm && !loading && !error && results.length > 0 && (
                     <div className="search-page__grid">{results.map((product) => <ProductCard key={product.id} product={product} />)}</div>
                 )}
-                {!loading && !error && results.length === 0 && (
+                {activeSearchTerm && !loading && !error && results.length === 0 && (
                     <div className="search-page__empty">
                         <h2>No matching grades found</h2>
                         <p>Try a grade colour such as purple, pink, green, orange, or red.</p>
+                    </div>
+                )}
+                {!activeSearchTerm && (
+                    <div className="search-page__empty">
+                        <h2>Find your perfect grade</h2>
+                        <p>Enter a cardamom grade or colour above to see matching products.</p>
                     </div>
                 )}
             </div>
