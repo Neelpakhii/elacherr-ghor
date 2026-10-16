@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
     ArrowUpRight,
     Bell,
@@ -12,13 +12,11 @@ import {
     ExternalLink,
     Eye,
     FileText,
-    ImagePlus,
     LayoutDashboard,
     Leaf,
     LogOut,
     Menu,
     Package,
-    PanelsTopLeft,
     Pencil,
     Plus,
     Save,
@@ -32,16 +30,14 @@ import {
     X,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ABOUT_URL, ADMIN_SETTINGS_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCT_DETAILS_URL, SHOP_URL, getImageUrl, migrateImagePath } from "../config.js";
+import { ADMIN_SETTINGS_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCT_DETAILS_URL, getImageUrl, migrateImagePath } from "../config.js";
 import { hasTrackedStock, isProductAvailable, isProductOutOfStock } from "../utils/productAvailability.js";
 import AdminJsonEditor from "./AdminJsonEditor.jsx";
 import "./admin.css";
 
 const DRAFT_KEY = "elacher-ghor-admin-draft-v1";
 const CONTENT_FILES = {
-    home: { label: "Homepage", path: "data/home.json", url: HOME_DATA_URL },
-    about: { label: "About page", path: "data/about.json", url: ABOUT_URL },
-    shop: { label: "Shop banner", path: "data/shop.json", url: SHOP_URL },
+    home: { label: "Products", path: "data/home.json", url: HOME_DATA_URL },
     editorial: { label: "Recipes, blogs & CSR", path: "data/editorial.json", url: EDITORIAL_DATA_URL },
 };
 const ADMIN_SETTINGS_FILE = { label: "Admin settings", path: "data/admin-settings.json", url: ADMIN_SETTINGS_URL };
@@ -56,7 +52,6 @@ const SIDE_GROUPS = [
         { id: "inventory", label: "Inventory", icon: Warehouse },
     ] },
     { label: "WEBSITE", items: [
-        { id: "homepage", label: "Homepage Content", icon: PanelsTopLeft },
         { id: "editorial", label: "Recipes & Blogs", icon: BookOpenText },
         { id: "settings", label: "Settings", icon: Settings },
     ] },
@@ -229,7 +224,6 @@ function AdminPage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [notificationsOpen, setNotificationsOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
-    const [contentKey, setContentKey] = useState("home");
     const [productModal, setProductModal] = useState(null);
     const [productSearch, setProductSearch] = useState("");
     const [productCategory, setProductCategory] = useState("all");
@@ -596,7 +590,7 @@ function AdminPage() {
     };
 
     const currentTitle = PAGE_TITLES[section] || "Dashboard";
-    const selectedFile = section === "homepage" ? contentKey : section === "editorial" ? "editorial" : section === "settings" ? "adminSettings" : null;
+    const selectedFile = section === "products" ? "home" : section === "editorial" ? "editorial" : section === "settings" ? "adminSettings" : null;
     const lowStockCount = lowStockProducts.length;
     const notificationCount = lowStockProducts.length + outOfStockProducts.length;
     const sectionLinks = (id) => id === "dashboard" ? "/admin" : `/admin/${id}`;
@@ -637,9 +631,8 @@ function AdminPage() {
                     {section === "orders" && <EmptyManagementSection title="Orders" icon={ShoppingCart} description="Order records are not available in this project yet. The shopping bag is saved in each visitor’s browser and there is no checkout or order API." columns={["Order ID", "Customer", "Date", "Items", "Total", "Payment", "Status"]} />}
                     {section === "customers" && <EmptyManagementSection title="Customers" icon={Users} description="This project does not have registered customer accounts or a customer database. The bag is local to each visitor’s device." columns={["Name", "Email", "Registered", "Orders", "Total spent"]} />}
                     {section === "inventory" && <InventorySection products={products} details={data.productDetails} threshold={threshold} search={inventorySearch} setSearch={setInventorySearch} onStockChange={updateStock} />}
-                    {section === "homepage" && <HomepageContentSection data={data} originals={originals} contentKey={contentKey} setContentKey={setContentKey} updateData={updateData} onUploadImage={uploadImage} onDownload={downloadJson} onReset={(key) => updateData(key, originals[key])} />}
                     {section === "editorial" && <EditorialSection data={data.editorial} kind={editorialKind} setKind={setEditorialKind} search={editorialSearch} setSearch={setEditorialSearch} onAdd={() => setEditorialModal({ kind: editorialKind, item: makeEditorialTemplate(editorialKind), originalSlug: "" })} onEdit={(item) => setEditorialModal({ kind: editorialKind, item: clone({ ...item, status: item.status || "published" }), originalSlug: item.slug })} onPreview={(item) => setEditorialPreview({ kind: editorialKind, item })} onDelete={(item) => deleteEditorialItem(editorialKind, item)} />}
-                    {section === "settings" && <SettingsSection settings={settings} setSettings={(next) => updateData("adminSettings", { ...data.adminSettings, lowStockThreshold: Math.max(0, Number(next.lowStockThreshold) || 0) })} isDirty={isSettingsDirty} onSave={saveChanges} onNavigate={() => navigate("/admin/homepage")} />}
+                    {section === "settings" && <SettingsSection settings={settings} setSettings={(next) => updateData("adminSettings", { ...data.adminSettings, lowStockThreshold: Math.max(0, Number(next.lowStockThreshold) || 0) })} isDirty={isSettingsDirty} onSave={saveChanges} />}
                     <footer className="admin-footer-note"><CircleAlert size={15} /><span>This admin route has no authentication. Do not publish confidential customer data or use it to store secrets. Orders and customer accounts need a backend data source.</span></footer>
                 </main>
             </div>
@@ -655,7 +648,6 @@ function AdminPage() {
 function DashboardSection({ data, products, lowStockProducts, threshold, onNavigate }) {
     const recipeCount = data.editorial?.recipes?.length || 0;
     const blogCount = data.editorial?.blogs?.length || 0;
-    const csrCount = data.editorial?.csrPage?.commitments?.length || 0;
     return (
         <>
             <section className="admin-stats-grid" aria-label="Store overview">
@@ -669,7 +661,7 @@ function DashboardSection({ data, products, lowStockProducts, threshold, onNavig
 
             <section className="admin-dashboard-grid">
                 <article className="admin-panel admin-panel--wide"><PanelHeading title="Recent orders" detail="Latest customer purchases" action="View orders" onAction={() => onNavigate("orders")} /><div className="admin-table-wrap"><table className="admin-table"><thead><tr>{["Order ID", "Customer", "Date", "Items", "Total", "Payment", "Status"].map((heading) => <th key={heading}>{heading}</th>)}</tr></thead></table></div><EmptyState icon={ShoppingCart} title="No order data available"><span>There is no checkout or order API in this frontend. Orders and revenue will appear after an order service is connected.</span></EmptyState></article>
-                <article className="admin-panel"><PanelHeading title="Content overview" detail="Records loaded from JSON" /><div className="admin-content-counts"><button type="button" onClick={() => onNavigate("editorial")}><BookOpenText size={17} /><span>Recipes</span><b>{recipeCount}</b></button><button type="button" onClick={() => onNavigate("editorial")}><FileText size={17} /><span>Blog stories</span><b>{blogCount}</b></button><button type="button" onClick={() => onNavigate("homepage")}><Leaf size={17} /><span>CSR commitments</span><b>{csrCount}</b></button></div><div className="admin-quick-actions"><button type="button" onClick={() => onNavigate("products")}><Plus size={15} />Add a product</button><button type="button" onClick={() => onNavigate("editorial")}><Plus size={15} />Manage recipes and blogs</button><button type="button" onClick={() => onNavigate("homepage")}><PanelsTopLeft size={15} />Edit homepage content</button></div></article>
+                <article className="admin-panel"><PanelHeading title="Content overview" detail="Records loaded from JSON" /><div className="admin-content-counts"><button type="button" onClick={() => onNavigate("editorial")}><BookOpenText size={17} /><span>Recipes</span><b>{recipeCount}</b></button><button type="button" onClick={() => onNavigate("editorial")}><FileText size={17} /><span>Blog stories</span><b>{blogCount}</b></button></div><div className="admin-quick-actions"><button type="button" onClick={() => onNavigate("products")}><Plus size={15} />Add a product</button><button type="button" onClick={() => onNavigate("editorial")}><Plus size={15} />Manage recipes and blogs</button></div></article>
             </section>
 
             <section className="admin-dashboard-grid admin-dashboard-grid--lower">
@@ -717,26 +709,6 @@ function InventorySection({ products, details, threshold, search, setSearch, onS
     })}</tbody></table>{filtered.length === 0 && <EmptyState icon={Search} title="No products found"><span>Try another name or product ID.</span></EmptyState>}</div><p className="admin-inventory-save-hint">Stock edits are drafts until you select <strong>Save changes</strong> at the top of the page.</p></section>;
 }
 
-function HomepageContentSection({ data, originals, contentKey, setContentKey, updateData, onUploadImage, onDownload, onReset }) {
-    const importRef = useRef(null);
-    const [importError, setImportError] = useState("");
-    const importJson = async (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-        try {
-            const imported = JSON.parse(await file.text());
-            if (!imported || typeof imported !== "object" || Array.isArray(imported)) throw new Error("Choose a JSON file containing an object.");
-            updateData(contentKey, imported);
-            setImportError("");
-        } catch (error) {
-            setImportError(error.message === "Choose a JSON file containing an object." ? error.message : "That file is not valid JSON. The current draft was kept.");
-        }
-        event.target.value = "";
-    };
-    const dirty = JSON.stringify(data[contentKey]) !== JSON.stringify(originals[contentKey]);
-    return <section className="admin-panel admin-content-editor-panel"><div className="admin-content-tabs">{Object.entries(CONTENT_FILES).map(([id, file]) => <button type="button" key={id} className={contentKey === id ? "is-active" : ""} onClick={() => setContentKey(id)}>{file.label}</button>)}</div><div className="admin-source-heading"><div><span className="admin-source-icon"><ImagePlus size={18} /></span><span><strong>{CONTENT_FILES[contentKey].label}</strong><small>Source: public/{CONTENT_FILES[contentKey].path}</small></span></div><div className="admin-source-actions"><input ref={importRef} type="file" accept="application/json,.json" hidden onChange={importJson} /><button className="admin-button admin-button--quiet" type="button" onClick={() => importRef.current?.click()}><FileText size={14} />Import</button><button className="admin-button admin-button--quiet" type="button" onClick={() => onReset(contentKey)} disabled={!dirty}><X size={14} />Reset</button><button className="admin-button admin-button--quiet" type="button" onClick={() => onDownload(contentKey)}><FileText size={14} />Download JSON</button></div></div>{importError && <p className="admin-inline-error" role="alert"><CircleAlert size={14} />{importError}</p>}<p className="admin-data-source-note">Edit the existing content structure here. Choose an image already used on the site, upload one to <code>public/images/admin-uploads/</code>, or enter a path or image URL.</p>{contentKey === "editorial" && <p className="admin-data-source-note"><BookOpenText size={14} />Use the Recipes &amp; Blogs section for post add, edit, delete, publication status, and preview.</p>}<div className="admin-editor-fields"><AdminJsonEditor value={data[contentKey]} onChange={(value) => updateData(contentKey, value)} onUploadImage={onUploadImage} /></div></section>;
-}
-
 function EditorialSection({ data, kind, setKind, search, setSearch, onAdd, onEdit, onPreview, onDelete }) {
     const title = kind === "recipes" ? "Recipes" : "Blog stories";
     const entries = (data[kind] || []).filter((item) => `${item.title || ""} ${item.category || ""} ${item.slug || ""}`.toLowerCase().includes(search.toLowerCase()));
@@ -771,8 +743,8 @@ function EmptyManagementSection({ title, icon: Icon, description, columns }) {
     );
 }
 
-function SettingsSection({ settings, setSettings, isDirty, onSave, onNavigate }) {
-    return <section className="admin-settings-grid"><article className="admin-panel admin-settings-card"><PanelHeading title="Inventory alerts" detail="Saved in public/data/admin-settings.json" /><label className="admin-form-field"><span>Low-stock threshold</span><input type="number" min="0" step="1" value={settings.lowStockThreshold} onChange={(event) => setSettings({ ...settings, lowStockThreshold: event.target.value })} /><small>Products with a tracked quantity above zero and at or below this value appear in alerts.</small></label><p className="admin-settings-copy">{isDirty ? "Unsaved setting. Save changes to write admin-settings.json." : "This threshold is read from and saved to the project JSON file."}</p><button className="admin-button admin-button--primary" type="button" onClick={onSave} disabled={!isDirty}><Save size={15} />Save changes</button></article><article className="admin-panel admin-settings-card"><PanelHeading title="Brand and storefront content" detail="Existing JSON configuration" /><p className="admin-settings-copy">The site logo, hero images, homepage sections, About content, shop banner, editorial text, and contact details are stored in the website’s current JSON files.</p><button className="admin-button admin-button--quiet" type="button" onClick={onNavigate}><PanelsTopLeft size={15} />Open homepage content editor</button></article><article className="admin-panel admin-settings-card"><PanelHeading title="Access and data" detail="Current frontend limits" /><div className="admin-settings-callout"><CircleAlert size={18} /><p>This admin page has no login. Orders and customer information are not stored by the site. The admin must not contain secrets or private customer data.</p></div><p className="admin-settings-copy">Local JSON edits save to your project while Vite is running. A static deployment cannot update the source files on its own.</p></article></section>;
+function SettingsSection({ settings, setSettings, isDirty, onSave }) {
+    return <section className="admin-settings-grid"><article className="admin-panel admin-settings-card"><PanelHeading title="Inventory alerts" detail="Saved in public/data/admin-settings.json" /><label className="admin-form-field"><span>Low-stock threshold</span><input type="number" min="0" step="1" value={settings.lowStockThreshold} onChange={(event) => setSettings({ ...settings, lowStockThreshold: event.target.value })} /><small>Products with a tracked quantity above zero and at or below this value appear in alerts.</small></label><p className="admin-settings-copy">{isDirty ? "Unsaved setting. Save changes to write admin-settings.json." : "This threshold is read from and saved to the project JSON file."}</p><button className="admin-button admin-button--primary" type="button" onClick={onSave} disabled={!isDirty}><Save size={15} />Save changes</button></article><article className="admin-panel admin-settings-card"><PanelHeading title="Access and data" detail="Current frontend limits" /><div className="admin-settings-callout"><CircleAlert size={18} /><p>This admin page has no login. Orders and customer information are not stored by the site. The admin must not contain secrets or private customer data.</p></div><p className="admin-settings-copy">Local JSON edits save to your project while Vite is running. A static deployment cannot update the source files on its own.</p></article></section>;
 }
 
 export default AdminPage;
