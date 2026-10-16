@@ -28,9 +28,9 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { itemCount } = useBag();
-    const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr"].includes(location.pathname)
-        || location.pathname.startsWith("/recipes/")
-        || location.pathname.startsWith("/blogs/");
+    const isEditorialDetail = location.pathname.startsWith("/recipes/")
+        || (location.pathname.startsWith("/blogs/") && !["/blogs/recipes", "/blogs/p"].includes(location.pathname));
+    const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(location.pathname);
     const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
     const searchResults = useMemo(() => {
         if (!normalizedSearchQuery) return products.slice(0, 5);
@@ -114,7 +114,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
+        <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${isEditorialDetail ? "navbar--solid-at-top" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
                 <NavLink to="/" aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
                     {logo && <img src={logo} alt="Elacher Ghor" />}

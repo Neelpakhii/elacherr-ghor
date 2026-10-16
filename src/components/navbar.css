@@ -40,6 +40,12 @@
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
 }
 
+.navbar.navbar--solid-at-top:not(.scrolled) {
+    background-color: rgba(244, 244, 242, 0.98);
+    color: #343a32;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
 /* LOGO */
 
 .navbar-logo {
