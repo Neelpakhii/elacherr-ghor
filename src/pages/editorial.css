@@ -464,7 +464,21 @@
 
 .recipe-detail-page,
 .article-page {
-    padding: 42px 0 96px;
+    padding: 164px 0 96px;
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .recipe-detail-page,
+    .article-page {
+        padding-top: 144px;
+    }
+}
+
+@media (max-width: 768px) {
+    .recipe-detail-page,
+    .article-page {
+        padding-top: 100px;
+    }
 }
 
 .detail-topline {
@@ -1044,7 +1058,7 @@
 
     .recipe-detail-page,
     .article-page {
-        padding-top: 28px;
+        padding-top: 100px;
     }
 
     .recipe-detail-hero {
