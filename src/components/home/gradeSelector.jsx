@@ -35,7 +35,7 @@ const GradeSelector = () => {
             aria-labelledby="grade-selector-title"
         >
             <div className="grade-selector__intro">
-                <h1 id="grade-selector-title">{section.heading}</h1>
+                <h2 id="grade-selector-title">{section.heading}</h2>
                 <p>{section.description}</p>
             </div>
 
@@ -56,7 +56,7 @@ const GradeSelector = () => {
                                     loading="lazy"
                                 />
                             )}
-                            <h2>{grade.name}</h2>
+                            <h3>{grade.name}</h3>
                         </a>
                     ))}
             </div>

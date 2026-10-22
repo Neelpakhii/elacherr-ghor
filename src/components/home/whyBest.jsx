@@ -117,7 +117,7 @@ const WhyBest = () => {
                         </p>
                     )}
 
-                    <h1>{section.heading}</h1>
+                    <h2>{section.heading}</h2>
 
                     <span
                         className="why-best__header-line"
@@ -137,7 +137,7 @@ const WhyBest = () => {
                             THE ART OF EXCEPTIONAL CARDAMOM
                         </span>
 
-                        <h2>{heading}</h2>
+                        <h3>{heading}</h3>
 
                         <span
                             className="why-best__gold-line"

@@ -109,7 +109,7 @@
 /* ========================================
    HEADING
 ======================================== */
-.origin-shagun__content h1 {
+.origin-shagun__content h2 {
     margin: 0 0 16px;
     font-family: "Montserrat", sans-serif;
     font-size: clamp(28px, 2.5vw, 38px);
@@ -187,7 +187,7 @@
         padding-top: 36px;
     }
 
-    .origin-shagun__content h1 {
+    .origin-shagun__content h2 {
         font-size: clamp(25px, 3vw, 32px);
     }
 
@@ -225,7 +225,7 @@
         transform: translateY(0);
     }
 
-    .origin-shagun__content h1 {
+    .origin-shagun__content h2 {
         font-size: clamp(26px, 7vw, 34px);
         margin-bottom: 14px;
     }
@@ -258,7 +258,7 @@
         padding-top: 26px;
     }
 
-    .origin-shagun__content h1 {
+    .origin-shagun__content h2 {
         font-size: 25px;
     }
 

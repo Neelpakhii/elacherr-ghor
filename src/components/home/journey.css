@@ -34,7 +34,7 @@
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
-.journey-section__content h1 {
+.journey-section__content h2 {
     margin: 0;
     font-size: clamp(32px, 4vw, 48px);
     font-weight: 500;

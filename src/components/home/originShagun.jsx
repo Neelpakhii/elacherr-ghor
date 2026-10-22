@@ -63,7 +63,7 @@ const OriginShagun = () => {
 
                         <div className="origin-shagun__content">
                             {card.heading && (
-                                <h1>{card.heading}</h1>
+                                <h2>{card.heading}</h2>
                             )}
 
                             {card.description && (

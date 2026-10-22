@@ -18,7 +18,7 @@
 }
 
 /* Section heading with a gold divider underneath */
-.doctor-section__content h1 {
+.doctor-section__content h2 {
     margin: 0 0 30px;
     color: #304b36;
     font-family: "Montserrat", sans-serif;
@@ -29,7 +29,7 @@
     text-wrap: balance;
 }
 
-.doctor-section__content h1::after {
+.doctor-section__content h2::after {
     content: "";
     display: block;
     width: 56px;
@@ -91,7 +91,7 @@
 
 /* Tablet: slightly tighter text so it fits the half column */
 @media (max-width: 1024px) {
-    .doctor-section__content h1 {
+    .doctor-section__content h2 {
         margin-bottom: 24px;
     }
 
@@ -118,7 +118,7 @@
         padding: 42px 24px 48px;
     }
 
-    .doctor-section__content h1 {
+    .doctor-section__content h2 {
         font-size: 28px;
     }
 

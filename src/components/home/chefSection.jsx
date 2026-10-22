@@ -24,7 +24,7 @@ const ChefSection = () => {
     return (
         <section className="chef-section">
             <div className="chef-section__content">
-                <h1>{chef.heading}</h1>
+                <h2>{chef.heading}</h2>
 
                 <p>{chef.description}</p>
 

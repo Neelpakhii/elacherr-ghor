@@ -36,7 +36,7 @@
 }
 
 /* Smaller, bolder heading */
-.newsletter__inner h1 {
+.newsletter__inner h2 {
     margin: 0 0 55px;
     color: #687b43;
     font-size: 25px;
@@ -141,7 +141,7 @@
         margin-bottom: 24px;
     }
 
-    .newsletter__inner h1 {
+    .newsletter__inner h2 {
         margin-bottom: 40px;
         font-size: 24px;
     }
@@ -180,7 +180,7 @@
         height: 30px;
     }
 
-    .newsletter__inner h1 {
+    .newsletter__inner h2 {
         margin-bottom: 30px;
         font-size: 21px;
     }
@@ -223,7 +223,7 @@
         padding: 52px 14px;
     }
 
-    .newsletter__inner h1 {
+    .newsletter__inner h2 {
         margin-bottom: 24px;
         font-size: 19px;
     }

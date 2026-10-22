@@ -36,7 +36,7 @@ const Recipe = () => {
 
     return (
         <section className="recipe-section" id="recipes">
-            <h1 className="recipe-section__heading">{section.heading}</h1>
+            <h2 className="recipe-section__heading">{section.heading}</h2>
 
             <div className="recipe-section__layout">
                 {section.featured && (
@@ -62,7 +62,7 @@ const Recipe = () => {
                         </Link>
 
                         <div className="recipe-featured__content">
-                            <h2>{section.featured.title}</h2>
+                            <h3>{section.featured.title}</h3>
                             <p>{section.featured.description}</p>
                             <RecipeLink
                                 recipe={section.featured}
@@ -90,7 +90,7 @@ const Recipe = () => {
                             </Link>
 
                             <div className="recipe-list__content">
-                                <h2>{recipe.title}</h2>
+                                <h3>{recipe.title}</h3>
                                 <p>{recipe.description}</p>
                                 <RecipeLink
                                     recipe={recipe}

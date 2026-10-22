@@ -41,7 +41,7 @@ const Journey = () => {
             <div className="journey-section__overlay" />
 
             <div className="journey-section__content">
-                <h1>{section.heading}</h1>
+                <h2>{section.heading}</h2>
                 <p>{section.description}</p>
 
                 {/* Always shown. Falls back to /about if the backend sends no link */}

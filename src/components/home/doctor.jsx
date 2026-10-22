@@ -26,7 +26,7 @@ const Doctor = () => {
     return (
         <section className="doctor-section" id="doctor">
             <div className="doctor-section__content">
-                <h1>{section.heading}</h1>
+                <h2>{section.heading}</h2>
                 <p>{section.description}</p>
 
                 {section.buttonUrl && (

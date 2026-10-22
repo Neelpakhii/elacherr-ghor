@@ -5,14 +5,13 @@ import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productCard.css";
 
-const ProductCard = ({ product, headingLevel = 3 }) => {
+const ProductCard = ({ product }) => {
     const [added, setAdded] = useState(false);
     const { addItem } = useBag();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
     const detailPath = `/products/${product.id}`;
     const unavailable = !isProductAvailable(product);
-    const ProductHeading = headingLevel === 2 ? "h2" : "h3";
 
     const handleAddToBag = () => {
         if (unavailable) return;
@@ -47,7 +46,7 @@ const ProductCard = ({ product, headingLevel = 3 }) => {
                 <p className="product-card__eyebrow">Alleppey Premium Cardamom</p>
                 {unavailable && <p className="product-card__availability">Currently unavailable</p>}
                 <Link className="product-card__name-link" to={detailPath}>
-                    <ProductHeading className="product-card__name">{product.name}</ProductHeading>
+                    <h3 className="product-card__name">{product.name}</h3>
                 </Link>
 
                 {product.price != null && (
