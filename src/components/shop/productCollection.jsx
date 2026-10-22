@@ -245,6 +245,7 @@ const ProductCollection = () => {
                         <ProductCard
                             key={product.id || `${product.name}-${index}`}
                             product={product}
+                            headingLevel={2}
                         />
                     ))}
                 </div>

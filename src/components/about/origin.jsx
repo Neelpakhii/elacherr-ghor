@@ -6,9 +6,9 @@ export default function Origin() {
             <div className="origin__content">
                 <p className="origin__eyebrow">Our Heritage</p>
 
-                <h2 id="origin-heading">
+                <h1 id="origin-heading">
                     The Origins of Elacher Ghor
-                </h2>
+                </h1>
 
                 <p>
                     Known as the Queen of Spices, cardamom has been valued

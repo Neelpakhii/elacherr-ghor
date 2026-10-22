@@ -35,7 +35,7 @@ const GradeSelector = () => {
             aria-labelledby="grade-selector-title"
         >
             <div className="grade-selector__intro">
-                <h2 id="grade-selector-title">{section.heading}</h2>
+                <h1 id="grade-selector-title">{section.heading}</h1>
                 <p>{section.description}</p>
             </div>
 
@@ -52,10 +52,11 @@ const GradeSelector = () => {
                                     className="grade-selector__image"
                                     src={imageUrl(grade.image)}
                                     alt={grade.imageAlt || grade.name}
+                                    title={grade.imageAlt || grade.name}
                                     loading="lazy"
                                 />
                             )}
-                            <h3>{grade.name}</h3>
+                            <h2>{grade.name}</h2>
                         </a>
                     ))}
             </div>

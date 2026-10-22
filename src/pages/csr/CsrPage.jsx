@@ -15,7 +15,7 @@ const CsrPage = () => {
     return (
         <main className="editorial-page csr-page">
             <header className="csr-hero">
-                <img src={page.heroImage} alt={page.heroImageAlt} />
+                <img src={page.heroImage} alt={page.heroImageAlt || page.title || "Elacher Ghor community and cardamom landscape"} title={page.heroImageAlt || page.title || "Elacher Ghor community and cardamom landscape"} />
                 <div className="csr-hero__shade" />
                 <div className="csr-hero__copy">
                     <h1>{page.title}</h1>
@@ -57,7 +57,7 @@ const CsrPage = () => {
 
             <section className="csr-community editorial-section">
                 <div className="csr-community__image">
-                    <img src={page.communityImage} alt={page.communityImageAlt} loading="lazy" />
+                    <img src={page.communityImage} alt={page.communityImageAlt || page.communityTitle || "Community wellbeing initiative"} title={page.communityImageAlt || page.communityTitle || "Community wellbeing initiative"} loading="lazy" />
                     <PhotoCredit name={page.communityImageCredit} url={page.communityImageCreditUrl} note={page.communityImageNote} />
                 </div>
                 <div className="csr-community__copy">

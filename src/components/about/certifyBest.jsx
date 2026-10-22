@@ -3,7 +3,7 @@ import { ABOUT_URL, getImageUrl } from "../../config";
 import "./certifyBest.css";
 
 export default function CertifyBest() {
-    const [imagePath, setImagePath] = useState("");
+    const [certificateImage, setCertificateImage] = useState(null);
 
     useEffect(() => {
         fetch(ABOUT_URL)
@@ -15,7 +15,7 @@ export default function CertifyBest() {
                 return response.json();
             })
             .then((data) => {
-                setImagePath(data.certifyBest?.image || "");
+                setCertificateImage(data.certifyBest || null);
             })
             .catch((error) => {
                 console.error("Certification image error:", error);
@@ -28,11 +28,12 @@ export default function CertifyBest() {
             aria-labelledby="certify-best-heading"
         >
             <div className="certify-best__visual">
-                {imagePath && (
+                {certificateImage?.image && (
                     <img
                         className="certify-best__image"
-                        src={getImageUrl(imagePath)}
-                        alt="Elacher Ghor cardamom certification"
+                        src={getImageUrl(certificateImage.image)}
+                        alt={certificateImage.alt || "Government of India GI certificate for Alleppey Green Cardamom."}
+                        title={certificateImage.alt || "Government of India GI certificate for Alleppey Green Cardamom."}
                         loading="lazy"
                     />
                 )}

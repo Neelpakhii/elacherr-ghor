@@ -36,7 +36,7 @@ const Recipe = () => {
 
     return (
         <section className="recipe-section" id="recipes">
-            <h2 className="recipe-section__heading">{section.heading}</h2>
+            <h1 className="recipe-section__heading">{section.heading}</h1>
 
             <div className="recipe-section__layout">
                 {section.featured && (
@@ -53,12 +53,16 @@ const Recipe = () => {
                                     section.featured.imageAlt ||
                                     section.featured.title
                                 }
+                                title={
+                                    section.featured.imageAlt ||
+                                    section.featured.title
+                                }
                                 loading="lazy"
                             />
                         </Link>
 
                         <div className="recipe-featured__content">
-                            <h3>{section.featured.title}</h3>
+                            <h2>{section.featured.title}</h2>
                             <p>{section.featured.description}</p>
                             <RecipeLink
                                 recipe={section.featured}
@@ -80,12 +84,13 @@ const Recipe = () => {
                                     className="recipe-list__image"
                                     src={getImageUrl(recipe.image)}
                                     alt={recipe.imageAlt || recipe.title}
+                                    title={recipe.imageAlt || recipe.title}
                                     loading="lazy"
                                 />
                             </Link>
 
                             <div className="recipe-list__content">
-                                <h3>{recipe.title}</h3>
+                                <h2>{recipe.title}</h2>
                                 <p>{recipe.description}</p>
                                 <RecipeLink
                                     recipe={recipe}

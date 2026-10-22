@@ -60,9 +60,9 @@ const Newsletter = () => {
                 </div>
 
                 {/* Newsletter heading */}
-                <h2 id="newsletter-heading">
+                <h1 id="newsletter-heading">
                     {newsletter.heading}
-                </h2>
+                </h1>
 
                 {/* Newsletter subscription form */}
                 <form

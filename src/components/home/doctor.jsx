@@ -26,7 +26,7 @@ const Doctor = () => {
     return (
         <section className="doctor-section" id="doctor">
             <div className="doctor-section__content">
-                <h2>{section.heading}</h2>
+                <h1>{section.heading}</h1>
                 <p>{section.description}</p>
 
                 {section.buttonUrl && (
@@ -45,6 +45,7 @@ const Doctor = () => {
                         className="doctor-section__image"
                         src={imageUrl}
                         alt={section.imageAlt || section.heading}
+                        title={section.imageAlt || section.heading}
                         loading="lazy"
                     />
                 )}

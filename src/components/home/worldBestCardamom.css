@@ -43,7 +43,7 @@
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
-.world-best-cardamom__overlay h2 {
+.world-best-cardamom__overlay h1 {
     margin: 0 0 18px;
     font-family: "Montserrat", sans-serif;
     font-size: clamp(40px, 6vw, 78px);

@@ -37,7 +37,7 @@ const ProductSection = () => {
     return (
         <section className="product-section" id="products">
             <div className="product-section__header">
-                <h2>Elacher Ghor’s Premium Quality Cardamom</h2>
+                <h1>Elacher Ghor’s Premium Quality Cardamom</h1>
             </div>
 
             {loading && <p>Loading products...</p>}
@@ -52,7 +52,7 @@ const ProductSection = () => {
                 <>
                     <div className="product-section__grid">
                         {featuredProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard key={product.id} product={product} headingLevel={2} />
                         ))}
                     </div>
 

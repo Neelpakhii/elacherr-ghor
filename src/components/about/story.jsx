@@ -3,7 +3,7 @@ import { ABOUT_URL, getImageUrl } from "../../config";
 import "./story.css";
 
 export default function Story() {
-    const [imagePath, setImagePath] = useState("");
+    const [storyImage, setStoryImage] = useState(null);
 
     useEffect(() => {
         fetch(ABOUT_URL)
@@ -15,7 +15,7 @@ export default function Story() {
                 return response.json();
             })
             .then((data) => {
-                setImagePath(data.story?.image || "");
+                setStoryImage(data.story || null);
             })
             .catch((error) => {
                 console.error("Story image error:", error);
@@ -25,11 +25,12 @@ export default function Story() {
     return (
         <section className="story" aria-labelledby="story-heading">
             <div className="story__visual">
-                {imagePath && (
+                {storyImage?.image && (
                     <img
                         className="story__image"
-                        src={getImageUrl(imagePath)}
-                        alt="Cardamom representing the Elacher Ghor story"
+                        src={getImageUrl(storyImage.image)}
+                        alt={storyImage.alt || "Green cardamom pods in burlap sacks."}
+                        title={storyImage.alt || "Green cardamom pods in burlap sacks."}
                         loading="lazy"
                     />
                 )}

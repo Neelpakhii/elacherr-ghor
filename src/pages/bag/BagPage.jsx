@@ -32,7 +32,7 @@ const BagPage = () => {
                             {items.map(({ product, quantity }) => (
                                 <article className="bag-item" key={product.id}>
                                     <Link className="bag-item__image" to={`/products/${product.id}`}>
-                                        <img src={getImageUrl(product.image)} alt={product.imageAlt || product.name} />
+                                        <img src={getImageUrl(product.image)} alt={product.imageAlt || product.name} title={product.imageAlt || product.name} />
                                     </Link>
                                     <div className="bag-item__details">
                                         <p className="bag-item__eyebrow">Alleppey Premium Cardamom</p>

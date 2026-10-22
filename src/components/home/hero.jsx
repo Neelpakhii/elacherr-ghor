@@ -75,7 +75,8 @@ const Hero = () => {
                             .filter(Boolean)
                             .join(" ")}
                         src={`${ASSET_BASE_URL}${image.image}`}
-                        alt={image.alt || `Hero banner ${index + 1}`}
+                        alt={image.alt || `Elacher Ghor cardamom promotion, slide ${index + 1}`}
+                        title={image.alt || `Elacher Ghor cardamom promotion, slide ${index + 1}`}
                         aria-hidden={!isActive}
                     />
                 );

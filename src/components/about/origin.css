@@ -25,7 +25,7 @@
     text-transform: uppercase;
 }
 
-.origin__content h2 {
+.origin__content h1 {
     margin: 0 auto 20px;
     color: #687b43;
     font-size: clamp(26px, 3.5vw, 40px);
@@ -57,7 +57,7 @@
         padding: 40px 36px;
     }
 
-    .origin__content h2 {
+    .origin__content h1 {
         font-size: clamp(28px, 4vw, 36px);
     }
 
@@ -83,7 +83,7 @@
         font-size: 11px;
     }
 
-    .origin__content h2 {
+    .origin__content h1 {
         margin-bottom: 16px;
         font-size: clamp(25px, 7vw, 32px);
     }

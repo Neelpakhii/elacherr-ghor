@@ -45,7 +45,7 @@ const WorldBestCardamom = () => {
             </div>
 
             <div className="world-best-cardamom__overlay">
-                <h2>{section.heading}</h2>
+                <h1>{section.heading}</h1>
                 <p>{section.description}</p>
 
                 {section.buttonUrl && (

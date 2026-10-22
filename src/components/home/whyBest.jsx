@@ -117,7 +117,7 @@ const WhyBest = () => {
                         </p>
                     )}
 
-                    <h2>{section.heading}</h2>
+                    <h1>{section.heading}</h1>
 
                     <span
                         className="why-best__header-line"
@@ -137,7 +137,7 @@ const WhyBest = () => {
                             THE ART OF EXCEPTIONAL CARDAMOM
                         </span>
 
-                        <h3>{heading}</h3>
+                        <h2>{heading}</h2>
 
                         <span
                             className="why-best__gold-line"
@@ -200,7 +200,18 @@ const WhyBest = () => {
                                         src={getImageUrl(
                                             quality.image
                                         )}
-                                        alt=""
+                                        alt={
+                                            quality.alt ||
+                                            quality.title ||
+                                            quality.heading ||
+                                            "Cardamom quality"
+                                        }
+                                        title={
+                                            quality.alt ||
+                                            quality.title ||
+                                            quality.heading ||
+                                            "Cardamom quality"
+                                        }
                                     />
 
                                     {quality.title && (

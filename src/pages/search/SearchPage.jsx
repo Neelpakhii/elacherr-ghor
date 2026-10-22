@@ -69,7 +69,7 @@ const SearchPage = () => {
                 {activeSearchTerm && <p className="search-page__count">{loading ? "Searching…" : `${results.length} ${results.length === 1 ? "product" : "products"} for “${activeSearchTerm}”`}</p>}
                 {activeSearchTerm && !loading && error && <p className="search-page__message" role="alert">{error}</p>}
                 {activeSearchTerm && !loading && !error && results.length > 0 && (
-                    <div className="search-page__grid">{results.map((product) => <ProductCard key={product.id} product={product} />)}</div>
+                    <div className="search-page__grid">{results.map((product) => <ProductCard key={product.id} product={product} headingLevel={2} />)}</div>
                 )}
                 {activeSearchTerm && !loading && !error && results.length === 0 && (
                     <div className="search-page__empty">

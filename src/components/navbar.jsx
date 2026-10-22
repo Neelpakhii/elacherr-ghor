@@ -117,7 +117,7 @@ const Navbar = () => {
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${isEditorialDetail ? "navbar--solid-at-top" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
                 <NavLink to="/" aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
-                    {logo && <img src={logo} alt="Elacher Ghor" />}
+                    {logo && <img src={logo} alt="Elacher Ghor" title="Elacher Ghor home" />}
                 </NavLink>
             </div>
 
@@ -234,7 +234,7 @@ const Navbar = () => {
                                         onClick={handlePageNavigation}
                                     >
                                         <span className="search-result__image">
-                                            {product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}
+                                            {product.image && <img src={getImageUrl(product.image)} alt="" title={product.name} loading="lazy" />}
                                         </span>
                                         <span className="search-result__details">
                                             <span className="search-result__name">{product.name}</span>

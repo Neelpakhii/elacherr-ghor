@@ -40,7 +40,7 @@ const RecipeDetailPage = () => {
                     </div>
                 </div>
                 <figure className="recipe-detail-hero__image">
-                    <img src={recipe.image} alt={recipe.imageAlt} />
+                    <img src={recipe.image} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageAlt || recipe.title || "Cardamom recipe"} />
                     <figcaption><PhotoCredit name={recipe.imageCredit} url={recipe.imageCreditUrl} /></figcaption>
                 </figure>
             </header>

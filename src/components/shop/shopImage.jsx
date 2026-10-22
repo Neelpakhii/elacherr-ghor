@@ -3,7 +3,7 @@ import { SHOP_URL, getImageUrl } from "../../config";
 import "./shopImage.css";
 
 const ShopImage = () => {
-    const [image, setImage] = useState("");
+    const [shopImage, setShopImage] = useState(null);
 
     useEffect(() => {
         fetch(SHOP_URL)
@@ -15,21 +15,22 @@ const ShopImage = () => {
                 return response.json();
             })
             .then((data) => {
-                setImage(getImageUrl(data.shopImage?.image));
+                setShopImage(data.shopImage || null);
             })
             .catch((error) => {
                 console.error("Shop image error:", error);
             });
     }, []);
 
-    if (!image) return null;
+    if (!shopImage?.image) return null;
 
     return (
         <section className="shop-image" aria-label="Cardamom collection">
             <img
                 className="shop-image__photo"
-                src={image}
-                alt="Elacher Ghor cardamom collection"
+                src={getImageUrl(shopImage.image)}
+                alt={shopImage.alt || "Elacher Ghor cardamom pouches with cardamom plants and blossoms."}
+                title={shopImage.alt || "Elacher Ghor cardamom pouches with cardamom plants and blossoms."}
             />
         </section>
     );

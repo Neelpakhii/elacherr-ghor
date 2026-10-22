@@ -24,7 +24,7 @@ const ChefSection = () => {
     return (
         <section className="chef-section">
             <div className="chef-section__content">
-                <h2>{chef.heading}</h2>
+                <h1>{chef.heading}</h1>
 
                 <p>{chef.description}</p>
 
@@ -47,6 +47,7 @@ const ChefSection = () => {
                         className="chef-section__image"
                         src={imageSrc}
                         alt={chef.imageAlt || chef.heading}
+                        title={chef.imageAlt || chef.heading}
                         loading="lazy"
                     />
                 </div>

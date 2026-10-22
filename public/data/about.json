@@ -1,22 +1,27 @@
 {
   "hero": {
     "image": "/images/about/Cardamom Heritage by the Riverside.webp",
-    "alt": "Cardamom growing in a plantation"
+    "alt": "Elacher Ghor cardamom pouch against an illustrated riverside village, framed by cardamom plants."
   },
   "award": {
-  "image": "/images/about/award.jpg"
+  "image": "/images/about/award.jpg",
+  "alt": "Cardamom export award recognizing M/s. SAMEX India Pvt. Ltd. as a top exporter of small cardamom."
 },
 "story": {
-  "image": "/images/about/story.jpg"
+  "image": "/images/about/story.jpg",
+  "alt": "Green cardamom pods piled in burlap sacks against a sepia village illustration."
 },
 "pioneer": {
-  "image": "/images/about/pioneer.webp"
+  "image": "/images/about/pioneer.webp",
+  "alt": "Graphic comparing five cardamom pod grades from 8 to 6 millimetres above their color-coded pouches."
 },
 "certifyBest": {
-  "image": "/images/about/certify-best.jpg"
+  "image": "/images/about/certify-best.jpg",
+  "alt": "Government of India GI registration certificate for Alleppey Green Cardamom."
 },
 "threeStar": {
-  "image": "/images/about/three-star.jpg"
+  "image": "/images/about/three-star.jpg",
+  "alt": "Government of India certificate recognizing SAMEX India as a Three Star Export House."
 }
 
 

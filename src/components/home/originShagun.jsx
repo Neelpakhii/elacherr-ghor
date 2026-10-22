@@ -51,7 +51,8 @@ const OriginShagun = () => {
                         <img
                             className="origin-shagun__image"
                             src={getImageUrl(card.image)}
-                            alt={card.imageAlt || card.heading || ""}
+                            alt={card.imageAlt || card.heading || "Cardamom product and gift arrangement."}
+                            title={card.imageAlt || card.heading || "Cardamom product and gift arrangement."}
                             loading="lazy"
                         />
 
@@ -62,7 +63,7 @@ const OriginShagun = () => {
 
                         <div className="origin-shagun__content">
                             {card.heading && (
-                                <h2>{card.heading}</h2>
+                                <h1>{card.heading}</h1>
                             )}
 
                             {card.description && (

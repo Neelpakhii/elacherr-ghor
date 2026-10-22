@@ -5,11 +5,13 @@
   "hero": [
     {
       "id": "1",
-      "image": "/images/home/hero1.webp"
+      "image": "/images/home/hero1.webp",
+      "alt": "Explore the magic of cardamom: an Elacher Ghor pouch beside cardamom rice, fresh pods, and green leaves."
     },
     {
       "id": "2",
-      "image": "/images/home/hero2.webp"
+      "image": "/images/home/hero2.webp",
+      "alt": "Discover the magic of cardamom: an Elacher Ghor pouch with cardamom rice, fresh pods, and leafy plants."
     }
   ],
   "products": [
@@ -19,6 +21,7 @@
       "price": 479,
       "originalPrice": 999,
       "image": "/images/home/purple-card.webp",
+      "imageAlt": "Purple Grade cardamom pouch beside fresh pods in a purple bowl.",
       "available": true
     },
     {
@@ -26,28 +29,32 @@
       "name": "Pink Grade (7.5 mm & above) Cardamom",
       "price": 439,
       "originalPrice": 949,
-      "image": "/images/home/pink-card.webp"
+      "image": "/images/home/pink-card.webp",
+      "imageAlt": "Pink Grade cardamom pouch beside fresh pods in a pink bowl."
     },
     {
       "id": "green",
       "name": "Green Grade (7-8mm) Cardamom",
       "price": 399,
       "originalPrice": 899,
-      "image": "/images/home/green-card.webp"
+      "image": "/images/home/green-card.webp",
+      "imageAlt": "Green Grade cardamom pouch beside fresh pods in a green bowl."
     },
     {
       "id": "orange",
       "name": "Orange Grade (6.5-7.5mm) Cardamom",
       "price": 1899,
       "originalPrice": 3000,
-      "image": "/images/home/orange-card.webp"
+      "image": "/images/home/orange-card.webp",
+      "imageAlt": "Orange Grade cardamom pouch beside fresh pods in an orange bowl."
     },
     {
       "id": "red",
       "name": "Red Grade (6-7mm) Cardamom",
       "price": 999,
       "originalPrice": 1500,
-      "image": "/images/home/red-card.webp"
+      "image": "/images/home/red-card.webp",
+      "imageAlt": "Red Grade cardamom pouch beside fresh pods in a red bowl."
     },
     {
       "id": "yellow-grade-9-mm-above-cardamom",
@@ -57,7 +64,7 @@
       "image": "/images/admin-uploads/yellow-cardamom-pouch-and-bowl-1792145329272.webp",
       "available": true,
       "originalPrice": 1500,
-      "imageAlt": "yellow"
+      "imageAlt": "Yellow Grade cardamom pouch beside fresh pods in a yellow bowl."
     }
   ],
   "chefSection": {
@@ -67,7 +74,7 @@
     "buttonText": "BUY NOW",
     "buttonUrl": "#products",
     "image": "/images/home/Anupama’s Favorite Cardamom Delight.webp",
-    "imageAlt": "Chef Anupama mukherjee with Elacher ghor Cardamom"
+    "imageAlt": "Promotional graphic naming Anupama Mukherjee and showing a woman holding a cardamom pouch among cardamom plants."
   },
   "gradeSelector": {
     "heading": "Graded to your Requirement",
@@ -133,7 +140,7 @@
         "id": "aroma-lock",
         "title": "Freashness Sealed",
         "image": "/images/home/aroma.png",
-        "alt": "Special Aroma Lock Pack",
+        "alt": "Special Aroma Lock Pack freshness seal with a padlock symbol.",
         "heading": "Freshness Sealed",
         "description": "Every pod holds a world of fragrance. Our carefully designed packaging helps keep the natural freshness and distinctive aroma of premium green cardamom intact.",
         "provenance": "Thoughtfully packed to help protect its distinctive fragrance, bringing the captivating aroma of cardamom to every cup and every creation.",
@@ -143,7 +150,7 @@
         "id": "natural",
         "title": "100% Natural",
         "image": "/images/home/natural.png",
-        "alt": "100% Natural",
+        "alt": "100% Natural cardamom badge with a leaf wreath and stars.",
         "heading": "100% Natural",
         "description": "Experience cardamom in its natural form, celebrated for its refreshing aroma, distinctive flavour, and timeless place in Indian kitchens.",
         "provenance": "From everyday tea to traditional Bengali sweets and festive delicacies, our green cardamom adds a naturally aromatic touch to every recipe.",
@@ -153,7 +160,7 @@
         "id": "quality",
         "title": "Premium Quality",
         "image": "/images/home/premium.png",
-        "alt": "Premium Quality",
+        "alt": "Premium Quality seal with a crown and stars.",
         "heading": "Premium Quality",
         "description": "Exceptional flavour begins with careful selection. Our premium green cardamom is chosen for its distinctive fragrance, rich character, and appealing appearance.",
         "provenance": "Inspired by the rich cardamom-growing heritage of South India, Elaicher Ghor brings refined aroma and authentic flavour to everyday meals and special occasions.",
@@ -165,7 +172,7 @@
     "heading": "Doctor of Spices",
     "description": "Cardamom has a long history of traditional use. Explore its aroma, heritage, and the health benefits associated with this remarkable spice.",
     "image": "/images/home/doctor.webp",
-    "imageAlt": "Emperor Akbar cardamom pack with cardamom and spice ingredients",
+    "imageAlt": "Purple Elacher Ghor cardamom pouch beside a hand crushing cardamom and a wooden bowl of pods.",
     "buttonText": "Health Benefits",
     "buttonUrl": ""
   },
@@ -177,7 +184,7 @@
         "heading": "Origin of World’s Best Cardamom",
         "description": "Queen of spice, green gold or a secret healer?",
         "image": "/images/home/Cardamom Gift Basket in Bengali Branding.webp",
-        "imageAlt": "Elacher Ghor cardamom pack in a gift basket",
+        "imageAlt": "Elacher Ghor cardamom pouch arranged in a wicker gift basket with a red ribbon.",
         "buttonText": "Explore",
         "buttonUrl": ""
       },
@@ -186,7 +193,7 @@
         "heading": "A Family Tradition of Prosperity",
         "description": "Celebrate love, togetherness, and good fortune with Elacher Ghor Green Cardamom. Share the warmth of family traditions and the finest green cardamom with every gift.",
         "image": "/images/home/Family’s Cardamom Tradition.webp",
-        "imageAlt": "A family presenting Emperor Akbar Cardamom as a gift",
+        "imageAlt": "A family gathered around an Elacher Ghor cardamom pouch and a bowl of green pods.",
         "buttonText": "Buy Now",
         "buttonUrl": "#products"
       }
@@ -199,7 +206,7 @@
       "title": "Cardamom Rasmalai by Shimi’s Kitchen",
       "description": "We collaborated with Shimi’s Kitchen to create a soft and aromatic Cardamom Rasmalai that brings together the creaminess of whipped cream and the fragrance of cardamom.",
       "image": "/images/home/rosomalai-1.webp",
-      "imageAlt": "Cardamom rasmalai being prepared and served",
+      "imageAlt": "Three-panel cardamom rasmalai collage showing the dessert being finished with milk and pistachios, then served.",
       "linkText": "Read More",
       "url": "/recipes/cardamom-rasmalai"
     },
@@ -209,7 +216,7 @@
         "title": "Cardamom Pistachio Latte by Shimi's Kitchen",
         "description": "We collaborated with Shimi’s Kitchen to create a smooth and aromatic Cardamom Pistachio Latte with creamy pistachio and cardamom.",
         "image": "/images/home/rosomalai-2.png",
-        "imageAlt": "Cardamom pistachio latte recipe collage",
+        "imageAlt": "Recipe collage showing a cardamom pouch, crushed cardamom in a mortar, and a glass of pistachio latte.",
         "linkText": "Read More",
         "url": "/recipes/cardamom-pistachio-latte"
       },
@@ -218,7 +225,7 @@
         "title": "Elaichi Milk Tea by Shimi’s Kitchen",
         "description": "We collaborated with Shimi’s Kitchen to bring you a comforting and fragrant Elaichi Milk Tea, a classic chai with cardamom.",
         "image": "/images/home/rosomalai-3.webp",
-        "imageAlt": "Elaichi milk tea recipe collage",
+        "imageAlt": "Three-panel elaichi tea collage showing cardamom pouches, a crushed pod, and tea being poured into a cup.",
         "linkText": "Read More",
         "url": "/recipes/elaichi-milk-tea"
       },
@@ -227,7 +234,7 @@
         "title": "Elaichi Payasam By Shimi’s Kitchen",
         "description": "We collaborated with Shimi’s Kitchen to create a rich and elegant Elaichi Payasam with festive flavour and cardamom.",
         "image": "/images/home/rosomalai-4.webp",
-        "imageAlt": "Elaichi payasam recipe collage",
+        "imageAlt": "Three-panel payasam collage showing a cardamom pouch, pods being crushed in a mortar, and a bowl of creamy pudding.",
         "linkText": "Read More",
         "url": "/recipes/elaichi-payasam"
       }
@@ -243,7 +250,7 @@
     "heading": "From Plantation to Kitchen...",
     "description": "Tracking the journey of the world’s best cardamom",
     "image": "/images/home/এলাচের ঘর in a Misty Cardamom Forest.webp",
-    "imageAlt": "Elacher Ghor cardamom pack among cardamom plants and spices",
+    "imageAlt": "Green Elacher Ghor cardamom pouch beside a wooden mortar and fresh pods in a misty cardamom grove.",
     "buttonText": "Know More",
     "buttonUrl": ""
   },

@@ -3,7 +3,7 @@ import { ABOUT_URL, getImageUrl } from "../../config";
 import "./award.css";
 
 export default function Award() {
-    const [imagePath, setImagePath] = useState("");
+    const [awardImage, setAwardImage] = useState(null);
 
     useEffect(() => {
         fetch(ABOUT_URL)
@@ -15,7 +15,7 @@ export default function Award() {
                 return response.json();
             })
             .then((data) => {
-                setImagePath(data.award?.image || "");
+                setAwardImage(data.award || null);
             })
             .catch((error) => {
                 console.error("Award image error:", error);
@@ -55,12 +55,13 @@ export default function Award() {
                 </p>
             </div>
 
-            {imagePath && (
+            {awardImage?.image && (
                 <div className="award__visual">
                     <img
                         className="award__image"
-                        src={getImageUrl(imagePath)}
-                        alt="Elacher Ghor recognition"
+                        src={getImageUrl(awardImage.image)}
+                        alt={awardImage.alt || "Cardamom export award for SAMEX India."}
+                        title={awardImage.alt || "Cardamom export award for SAMEX India."}
                         loading="lazy"
                     />
                 </div>

@@ -30,7 +30,7 @@ const BlogDetailPage = () => {
                     <div className="article-byline"><span>{formatDate(article.date)}</span><span><Clock3 size={15} /> {article.readTime}</span></div>
                 </div>
                 <figure className="article-cover">
-                    <img src={article.image} alt={article.imageAlt} />
+                    <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageAlt || article.title || "Cardamom story"} />
                     <figcaption><PhotoCredit name={article.imageCredit} url={article.imageCreditUrl} /></figcaption>
                 </figure>
                 <div className="article-body">

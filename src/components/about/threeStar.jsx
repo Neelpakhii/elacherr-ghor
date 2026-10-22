@@ -3,7 +3,7 @@ import { ABOUT_URL, getImageUrl } from "../../config";
 import "./threeStar.css";
 
 export default function ThreeStar() {
-    const [imagePath, setImagePath] = useState("");
+    const [certificateImage, setCertificateImage] = useState(null);
 
     useEffect(() => {
         fetch(ABOUT_URL)
@@ -15,7 +15,7 @@ export default function ThreeStar() {
                 return response.json();
             })
             .then((data) => {
-                setImagePath(data.threeStar?.image || "");
+                setCertificateImage(data.threeStar || null);
             })
             .catch((error) => {
                 console.error("Three Star certificate image error:", error);
@@ -45,11 +45,12 @@ export default function ThreeStar() {
             </div>
 
             <div className="three-star__visual">
-                {imagePath && (
+                {certificateImage?.image && (
                     <img
                         className="three-star__image"
-                        src={getImageUrl(imagePath)}
-                        alt="Three Star Export House certificate"
+                        src={getImageUrl(certificateImage.image)}
+                        alt={certificateImage.alt || "Government of India Three Star Export House certificate."}
+                        title={certificateImage.alt || "Government of India Three Star Export House certificate."}
                         loading="lazy"
                     />
                 )}

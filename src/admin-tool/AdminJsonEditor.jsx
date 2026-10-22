@@ -72,7 +72,7 @@ function PrimitiveField({ label, value, onChange, onUploadImage }) {
             {isImage && (
                 <>
                     <span className="admin-image-preview">
-                        {textValue && <img src={getImageUrl(textValue)} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} />}
+                        {textValue && <img src={getImageUrl(textValue)} alt="" title={`${prettyLabel(label)} image preview`} onError={(event) => { event.currentTarget.style.display = "none"; }} />}
                         <ImageIcon size={15} aria-hidden="true" />
                         <small>Choose a listed asset or enter a path or image URL</small>
                     </span>

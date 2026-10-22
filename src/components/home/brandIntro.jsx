@@ -4,9 +4,9 @@ const BrandIntro = () => {
     return (
         <section className="brand-intro" aria-labelledby="brand-intro-title">
             <div className="brand-intro__content">
-                <h2 id="brand-intro-title">
+                <h1 id="brand-intro-title">
                     What makes Elacher Ghor Cardamom Truly Special?
-                </h2>
+                </h1>
 
                 <p>
                     Alleppey Green, the Green Gold of India’s spice hills, is a

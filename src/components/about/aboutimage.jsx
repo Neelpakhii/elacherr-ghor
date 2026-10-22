@@ -30,6 +30,7 @@ export default function AboutImage() {
                 className="about-image__photo"
                 src={getImageUrl(hero.image)}
                 alt={hero.alt || "About Elacher Ghor"}
+                title={hero.alt || "About Elacher Ghor"}
                 fetchPriority="high"
             />
         </section>

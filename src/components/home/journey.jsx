@@ -32,7 +32,8 @@ const Journey = () => {
                 <img
                     className="journey-section__image"
                     src={imageUrl}
-                    alt={section.imageAlt || ""}
+                    alt={section.imageAlt || section.heading || "Cardamom growing among leafy plants."}
+                    title={section.imageAlt || section.heading || "Cardamom growing among leafy plants."}
                     loading="lazy"
                 />
             )}
@@ -40,7 +41,7 @@ const Journey = () => {
             <div className="journey-section__overlay" />
 
             <div className="journey-section__content">
-                <h2>{section.heading}</h2>
+                <h1>{section.heading}</h1>
                 <p>{section.description}</p>
 
                 {/* Always shown. Falls back to /about if the backend sends no link */}

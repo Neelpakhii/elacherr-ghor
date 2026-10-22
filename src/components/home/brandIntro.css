@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-.brand-intro h2 {
+.brand-intro h1 {
     margin: 0 auto 20px;
     color: #687b43;
     font-size: clamp(26px, 3.5vw, 40px);

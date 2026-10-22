@@ -3,7 +3,7 @@ import { ABOUT_URL, getImageUrl } from "../../config";
 import "./pioneer.css";
 
 export default function Pioneer() {
-    const [imagePath, setImagePath] = useState("");
+    const [pioneerImage, setPioneerImage] = useState(null);
 
     useEffect(() => {
         fetch(ABOUT_URL)
@@ -15,7 +15,7 @@ export default function Pioneer() {
                 return response.json();
             })
             .then((data) => {
-                setImagePath(data.pioneer?.image || "");
+                setPioneerImage(data.pioneer || null);
             })
             .catch((error) => {
                 console.error("Pioneer section image error:", error);
@@ -65,11 +65,12 @@ export default function Pioneer() {
             </div>
 
             <div className="pioneer__visual">
-                {imagePath && (
+                {pioneerImage?.image && (
                     <img
                         className="pioneer__image"
-                        src={getImageUrl(imagePath)}
-                        alt="Elacher Ghor cardamom grading"
+                        src={getImageUrl(pioneerImage.image)}
+                        alt={pioneerImage.alt || "Cardamom grade size comparison and color-coded pouches."}
+                        title={pioneerImage.alt || "Cardamom grade size comparison and color-coded pouches."}
                         loading="lazy"
                     />
                 )}
