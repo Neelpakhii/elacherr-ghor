@@ -9,6 +9,8 @@ import {
     CircleAlert,
     CircleHelp,
     Clock3,
+    ChevronLeft,
+    ChevronRight,
     ExternalLink,
     Eye,
     FileText,
@@ -602,7 +604,10 @@ function AdminPage() {
         <div className={`admin-app ${desktopCollapsed ? "is-collapsed" : ""}`}>
             {mobileMenuOpen && <button className="admin-mobile-backdrop" type="button" aria-label="Close navigation" onClick={() => setMobileMenuOpen(false)} />}
             <aside className={`admin-sidebar ${mobileMenuOpen ? "is-open" : ""}`}>
-                <Link className="admin-brand" to="/" aria-label="Elaichi Ghar storefront"><span className="admin-brand__mark"><Leaf size={21} /></span><span className="admin-brand__text"><strong>এলাচের ঘর</strong><small>ELAICHI GHAR</small></span></Link>
+                <div className="admin-sidebar__header">
+                    <Link className="admin-brand" to="/" aria-label="Elaichi Ghar storefront"><span className="admin-brand__mark"><Leaf size={21} /></span><span className="admin-brand__text"><strong>এলাচের ঘর</strong><small>ELAICHI GHAR</small></span></Link>
+                    <button className="admin-icon-button admin-collapse-toggle admin-sidebar-collapse-toggle" type="button" aria-label={desktopCollapsed ? "Expand sidebar" : "Collapse sidebar"} onClick={() => setDesktopCollapsed((collapsed) => !collapsed)}>{desktopCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}</button>
+                </div>
                 <div className="admin-sidebar__label">STORE MANAGEMENT</div>
                 <nav className="admin-navigation" aria-label="Admin sections">
                     {SIDE_GROUPS.map((group) => <div className="admin-navigation__group" key={group.label}><p>{group.label}</p>{group.items.map(({ id, label, icon: Icon }) => <Link key={id} to={sectionLinks(id)} onClick={() => setMobileMenuOpen(false)} title={desktopCollapsed ? label : undefined} className={section === id ? "active" : ""} aria-current={section === id ? "page" : undefined}><Icon size={17} /><span>{label}</span></Link>)}</div>)}
@@ -612,7 +617,7 @@ function AdminPage() {
 
             <div className="admin-main">
                 <header className="admin-topbar">
-                    <div className="admin-topbar__left"><button className="admin-icon-button admin-menu-toggle" type="button" aria-label="Open navigation" onClick={() => setMobileMenuOpen((open) => !open)}><Menu size={19} /></button><button className="admin-icon-button admin-collapse-toggle" type="button" aria-label={desktopCollapsed ? "Expand sidebar" : "Collapse sidebar"} onClick={() => setDesktopCollapsed((collapsed) => !collapsed)}><Menu size={18} /></button><div><span className="admin-topbar__crumb">ELAICHI GHAR ADMIN</span><strong>{currentTitle}</strong></div></div>
+                    <div className="admin-topbar__left"><button className="admin-icon-button admin-menu-toggle" type="button" aria-label="Open navigation" onClick={() => setMobileMenuOpen((open) => !open)}><Menu size={19} /></button><div><span className="admin-topbar__crumb">ELAICHI GHAR ADMIN</span><strong>{currentTitle}</strong></div></div>
                     <div className="admin-topbar__actions">
                         <span className="admin-local-pill"><i />LOCAL EDITOR</span>
                         <div className="admin-popover-wrap"><button className="admin-icon-button admin-notification-button" type="button" aria-label={`${notificationCount} stock alerts`} onClick={() => { setNotificationsOpen((open) => !open); setProfileOpen(false); }}><Bell size={18} />{notificationCount > 0 && <i>{notificationCount}</i>}</button>{notificationsOpen && <div className="admin-popover admin-notifications"><strong>Stock notifications</strong>{lowStockProducts.length ? lowStockProducts.map((product) => <Link to="/admin/inventory" key={product.id} onClick={() => setNotificationsOpen(false)}><span>{product.name}</span><small>{product.stockQty} remaining</small></Link>) : <p>No low-stock alerts for tracked products.</p>}{outOfStockProducts.length > 0 && <small>{outOfStockProducts.length} product{outOfStockProducts.length === 1 ? " is" : "s are"} out of stock.</small>}</div>}</div>
@@ -621,7 +626,7 @@ function AdminPage() {
                 </header>
 
                 <main className="admin-content">
-                    <div className="admin-page-heading"><div><p className="admin-eyebrow"><Leaf size={13} /> ELAICHI GHAR · ADMIN</p><h1>{currentTitle}</h1><p className="admin-page-subtitle">{section === "dashboard" ? "A clear view of your website content and the data currently available." : PAGE_TITLES[section]}</p></div><div className="admin-page-actions"><Link className="admin-button admin-button--quiet" to="/" target="_blank"><ExternalLink size={15} /> View storefront</Link>{selectedFile && <button className="admin-button admin-button--quiet" type="button" onClick={() => downloadJson(selectedFile)}><FileText size={15} /> Download JSON</button>}<button className="admin-button admin-button--primary" type="button" onClick={saveChanges} disabled={!isDirty || isSaving}>{isSaving ? <span className="admin-spinner" /> : <Save size={15} />}{isSaving ? "Saving…" : "Save changes"}</button></div></div>
+                    <div className="admin-page-heading"><div><p className="admin-eyebrow"><Leaf size={13} /> ELAICHI GHAR · ADMIN</p><h1>{currentTitle}</h1><p className="admin-page-subtitle">{section === "dashboard" ? "A clear view of your website content and the data currently available." : PAGE_TITLES[section]}</p></div><div className="admin-page-actions"><Link className="admin-button admin-button--quiet" to="/" target="_blank"><ExternalLink size={15} /> View storefront</Link>{selectedFile && <button className="admin-button admin-button--quiet" type="button" onClick={() => downloadJson(selectedFile)}><FileText size={15} /> Download JSON</button>}{section !== "dashboard" && <button className="admin-button admin-button--primary" type="button" onClick={saveChanges} disabled={!isDirty || isSaving}>{isSaving ? <span className="admin-spinner" /> : <Save size={15} />}{isSaving ? "Saving…" : "Save changes"}</button>}</div></div>
 
                     <div className="admin-connection-bar"><span className={isDirty ? "admin-dot admin-dot--unsaved" : "admin-dot"} /><span>{isDirty ? "Unsaved changes" : "All JSON data matches the saved files"}</span><span className="admin-connection-bar__divider" /><span>{import.meta.env.DEV ? "Local JSON writer ready" : projectDirectory ? `Folder: ${projectDirectory.name}` : "Browser draft only"}</span>{!import.meta.env.DEV && <button type="button" onClick={connectFolder}>{projectDirectory ? "Change folder" : "Connect project folder"}</button>}<span className="admin-connection-bar__spacer" />{isDirty && <span className="admin-change-count">{changedFiles.length + deletedProductIds.length} file change{changedFiles.length + deletedProductIds.length === 1 ? "" : "s"}</span>}</div>
                     {notice && <div className="admin-toast" role="status"><Check size={16} />{notice}<button type="button" aria-label="Dismiss message" onClick={() => setNotice("")}><X size={15} /></button></div>}

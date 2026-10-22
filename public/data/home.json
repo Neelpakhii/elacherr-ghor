@@ -18,7 +18,8 @@
       "name": "Purple Grade (8 mm & above) Cardamom",
       "price": 479,
       "originalPrice": 999,
-      "image": "/images/home/purple-card.webp"
+      "image": "/images/home/purple-card.webp",
+      "available": true
     },
     {
       "id": "pink",
