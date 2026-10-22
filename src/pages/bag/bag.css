@@ -3,7 +3,7 @@
     padding: 166px 24px 92px;
     background: #f4f4f2;
     color: #26352b;
-    font-family: "DM Sans", Arial, sans-serif;
+    font-family: "Montserrat", Arial, sans-serif;
 }
 
 .bag-page__inner {
@@ -41,7 +41,7 @@
 .bag-page__header h1 {
     margin: 0;
     color: #263b2e;
-    font: 600 clamp(38px, 6vw, 58px)/1.12 "Playfair Display", Georgia, serif;
+    font: 600 clamp(38px, 6vw, 58px)/1.12 "Montserrat", sans-serif;
 }
 
 .bag-page__header > p:last-child {
@@ -94,7 +94,7 @@
 
 .bag-item h2 {
     margin: 0;
-    font: 600 21px/1.3 "Playfair Display", Georgia, serif;
+    font: 600 21px/1.3 "Montserrat", sans-serif;
 }
 
 .bag-item h2 a { color: inherit; text-decoration: none; }
@@ -135,7 +135,7 @@
     background: transparent;
     color: #737c72;
     cursor: pointer;
-    font: 400 12px "DM Sans", Arial, sans-serif;
+    font: 400 12px "Montserrat", Arial, sans-serif;
 }
 
 .bag-item__remove:hover { color: #9e4e45; }
@@ -190,7 +190,7 @@
     color: #526b52;
 }
 
-.bag-empty h2 { margin: 0; font: 600 28px/1.22 "Playfair Display", Georgia, serif; }
+.bag-empty h2 { margin: 0; font: 600 28px/1.22 "Montserrat", sans-serif; }
 .bag-empty p { margin: 12px 0 24px; color: #70786f; font-size: 14px; line-height: 1.65; }
 .bag-empty .bag-button { width: auto; }
 

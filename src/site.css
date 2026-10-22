@@ -11,6 +11,14 @@ body,
 body {
     margin: 0;
     background-color: var(--site-ash-white);
+    font-family: "Montserrat", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
 
 main {

@@ -245,7 +245,7 @@
     border-radius: 99px;
     background: #687b43;
     color: #fff;
-    font: 700 10px/1 Arial, sans-serif;
+    font: 700 10px/1 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .navbar.search-open {
@@ -303,7 +303,7 @@
     gap: 7px;
     margin: 0 0 13px;
     color: #78865b;
-    font: 700 10px/1.4 "DM Sans", Arial, sans-serif;
+    font: 700 10px/1.4 "Montserrat", "Segoe UI", sans-serif;
     letter-spacing: .17em;
     text-transform: uppercase;
 }
@@ -311,14 +311,14 @@
 .search-drawer__top h2 {
     margin: 0;
     color: #304733;
-    font: 500 clamp(32px, 4vw, 46px)/1.12 "Playfair Display", Georgia, serif;
+    font: 500 clamp(32px, 4vw, 46px)/1.12 "Montserrat", "Segoe UI", sans-serif;
     text-transform: capitalize;
 }
 
 .search-drawer__intro {
     margin: 10px 0 0;
     color: #747d70;
-    font: 400 14px/1.6 "DM Sans", Arial, sans-serif;
+    font: 400 14px/1.6 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-drawer__close {
@@ -381,7 +381,7 @@
     outline: 0;
     background: transparent;
     color: #30392f;
-    font: 400 14px/1.4 "DM Sans", Arial, sans-serif;
+    font: 400 14px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-drawer__field input::placeholder {
@@ -417,7 +417,7 @@
     background: #405b3d;
     color: #fff;
     cursor: pointer;
-    font: 700 11px/1 "DM Sans", Arial, sans-serif;
+    font: 700 11px/1 "Montserrat", "Segoe UI", sans-serif;
     letter-spacing: .12em;
     text-transform: uppercase;
     transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -440,12 +440,12 @@
 .search-drawer__results-heading h3 {
     margin: 0;
     color: #344b35;
-    font: 600 16px/1.4 "DM Sans", Arial, sans-serif;
+    font: 600 16px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-drawer__results-heading > span {
     color: #788173;
-    font: 500 11px/1.4 "DM Sans", Arial, sans-serif;
+    font: 500 11px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-drawer__results {
@@ -499,7 +499,7 @@
 
 .search-result__name {
     color: #465c3e;
-    font: 600 14px/1.45 "DM Sans", Arial, sans-serif;
+    font: 600 14px/1.45 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-result__prices {
@@ -508,7 +508,7 @@
     align-items: baseline;
     gap: 10px;
     color: #323b30;
-    font: 400 13px/1.4 "DM Sans", Arial, sans-serif;
+    font: 400 13px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-result__original {
@@ -532,7 +532,7 @@
     padding: 32px 14px;
     color: #6f786d;
     text-align: center;
-    font: 400 13px/1.6 "DM Sans", Arial, sans-serif;
+    font: 400 13px/1.6 "Montserrat", "Segoe UI", sans-serif;
 }
 
 .search-drawer__empty {
@@ -564,7 +564,7 @@
     padding: 7px 0;
     border-bottom: 1px solid #718254;
     color: #50653e;
-    font: 700 10px/1.4 "DM Sans", Arial, sans-serif;
+    font: 700 10px/1.4 "Montserrat", "Segoe UI", sans-serif;
     letter-spacing: .13em;
     text-decoration: none;
     text-transform: uppercase;

@@ -45,7 +45,7 @@
 
 .world-best-cardamom__overlay h2 {
     margin: 0 0 18px;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: "Montserrat", sans-serif;
     font-size: clamp(40px, 6vw, 78px);
     font-weight: 500;
     line-height: 1.08;

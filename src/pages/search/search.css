@@ -3,12 +3,12 @@
     padding: 166px 24px 88px;
     background: #f4f4f2;
     color: #26352b;
-    font-family: "DM Sans", Arial, sans-serif;
+    font-family: "Montserrat", Arial, sans-serif;
 }
 
 .search-page__inner { width: min(1180px, 100%); margin: 0 auto; }
 .search-page__eyebrow { margin: 0 0 8px; color: #9a7743; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-align: center; text-transform: uppercase; }
-.search-page h1 { margin: 0; color: #263b2e; font: 600 clamp(38px, 6vw, 58px)/1.1 "Playfair Display", Georgia, serif; text-align: center; }
+.search-page h1 { margin: 0; color: #263b2e; font: 600 clamp(38px, 6vw, 58px)/1.1 "Montserrat", sans-serif; text-align: center; }
 .search-page__intro { margin: 12px auto 25px; color: #70786f; font-size: 14px; line-height: 1.6; text-align: center; }
 
 .search-page__form {
@@ -24,15 +24,15 @@
     color: #687b43;
 }
 
-.search-page__form input { flex: 1; min-width: 0; height: 42px; border: 0; outline: 0; background: transparent; color: #30352c; font: 400 14px "DM Sans", Arial, sans-serif; }
+.search-page__form input { flex: 1; min-width: 0; height: 42px; border: 0; outline: 0; background: transparent; color: #30352c; font: 400 14px "Montserrat", Arial, sans-serif; }
 .search-page__form input::placeholder { color: #92988e; }
-.search-page__form button { min-height: 42px; padding: 0 20px; border: 0; background: #304b3b; color: #fff; cursor: pointer; font: 700 11px "DM Sans", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.search-page__form button { min-height: 42px; padding: 0 20px; border: 0; background: #304b3b; color: #fff; cursor: pointer; font: 700 11px "Montserrat", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .search-page__form button:hover { background: #1d3429; }
 .search-page__count { margin: 34px 0 18px; color: #69746a; font-size: 13px; }
 .search-page__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
 .search-page__message { padding: 42px 10px; color: #68746a; text-align: center; }
 .search-page__empty { margin-top: 36px; padding: 42px 20px; border: 1px solid #e0e3dc; background: rgba(255,255,255,.6); text-align: center; }
-.search-page__empty h2 { margin: 0; font: 600 28px "Playfair Display", Georgia, serif; }
+.search-page__empty h2 { margin: 0; font: 600 28px "Montserrat", sans-serif; }
 .search-page__empty p { margin: 10px 0 0; color: #737c72; font-size: 14px; }
 
 @media (max-width: 820px) { .search-page__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }

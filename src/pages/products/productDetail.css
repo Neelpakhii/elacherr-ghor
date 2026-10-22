@@ -3,7 +3,7 @@
     padding: 160px 24px 92px;
     background: #f4f4f2;
     color: #26352b;
-    font-family: "DM Sans", Arial, sans-serif;
+    font-family: "Montserrat", Arial, sans-serif;
 }
 
 .product-detail-page__inner { width: min(1140px, 100%); margin: 0 auto; }
@@ -28,7 +28,7 @@
 .product-detail-hero__image-note { position: absolute; bottom: 14px; left: 14px; display: inline-flex; align-items: center; gap: 7px; padding: 9px 12px; background: rgba(244,244,242,.92); color: #596858; font-size: 10px; font-weight: 600; letter-spacing: .03em; }
 .product-detail-hero__content { max-width: 470px; }
 .product-detail-hero__eyebrow { margin: 0 0 15px; color: #9a7743; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-.product-detail-hero h1 { margin: 0; color: #263b2e; font: 600 clamp(34px, 4vw, 49px)/1.12 "Playfair Display", Georgia, serif; }
+.product-detail-hero h1 { margin: 0; color: #263b2e; font: 600 clamp(34px, 4vw, 49px)/1.12 "Montserrat", sans-serif; }
 .product-detail-hero__grade { display: flex; align-items: center; gap: 9px; margin: 17px 0 0; color: #737c72; font-size: 13px; }
 .product-detail-hero__grade strong { padding: 6px 10px; background: #e8ede5; color: #405a41; font-size: 12px; font-weight: 600; }
 .product-detail-hero__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin: 25px 0 17px; }
@@ -42,7 +42,7 @@
 .product-detail-quantity button:disabled { color: #b6bcb3; cursor: not-allowed; }
 .product-detail-quantity span { min-width: 25px; color: #26352b; font-size: 13px; text-align: center; }
 
-.product-detail-button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 20px; border: 1px solid #304b3b; cursor: pointer; font: 700 11px/1 "DM Sans", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.product-detail-button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 20px; border: 1px solid #304b3b; cursor: pointer; font: 700 11px/1 "Montserrat", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease, color .2s ease, transform .2s ease; }
 .product-detail-button:hover { transform: translateY(-1px); }
 .product-detail-button:disabled { cursor: not-allowed; opacity: .5; transform: none; }
 .product-detail-button--outline { background: transparent; color: #304b3b; }
@@ -53,12 +53,12 @@
 
 .product-detail-info { display: grid; grid-template-columns: .8fr 1.2fr; gap: 55px; margin-top: 40px; padding: 35px 42px; border: 1px solid #e4e6e0; background: rgba(255,255,255,.43); }
 .product-detail-info__eyebrow { margin: 0 0 9px; color: #9a7743; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-.product-detail-info h2 { margin: 0; color: #263b2e; font: 600 30px/1.15 "Playfair Display", Georgia, serif; }
+.product-detail-info h2 { margin: 0; color: #263b2e; font: 600 30px/1.15 "Montserrat", sans-serif; }
 .product-detail-info ul { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
 .product-detail-info li { display: flex; align-items: flex-start; gap: 11px; color: #657065; font-size: 13px; line-height: 1.5; }
 .product-detail-info li span { color: #a88736; }
 
-.product-detail-state { min-height: 65vh; display: grid; place-content: center; gap: 15px; padding: 130px 24px 60px; background: #f4f4f2; color: #526052; text-align: center; font-family: "DM Sans", Arial, sans-serif; }
+.product-detail-state { min-height: 65vh; display: grid; place-content: center; gap: 15px; padding: 130px 24px 60px; background: #f4f4f2; color: #526052; text-align: center; font-family: "Montserrat", Arial, sans-serif; }
 .product-detail-state a { color: #304b3b; }
 
 @media (max-width: 800px) {
