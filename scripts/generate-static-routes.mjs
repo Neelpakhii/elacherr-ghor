@@ -11,13 +11,20 @@ const escapeHtml = (value = "") => String(value)
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+const escapeXml = (value = "") => String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
 
 const repository = process.env.GITHUB_REPOSITORY || "";
 const [owner, repositoryName] = repository.split("/");
-const siteBase = process.env.VITE_SITE_URL?.replace(/\/$/, "")
+const siteBase = process.env.VITE_SITE_URL?.replace(/\/+$/, "")
     || (owner && repositoryName
         ? `https://${owner.toLowerCase()}.github.io/${repositoryName}`
         : "");
+const sitemapBase = siteBase || "https://neelpakhii.github.io/elacherr-ghor";
 
 const home = await readJson("public/data/home.json");
 const editorial = await readJson("public/data/editorial.json");
@@ -161,4 +168,17 @@ for (const [route, metadata] of routes) {
     await writeFile(routeFile, routeHtml, "utf8");
 }
 
+const sitemapUrls = [...routes.entries()]
+    .filter(([, metadata]) => !metadata.noIndex && !metadata.canonical)
+    .map(([route]) => `${sitemapBase}${route === "/" ? "/" : `${route}/`}`);
+const sitemapXml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...sitemapUrls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`),
+    "</urlset>",
+    "",
+].join("\n");
+await writeFile(join(outputRoot, "sitemap.xml"), sitemapXml, "utf8");
+
 console.log(`Generated ${routes.size} static route entry files.`);
+console.log(`Generated sitemap.xml with ${sitemapUrls.length} indexable URLs.`);
