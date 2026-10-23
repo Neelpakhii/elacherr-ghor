@@ -95,7 +95,7 @@ const ProductDetailPage = () => {
 
                 <section className="product-detail-hero">
                     <div className="product-detail-hero__image-wrap">
-                        <img src={getImageUrl(product.image)} alt={product.imageAlt || product.name} title={product.imageAlt || product.name} />
+                        <img src={getImageUrl(product.image)} alt={product.imageAlt || product.name} title={product.imageTitle || product.imageAlt || product.name} />
                         <span className="product-detail-hero__image-note"><Sparkles size={14} /> Carefully graded cardamom</span>
                     </div>
 

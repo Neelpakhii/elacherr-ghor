@@ -54,6 +54,7 @@ const Recipe = () => {
                                     section.featured.title
                                 }
                                 title={
+                                    section.featured.imageTitle ||
                                     section.featured.imageAlt ||
                                     section.featured.title
                                 }
@@ -84,7 +85,7 @@ const Recipe = () => {
                                     className="recipe-list__image"
                                     src={getImageUrl(recipe.image)}
                                     alt={recipe.imageAlt || recipe.title}
-                                    title={recipe.imageAlt || recipe.title}
+                                    title={recipe.imageTitle || recipe.imageAlt || recipe.title}
                                     loading="lazy"
                                 />
                             </Link>

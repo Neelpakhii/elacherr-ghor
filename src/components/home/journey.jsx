@@ -33,7 +33,7 @@ const Journey = () => {
                     className="journey-section__image"
                     src={imageUrl}
                     alt={section.imageAlt || section.heading || "Cardamom growing among leafy plants."}
-                    title={section.imageAlt || section.heading || "Cardamom growing among leafy plants."}
+                    title={section.imageTitle || section.imageAlt || section.heading || "Cardamom growing among leafy plants."}
                     loading="lazy"
                 />
             )}

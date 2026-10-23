@@ -1,28 +1,32 @@
 {
   "hero": {
     "image": "/images/about/Cardamom Heritage by the Riverside.webp",
-    "alt": "Elacher Ghor cardamom pouch against an illustrated riverside village, framed by cardamom plants."
+    "alt": "Elacher Ghor cardamom pouch against an illustrated riverside village, framed by cardamom plants.",
+    "imageTitle": "Elacher Ghor cardamom pouch against an illustrated riverside village and cardamom plants."
   },
   "award": {
-  "image": "/images/about/award.jpg",
-  "alt": "Cardamom export award recognizing M/s. SAMEX India Pvt. Ltd. as a top exporter of small cardamom."
-},
-"story": {
-  "image": "/images/about/story.jpg",
-  "alt": "Green cardamom pods piled in burlap sacks against a sepia village illustration."
-},
-"pioneer": {
-  "image": "/images/about/pioneer.webp",
-  "alt": "Graphic comparing five cardamom pod grades from 8 to 6 millimetres above their color-coded pouches."
-},
-"certifyBest": {
-  "image": "/images/about/certify-best.jpg",
-  "alt": "Government of India GI registration certificate for Alleppey Green Cardamom."
-},
-"threeStar": {
-  "image": "/images/about/three-star.jpg",
-  "alt": "Government of India certificate recognizing SAMEX India as a Three Star Export House."
-}
-
-
+    "image": "/images/about/award.jpg",
+    "alt": "Cardamom export award recognizing M/s. SAMEX India Pvt. Ltd. as a top exporter of small cardamom.",
+    "imageTitle": "SAMEX India small cardamom export award certificate."
+  },
+  "story": {
+    "image": "/images/about/story.jpg",
+    "alt": "Green cardamom pods piled in burlap sacks against a sepia village illustration.",
+    "imageTitle": "Green cardamom pods piled in burlap sacks against a sepia village illustration."
+  },
+  "pioneer": {
+    "image": "/images/about/pioneer.webp",
+    "alt": "Graphic comparing five cardamom pod grades from 8 to 6 millimetres above their color-coded pouches.",
+    "imageTitle": "Five cardamom grades compared by pod size and matching pouch colour."
+  },
+  "certifyBest": {
+    "image": "/images/about/certify-best.jpg",
+    "alt": "Government of India GI registration certificate for Alleppey Green Cardamom.",
+    "imageTitle": "Government of India GI registration certificate for Alleppey Green Cardamom."
+  },
+  "threeStar": {
+    "image": "/images/about/three-star.jpg",
+    "alt": "Government of India certificate recognizing SAMEX India as a Three Star Export House.",
+    "imageTitle": "Government of India Three Star Export House certificate for SAMEX India."
+  }
 }

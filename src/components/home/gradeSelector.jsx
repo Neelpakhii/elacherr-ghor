@@ -52,7 +52,7 @@ const GradeSelector = () => {
                                     className="grade-selector__image"
                                     src={imageUrl(grade.image)}
                                     alt={grade.imageAlt || grade.name}
-                                    title={grade.imageAlt || grade.name}
+                                    title={grade.imageTitle || grade.imageAlt || grade.name}
                                     loading="lazy"
                                 />
                             )}

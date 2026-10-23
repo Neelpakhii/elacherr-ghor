@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
                         className="product-card__image"
                         src={imageSrc}
                         alt={product.imageAlt || product.name}
-                        title={product.imageAlt || product.name}
+                        title={product.imageTitle || product.imageAlt || product.name}
                         loading="lazy"
                     />
                 ) : (

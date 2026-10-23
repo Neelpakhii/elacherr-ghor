@@ -45,7 +45,7 @@ const Doctor = () => {
                         className="doctor-section__image"
                         src={imageUrl}
                         alt={section.imageAlt || section.heading}
-                        title={section.imageAlt || section.heading}
+                        title={section.imageTitle || section.imageAlt || section.heading}
                         loading="lazy"
                     />
                 )}

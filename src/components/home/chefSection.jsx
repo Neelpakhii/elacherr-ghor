@@ -47,7 +47,7 @@ const ChefSection = () => {
                         className="chef-section__image"
                         src={imageSrc}
                         alt={chef.imageAlt || chef.heading}
-                        title={chef.imageAlt || chef.heading}
+                        title={chef.imageTitle || chef.imageAlt || chef.heading}
                         loading="lazy"
                     />
                 </div>

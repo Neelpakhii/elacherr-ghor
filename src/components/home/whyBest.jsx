@@ -207,8 +207,9 @@ const WhyBest = () => {
                                             "Cardamom quality"
                                         }
                                         title={
-                                            quality.alt ||
+                                            quality.imageTitle ||
                                             quality.title ||
+                                            quality.alt ||
                                             quality.heading ||
                                             "Cardamom quality"
                                         }

@@ -33,7 +33,7 @@ export default function CertifyBest() {
                         className="certify-best__image"
                         src={getImageUrl(certificateImage.image)}
                         alt={certificateImage.alt || "Government of India GI certificate for Alleppey Green Cardamom."}
-                        title={certificateImage.alt || "Government of India GI certificate for Alleppey Green Cardamom."}
+                        title={certificateImage.imageTitle || certificateImage.alt || "Government of India GI certificate for Alleppey Green Cardamom."}
                         loading="lazy"
                     />
                 )}

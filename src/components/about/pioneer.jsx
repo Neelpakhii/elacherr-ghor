@@ -70,7 +70,7 @@ export default function Pioneer() {
                         className="pioneer__image"
                         src={getImageUrl(pioneerImage.image)}
                         alt={pioneerImage.alt || "Cardamom grade size comparison and color-coded pouches."}
-                        title={pioneerImage.alt || "Cardamom grade size comparison and color-coded pouches."}
+                        title={pioneerImage.imageTitle || pioneerImage.alt || "Cardamom grade size comparison and color-coded pouches."}
                         loading="lazy"
                     />
                 )}

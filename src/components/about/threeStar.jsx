@@ -50,7 +50,7 @@ export default function ThreeStar() {
                         className="three-star__image"
                         src={getImageUrl(certificateImage.image)}
                         alt={certificateImage.alt || "Government of India Three Star Export House certificate."}
-                        title={certificateImage.alt || "Government of India Three Star Export House certificate."}
+                        title={certificateImage.imageTitle || certificateImage.alt || "Government of India Three Star Export House certificate."}
                         loading="lazy"
                     />
                 )}

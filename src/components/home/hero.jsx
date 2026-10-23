@@ -60,6 +60,7 @@ const Hero = () => {
 
     return (
         <section className="hero" aria-label="Featured banners">
+            <h1 className="visually-hidden">Explore the Magic of Cardamom</h1>
             {images.map((image, index) => {
                 const isActive = index === currentIndex;
                 const isPrevious = index === previousIndex;
@@ -76,7 +77,7 @@ const Hero = () => {
                             .join(" ")}
                         src={`${ASSET_BASE_URL}${image.image}`}
                         alt={image.alt || `Elacher Ghor cardamom promotion, slide ${index + 1}`}
-                        title={image.alt || `Elacher Ghor cardamom promotion, slide ${index + 1}`}
+                        title={image.imageTitle || image.alt || `Elacher Ghor cardamom promotion, slide ${index + 1}`}
                         aria-hidden={!isActive}
                     />
                 );

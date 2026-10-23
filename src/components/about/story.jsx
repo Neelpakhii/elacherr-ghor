@@ -30,7 +30,7 @@ export default function Story() {
                         className="story__image"
                         src={getImageUrl(storyImage.image)}
                         alt={storyImage.alt || "Green cardamom pods in burlap sacks."}
-                        title={storyImage.alt || "Green cardamom pods in burlap sacks."}
+                        title={storyImage.imageTitle || storyImage.alt || "Green cardamom pods in burlap sacks."}
                         loading="lazy"
                     />
                 )}

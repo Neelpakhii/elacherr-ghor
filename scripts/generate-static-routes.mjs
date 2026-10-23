@@ -1,0 +1,144 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+
+const projectRoot = process.cwd();
+const outputRoot = join(projectRoot, "dist");
+
+const readJson = async (path) => JSON.parse(await readFile(join(projectRoot, path), "utf8"));
+const escapeHtml = (value = "") => String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+const repository = process.env.GITHUB_REPOSITORY || "";
+const [owner, repositoryName] = repository.split("/");
+const siteBase = process.env.VITE_SITE_URL?.replace(/\/$/, "")
+    || (owner && repositoryName
+        ? `https://${owner.toLowerCase()}.github.io/${repositoryName}`
+        : "");
+
+const home = await readJson("public/data/home.json");
+const editorial = await readJson("public/data/editorial.json");
+
+const routes = new Map();
+const addRoute = (path, metadata) => routes.set(path, metadata);
+
+addRoute("/", {
+    title: "Elacher Ghor | Recipes, Stories & CSR",
+    description: "Discover premium green cardamom at Elaicher Ghor. Shop fragrant grades, explore Bengali recipes and stories, and learn about our community initiatives.",
+});
+addRoute("/about", {
+    title: "About Elacher Ghor | Our Cardamom Story",
+    description: "Discover Elacher Ghor’s cardamom heritage, quality standards, and story of bringing premium Alleppey Green Cardamom to your kitchen.",
+});
+addRoute("/shop", {
+    title: "Shop Premium Cardamom | Elacher Ghor",
+    description: `Explore ${home.products?.length || "our"} graded cardamom products from Elacher Ghor, with product details, prices, and availability.`,
+});
+addRoute("/recipes", {
+    title: `${editorial.recipesPage?.title || "Cardamom Recipes"} | Elacher Ghor`,
+    description: editorial.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
+});
+addRoute("/blogs", {
+    title: `${editorial.blogsPage?.title || "Cardamom Stories"} | Elacher Ghor`,
+    description: editorial.blogsPage?.description || "Read stories and useful guides about cardamom.",
+});
+addRoute("/csr", {
+    title: `${editorial.csrPage?.title || "Community and Responsibility"} | Elacher Ghor`,
+    description: editorial.csrPage?.description || "Learn about Elacher Ghor’s community and sustainability commitments.",
+});
+
+// These routes are supported by the app as aliases. Point their metadata to the
+// canonical page so search engines do not treat each alias as a duplicate.
+addRoute("/pages/csr", { ...routes.get("/csr"), canonical: "/csr" });
+addRoute("/blogs/recipes", { ...routes.get("/recipes"), canonical: "/recipes" });
+addRoute("/blogs/p", { ...routes.get("/blogs"), canonical: "/blogs" });
+addRoute("/recipe", {
+    title: "Cardamom Recipes | Elacher Ghor",
+    description: editorial.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
+    canonical: "/recipes",
+    noIndex: true,
+});
+addRoute("/bag", {
+    title: "Shopping Bag | Elacher Ghor",
+    description: "Review the cardamom products in your shopping bag.",
+    noIndex: true,
+});
+addRoute("/cart", {
+    title: "Shopping Bag | Elacher Ghor",
+    description: "Review the cardamom products in your shopping bag.",
+    canonical: "/bag",
+    noIndex: true,
+});
+addRoute("/search", {
+    title: "Search Cardamom Products | Elacher Ghor",
+    description: "Search Elacher Ghor cardamom products.",
+    noIndex: true,
+});
+
+for (const product of home.products || []) {
+    if (!/^[a-z0-9-]+$/i.test(product.id || "")) continue;
+    let detail = {};
+    try {
+        detail = await readJson(`public/data/products/${product.id}.json`);
+    } catch {
+        // Products without a separate details file still get a route shell.
+    }
+    addRoute(`/products/${product.id}`, {
+        title: `${product.name || "Cardamom"} | Elacher Ghor`,
+        description: detail.description || product.description || `${product.name || "Premium cardamom"} from Elacher Ghor. View product details, price, and availability.`,
+    });
+}
+
+for (const recipe of editorial.recipes || []) {
+    if (!/^[a-z0-9-]+$/i.test(recipe.slug || "")) continue;
+    addRoute(`/recipes/${recipe.slug}`, {
+        title: `${recipe.title || "Cardamom Recipe"} | Elacher Ghor`,
+        description: recipe.excerpt || `Discover how to make ${recipe.title || "this recipe"} with aromatic cardamom.`,
+    });
+}
+
+for (const story of editorial.blogs || []) {
+    if (!/^[a-z0-9-]+$/i.test(story.slug || "")) continue;
+    addRoute(`/blogs/${story.slug}`, {
+        title: `${story.title || "Cardamom Story"} | Elacher Ghor`,
+        description: story.excerpt || `Read ${story.title || "this story"} from Elacher Ghor.`,
+    });
+}
+
+const template = await readFile(join(outputRoot, "index.html"), "utf8");
+const updateHtml = (html, { title, description, canonical, noIndex }) => {
+    let result = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
+    const descriptionTag = `<meta name="description" content="${escapeHtml(description)}" />`;
+    if (/<meta\s+name=["']description["'][^>]*>/i.test(result)) {
+        result = result.replace(/<meta\s+name=["']description["'][^>]*>/i, descriptionTag);
+    } else {
+        result = result.replace(/<\/head>/i, `  ${descriptionTag}\n  </head>`);
+    }
+
+    result = result.replace(/\s*<link\s+rel=["']canonical["'][^>]*>/i, "");
+    if (siteBase) {
+        const canonicalPath = canonical || "/";
+        const canonicalUrl = `${siteBase}${canonicalPath === "/" ? "/" : `${canonicalPath}/`}`;
+        result = result.replace(/<\/head>/i, `  <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />\n  </head>`);
+    }
+
+    result = result.replace(/\s*<meta\s+name=["']robots["'][^>]*>/i, "");
+    if (noIndex) {
+        result = result.replace(/<\/head>/i, '  <meta name="robots" content="noindex,follow" />\n  </head>');
+    }
+    return result;
+};
+
+for (const [route, metadata] of routes) {
+    const routeFile = route === "/"
+        ? join(outputRoot, "index.html")
+        : join(outputRoot, ...route.split("/").filter(Boolean), "index.html");
+    const routeHtml = updateHtml(template, metadata);
+    await mkdir(dirname(routeFile), { recursive: true });
+    await writeFile(routeFile, routeHtml, "utf8");
+}
+
+console.log(`Generated ${routes.size} static route entry files.`);

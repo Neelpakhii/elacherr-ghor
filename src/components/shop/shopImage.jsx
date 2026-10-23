@@ -30,7 +30,7 @@ const ShopImage = () => {
                 className="shop-image__photo"
                 src={getImageUrl(shopImage.image)}
                 alt={shopImage.alt || "Elacher Ghor cardamom pouches with cardamom plants and blossoms."}
-                title={shopImage.alt || "Elacher Ghor cardamom pouches with cardamom plants and blossoms."}
+                title={shopImage.imageTitle || shopImage.alt || "Elacher Ghor cardamom pouches with cardamom plants and blossoms."}
             />
         </section>
     );

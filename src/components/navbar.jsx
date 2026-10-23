@@ -17,6 +17,7 @@ const navLinks = [
 
 const Navbar = () => {
     const [logo, setLogo] = useState("");
+    const [logoTitle, setLogoTitle] = useState("Elacher Ghor home");
     const [products, setProducts] = useState([]);
     const [productsLoading, setProductsLoading] = useState(true);
     const [productsError, setProductsError] = useState(false);
@@ -58,6 +59,7 @@ const Navbar = () => {
             })
             .then((data) => {
                 setLogo(getImageUrl(data.navbar?.logo));
+                setLogoTitle(data.navbar?.logoTitle || "Elacher Ghor home");
                 setProducts(Array.isArray(data.products) ? data.products : []);
             })
             .catch((error) => {
@@ -117,7 +119,7 @@ const Navbar = () => {
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${isEditorialDetail ? "navbar--solid-at-top" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
                 <NavLink to="/" aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
-                    {logo && <img src={logo} alt="Elacher Ghor" title="Elacher Ghor home" />}
+                    {logo && <img src={logo} alt="Elacher Ghor" title={logoTitle} />}
                 </NavLink>
             </div>
 
@@ -234,7 +236,7 @@ const Navbar = () => {
                                         onClick={handlePageNavigation}
                                     >
                                         <span className="search-result__image">
-                                            {product.image && <img src={getImageUrl(product.image)} alt="" title={product.name} loading="lazy" />}
+                                            {product.image && <img src={getImageUrl(product.image)} alt="" title={product.imageTitle || product.name} loading="lazy" />}
                                         </span>
                                         <span className="search-result__details">
                                             <span className="search-result__name">{product.name}</span>

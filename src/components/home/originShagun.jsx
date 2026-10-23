@@ -52,7 +52,7 @@ const OriginShagun = () => {
                             className="origin-shagun__image"
                             src={getImageUrl(card.image)}
                             alt={card.imageAlt || card.heading || "Cardamom product and gift arrangement."}
-                            title={card.imageAlt || card.heading || "Cardamom product and gift arrangement."}
+                            title={card.imageTitle || card.imageAlt || card.heading || "Cardamom product and gift arrangement."}
                             loading="lazy"
                         />
 

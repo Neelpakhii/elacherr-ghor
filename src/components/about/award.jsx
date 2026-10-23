@@ -61,7 +61,7 @@ export default function Award() {
                         className="award__image"
                         src={getImageUrl(awardImage.image)}
                         alt={awardImage.alt || "Cardamom export award for SAMEX India."}
-                        title={awardImage.alt || "Cardamom export award for SAMEX India."}
+                        title={awardImage.imageTitle || awardImage.alt || "Cardamom export award for SAMEX India."}
                         loading="lazy"
                     />
                 </div>

@@ -38,6 +38,7 @@ const WorldBestCardamom = () => {
                     playsInline
                     preload="auto"
                     poster={mediaUrl(section.poster)}
+                    title={section.posterTitle || section.heading || "Discover Elacher Ghor cardamom."}
                     tabIndex="-1"
                 >
                     <source src={mediaUrl(section.video)} type="video/mp4" />

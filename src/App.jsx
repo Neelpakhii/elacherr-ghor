@@ -37,6 +37,7 @@ function App() {
           <Route path="/cart" element={<Navigate to="/bag" replace />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/recipes" element={<RecipesPage />} />
+          <Route path="/recipe" element={<Navigate to="/recipes" replace />} />
           <Route path="/blogs/recipes" element={<RecipesPage />} />
           <Route path="/recipes/:slug" element={<RecipeDetailPage />} />
           <Route path="/blogs" element={<BlogsPage />} />

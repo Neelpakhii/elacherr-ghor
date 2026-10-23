@@ -41,7 +41,7 @@ const BlogsPage = () => {
     return (
         <main className="editorial-page blogs-page">
             <header className="editorial-hero editorial-hero--journal">
-                <img src={page.heroImage} alt={page.heroImageAlt || page.title || "Elacher Ghor journal"} title={page.heroImageAlt || page.title || "Elacher Ghor journal"} />
+                <img src={page.heroImage} alt={page.heroImageAlt || page.title || "Elacher Ghor journal"} title={page.heroImageTitle || page.heroImageAlt || page.title || "Elacher Ghor journal"} />
                 <div className="editorial-hero__shade" />
                 <div className="editorial-hero__content">
                     <h1>{page.title}</h1>
@@ -88,7 +88,7 @@ const BlogsPage = () => {
                 {featured ? (
                     <article className="journal-featured">
                         <Link className="journal-featured__image" to={`/blogs/${featured.slug}`}>
-                            <img src={featured.image} alt={featured.imageAlt || featured.title || "Featured cardamom story"} title={featured.imageAlt || featured.title || "Featured cardamom story"} loading="lazy" />
+                            <img src={featured.image} alt={featured.imageAlt || featured.title || "Featured cardamom story"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom story"} loading="lazy" />
                         </Link>
                         <div className="journal-featured__body">
                             <p className="editorial-card-kicker">{featured.category} <span>·</span> {featured.readTime}</p>
@@ -110,7 +110,7 @@ const BlogsPage = () => {
                         {remaining.map((article) => (
                             <article className="editorial-card" key={article.slug}>
                                 <Link className="editorial-card__image" to={`/blogs/${article.slug}`}>
-                                    <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageAlt || article.title || "Cardamom story"} loading="lazy" />
+                                    <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} loading="lazy" />
                                 </Link>
                                 <div className="editorial-card__body">
                                     <p className="editorial-card-kicker">{article.category} <span>·</span> {article.readTime}</p>
