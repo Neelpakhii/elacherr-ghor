@@ -15,8 +15,8 @@
       "title": "Silky Cardamom Rasmalai",
       "category": "Desserts",
       "excerpt": "Soft chenna rounds steeped in saffron milk, finished with freshly crushed cardamom and pistachio.",
-      "image": "https://images.unsplash.com/photo-1694402594431-23c594be1745?auto=format&fit=crop&w=1400&q=85",
-      "imageAlt": "A creamy Indian-inspired dessert topped with soft cream",
+      "image": "/images/home/rosomalai-1.webp",
+      "imageAlt": "Three-panel cardamom rasmalai collage showing the dessert being finished with milk and pistachios, then served.",
       "imageCredit": "Ifrah Akhter",
       "imageCreditUrl": "https://unsplash.com/photos/a-hand-holding-a-cupcake-with-white-frosting-and-sprinkles-3IwdcWE6fBI",
       "prepTime": "25 min",
@@ -42,15 +42,15 @@
         "Gently squeeze excess syrup from each disc and place them in the saffron milk. Chill for at least 2 hours and finish with pistachios."
       ],
       "tip": "Crush the cardamom just before warming the milk; the fragrance stays brighter.",
-      "imageTitle": "Cardamom rasmalai topped with cream."
+      "imageTitle": "Cardamom rasmalai served with milk and pistachios."
     },
     {
       "slug": "elaichi-milk-tea",
       "title": "Everyday Elaichi Chai",
       "category": "Drinks",
       "excerpt": "A familiar cup made more memorable with freshly cracked green cardamom and a patient simmer.",
-      "image": "https://images.unsplash.com/photo-1683533698664-12ee473e8c9d?auto=format&fit=crop&w=1400&q=85",
-      "imageAlt": "A freshly brewed cup of chai with spices",
+      "image": "/images/home/rosomalai-3.webp",
+      "imageAlt": "Three-panel elaichi tea collage showing cardamom pouches, a crushed pod, and tea being poured into a cup.",
       "imageCredit": "Ananthan Chithiraikani",
       "imageCreditUrl": "https://unsplash.com/photos/DPBWHb2X81w",
       "prepTime": "5 min",
@@ -72,7 +72,7 @@
         "Strain into warm cups and serve straight away."
       ],
       "tip": "For a stronger cup, steep the tea leaves a little longer before adding milk.",
-      "imageTitle": "A freshly brewed cup of elaichi milk tea with aromatic spices."
+      "imageTitle": "Elaichi milk tea being poured into a cup."
     },
     {
       "slug": "cardamom-chicken-biryani",
@@ -174,8 +174,8 @@
       "title": "Slow-Simmered Elaichi Payasam",
       "category": "Desserts",
       "excerpt": "A gently reduced milk pudding with tender rice, golden nuts and the delicate warmth of cardamom.",
-      "image": "https://images.unsplash.com/photo-1694402594431-23c594be1745?auto=format&fit=crop&w=1400&q=85",
-      "imageAlt": "A creamy dessert served with a festive finish",
+      "image": "/images/home/rosomalai-4.webp",
+      "imageAlt": "Three-panel payasam collage showing a cardamom pouch, pods being crushed in a mortar, and a bowl of creamy pudding.",
       "imageCredit": "Ifrah Akhter",
       "imageCreditUrl": "https://unsplash.com/photos/a-hand-holding-a-cupcake-with-white-frosting-and-sprinkles-3IwdcWE6fBI",
       "prepTime": "10 min",
@@ -200,15 +200,15 @@
         "Fold in the toasted nuts. Serve warm, or chill and serve cold."
       ],
       "tip": "Stir along the base of the pan often so the milk reduces evenly.",
-      "imageTitle": "Creamy elaichi payasam served with a festive finish."
+      "imageTitle": "Creamy elaichi payasam served in a bowl."
     },
     {
       "slug": "cardamom-pistachio-latte",
       "title": "Cardamom Pistachio Latte",
       "category": "Drinks",
       "excerpt": "Espresso, velvety milk and pistachio meet a subtle, fragrant note of freshly ground elaichi.",
-      "image": "https://images.unsplash.com/photo-1642255521852-7e7c742ac58f?auto=format&fit=crop&w=1400&q=85",
-      "imageAlt": "Fresh green cardamom pods and whole spices",
+      "image": "/images/home/rosomalai-2.png",
+      "imageAlt": "Recipe collage showing a cardamom pouch, crushed cardamom in a mortar, and a glass of pistachio latte.",
       "imageCredit": "Karyna Panchenko",
       "imageCreditUrl": "https://unsplash.com/photos/bF404j83DH0",
       "prepTime": "5 min",
@@ -229,7 +229,7 @@
         "Pour the pistachio milk over the espresso and finish with crushed pistachios."
       ],
       "tip": "If your pistachio cream is sweetened, taste before adding anything extra.",
-      "imageTitle": "Fresh green cardamom pods and whole spices for a pistachio latte."
+      "imageTitle": "Cardamom pistachio latte with fresh cardamom and a glass of milk."
     }
   ],
   "blogsPage": {

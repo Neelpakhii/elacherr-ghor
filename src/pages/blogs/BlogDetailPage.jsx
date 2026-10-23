@@ -1,7 +1,6 @@
 import { ArrowLeft, Clock3 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getAppPath } from "../../config";
-import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -32,7 +31,6 @@ const BlogDetailPage = () => {
                 </div>
                 <figure className="article-cover">
                     <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} />
-                    <figcaption><PhotoCredit name={article.imageCredit} url={article.imageCreditUrl} /></figcaption>
                 </figure>
                 <div className="article-body">
                     <p className="article-opening">{article.excerpt}</p>

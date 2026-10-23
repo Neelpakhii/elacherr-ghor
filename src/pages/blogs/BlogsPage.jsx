@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAppPath } from "../../config";
-import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -50,7 +49,6 @@ const BlogsPage = () => {
                     <a className="editorial-button editorial-button--light" href="#journal-collection">
                         Read the journal <ArrowRight size={17} />
                     </a>
-                    <PhotoCredit name={page.heroImageCredit} url={page.heroImageCreditUrl} />
                 </div>
             </header>
 
@@ -99,7 +97,6 @@ const BlogsPage = () => {
                             <Link className="editorial-text-link" to={getAppPath(`/blogs/${featured.slug}`)}>
                                 Read the story <ArrowRight size={16} />
                             </Link>
-                            <PhotoCredit name={featured.imageCredit} url={featured.imageCreditUrl} />
                         </div>
                     </article>
                 ) : (
@@ -121,7 +118,6 @@ const BlogsPage = () => {
                                     <Link className="editorial-text-link" to={getAppPath(`/blogs/${article.slug}`)}>
                                         Read article <ArrowRight size={16} />
                                     </Link>
-                                    <PhotoCredit name={article.imageCredit} url={article.imageCreditUrl} />
                                 </div>
                             </article>
                         ))}

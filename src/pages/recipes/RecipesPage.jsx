@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Search, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getAppPath } from "../../config";
-import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
+import { getAppPath, getImageUrl } from "../../config";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -47,7 +46,6 @@ const RecipesPage = () => {
                     <a className="editorial-button editorial-button--light" href="#recipe-collection">
                         Explore the recipes <ArrowRight size={17} />
                     </a>
-                    <PhotoCredit name={page.heroImageCredit} url={page.heroImageCreditUrl} />
                 </div>
             </header>
 
@@ -88,7 +86,7 @@ const RecipesPage = () => {
                 {featured ? (
                     <article className="editorial-featured-card">
                         <Link className="editorial-featured-card__image" to={getAppPath(`/recipes/${featured.slug}`)}>
-                            <img src={featured.image} alt={featured.imageAlt || featured.title || "Featured cardamom recipe"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom recipe"} loading="lazy" />
+                            <img src={getImageUrl(featured.image)} alt={featured.imageAlt || featured.title || "Featured cardamom recipe"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom recipe"} loading="lazy" />
                         </Link>
                         <div className="editorial-featured-card__body">
                             <p className="editorial-card-kicker">Featured recipe <span>·</span> {featured.category}</p>
@@ -100,7 +98,6 @@ const RecipesPage = () => {
                             <Link className="editorial-text-link" to={getAppPath(`/recipes/${featured.slug}`)}>
                                 Get the recipe <ArrowRight size={16} />
                             </Link>
-                            <PhotoCredit name={featured.imageCredit} url={featured.imageCreditUrl} />
                         </div>
                     </article>
                 ) : (
@@ -112,7 +109,7 @@ const RecipesPage = () => {
                         {remaining.map((recipe) => (
                             <article className="editorial-card" key={recipe.slug}>
                                 <Link className="editorial-card__image" to={getAppPath(`/recipes/${recipe.slug}`)}>
-                                    <img src={recipe.image} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} loading="lazy" />
+                                    <img src={getImageUrl(recipe.image)} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} loading="lazy" />
                                 </Link>
                                 <div className="editorial-card__body">
                                     <p className="editorial-card-kicker">{recipe.category} <span>·</span> {recipe.prepTime} prep</p>
@@ -121,7 +118,6 @@ const RecipesPage = () => {
                                     <Link className="editorial-text-link" to={getAppPath(`/recipes/${recipe.slug}`)}>
                                         Cook this <ArrowRight size={16} />
                                     </Link>
-                                    <PhotoCredit name={recipe.imageCredit} url={recipe.imageCreditUrl} />
                                 </div>
                             </article>
                         ))}

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Clock3, Printer, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { getAppPath } from "../../config";
-import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
+import { getAppPath, getImageUrl } from "../../config";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -41,8 +40,7 @@ const RecipeDetailPage = () => {
                     </div>
                 </div>
                 <figure className="recipe-detail-hero__image">
-                    <img src={recipe.image} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} />
-                    <figcaption><PhotoCredit name={recipe.imageCredit} url={recipe.imageCreditUrl} /></figcaption>
+                    <img src={getImageUrl(recipe.image)} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} />
                 </figure>
             </header>
 

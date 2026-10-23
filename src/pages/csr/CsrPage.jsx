@@ -1,5 +1,4 @@
 import { ArrowRight, HeartHandshake, Leaf, UsersRound } from "lucide-react";
-import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -23,7 +22,6 @@ const CsrPage = () => {
                     <a className="editorial-button editorial-button--light" href="#our-commitments">
                         What guides us <ArrowRight size={17} />
                     </a>
-                    <PhotoCredit name={page.heroImageCredit} url={page.heroImageCreditUrl} note={page.imageNote} />
                 </div>
             </header>
 
@@ -58,7 +56,6 @@ const CsrPage = () => {
             <section className="csr-community editorial-section">
                 <div className="csr-community__image">
                     <img src={page.communityImage} alt={page.communityImageAlt || page.communityTitle || "Community wellbeing initiative"} title={page.communityImageTitle || page.communityImageAlt || page.communityTitle || "Community wellbeing initiative"} loading="lazy" />
-                    <PhotoCredit name={page.communityImageCredit} url={page.communityImageCreditUrl} note={page.communityImageNote} />
                 </div>
                 <div className="csr-community__copy">
                     <p className="editorial-eyebrow editorial-eyebrow--green">Our approach</p>
