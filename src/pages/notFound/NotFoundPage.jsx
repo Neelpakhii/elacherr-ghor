@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getAppPath } from "../../config";
 import "./notFound.css";
 
 function NotFoundPage() {
@@ -21,10 +22,10 @@ function NotFoundPage() {
           to be shared.
         </p>
         <div className="not-found-page__actions">
-          <Link className="not-found-page__button not-found-page__button--primary" to="/">
+          <Link className="not-found-page__button not-found-page__button--primary" to={getAppPath("/")}>
             Back to home
           </Link>
-          <Link className="not-found-page__button not-found-page__button--secondary" to="/recipes">
+          <Link className="not-found-page__button not-found-page__button--secondary" to={getAppPath("/recipes")}>
             Explore recipes
           </Link>
         </div>

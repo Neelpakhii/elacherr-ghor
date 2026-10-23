@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { HOME_DATA_URL } from "../../config.js";
+import { HOME_DATA_URL, getAppPath } from "../../config.js";
 import ProductCard from "./productCard.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productSection.css";
@@ -57,7 +57,7 @@ const ProductSection = () => {
                     </div>
 
                     <div className="product-section__actions">
-                        <Link className="product-section__buy-now" to="/shop">
+                        <Link className="product-section__buy-now" to={getAppPath("/shop")}>
                             Buy Now
                         </Link>
                     </div>

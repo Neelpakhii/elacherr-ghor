@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getImageUrl } from "../../config";
+import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productCard.css";
@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
     const { addItem } = useBag();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
-    const detailPath = `/products/${product.id}`;
+    const detailPath = getAppPath(`/products/${product.id}`);
     const unavailable = !isProductAvailable(product);
 
     const handleAddToBag = () => {
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
     const handleBuyNow = () => {
         if (unavailable) return;
         addItem(product);
-        navigate("/bag");
+        navigate(getAppPath("/bag"));
     };
 
     return (

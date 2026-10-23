@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ASSET_BASE_URL, HOME_DATA_URL } from "../../config";
+import { ASSET_BASE_URL, HOME_DATA_URL, getAppPath } from "../../config";
 import "./recipe.css";
 
 const getImageUrl = (image) => {
@@ -9,7 +9,7 @@ const getImageUrl = (image) => {
 };
 
 const RecipeLink = ({ recipe, className = "" }) => (
-    <Link className={className} to={recipe.url || "/recipes"}>
+    <Link className={className} to={getAppPath(recipe.url || "/recipes")}>
         {recipe.linkText || "Read More"}
     </Link>
 );
@@ -43,7 +43,7 @@ const Recipe = () => {
                     <article className="recipe-featured">
                         <Link
                             className="recipe-featured__image-link"
-                            to={section.featured.url || "/recipes"}
+                            to={getAppPath(section.featured.url || "/recipes")}
                             aria-label={`Read ${section.featured.title}`}
                         >
                             <img
@@ -78,7 +78,7 @@ const Recipe = () => {
                         <article className="recipe-list__item" key={recipe.id}>
                             <Link
                                 className="recipe-list__image-link"
-                                to={recipe.url || "/recipes"}
+                                to={getAppPath(recipe.url || "/recipes")}
                                 aria-label={`Read ${recipe.title}`}
                             >
                                 <img

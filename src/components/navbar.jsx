@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Leaf, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
-import { HOME_DATA_URL, getImageUrl } from "../config";
+import { HOME_DATA_URL, getAppPath, getImageUrl } from "../config";
 import useBag from "../hooks/useBag.js";
 import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
@@ -112,13 +112,13 @@ const Navbar = () => {
             return;
         }
         setSearchOpen(false);
-        navigate(`/search?q=${encodeURIComponent(query)}`);
+        navigate(getAppPath(`/search?q=${encodeURIComponent(query)}`));
     };
 
     return (
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${isEditorialDetail ? "navbar--solid-at-top" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
-                <NavLink to="/" aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
+                <NavLink to={getAppPath("/")} aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
                     {logo && <img src={logo} alt="Elacher Ghor" title={logoTitle} />}
                 </NavLink>
             </div>
@@ -143,7 +143,7 @@ const Navbar = () => {
                 </span>
 
                 <NavLink
-                    to="/bag"
+                    to={getAppPath("/bag")}
                     className={({ isActive }) => `navbar-icon navbar-bag-link ${isActive ? "active" : ""}`}
                     aria-label={`Shopping bag, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
                     onClick={handlePageNavigation}
@@ -232,7 +232,7 @@ const Navbar = () => {
                                     <Link
                                         className="search-result"
                                         key={product.id}
-                                        to={`/products/${product.id}`}
+                                        to={getAppPath(`/products/${product.id}`)}
                                         onClick={handlePageNavigation}
                                     >
                                         <span className="search-result__image">
@@ -262,7 +262,7 @@ const Navbar = () => {
 
                         <Link
                             className="search-drawer__all-results"
-                            to={searchQuery.trim() ? `/search?q=${encodeURIComponent(searchQuery.trim())}` : "/search"}
+                            to={getAppPath(searchQuery.trim() ? `/search?q=${encodeURIComponent(searchQuery.trim())}` : "/search")}
                             onClick={handlePageNavigation}
                         >
                             <span>{searchQuery.trim() ? "See all results" : "Browse all grades"}</span>
@@ -276,7 +276,7 @@ const Navbar = () => {
                 {navLinks.map((link) => (
                     <NavLink
                         key={link.path}
-                        to={link.path}
+                        to={getAppPath(link.path)}
                         end={link.end}
                         onClick={handlePageNavigation}
                         className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}

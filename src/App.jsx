@@ -16,6 +16,7 @@ import SearchPage from "./pages/search/SearchPage.jsx";
 import ProductDetailPage from "./pages/products/ProductDetailPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import AdminPage from "./admin-tool/AdminPage.jsx";
+import { getAppPath } from "./config.js";
 
 function App() {
   const location = useLocation();
@@ -34,10 +35,10 @@ function App() {
           <Route path="/shop" element={<Shop/>}/>
           <Route path="/products/:productId" element={<ProductDetailPage />} />
           <Route path="/bag" element={<BagPage />} />
-          <Route path="/cart" element={<Navigate to="/bag" replace />} />
+          <Route path="/cart" element={<Navigate to={getAppPath("/bag")} replace />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/recipes" element={<RecipesPage />} />
-          <Route path="/recipe" element={<Navigate to="/recipes" replace />} />
+          <Route path="/recipe" element={<Navigate to={getAppPath("/recipes")} replace />} />
           <Route path="/blogs/recipes" element={<RecipesPage />} />
           <Route path="/recipes/:slug" element={<RecipeDetailPage />} />
           <Route path="/blogs" element={<BlogsPage />} />

@@ -1,5 +1,6 @@
 import { ArrowLeft, Clock3 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { getAppPath } from "../../config";
 import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
@@ -17,13 +18,13 @@ const BlogDetailPage = () => {
 
     if (error) return <main className="editorial-message" role="alert">{error}</main>;
     if (!data) return <main className="editorial-message" aria-live="polite">Loading story…</main>;
-    if (!article) return <main className="editorial-message"><h1>Story not found</h1><Link to="/blogs">Back to the journal</Link></main>;
+    if (!article) return <main className="editorial-message"><h1>Story not found</h1><Link to={getAppPath("/blogs")}>Back to the journal</Link></main>;
 
     return (
         <main className="editorial-page article-page">
             <article>
                 <div className="article-heading">
-                    <Link className="editorial-back-link" to="/blogs"><ArrowLeft size={16} /> Back to the journal</Link>
+                    <Link className="editorial-back-link" to={getAppPath("/blogs")}><ArrowLeft size={16} /> Back to the journal</Link>
                     <p className="editorial-eyebrow editorial-eyebrow--green">{article.category}</p>
                     <h1>{article.title}</h1>
                     <p className="article-deck">{article.excerpt}</p>
@@ -41,7 +42,7 @@ const BlogDetailPage = () => {
                             {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                         </section>
                     ))}
-                    <Link className="editorial-text-link" to="/blogs">More from the journal <ArrowLeft size={16} /></Link>
+                    <Link className="editorial-text-link" to={getAppPath("/blogs")}>More from the journal <ArrowLeft size={16} /></Link>
                 </div>
             </article>
         </main>

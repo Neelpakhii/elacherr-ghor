@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getAppPath } from "../../config";
 import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
@@ -87,15 +88,15 @@ const BlogsPage = () => {
 
                 {featured ? (
                     <article className="journal-featured">
-                        <Link className="journal-featured__image" to={`/blogs/${featured.slug}`}>
+                        <Link className="journal-featured__image" to={getAppPath(`/blogs/${featured.slug}`)}>
                             <img src={featured.image} alt={featured.imageAlt || featured.title || "Featured cardamom story"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom story"} loading="lazy" />
                         </Link>
                         <div className="journal-featured__body">
                             <p className="editorial-card-kicker">{featured.category} <span>·</span> {featured.readTime}</p>
-                            <h3><Link to={`/blogs/${featured.slug}`}>{featured.title}</Link></h3>
+                            <h3><Link to={getAppPath(`/blogs/${featured.slug}`)}>{featured.title}</Link></h3>
                             <p className="editorial-card-copy">{featured.excerpt}</p>
                             <p className="journal-date">{formatDate(featured.date)}</p>
-                            <Link className="editorial-text-link" to={`/blogs/${featured.slug}`}>
+                            <Link className="editorial-text-link" to={getAppPath(`/blogs/${featured.slug}`)}>
                                 Read the story <ArrowRight size={16} />
                             </Link>
                             <PhotoCredit name={featured.imageCredit} url={featured.imageCreditUrl} />
@@ -109,15 +110,15 @@ const BlogsPage = () => {
                     <div className="editorial-card-grid editorial-card-grid--journal">
                         {remaining.map((article) => (
                             <article className="editorial-card" key={article.slug}>
-                                <Link className="editorial-card__image" to={`/blogs/${article.slug}`}>
+                                <Link className="editorial-card__image" to={getAppPath(`/blogs/${article.slug}`)}>
                                     <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} loading="lazy" />
                                 </Link>
                                 <div className="editorial-card__body">
                                     <p className="editorial-card-kicker">{article.category} <span>·</span> {article.readTime}</p>
-                                    <h3><Link to={`/blogs/${article.slug}`}>{article.title}</Link></h3>
+                                    <h3><Link to={getAppPath(`/blogs/${article.slug}`)}>{article.title}</Link></h3>
                                     <p className="editorial-card-copy">{article.excerpt}</p>
                                     <p className="journal-date">{formatDate(article.date)}</p>
-                                    <Link className="editorial-text-link" to={`/blogs/${article.slug}`}>
+                                    <Link className="editorial-text-link" to={getAppPath(`/blogs/${article.slug}`)}>
                                         Read article <ArrowRight size={16} />
                                     </Link>
                                     <PhotoCredit name={article.imageCredit} url={article.imageCreditUrl} />

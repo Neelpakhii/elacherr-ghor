@@ -109,7 +109,7 @@ for (const story of editorial.blogs || []) {
 }
 
 const template = await readFile(join(outputRoot, "index.html"), "utf8");
-const updateHtml = (html, { title, description, canonical, noIndex }) => {
+const updateHtml = (html, { title, description, canonical, noIndex }, route) => {
     let result = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
     const descriptionTag = `<meta name="description" content="${escapeHtml(description)}" />`;
     if (/<meta\s+name=["']description["'][^>]*>/i.test(result)) {
@@ -120,7 +120,7 @@ const updateHtml = (html, { title, description, canonical, noIndex }) => {
 
     result = result.replace(/\s*<link\s+rel=["']canonical["'][^>]*>/i, "");
     if (siteBase) {
-        const canonicalPath = canonical || "/";
+        const canonicalPath = canonical || route;
         const canonicalUrl = `${siteBase}${canonicalPath === "/" ? "/" : `${canonicalPath}/`}`;
         result = result.replace(/<\/head>/i, `  <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />\n  </head>`);
     }
@@ -136,7 +136,7 @@ for (const [route, metadata] of routes) {
     const routeFile = route === "/"
         ? join(outputRoot, "index.html")
         : join(outputRoot, ...route.split("/").filter(Boolean), "index.html");
-    const routeHtml = updateHtml(template, metadata);
+    const routeHtml = updateHtml(template, metadata, route);
     await mkdir(dirname(routeFile), { recursive: true });
     await writeFile(routeFile, routeHtml, "utf8");
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Clock3, Printer, Users } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { getAppPath } from "../../config";
 import PhotoCredit from "../../components/editorial/PhotoCredit.jsx";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
@@ -20,12 +21,12 @@ const RecipeDetailPage = () => {
 
     if (error) return <main className="editorial-message" role="alert">{error}</main>;
     if (!data) return <main className="editorial-message" aria-live="polite">Loading recipe…</main>;
-    if (!recipe) return <main className="editorial-message"><h1>Recipe not found</h1><Link to="/recipes">Browse all recipes</Link></main>;
+    if (!recipe) return <main className="editorial-message"><h1>Recipe not found</h1><Link to={getAppPath("/recipes")}>Browse all recipes</Link></main>;
 
     return (
         <main className="editorial-page recipe-detail-page">
             <div className="detail-topline">
-                <Link className="editorial-back-link" to="/recipes"><ArrowLeft size={16} /> All recipes</Link>
+                <Link className="editorial-back-link" to={getAppPath("/recipes")}><ArrowLeft size={16} /> All recipes</Link>
                 <button className="detail-print" type="button" onClick={() => window.print()}><Printer size={16} /> Print recipe</button>
             </div>
             <header className="recipe-detail-hero">
@@ -77,7 +78,7 @@ const RecipeDetailPage = () => {
                         ))}
                     </ol>
                     {recipe.tip && <aside className="recipe-tip"><strong>A little tip</strong><p>{recipe.tip}</p></aside>}
-                    <Link className="editorial-text-link" to="/recipes">Explore more recipes <ArrowLeft size={16} /></Link>
+                    <Link className="editorial-text-link" to={getAppPath("/recipes")}>Explore more recipes <ArrowLeft size={16} /></Link>
                 </section>
             </div>
         </main>

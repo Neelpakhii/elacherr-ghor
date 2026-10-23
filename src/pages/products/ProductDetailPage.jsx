@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getImageUrl } from "../../config";
+import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productDetail.css";
@@ -72,7 +72,7 @@ const ProductDetailPage = () => {
     const buyNow = () => {
         if (!product || unavailable) return;
         addItem(product, quantity);
-        navigate("/bag");
+        navigate(getAppPath("/bag"));
     };
 
     if (loading) return <section className="product-detail-state">Loading this cardamom grade…</section>;
@@ -80,7 +80,7 @@ const ProductDetailPage = () => {
         return (
             <section className="product-detail-state" role="alert">
                 <p>{error || "This product is unavailable."}</p>
-                <Link to="/shop">Back to the shop</Link>
+                <Link to={getAppPath("/shop")}>Back to the shop</Link>
             </section>
         );
     }
@@ -88,9 +88,9 @@ const ProductDetailPage = () => {
     return (
         <div className="product-detail-page">
             <div className="product-detail-page__inner">
-                <Link className="product-detail-page__back" to="/shop"><ArrowLeft size={16} /> Back to shop</Link>
+                <Link className="product-detail-page__back" to={getAppPath("/shop")}><ArrowLeft size={16} /> Back to shop</Link>
                 <nav className="product-detail-page__breadcrumb" aria-label="Breadcrumb">
-                    <Link to="/">Home</Link><span>/</span><Link to="/shop">Shop</Link><span>/</span><span>{product.name}</span>
+                    <Link to={getAppPath("/")}>Home</Link><span>/</span><Link to={getAppPath("/shop")}>Shop</Link><span>/</span><span>{product.name}</span>
                 </nav>
 
                 <section className="product-detail-hero">

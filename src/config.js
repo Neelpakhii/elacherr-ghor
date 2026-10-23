@@ -47,12 +47,22 @@ export const migrateImagePath = (imagePath) => {
     return `${path.slice(0, path.length - fileName.length)}${fileName.replace(/\.png$/i, ".webp")}${suffix}`;
 };
 
+export const getAppPath = (path) => {
+    if (typeof path !== "string" || !path || !path.startsWith("/") || path.startsWith("//")) return path;
+
+    const suffixIndex = path.search(/[?#]/);
+    const pathname = suffixIndex < 0 ? path : path.slice(0, suffixIndex);
+    const suffix = suffixIndex < 0 ? "" : path.slice(suffixIndex);
+    if (pathname === "/" || pathname.endsWith("/")) return path;
+    return `${pathname}/${suffix}`;
+};
+
 export const getAppHref = (href) => {
     if (typeof href !== "string" || !href) return basePath;
     if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href) || href.startsWith("#")) return href;
 
     const appPath = href.startsWith("/") ? href : `/${href}`;
-    return `${ASSET_BASE_URL}${appPath}`;
+    return `${ASSET_BASE_URL}${getAppPath(appPath)}`;
 };
 
 export const getImageUrl = (imagePath) => {
