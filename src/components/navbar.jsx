@@ -29,9 +29,10 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { itemCount } = useBag();
-    const isEditorialDetail = location.pathname.startsWith("/recipes/")
-        || (location.pathname.startsWith("/blogs/") && !["/blogs/recipes", "/blogs/p"].includes(location.pathname));
-    const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(location.pathname);
+    const pathname = location.pathname.replace(/\/+$/, "") || "/";
+    const isEditorialDetail = pathname.startsWith("/recipes/")
+        || (pathname.startsWith("/blogs/") && !["/blogs/recipes", "/blogs/p"].includes(pathname));
+    const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(pathname);
     const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
     const searchResults = useMemo(() => {
         if (!normalizedSearchQuery) return products.slice(0, 5);
