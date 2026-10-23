@@ -14,6 +14,7 @@ import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
 import BagPage from "./pages/bag/BagPage.jsx";
 import SearchPage from "./pages/search/SearchPage.jsx";
 import ProductDetailPage from "./pages/products/ProductDetailPage.jsx";
+import { FaqPage, PolicyPage } from "./pages/information/InformationPages.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import AdminPage from "./admin-tool/AdminPage.jsx";
 import { getAppPath } from "./config.js";
@@ -46,6 +47,8 @@ function App() {
           <Route path="/blogs/:slug" element={<BlogDetailPage />} />
           <Route path="/csr" element={<CsrPage />} />
           <Route path="/pages/csr" element={<CsrPage />} />
+          <Route path="/pages/faqs" element={<FaqPage />} />
+          <Route path="/policies/:policyId" element={<PolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

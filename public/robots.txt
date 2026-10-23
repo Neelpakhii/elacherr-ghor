@@ -1,3 +1,0 @@
-# Elaicher Ghor GitHub Pages project
-User-agent: *
-Disallow: /elacherr-ghor/admin

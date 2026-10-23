@@ -49,6 +49,26 @@ addRoute("/csr", {
     title: `${editorial.csrPage?.title || "Community and Responsibility"} | Elacher Ghor`,
     description: editorial.csrPage?.description || "Learn about Elacher Ghor’s community and sustainability commitments.",
 });
+addRoute("/pages/faqs", {
+    title: "Frequently Asked Questions | Elacher Ghor",
+    description: "Find answers about Elacher Ghor cardamom grades, storage, recipes, shopping bag behavior, and how to contact customer care before arranging a purchase.",
+});
+addRoute("/policies/refund-policy", {
+    title: "Return and Refund Policy | Elacher Ghor",
+    description: "Contact Elacher Ghor about return or refund requests, learn which purchase details to share, and where to seek help if another seller handled your order.",
+});
+addRoute("/policies/privacy-policy", {
+    title: "Privacy Policy | Elacher Ghor",
+    description: "Learn how this Elacher Ghor website handles browser-stored bag data, unsubmitted newsletter forms, and contact links, based on the current frontend today.",
+});
+addRoute("/policies/terms-of-service", {
+    title: "Terms of Service | Elacher Ghor",
+    description: "Review the terms for using Elacher Ghor’s website, including product information, its browser-based bag, and current online ordering limits for visitors.",
+});
+addRoute("/policies/shipping-policy", {
+    title: "Shipping Policy | Elacher Ghor",
+    description: "Find out how to ask Elacher Ghor about delivery availability, shipping fees, and estimated delivery for purchases arranged with customer care in advance.",
+});
 
 // These routes are supported by the app as aliases. Point their metadata to the
 // canonical page so search engines do not treat each alias as a duplicate.

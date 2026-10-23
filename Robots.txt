@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Disallow: /elacherr-ghor/admin/
