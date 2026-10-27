@@ -173,7 +173,7 @@ function ProductEditor({ product, detail, existingIds, onClose, onSave, onUpload
         grade: detail?.grade || product?.grade || "",
         price: product?.price ?? "",
         originalPrice: product?.originalPrice ?? "",
-        weight: product?.weight || "",
+        weight: product?.weight || "100 g",
         sku: product?.sku || "",
         image: product?.image || "",
         imageAlt: product?.imageAlt || "",
@@ -214,9 +214,9 @@ function ProductEditor({ product, detail, existingIds, onClose, onSave, onUpload
                         <TextField label="Product ID" value={form.id} onChange={(value) => { setIdEdited(true); update("id", value); }} required help="Used in the product detail URL and JSON filename." />
                         <TextField label="Category" value={form.category} onChange={(value) => update("category", value)} required />
                         <TextField label="Grade / size" value={form.grade} onChange={(value) => update("grade", value)} required />
-                        <TextField label="Price (₹)" value={form.price} onChange={(value) => update("price", value)} type="number" min="0" step="0.01" required />
-                        <TextField label="Original price (₹)" value={form.originalPrice} onChange={(value) => update("originalPrice", value)} type="number" min="0" step="0.01" />
-                        <TextField label="Pack weight" value={form.weight} onChange={(value) => update("weight", value)} help="Optional, for example 100 g." />
+                        <TextField label="Price (₹) for default pack" value={form.price} onChange={(value) => update("price", value)} type="number" min="0" step="0.01" required help="The other 100 g, 250 g, and 500 g prices scale from this pack size." />
+                        <TextField label="Original price (₹) for default pack" value={form.originalPrice} onChange={(value) => update("originalPrice", value)} type="number" min="0" step="0.01" />
+                        <label className="admin-form-field"><span>Default pack size</span><select value={form.weight} onChange={(event) => update("weight", event.target.value)}><option>100 g</option><option>250 g</option><option>500 g</option></select><small>Customers can choose any of these three sizes. The other pack prices scale from this size.</small></label>
                         <TextField label="SKU" value={form.sku} onChange={(value) => update("sku", value)} help="Optional; no SKU is present in the current catalogue." />
                         <label className="admin-form-field admin-form-field--wide"><span>Product image path or URL *</span><input type="text" list="admin-image-assets" value={form.image} onChange={(event) => update("image", event.target.value)} required /><span className="admin-image-upload"><input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/avif" disabled={uploadingImage} onChange={async (event) => { const file = event.target.files?.[0]; if (!file) return; setUploadingImage(true); setFormError(""); try { update("image", await onUploadImage(file)); } catch (error) { setFormError(error.message || "The image could not be uploaded."); } finally { setUploadingImage(false); event.target.value = ""; } }} /><small>{uploadingImage ? "Uploading image…" : "Upload into public/images/admin-uploads/ or enter a current image path."}</small></span><small>Select an existing image or enter a path such as /images/shop/product.jpg.</small></label>
                         <TextField label="Image alt text" value={form.imageAlt} onChange={(value) => update("imageAlt", value)} required help="Describe the visible product image for screen-reader users." wide />
@@ -485,19 +485,27 @@ function AdminPage() {
             return;
         }
         const previous = productModal?.product;
+        const selectedWeight = form.weight.trim() || "100 g";
+        const selectedWeightGrams = Number(selectedWeight.replace(/[^0-9.]/g, "")) || 100;
+        const originalPrice = numberOrNull(form.originalPrice);
+        const variants = [100, 250, 500].map((grams) => ({
+            weight: `${grams} g`,
+            price: Math.round(form.price * grams / selectedWeightGrams),
+            ...(originalPrice == null ? {} : { originalPrice: Math.round(originalPrice * grams / selectedWeightGrams) }),
+        }));
         const nextProduct = {
             ...(previous || {}),
             id: form.id,
             name: form.name.trim(),
             category: form.category.trim() || "Cardamom",
+            weight: selectedWeight,
             price: form.price,
+            variants,
             image: form.image.trim(),
             available: form.stockQty === 0 ? false : form.available === "true",
         };
-        if (form.originalPrice != null) nextProduct.originalPrice = form.originalPrice;
+        if (originalPrice != null) nextProduct.originalPrice = originalPrice;
         else delete nextProduct.originalPrice;
-        if (form.weight.trim()) nextProduct.weight = form.weight.trim();
-        else delete nextProduct.weight;
         if (form.sku.trim()) nextProduct.sku = form.sku.trim();
         else delete nextProduct.sku;
         if (form.imageAlt.trim()) nextProduct.imageAlt = form.imageAlt.trim();

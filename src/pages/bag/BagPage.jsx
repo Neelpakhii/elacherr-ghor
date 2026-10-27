@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { getBagLineKey } from "../../utils/productVariants.js";
 import "./bag.css";
 
 const formatPrice = (value) => `Rs. ${Number(value || 0).toFixed(2)}`;
@@ -29,27 +30,30 @@ const BagPage = () => {
                 ) : (
                     <div className="bag-layout">
                         <div className="bag-items" aria-label="Items in your bag">
-                            {items.map(({ product, quantity }) => (
-                                <article className="bag-item" key={product.id}>
+                            {items.map(({ product, quantity }) => {
+                                const lineKey = getBagLineKey(product);
+                                return (
+                                <article className="bag-item" key={lineKey}>
                                     <Link className="bag-item__image" to={getAppPath(`/products/${product.id}`)}>
                                         <img src={getImageUrl(product.image)} alt={product.imageAlt || product.name} title={product.imageTitle || product.imageAlt || product.name} />
                                     </Link>
                                     <div className="bag-item__details">
                                         <p className="bag-item__eyebrow">Alleppey Premium Cardamom</p>
                                         <h2><Link to={getAppPath(`/products/${product.id}`)}>{product.name}</Link></h2>
+                                        {product.weight && <p className="bag-item__weight">Pack size: {product.weight}</p>}
                                         <p className="bag-item__price">{formatPrice(product.price)}</p>
                                         <div className="bag-item__controls">
                                             <div className="bag-quantity" aria-label={`Quantity: ${quantity}`}>
-                                                <button type="button" aria-label={`Remove one ${product.name}`} disabled={quantity <= 1} onClick={() => setQuantity(product.id, quantity - 1)}><Minus size={14} /></button>
+                                                <button type="button" aria-label={`Remove one ${product.name}`} disabled={quantity <= 1} onClick={() => setQuantity(lineKey, quantity - 1)}><Minus size={14} /></button>
                                                 <span>{quantity}</span>
-                                                <button type="button" aria-label={`Add one ${product.name}`} onClick={() => setQuantity(product.id, quantity + 1)}><Plus size={14} /></button>
+                                                <button type="button" aria-label={`Add one ${product.name}`} onClick={() => setQuantity(lineKey, quantity + 1)}><Plus size={14} /></button>
                                             </div>
-                                            <button className="bag-item__remove" type="button" onClick={() => removeItem(product.id)}><Trash2 size={15} /> Remove</button>
+                                            <button className="bag-item__remove" type="button" onClick={() => removeItem(lineKey)}><Trash2 size={15} /> Remove</button>
                                         </div>
                                     </div>
                                     <p className="bag-item__total">{formatPrice(Number(product.price || 0) * quantity)}</p>
                                 </article>
-                            ))}
+                            );})}
                         </div>
 
                         <aside className="bag-summary" aria-label="Bag summary">

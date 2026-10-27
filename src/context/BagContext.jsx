@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import BagContext from "./bagContext.js";
+import { getBagLineKey } from "../utils/productVariants.js";
 
 const STORAGE_KEY = "elacher-ghor-bag";
 
@@ -28,9 +29,10 @@ export const BagProvider = ({ children }) => {
         if (!product?.id) return;
         const amount = Math.max(1, Number(quantity) || 1);
         setItems((currentItems) => {
-            const existing = currentItems.find((item) => item.product.id === product.id);
+            const lineKey = getBagLineKey(product);
+            const existing = currentItems.find((item) => getBagLineKey(item.product) === lineKey);
             const nextItems = existing
-                ? currentItems.map((item) => item.product.id === product.id
+                ? currentItems.map((item) => getBagLineKey(item.product) === lineKey
                     ? { ...item, quantity: item.quantity + amount }
                     : item)
                 : [...currentItems, { product, quantity: amount }];
@@ -43,13 +45,13 @@ export const BagProvider = ({ children }) => {
         });
     }, []);
 
-    const removeItem = useCallback((productId) => {
-        persist(items.filter((item) => item.product.id !== productId));
+    const removeItem = useCallback((lineKey) => {
+        persist(items.filter((item) => getBagLineKey(item.product) !== lineKey));
     }, [items, persist]);
 
-    const setQuantity = useCallback((productId, quantity) => {
+    const setQuantity = useCallback((lineKey, quantity) => {
         const amount = Math.max(1, Number(quantity) || 1);
-        persist(items.map((item) => item.product.id === productId
+        persist(items.map((item) => getBagLineKey(item.product) === lineKey
             ? { ...item, quantity: amount }
             : item));
     }, [items, persist]);

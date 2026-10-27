@@ -20,7 +20,24 @@
       "price": 479,
       "originalPrice": 999,
       "image": "/images/home/purple-card.webp",
-      "available": true
+      "available": true,
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 479,
+          "originalPrice": 999
+        },
+        {
+          "weight": "250 g",
+          "price": 1198,
+          "originalPrice": 2498
+        },
+        {
+          "weight": "500 g",
+          "price": 2395,
+          "originalPrice": 4995
+        }
+      ]
     },
     {
       "id": "pink",
@@ -28,7 +45,24 @@
       "weight": "100 g",
       "price": 439,
       "originalPrice": 949,
-      "image": "/images/home/pink-card.webp"
+      "image": "/images/home/pink-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 439,
+          "originalPrice": 949
+        },
+        {
+          "weight": "250 g",
+          "price": 1098,
+          "originalPrice": 2373
+        },
+        {
+          "weight": "500 g",
+          "price": 2195,
+          "originalPrice": 4745
+        }
+      ]
     },
     {
       "id": "green",
@@ -36,7 +70,24 @@
       "weight": "100 g",
       "price": 399,
       "originalPrice": 899,
-      "image": "/images/home/green-card.webp"
+      "image": "/images/home/green-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 399,
+          "originalPrice": 899
+        },
+        {
+          "weight": "250 g",
+          "price": 998,
+          "originalPrice": 2248
+        },
+        {
+          "weight": "500 g",
+          "price": 1995,
+          "originalPrice": 4495
+        }
+      ]
     },
     {
       "id": "orange",
@@ -44,7 +95,24 @@
       "weight": "500 g",
       "price": 1899,
       "originalPrice": 3000,
-      "image": "/images/home/orange-card.webp"
+      "image": "/images/home/orange-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 380,
+          "originalPrice": 600
+        },
+        {
+          "weight": "250 g",
+          "price": 950,
+          "originalPrice": 1500
+        },
+        {
+          "weight": "500 g",
+          "price": 1899,
+          "originalPrice": 3000
+        }
+      ]
     },
     {
       "id": "red",
@@ -52,18 +120,52 @@
       "weight": "250 g",
       "price": 999,
       "originalPrice": 1500,
-      "image": "/images/home/red-card.webp"
+      "image": "/images/home/red-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 400,
+          "originalPrice": 600
+        },
+        {
+          "weight": "250 g",
+          "price": 999,
+          "originalPrice": 1500
+        },
+        {
+          "weight": "500 g",
+          "price": 1998,
+          "originalPrice": 3000
+        }
+      ]
     },
     {
       "id": "yellow-grade-9-mm-above-cardamom",
       "name": "Yellow Grade (9 mm & above) Cardamom",
       "category": "Cardamom",
-      "weight": "200 g",
-      "price": 1199,
+      "weight": "250 g",
+      "price": 1499,
       "image": "/images/admin-uploads/yellow-cardamom-pouch-and-bowl-1792145329272.webp",
       "available": true,
-      "originalPrice": 1500,
-      "imageAlt": "yellow"
+      "originalPrice": 1875,
+      "imageAlt": "yellow",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 600,
+          "originalPrice": 750
+        },
+        {
+          "weight": "250 g",
+          "price": 1499,
+          "originalPrice": 1875
+        },
+        {
+          "weight": "500 g",
+          "price": 2998,
+          "originalPrice": 3750
+        }
+      ]
     }
   ],
   "chefSection": {

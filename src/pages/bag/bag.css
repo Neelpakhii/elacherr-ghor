@@ -100,6 +100,7 @@
 .bag-item h2 a { color: inherit; text-decoration: none; }
 .bag-item h2 a:hover { color: #687b43; }
 
+.bag-item__weight { margin: 7px 0 0; color: #687b43; font-size: 13px; font-weight: 600; }
 .bag-item__price { margin: 9px 0 17px; color: #5e6a5f; font-size: 14px; }
 
 .bag-item__controls { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }

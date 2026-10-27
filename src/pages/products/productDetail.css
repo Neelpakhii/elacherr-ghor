@@ -29,11 +29,15 @@
 .product-detail-hero__content { max-width: 470px; }
 .product-detail-hero__eyebrow { margin: 0 0 15px; color: #9a7743; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
 .product-detail-hero h1 { margin: 0; color: #263b2e; font: 600 clamp(34px, 4vw, 49px)/1.12 "Montserrat", sans-serif; }
+.product-detail-hero__selected-weight { color: #687b43; font-size: .68em; font-weight: 500; white-space: nowrap; }
 .product-detail-hero__grade { display: flex; align-items: center; gap: 9px; margin: 17px 0 0; color: #737c72; font-size: 13px; }
 .product-detail-hero__grade strong { padding: 6px 10px; background: #e8ede5; color: #405a41; font-size: 12px; font-weight: 600; }
+.product-detail-pack-size { display: grid; justify-items: start; gap: 8px; margin-top: 18px; color: #737c72; font-size: 13px; }
+.product-detail-pack-size select { min-width: 160px; min-height: 42px; padding: 0 34px 0 12px; border: 1px solid #d5dad2; border-radius: 4px; background: #fff; color: #304b3b; font: 600 13px "Montserrat", Arial, sans-serif; cursor: pointer; }
+.product-detail-pack-size select:focus-visible { outline: 2px solid #a88736; outline-offset: 2px; }
 .product-detail-hero__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin: 25px 0 17px; }
 .product-detail-hero__price strong { color: #304b3b; font-size: 24px; font-weight: 700; }
-.product-detail-hero__price del { color: #92978d; font-size: 15px; }
+.product-detail-hero__price del { color: #ff5b64; font-size: 15px; }
 .product-detail-hero__description { margin: 0; color: #68746a; font-size: 14px; line-height: 1.8; }
 .product-detail-hero__purchase { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 29px; }
 

@@ -4,12 +4,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
+import { getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productDetail.css";
 
 const ProductDetailPage = () => {
     const { productId } = useParams();
     const [productResult, setProductResult] = useState(null);
     const [quantityState, setQuantityState] = useState({ productId, quantity: 1 });
+    const [variantState, setVariantState] = useState({ productId, weight: "" });
     const [addedProductId, setAddedProductId] = useState(null);
     const { addItem } = useBag();
     const navigate = useNavigate();
@@ -17,6 +19,11 @@ const ProductDetailPage = () => {
     const currentResult = productResult?.productId === productId ? productResult : null;
     const loading = !currentResult;
     const product = currentResult?.product || null;
+    const variants = getProductVariants(product);
+    const selectedWeight = variantState.productId === productId && variantState.weight
+        ? variantState.weight
+        : product?.weight;
+    const selectedVariant = product ? getProductVariant(product, selectedWeight) : null;
     const details = currentResult?.details || null;
     const error = currentResult?.error || "";
     const quantity = quantityState.productId === productId ? quantityState.quantity : 1;
@@ -56,7 +63,7 @@ const ProductDetailPage = () => {
 
     const addToBag = () => {
         if (!product || unavailable) return;
-        addItem(product, quantity);
+        addItem(withProductVariant(product, selectedVariant), quantity);
         setAddedProductId(productId);
         window.setTimeout(() => {
             setAddedProductId((currentId) => currentId === productId ? null : currentId);
@@ -71,7 +78,7 @@ const ProductDetailPage = () => {
 
     const buyNow = () => {
         if (!product || unavailable) return;
-        addItem(product, quantity);
+        addItem(withProductVariant(product, selectedVariant), quantity);
         navigate(getAppPath("/bag"));
     };
 
@@ -101,12 +108,19 @@ const ProductDetailPage = () => {
 
                     <div className="product-detail-hero__content">
                         <p className="product-detail-hero__eyebrow">Elacher Ghor · Alleppey Green</p>
-                        <h1>{product.name}</h1>
+                        <h1>{product.name} <span className="product-detail-hero__selected-weight">({selectedVariant?.weight?.replace(/\s+/g, "")})</span></h1>
                         {details?.grade && <p className="product-detail-hero__grade">Grade size <strong>{details.grade}</strong></p>}
-                        {product.weight && <p className="product-detail-hero__grade">Pack size <strong>{product.weight}</strong></p>}
+                        {variants.length > 1 && (
+                            <label className="product-detail-pack-size">
+                                <span>Choose pack size</span>
+                                <select value={selectedVariant.weight} onChange={(event) => setVariantState({ productId, weight: event.target.value })}>
+                                    {variants.map((variant) => <option key={variant.weight} value={variant.weight}>{variant.weight}</option>)}
+                                </select>
+                            </label>
+                        )}
                         <div className="product-detail-hero__price">
-                            <strong>Rs. {Number(product.price || 0).toFixed(2)}</strong>
-                            {product.originalPrice != null && <del>Rs. {Number(product.originalPrice).toFixed(2)}</del>}
+                            <strong>Rs. {Number(selectedVariant?.price || 0).toFixed(2)}</strong>
+                            {selectedVariant?.originalPrice != null && <del>Rs. {Number(selectedVariant.originalPrice).toFixed(2)}</del>}
                         </div>
                         <p className="product-detail-hero__description">
                             {details?.description || "A carefully graded cardamom selection for tea, sweets, and everyday cooking."}

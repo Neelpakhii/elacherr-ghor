@@ -3,27 +3,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
+import { getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productCard.css";
 
 const ProductCard = ({ product }) => {
     const [added, setAdded] = useState(false);
+    const variants = getProductVariants(product);
+    const [selectedWeight, setSelectedWeight] = useState(product.weight || variants[0]?.weight || "");
+    const selectedVariant = getProductVariant(product, selectedWeight);
     const { addItem } = useBag();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
-    const weightLabel = product.weight?.replace(/\s+/g, "");
+    const weightLabel = selectedVariant.weight?.replace(/\s+/g, "");
     const detailPath = getAppPath(`/products/${product.id}`);
     const unavailable = !isProductAvailable(product);
 
     const handleAddToBag = () => {
         if (unavailable) return;
-        addItem(product);
+        addItem(withProductVariant(product, selectedVariant));
         setAdded(true);
         window.setTimeout(() => setAdded(false), 1300);
     };
 
     const handleBuyNow = () => {
         if (unavailable) return;
-        addItem(product);
+        addItem(withProductVariant(product, selectedVariant));
         navigate(getAppPath("/bag"));
     };
 
@@ -53,13 +57,22 @@ const ProductCard = ({ product }) => {
                     </h3>
                 </Link>
 
-                {product.price != null && (
-                    <p className="product-card__price">
-                        Rs. {Number(product.price).toFixed(2)}
+                {variants.length > 1 && (
+                    <label className="product-card__pack-size">
+                        <span>Pack size</span>
+                        <select value={selectedVariant.weight} onChange={(event) => setSelectedWeight(event.target.value)} aria-label={`Choose pack size for ${product.name}`}>
+                            {variants.map((variant) => <option key={variant.weight} value={variant.weight}>{variant.weight}</option>)}
+                        </select>
+                    </label>
+                )}
 
-                        {product.originalPrice != null && (
+                {selectedVariant.price != null && (
+                    <p className="product-card__price">
+                        Rs. {Number(selectedVariant.price).toFixed(2)}
+
+                        {selectedVariant.originalPrice != null && (
                             <span className="product-card__original-price">
-                                Rs. {Number(product.originalPrice).toFixed(2)}
+                                Rs. {Number(selectedVariant.originalPrice).toFixed(2)}
                             </span>
                         )}
                     </p>
