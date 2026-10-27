@@ -16,6 +16,7 @@
     {
       "id": "purple",
       "name": "Purple Grade (8 mm & above) Cardamom",
+      "weight": "100 g",
       "price": 479,
       "originalPrice": 999,
       "image": "/images/home/purple-card.webp",
@@ -24,6 +25,7 @@
     {
       "id": "pink",
       "name": "Pink Grade (7.5 mm & above) Cardamom",
+      "weight": "100 g",
       "price": 439,
       "originalPrice": 949,
       "image": "/images/home/pink-card.webp"
@@ -31,6 +33,7 @@
     {
       "id": "green",
       "name": "Green Grade (7-8mm) Cardamom",
+      "weight": "100 g",
       "price": 399,
       "originalPrice": 899,
       "image": "/images/home/green-card.webp"
@@ -38,6 +41,7 @@
     {
       "id": "orange",
       "name": "Orange Grade (6.5-7.5mm) Cardamom",
+      "weight": "500 g",
       "price": 1899,
       "originalPrice": 3000,
       "image": "/images/home/orange-card.webp"
@@ -45,6 +49,7 @@
     {
       "id": "red",
       "name": "Red Grade (6-7mm) Cardamom",
+      "weight": "250 g",
       "price": 999,
       "originalPrice": 1500,
       "image": "/images/home/red-card.webp"
@@ -53,6 +58,7 @@
       "id": "yellow-grade-9-mm-above-cardamom",
       "name": "Yellow Grade (9 mm & above) Cardamom",
       "category": "Cardamom",
+      "weight": "200 g",
       "price": 1199,
       "image": "/images/admin-uploads/yellow-cardamom-pouch-and-bowl-1792145329272.webp",
       "available": true,
@@ -269,14 +275,6 @@
       {
         "label": "FAQs",
         "url": "/pages/faqs"
-      },
-      {
-        "label": "Blogs",
-        "url": "/blogs"
-      },
-      {
-        "label": "CSR",
-        "url": "/csr"
       }
     ],
     "policiesHeading": "Legal Policies",
