@@ -12,7 +12,7 @@
     {
       "slug": "cardamom-rasmalai",
       "title": "Cardamom Rasmalai by Shimi’s Kitchen",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "Soft chenna rounds steeped in saffron milk, finished with freshly crushed cardamom and pistachio.",
       "image": "/images/home/rosomalai-1.webp",
       "imageAlt": "A creamy Indian-inspired dessert topped with soft cream",
@@ -47,7 +47,7 @@
     {
       "slug": "elaichi-milk-tea",
       "title": "Elaichi Milk Tea by Shimi’s Kitchen",
-      "category": "Drinks",
+      "category": "Tea & Chai",
       "excerpt": "A familiar cup made more memorable with freshly cracked green cardamom and a patient simmer.",
       "image": "/images/home/rosomalai-3.webp",
       "imageAlt": "A freshly brewed cup of chai with spices",
@@ -78,7 +78,7 @@
     {
       "slug": "elaichi-payasam",
       "title": "Elaichi Payasam By Shimi’s Kitchen",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A gently reduced milk pudding with tender rice, golden nuts and the delicate warmth of cardamom.",
       "image": "/images/home/rosomalai-4.webp",
       "imageAlt": "A creamy dessert served with a festive finish",
@@ -112,7 +112,7 @@
     {
       "slug": "cardamom-pistachio-latte",
       "title": "Cardamom Pistachio Latte by Shimi’s Kitchen",
-      "category": "Drinks",
+      "category": "Coffee & Lattes",
       "excerpt": "Espresso, velvety milk and pistachio meet a subtle, fragrant note of freshly ground elaichi.",
       "image": "/images/home/rosomalai-2.png",
       "imageAlt": "Fresh green cardamom pods and whole spices",
@@ -142,7 +142,7 @@
     {
       "slug": "elaichi-wala-doodh-by-shimi-s-kitchen",
       "title": "Elaichi Wala Doodh By Shimi’s Kitchen",
-      "category": "Drinks",
+      "category": "Milk Drinks",
       "excerpt": "A cardamom-led fragrant drink inspired by Elaichi Wala Doodh, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture3_c2e6600b-12fb-41d7-9b88-c6bb0d0ba6df_1200x1200.png?v=1783516428",
       "imageAlt": "Elaichi Wala Doodh By Shimi’s Kitchen: a cardamom recipe from the archive.",
@@ -152,7 +152,7 @@
     {
       "slug": "cardamom-black-coffee-by-shimi-s-kitchen",
       "title": "Cardamom Black Coffee By Shimi’s Kitchen",
-      "category": "Drinks",
+      "category": "Coffee & Lattes",
       "excerpt": "A cardamom-led fragrant drink inspired by Cardamom Black Coffee, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture2_dd06f05d-7c0e-4251-8931-540c33b82b4a_1200x1200.png?v=1783516270",
       "imageAlt": "Cardamom Black Coffee By Shimi’s Kitchen: a cardamom recipe from the archive.",
@@ -162,7 +162,7 @@
     {
       "slug": "hyderabadi-chicken-dum-biryani-by-shimi-s-kitchen",
       "title": "Hyderabadi Chicken Dum Biryani By Shimi’s Kitchen",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Hyderabadi Chicken Dum Biryani, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture1_2018ba43-d661-4630-97aa-54be99332b1e_1200x1200.png?v=1783513636",
       "imageAlt": "Hyderabadi Chicken Dum Biryani By Shimi’s Kitchen: a cardamom recipe from the archive.",
@@ -172,7 +172,7 @@
     {
       "slug": "cardamom-chai-by-chef-aala",
       "title": "Cardamom Chai By Chef Aala",
-      "category": "Drinks",
+      "category": "Tea & Chai",
       "excerpt": "A cardamom-led fragrant drink inspired by Cardamom Chai, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture4_730a1b82-7dbc-4a6c-9d67-cd1ad02176f1_1200x1200.png?v=1783318860",
       "imageAlt": "Cardamom Chai By Chef Aala: a cardamom recipe from the archive.",
@@ -182,7 +182,7 @@
     {
       "slug": "traditional-arabic-biscuit-by-chef-aala",
       "title": "Traditional Arabic Biscuit By Chef Aala",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Traditional Arabic Biscuit, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture3_db57f051-c8a6-4169-bbab-97c9ce8d9de8_1200x1200.png?v=1783318900",
       "imageAlt": "Traditional Arabic Biscuit By Chef Aala: a cardamom recipe from the archive.",
@@ -192,7 +192,7 @@
     {
       "slug": "bahraini-shrimp-biryani-by-chef-aala",
       "title": "Bahraini Shrimp Biryani By Chef Aala",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Bahraini Shrimp Biryani, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture2_7a46bc7e-b721-45a0-9a28-3e1a75aa2277_1200x1200.png?v=1783318883",
       "imageAlt": "Bahraini Shrimp Biryani By Chef Aala: a cardamom recipe from the archive.",
@@ -202,7 +202,7 @@
     {
       "slug": "cardamom-kisses-by-chef-aala",
       "title": "Cardamom Kisses By Chef Aala",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Kisses, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture1_73cd81c8-ec7e-4765-a35b-f092eaf53847_1200x1200.png?v=1783318918",
       "imageAlt": "Cardamom Kisses By Chef Aala: a cardamom recipe from the archive.",
@@ -212,7 +212,7 @@
     {
       "slug": "vegetarian-kabsa-by-chef-hala-ayash",
       "title": "Vegetarian Kabsa by Chef Hala Ayash",
-      "category": "Savoury",
+      "category": "Savoury Meals",
       "excerpt": "A cardamom-led savoury favourite inspired by Vegetarian Kabsa, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/chefhalavegkabsa_6036513d-ca0d-478b-b6ad-678e5b077672_1200x1200.jpg?v=1770372286",
       "imageAlt": "Vegetarian Kabsa by Chef Hala Ayash: a cardamom recipe from the archive.",
@@ -222,7 +222,7 @@
     {
       "slug": "cardamom-pear-galette-by-chef-mohamad-chabchoul",
       "title": "Cardamom Pear Galette by Chef Mohamad Chabchoul",
-      "category": "Desserts",
+      "category": "Cakes & Bakes",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Pear Galette, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/chefchabchoulpearpuffpastry_33572fec-996d-4652-8fb8-b66fe8eeea21_1200x1200.jpg?v=1770372323",
       "imageAlt": "Cardamom Pear Galette by Chef Mohamad Chabchoul: a cardamom recipe from the archive.",
@@ -232,7 +232,7 @@
     {
       "slug": "swedish-cardamom-buns-by-chef-ammar-albarakati",
       "title": "Swedish Cardamom Buns by Chef Ammar Albarakati",
-      "category": "Desserts",
+      "category": "Cakes & Bakes",
       "excerpt": "A cardamom-led sweet treat inspired by Swedish Cardamom Buns, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/chefammarrecipecardamombun_ea3b0b7a-b994-4e35-b6e9-f8ef458ed82c_1200x1200.jpg?v=1770372350",
       "imageAlt": "Swedish Cardamom Buns by Chef Ammar Albarakati: a cardamom recipe from the archive.",
@@ -242,7 +242,7 @@
     {
       "slug": "qamar-al-din-apricot-drink-ramadan-special",
       "title": "Qamar al-Din (Apricot Drink) – Ramadan Special",
-      "category": "Drinks",
+      "category": "Fruit & Spiced Drinks",
       "excerpt": "A cardamom-led fragrant drink inspired by Qamar al-Din (Apricot Drink), with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-qamar-al-din-apricot-drink-cardamom-recipe-ramadan-special_1200x1200.jpg?v=1741344515",
       "imageAlt": "Qamar al-Din (Apricot Drink) – Ramadan Special: a cardamom recipe from the archive.",
@@ -252,7 +252,7 @@
     {
       "slug": "vegetarian-moussaka-ramadan-special",
       "title": "Vegetarian Moussaka – Ramadan Special",
-      "category": "Savoury",
+      "category": "Savoury Meals",
       "excerpt": "A cardamom-led savoury favourite inspired by Vegetarian Moussaka, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-vegetarian-moussaka-cardamom-recipe-ramadan-special_1200x1200.jpg?v=1741344244",
       "imageAlt": "Vegetarian Moussaka – Ramadan Special: a cardamom recipe from the archive.",
@@ -262,7 +262,7 @@
     {
       "slug": "egyptian-koshari-with-cardamom-ramadan-special",
       "title": "Egyptian Koshari with Cardamom – Ramadan Special",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Egyptian Koshari with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-egyptian-koshari-cardamom-recipe-ramadan-special_6bac352d-3dc0-4f8c-87d2-da7a9a2ae911_1200x1200.jpg?v=1741343500",
       "imageAlt": "Egyptian Koshari with Cardamom – Ramadan Special: a cardamom recipe from the archive.",
@@ -272,7 +272,7 @@
     {
       "slug": "shorbat-adas-lentil-soup-ramadan-special",
       "title": "Shorbat Adas (Lentil Soup)with Cardamom – Ramadan Special",
-      "category": "Savoury",
+      "category": "Soups & Stews",
       "excerpt": "A cardamom-led savoury favourite inspired by Shorbat Adas (Lentil Soup)with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-shorbat-adas-lentil-soup-cardamom-recipe-ramadan-special_617eeaf8-363b-4ca5-a5d3-67b1ed9ae903_1200x1200.jpg?v=1741343140",
       "imageAlt": "Shorbat Adas (Lentil Soup)with Cardamom – Ramadan Special: a cardamom recipe from the archive.",
@@ -282,7 +282,7 @@
     {
       "slug": "mujadara-with-cardamom-ramadan-special",
       "title": "Mujadara with Cardamom – Ramadan Special",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Mujadara with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-mujadara-cardamom-recipe-ramadan-special_1200x1200.jpg?v=1741340751",
       "imageAlt": "Mujadara with Cardamom – Ramadan Special: a cardamom recipe from the archive.",
@@ -292,7 +292,7 @@
     {
       "slug": "dattes-au-lait-dates-milk-with-cardamom-ramadan-special",
       "title": "Dattes au Lait (Dates Milk) with Cardamom – Ramadan Special",
-      "category": "Drinks",
+      "category": "Milk Drinks",
       "excerpt": "A cardamom-led fragrant drink inspired by Dattes au Lait (Dates Milk) with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-date-and-cardamom-milk-recipe-ramadan-special_1200x1200.jpg?v=1741345117",
       "imageAlt": "Dattes au Lait (Dates Milk) with Cardamom – Ramadan Special: a cardamom recipe from the archive.",
@@ -302,7 +302,7 @@
     {
       "slug": "gujarati-farali-pattice-with-cardamom-maha-shivaratri-special",
       "title": "Gujarati Farali Pattice with Cardamom – Maha Shivaratri Special",
-      "category": "Savoury",
+      "category": "Savoury Meals",
       "excerpt": "A cardamom-led savoury favourite inspired by Gujarati Farali Pattice with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-farali-pattice-cardamom-recipe_27f7a82b-5c45-4393-9faf-11f67146e6b8_1200x1200.jpg?v=1741339775",
       "imageAlt": "Gujarati Farali Pattice with Cardamom – Maha Shivaratri Special: a cardamom recipe from the archive.",
@@ -312,7 +312,7 @@
     {
       "slug": "mysuru-style-bisi-bele-bhaath-with-cardamom-basant-panchami-special",
       "title": "Mysuru Style Bisi Bele Bhaath with Cardamom - Basant Panchami Special",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Mysuru Style Bisi Bele Bhaath with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-khichdi-basant-bisi-bele-bath-recipe_78e49c06-fbfe-4dfa-84f1-8813767c93b8_1200x1200.jpg?v=1741339257",
       "imageAlt": "Mysuru Style Bisi Bele Bhaath with Cardamom - Basant Panchami Special: a cardamom recipe from the archive.",
@@ -322,7 +322,7 @@
     {
       "slug": "khichdi-with-cardamom-basant-panchami-special",
       "title": "Khichdi with Cardamom - Basant Panchami Special",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "A cardamom-led savoury favourite inspired by Khichdi with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-khichdi-basant-panchami-recipe_1200x1200.jpg?v=1741338866",
       "imageAlt": "Khichdi with Cardamom - Basant Panchami Special: a cardamom recipe from the archive.",
@@ -332,7 +332,7 @@
     {
       "slug": "tilgul-with-cardamom-makar-sankranti-special",
       "title": "Tilgul with Cardamom - Makar Sankranti Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Tilgul with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-tilgul-cardamom-makar-sankranti-recipe_1200x1200.jpg?v=1741337945",
       "imageAlt": "Tilgul with Cardamom - Makar Sankranti Special: a cardamom recipe from the archive.",
@@ -342,7 +342,7 @@
     {
       "slug": "sakkarai-pongal-with-cardamom-pongal-special",
       "title": "Sakkarai Pongal with Cardamom - Pongal Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Sakkarai Pongal with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-sakkarai-pongal-recipe_18eb1bb9-b9e4-4ae2-8e18-c458d24b28af_1200x1200.jpg?v=1741670464",
       "imageAlt": "Sakkarai Pongal with Cardamom - Pongal Special: a cardamom recipe from the archive.",
@@ -352,7 +352,7 @@
     {
       "slug": "punjabi-aate-ka-pinni-with-cardamom-lohri-special",
       "title": "Punjabi Aate Ka Pinni with Cardamom - Lohri Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Punjabi Aate Ka Pinni with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/emperor-akbar-cardamom-punjabi-atta-ka-pinni-recipe_800b2cac-e6fe-4fd6-90ec-5fc8adcc5d25_1200x1200.jpg?v=1741336802",
       "imageAlt": "Punjabi Aate Ka Pinni with Cardamom - Lohri Special: a cardamom recipe from the archive.",
@@ -362,7 +362,7 @@
     {
       "slug": "thekua-with-cardamom-chhath-puja-special",
       "title": "Thekua with Cardamom - Chhath Puja Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Thekua with Cardamom, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/thekua_1200x1200.png?v=1730725728",
       "imageAlt": "Thekua with Cardamom - Chhath Puja Special: a cardamom recipe from the archive.",
@@ -372,7 +372,7 @@
     {
       "slug": "baked-gujiya-with-cardamom-diwali-special",
       "title": "Baked Gujiya with Cardamom Diwali Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Baked Gujiya with Cardamom Diwali Special, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/baked_gujiya_with_cardamom_1200x1200.png?v=1730265414",
       "imageAlt": "Baked Gujiya with Cardamom Diwali Special: a cardamom recipe from the archive.",
@@ -382,7 +382,7 @@
     {
       "slug": "cardamom-phirni-diwali-special",
       "title": "Cardamom Phirni Diwali Special",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Phirni Diwali Special, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/phirni_with_cardamom_1200x1200.jpg?v=1730264630",
       "imageAlt": "Cardamom Phirni Diwali Special: a cardamom recipe from the archive.",
@@ -392,7 +392,7 @@
     {
       "slug": "cardamom-kaju-katli-diwali-special",
       "title": "Cardamom Kaju Katli Diwali Special",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Kaju Katli Diwali Special, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/kaju_katli_with_cardamom_1200x1200.jpg?v=1730264209",
       "imageAlt": "Cardamom Kaju Katli Diwali Special: a cardamom recipe from the archive.",
@@ -402,7 +402,7 @@
     {
       "slug": "cardamom-maamoul-saudi-national-day-special",
       "title": "Cardamom Maamoul Saudi National Day Special",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Maamoul Saudi National Day Special, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Cardamom_Mammoul_1200x1200.jpg?v=1726721625",
       "imageAlt": "Cardamom Maamoul Saudi National Day Special: a cardamom recipe from the archive.",
@@ -412,7 +412,7 @@
     {
       "slug": "cardamom-mahalabia-mawlid-al-nabi-recipe",
       "title": "Cardamom Mahalabia Mawlid al Nabi Recipe",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Mahalabia Mawlid al Nabi Recipe, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/WhatsApp_Image_2024-09-09_at_4.12.12_PM_1200x1200.jpg?v=1726208781",
       "imageAlt": "Cardamom Mahalabia Mawlid al Nabi Recipe: a cardamom recipe from the archive.",
@@ -422,7 +422,7 @@
     {
       "slug": "modak-with-cardamom-and-coconut-chips",
       "title": "Modak with Cardamom and Coconut Chips",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Modak with Cardamom and Coconut Chips, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Modak_copy_1200x1200.jpg?v=1725359969",
       "imageAlt": "Modak with Cardamom and Coconut Chips: a cardamom recipe from the archive.",
@@ -432,7 +432,7 @@
     {
       "slug": "cardamom-aval-payasam-onam-special",
       "title": "Cardamom Aval Payasam Onam Special",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Aval Payasam Onam Special, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_2034740255_copy_1200x1200.jpg?v=1725360491",
       "imageAlt": "Cardamom Aval Payasam Onam Special: a cardamom recipe from the archive.",
@@ -442,7 +442,7 @@
     {
       "slug": "spiced-german-cookies",
       "title": "Spiced German Cookies",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Spiced German Cookies, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Spiced_German_Cookies_1200x1200.jpg?v=1715690291",
       "imageAlt": "Spiced German Cookies: a cardamom recipe from the archive.",
@@ -452,7 +452,7 @@
     {
       "slug": "crispy-norwegian-bows",
       "title": "Crispy Norwegian Bows",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Crispy Norwegian Bows, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Crispy_Norwegian_Bows_1200x1200.jpg?v=1715690281",
       "imageAlt": "Crispy Norwegian Bows: a cardamom recipe from the archive.",
@@ -462,7 +462,7 @@
     {
       "slug": "cardamom-sugar-cookies",
       "title": "Cardamom Sugar Cookies",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Sugar Cookies, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Cardamom_Sugar_Cookies_1200x1200.jpg?v=1715690273",
       "imageAlt": "Cardamom Sugar Cookies: a cardamom recipe from the archive.",
@@ -472,7 +472,7 @@
     {
       "slug": "cardamom-spritz-cookies",
       "title": "Cardamom Spritz Cookies",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Spritz Cookies, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Cardamom_Spritz_Cookies_1200x1200.jpg?v=1715690262",
       "imageAlt": "Cardamom Spritz Cookies: a cardamom recipe from the archive.",
@@ -482,7 +482,7 @@
     {
       "slug": "cardamom-cheesecake-bars",
       "title": "Cardamom Cheesecake Bars",
-      "category": "Desserts",
+      "category": "Cakes & Bakes",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Cheesecake Bars, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Cardamom_Cheesecake_Bars_1200x1200.jpg?v=1715690253",
       "imageAlt": "Cardamom Cheesecake Bars: a cardamom recipe from the archive.",
@@ -492,7 +492,7 @@
     {
       "slug": "finnish-mulled-wine",
       "title": "Finnish Mulled Wine",
-      "category": "Drinks",
+      "category": "Fruit & Spiced Drinks",
       "excerpt": "A cardamom-led fragrant drink inspired by Finnish Mulled Wine, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/Finnish_Mulled_Wine_1200x1200.jpg?v=1715690244",
       "imageAlt": "Finnish Mulled Wine: a cardamom recipe from the archive.",
@@ -502,7 +502,7 @@
     {
       "slug": "mother-s-special-around-the-world",
       "title": "Mother’s Special Around The World",
-      "category": "Desserts",
+      "category": "Desserts & Treats",
       "excerpt": "A cardamom-led sweet treat inspired by Mother’s Special Around The World, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/123_1200x1200.jpg?v=1680863969",
       "imageAlt": "Mother’s Special Around The World: a cardamom recipe from the archive.",
@@ -512,7 +512,7 @@
     {
       "slug": "luqaimat",
       "title": "Luqaimat",
-      "category": "Desserts",
+      "category": "Desserts & Treats",
       "excerpt": "A cardamom-led sweet treat inspired by Luqaimat, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1711880434_02_0d876e5a-c49b-40f9-b63a-deb4183d2e33_1200x1200.jpg?v=1680864182",
       "imageAlt": "Luqaimat: a cardamom recipe from the archive.",
@@ -522,7 +522,7 @@
     {
       "slug": "orange-and-cardamom-cheese-cake",
       "title": "Orange and Cardamom Cheese Cake",
-      "category": "Desserts",
+      "category": "Cakes & Bakes",
       "excerpt": "A cardamom-led sweet treat inspired by Orange and Cardamom Cheese Cake, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1457867012_1200x1200.jpg?v=1680864166",
       "imageAlt": "Orange and Cardamom Cheese Cake: a cardamom recipe from the archive.",
@@ -532,7 +532,7 @@
     {
       "slug": "cardamom-vanilla-caramel",
       "title": "Cardamom Vanilla Caramel",
-      "category": "Desserts",
+      "category": "Desserts & Treats",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom Vanilla Caramel, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1163579587_1200x1200.jpg?v=1680864139",
       "imageAlt": "Cardamom Vanilla Caramel: a cardamom recipe from the archive.",
@@ -542,7 +542,7 @@
     {
       "slug": "greek-cardamom-melomakarona-cookies",
       "title": "Greek Cardamom Melomakarona (Cookies)",
-      "category": "Desserts",
+      "category": "Cookies & Biscuits",
       "excerpt": "A cardamom-led sweet treat inspired by Greek Cardamom Melomakarona (Cookies), with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1582510804_1200x1200.jpg?v=1680864131",
       "imageAlt": "Greek Cardamom Melomakarona (Cookies): a cardamom recipe from the archive.",
@@ -552,7 +552,7 @@
     {
       "slug": "akbar-mashti-bastani-sundae",
       "title": "Akbar Mashti Bastani Sundae",
-      "category": "Desserts",
+      "category": "Frozen Desserts",
       "excerpt": "A cardamom-led sweet treat inspired by Akbar Mashti Bastani Sundae, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1929055886_1200x1200.jpg?v=1680864118",
       "imageAlt": "Akbar Mashti Bastani Sundae: a cardamom recipe from the archive.",
@@ -562,7 +562,7 @@
     {
       "slug": "sheer-khurma",
       "title": "Sheer Khurma",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A cardamom-led sweet treat inspired by Sheer Khurma, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_652405729_1200x1200.jpg?v=1680864107",
       "imageAlt": "Sheer Khurma: a cardamom recipe from the archive.",
@@ -572,7 +572,7 @@
     {
       "slug": "saffron-and-dates-granola",
       "title": "Saffron and Dates Granola",
-      "category": "Desserts",
+      "category": "Breakfast & Snacks",
       "excerpt": "A cardamom-led sweet treat inspired by Saffron and Dates Granola, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_732483724_1200x1200.jpg?v=1680864096",
       "imageAlt": "Saffron and Dates Granola: a cardamom recipe from the archive.",
@@ -582,7 +582,7 @@
     {
       "slug": "cardamom-and-coconut-basbousa",
       "title": "Cardamom and Coconut Basbousa",
-      "category": "Desserts",
+      "category": "Cakes & Bakes",
       "excerpt": "A cardamom-led sweet treat inspired by Cardamom and Coconut Basbousa, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_371356012_1200x1200.jpg?v=1680864148",
       "imageAlt": "Cardamom and Coconut Basbousa: a cardamom recipe from the archive.",
@@ -592,7 +592,7 @@
     {
       "slug": "shrikhand-cardamom-flavoured-yoghurt",
       "title": "Shrikhand / Cardamom Flavoured Yoghurt",
-      "category": "Desserts",
+      "category": "Puddings & Payasam",
       "excerpt": "A cardamom-led sweet treat inspired by Shrikhand / Cardamom Flavoured Yoghurt, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1962986746_1200x1200.jpg?v=1680864083",
       "imageAlt": "Shrikhand / Cardamom Flavoured Yoghurt: a cardamom recipe from the archive.",
@@ -602,7 +602,7 @@
     {
       "slug": "recipe-1",
       "title": "Indian Dessert",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A cardamom-led sweet treat inspired by Indian Dessert, with a warm, aromatic finish.",
       "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1516298570_1200x1200.jpg?v=1628101176",
       "imageAlt": "Indian Dessert: a cardamom recipe from the archive.",
@@ -614,7 +614,7 @@
     {
       "slug": "cardamom-chicken-biryani",
       "title": "Sunday Cardamom Chicken Biryani",
-      "category": "Savoury",
+      "category": "Biryani & Rice",
       "excerpt": "Layered basmati, tender chicken and whole spices come together in a fragrant, family-style dum.",
       "image": "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=1400&q=85",
       "imageAlt": "A bowl of chicken biryani with basmati rice and herbs",
@@ -650,7 +650,7 @@
     {
       "slug": "elaichi-coconut-ladoo",
       "title": "Coconut & Cardamom Ladoo",
-      "category": "Desserts",
+      "category": "Indian Sweets",
       "excerpt": "A quick festive sweet with toasted coconut, gentle sweetness and a bright finish of elaichi.",
       "image": "https://images.unsplash.com/photo-1635952346904-95f2ccfcd029?auto=format&fit=crop&w=1400&q=85",
       "imageAlt": "Traditional Indian sweets arranged for a festive table",
@@ -678,7 +678,7 @@
     {
       "slug": "cardamom-pistachio-cold-coffee",
       "title": "Cardamom Pistachio Iced Coffee",
-      "category": "Drinks",
+      "category": "Coffee & Lattes",
       "excerpt": "A cool, creamy coffee with a whisper of cardamom and a nutty pistachio finish.",
       "image": "https://images.unsplash.com/photo-1642255521852-7e7c742ac58f?auto=format&fit=crop&w=1400&q=85",
       "imageAlt": "Green cardamom pods and whole spices on a dark surface",
