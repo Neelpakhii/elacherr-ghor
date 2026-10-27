@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { ArrowRight, Search } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAppPath, getImageUrl } from "../../config";
 import useEditorialData from "../../hooks/useEditorialData.js";
@@ -13,6 +13,9 @@ const RecipesPage = () => {
     const [category, setCategory] = useState("All recipes");
     const [query, setQuery] = useState("");
     const [visibleCount, setVisibleCount] = useState(RECIPES_PER_BATCH);
+    const [canScrollCategoriesLeft, setCanScrollCategoriesLeft] = useState(false);
+    const [canScrollCategoriesRight, setCanScrollCategoriesRight] = useState(false);
+    const categoryScrollerRef = useRef(null);
     const recipes = data?.recipes ?? EMPTY_LIST;
     const page = data?.recipesPage;
 
@@ -35,6 +38,47 @@ const RecipesPage = () => {
     const remainingRecipes = visibleRecipes.filter((recipe) => recipe.slug !== featuredRecipe?.slug);
     const shownRecipes = remainingRecipes.slice(0, visibleCount);
     const displayedCount = Math.min(visibleCount + (featuredRecipe ? 1 : 0), visibleRecipes.length);
+
+    const scrollCategories = (direction) => {
+        const scroller = categoryScrollerRef.current;
+        if (!scroller) return;
+        const buttons = Array.from(scroller.querySelectorAll("button"));
+        if (!buttons.length) return;
+
+        const scrollerLeft = scroller.getBoundingClientRect().left;
+        const firstVisibleIndex = Math.max(0, buttons.findIndex((button) => (
+            button.getBoundingClientRect().right > scrollerLeft + 1
+        )));
+        const targetIndex = Math.max(0, Math.min(buttons.length - 1, firstVisibleIndex + direction * 3));
+        const targetLeft = scroller.scrollLeft + buttons[targetIndex].getBoundingClientRect().left - scrollerLeft;
+        scroller.scrollTo({ left: targetLeft, behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        const scroller = categoryScrollerRef.current;
+        if (!scroller) return undefined;
+
+        const updateScrollEdges = () => {
+            const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+            setCanScrollCategoriesLeft(scroller.scrollLeft > 1);
+            setCanScrollCategoriesRight(maxScrollLeft - scroller.scrollLeft > 1);
+        };
+
+        updateScrollEdges();
+        scroller.addEventListener("scroll", updateScrollEdges, { passive: true });
+        window.addEventListener("resize", updateScrollEdges);
+
+        const resizeObserver = typeof ResizeObserver === "undefined"
+            ? null
+            : new ResizeObserver(updateScrollEdges);
+        resizeObserver?.observe(scroller);
+
+        return () => {
+            scroller.removeEventListener("scroll", updateScrollEdges);
+            window.removeEventListener("resize", updateScrollEdges);
+            resizeObserver?.disconnect();
+        };
+    }, [categories]);
 
     if (error) return <main className="editorial-message" role="alert">{error}</main>;
     if (!page) return <main className="editorial-message" aria-live="polite">Loading recipes…</main>;
@@ -78,21 +122,33 @@ const RecipesPage = () => {
                     </form>
                 </div>
 
-                <div className="editorial-filters" aria-label="Filter recipes by category">
-                    {categories.map((item) => (
-                        <button
-                            type="button"
-                            key={item}
-                            className={category === item ? "is-active" : ""}
-                            onClick={() => {
-                                setCategory(item);
-                                setVisibleCount(RECIPES_PER_BATCH);
-                            }}
-                            aria-pressed={category === item}
-                        >
-                            {item}
+                <div className={`recipe-filter-carousel${canScrollCategoriesLeft ? "" : " recipe-filter-carousel--hide-left"}${canScrollCategoriesRight ? "" : " recipe-filter-carousel--hide-right"}`} role="group" aria-label="Filter recipes by category">
+                    {canScrollCategoriesLeft && (
+                        <button className="recipe-filter-carousel__arrow" type="button" onClick={() => scrollCategories(-1)} aria-label="Scroll categories left">
+                            <ChevronLeft size={20} aria-hidden="true" />
                         </button>
-                    ))}
+                    )}
+                    <div className="editorial-filters editorial-filters--scroll" id="recipe-category-filters" ref={categoryScrollerRef}>
+                        {categories.map((item) => (
+                            <button
+                                type="button"
+                                key={item}
+                                className={category === item ? "is-active" : ""}
+                                onClick={() => {
+                                    setCategory(item);
+                                    setVisibleCount(RECIPES_PER_BATCH);
+                                }}
+                                aria-pressed={category === item}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
+                    {canScrollCategoriesRight && (
+                        <button className="recipe-filter-carousel__arrow" type="button" onClick={() => scrollCategories(1)} aria-label="Scroll categories right">
+                            <ChevronRight size={20} aria-hidden="true" />
+                        </button>
+                    )}
                 </div>
 
                 <p className="recipe-results-count" role="status">

@@ -355,6 +355,86 @@
     color: #fff;
 }
 
+.recipe-filter-carousel {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 46px;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 30px;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #e1e4dd;
+}
+
+.recipe-filter-carousel--hide-left:not(.recipe-filter-carousel--hide-right) {
+    grid-template-columns: minmax(0, 1fr) 46px;
+}
+
+.recipe-filter-carousel--hide-right:not(.recipe-filter-carousel--hide-left) {
+    grid-template-columns: 46px minmax(0, 1fr);
+}
+
+.recipe-filter-carousel--hide-left.recipe-filter-carousel--hide-right {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.recipe-filter-carousel__arrow {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #dfe3dc;
+    border-radius: 50%;
+    background: #fff;
+    color: #36483a;
+    cursor: pointer;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.recipe-filter-carousel__arrow:hover {
+    border-color: var(--editorial-green);
+    background: var(--editorial-green);
+    color: #fff;
+}
+
+.recipe-filter-carousel__arrow:focus-visible,
+.editorial-filters--scroll button:focus-visible {
+    outline: 2px solid #a88736;
+    outline-offset: 3px;
+}
+
+.editorial-filters--scroll {
+    min-width: 0;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 3px 1px 5px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.editorial-filters--scroll::-webkit-scrollbar { display: none; }
+
+.editorial-filters--scroll button {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 0 13px;
+    color: #252b26;
+    font-size: 11px;
+    white-space: nowrap;
+    scroll-snap-align: start;
+}
+
+.editorial-filters--scroll button.is-active {
+    border-color: var(--editorial-green);
+    background: var(--editorial-green);
+    color: #fff;
+}
+
 .editorial-featured-card,
 .journal-featured {
     display: grid;
@@ -1268,5 +1348,35 @@
     .editorial-page *::after {
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .recipe-filter-carousel {
+        grid-template-columns: 36px minmax(0, 1fr) 36px;
+        gap: 7px;
+    }
+
+    .recipe-filter-carousel__arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .recipe-filter-carousel--hide-left:not(.recipe-filter-carousel--hide-right) {
+        grid-template-columns: minmax(0, 1fr) 36px;
+    }
+
+    .recipe-filter-carousel--hide-right:not(.recipe-filter-carousel--hide-left) {
+        grid-template-columns: 36px minmax(0, 1fr);
+    }
+
+    .editorial-filters--scroll {
+        gap: 8px;
+    }
+
+    .editorial-filters--scroll button {
+        min-height: 34px;
+        padding: 0 13px;
+        font-size: 11px;
     }
 }

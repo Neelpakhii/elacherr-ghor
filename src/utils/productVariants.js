@@ -18,4 +18,11 @@ export const withProductVariant = (product, variant) => ({
     ...(variant.originalPrice == null ? { originalPrice: undefined } : { originalPrice: variant.originalPrice }),
 });
 
+export const getDiscountPercentage = (price, originalPrice) => {
+    const current = Number(price);
+    const original = Number(originalPrice);
+    if (!Number.isFinite(current) || !Number.isFinite(original) || original <= current || original <= 0) return 0;
+    return Math.round(((original - current) / original) * 100);
+};
+
 export const getBagLineKey = (product) => `${product?.id || ""}::${product?.weight || ""}`;

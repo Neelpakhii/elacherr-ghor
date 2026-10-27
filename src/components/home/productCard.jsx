@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
-import { getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
+import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productCard.css";
 
 const ProductCard = ({ product }) => {
@@ -11,6 +11,7 @@ const ProductCard = ({ product }) => {
     const variants = getProductVariants(product);
     const [selectedWeight, setSelectedWeight] = useState(product.weight || variants[0]?.weight || "");
     const selectedVariant = getProductVariant(product, selectedWeight);
+    const discount = getDiscountPercentage(selectedVariant.price, selectedVariant.originalPrice);
     const { addItem } = useBag();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
@@ -75,6 +76,7 @@ const ProductCard = ({ product }) => {
                                 Rs. {Number(selectedVariant.originalPrice).toFixed(2)}
                             </span>
                         )}
+                        {discount > 0 && <span className="product-card__discount">{discount}% OFF</span>}
                     </p>
                 )}
 

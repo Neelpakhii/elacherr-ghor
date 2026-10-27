@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
-import { getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
+import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productDetail.css";
 
 const ProductDetailPage = () => {
@@ -24,6 +24,7 @@ const ProductDetailPage = () => {
         ? variantState.weight
         : product?.weight;
     const selectedVariant = product ? getProductVariant(product, selectedWeight) : null;
+    const discount = selectedVariant ? getDiscountPercentage(selectedVariant.price, selectedVariant.originalPrice) : 0;
     const details = currentResult?.details || null;
     const error = currentResult?.error || "";
     const quantity = quantityState.productId === productId ? quantityState.quantity : 1;
@@ -121,6 +122,7 @@ const ProductDetailPage = () => {
                         <div className="product-detail-hero__price">
                             <strong>Rs. {Number(selectedVariant?.price || 0).toFixed(2)}</strong>
                             {selectedVariant?.originalPrice != null && <del>Rs. {Number(selectedVariant.originalPrice).toFixed(2)}</del>}
+                            {discount > 0 && <span className="product-detail-hero__discount">{discount}% OFF</span>}
                         </div>
                         <p className="product-detail-hero__description">
                             {details?.description || "A carefully graded cardamom selection for tea, sweets, and everyday cooking."}

@@ -126,6 +126,20 @@
     text-decoration: line-through;
 }
 
+.product-card__discount {
+    display: inline-flex;
+    align-items: center;
+    min-height: 23px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: #fff0ef;
+    color: #d94e4e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+}
+
 /* View product link */
 .product-card__actions {
     display: grid;
