@@ -274,8 +274,9 @@
     font: 600 11px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
-.navbar-search__results-heading button {
+.navbar-actions .navbar-search__results-heading button {
     width: auto;
+    min-width: max-content;
     height: auto;
     flex: 0 0 auto;
     padding: 4px 0;
@@ -284,6 +285,7 @@
     color: #536c40;
     cursor: pointer;
     font: 700 10px/1.4 "Montserrat", "Segoe UI", sans-serif;
+    white-space: nowrap;
     text-decoration: underline;
     text-underline-offset: 3px;
 }

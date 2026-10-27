@@ -357,7 +357,7 @@
 
 .recipe-filter-carousel {
     display: grid;
-    grid-template-columns: 46px minmax(0, 1fr) 46px;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
     align-items: center;
     gap: 12px;
     margin: 0 0 30px;
@@ -366,11 +366,11 @@
 }
 
 .recipe-filter-carousel--hide-left:not(.recipe-filter-carousel--hide-right) {
-    grid-template-columns: minmax(0, 1fr) 46px;
+    grid-template-columns: minmax(0, 1fr) 42px;
 }
 
 .recipe-filter-carousel--hide-right:not(.recipe-filter-carousel--hide-left) {
-    grid-template-columns: 46px minmax(0, 1fr);
+    grid-template-columns: 42px minmax(0, 1fr);
 }
 
 .recipe-filter-carousel--hide-left.recipe-filter-carousel--hide-right {
@@ -378,8 +378,8 @@
 }
 
 .recipe-filter-carousel__arrow {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
     display: grid;
     place-items: center;
     border: 1px solid #dfe3dc;
@@ -388,6 +388,11 @@
     color: #36483a;
     cursor: pointer;
     transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.recipe-filter-carousel__arrow svg {
+    width: 18px;
+    height: 18px;
 }
 
 .recipe-filter-carousel__arrow:hover {
@@ -1080,7 +1085,7 @@
     justify-content: space-between;
     gap: 35px;
     padding: 70px max(32px, calc((100vw - 1240px) / 2));
-    background: #a97d43;
+    background: var(--editorial-green-deep);
     color: #fff;
 }
 
@@ -1353,21 +1358,26 @@
 
 @media (max-width: 600px) {
     .recipe-filter-carousel {
-        grid-template-columns: 36px minmax(0, 1fr) 36px;
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
         gap: 7px;
     }
 
     .recipe-filter-carousel__arrow {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .recipe-filter-carousel__arrow svg {
+        width: 16px;
+        height: 16px;
     }
 
     .recipe-filter-carousel--hide-left:not(.recipe-filter-carousel--hide-right) {
-        grid-template-columns: minmax(0, 1fr) 36px;
+        grid-template-columns: minmax(0, 1fr) 32px;
     }
 
     .recipe-filter-carousel--hide-right:not(.recipe-filter-carousel--hide-left) {
-        grid-template-columns: 36px minmax(0, 1fr);
+        grid-template-columns: 32px minmax(0, 1fr);
     }
 
     .editorial-filters--scroll {
