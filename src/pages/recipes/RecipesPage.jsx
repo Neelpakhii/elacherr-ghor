@@ -145,7 +145,7 @@ const RecipesPage = () => {
 
                 {remainingRecipes.length > visibleCount && (
                     <div className="editorial-more-actions">
-                        <button className="editorial-button editorial-button--green" type="button" onClick={() => setVisibleCount((count) => Math.min(count + RECIPES_PER_BATCH, remainingRecipes.length))}>
+                        <button className="site-more-button" type="button" onClick={() => setVisibleCount((count) => Math.min(count + RECIPES_PER_BATCH, remainingRecipes.length))}>
                             Read more recipes <ArrowRight size={17} />
                         </button>
                     </div>

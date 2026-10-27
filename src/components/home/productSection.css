@@ -60,32 +60,3 @@
     justify-content: center;
     margin-top: 36px;
 }
-
-.product-section__buy-now {
-    display: inline-block;
-    padding: 13px 36px;
-    border: 2px solid #687b43;
-    border-radius: 4px;
-    background: transparent;
-    color: #687b43;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    transition:
-        color 300ms ease,
-        background-color 300ms ease,
-        transform 300ms ease;
-}
-
-.product-section__buy-now:hover {
-    background-color: #687b43;
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-.product-section__buy-now:focus-visible {
-    outline: 2px solid #a88736;
-    outline-offset: 4px;
-}

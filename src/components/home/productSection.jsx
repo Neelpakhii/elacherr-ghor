@@ -57,7 +57,7 @@ const ProductSection = () => {
                     </div>
 
                     <div className="product-section__actions">
-                        <Link className="product-section__buy-now" to={getAppPath("/shop")}>
+                        <Link className="site-more-button" to={getAppPath("/shop")}>
                             Buy Now
                         </Link>
                     </div>

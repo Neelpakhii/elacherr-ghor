@@ -139,7 +139,7 @@ const BlogsPage = () => {
                 {remaining.length > visibleCount && (
                     <div className="editorial-more-actions">
                         <button
-                            className="editorial-button editorial-button--green"
+                            className="site-more-button"
                             type="button"
                             onClick={() => setVisibleCount((count) => Math.min(count + BLOGS_PER_BATCH, remaining.length))}
                         >

@@ -153,34 +153,10 @@
     margin-top: 48px;
 }
 
-.recipe-section__footer a {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 0 24px;
-    border: 1px solid #687b43;
-    border-radius: 3px;
-    color: #687b43;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background-color 180ms ease, color 180ms ease;
-}
-
-.recipe-section__footer a:hover {
-    background: #687b43;
-    color: #fff;
-}
-
 .recipe-featured__button:focus-visible,
 .recipe-list__link:focus-visible,
 .recipe-featured__image-link:focus-visible,
-.recipe-list__image-link:focus-visible,
-.recipe-section__footer a:focus-visible {
+.recipe-list__image-link:focus-visible {
     outline: 2px solid #a88736;
     outline-offset: 4px;
 }

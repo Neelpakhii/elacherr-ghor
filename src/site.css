@@ -21,6 +21,38 @@ textarea {
     font-family: inherit;
 }
 
+.site-more-button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 24px;
+    border: 1px solid #687b43;
+    border-radius: 3px;
+    background: transparent;
+    color: #687b43;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    line-height: 1.2;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease;
+}
+
+.site-more-button:hover {
+    background: #687b43;
+    color: #fff;
+}
+
+.site-more-button:focus-visible {
+    outline: 2px solid #a88736;
+    outline-offset: 4px;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;

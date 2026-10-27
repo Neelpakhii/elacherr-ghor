@@ -105,7 +105,7 @@ const Recipe = () => {
             </div>
 
             <div className="recipe-section__footer">
-                <Link to={getAppPath("/recipes")}>
+                <Link className="site-more-button" to={getAppPath("/recipes")}>
                     See more recipes <ArrowRight size={17} aria-hidden="true" />
                 </Link>
             </div>
