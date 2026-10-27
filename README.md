@@ -16,7 +16,9 @@ To create a production build, run `npm run build`. The generated site is in `dis
 - Home content and product listings: `public/data/home.json`
 - About page content: `public/data/about.json`
 - Shop banner: `public/data/shop.json`
-- Recipes, journal articles and CSR page: `public/data/editorial.json`
+- All 51 archive recipes: `public/data/recipe.json` (`localRecipes` preserves three additional recipes already in the project)
+- Journal articles: `public/data/blog.json`
+- CSR page: `public/data/editorial.json`
 - Images and video: `public/images/` (editorial photography is linked from Unsplash in the JSON)
 
 ## Admin dashboard

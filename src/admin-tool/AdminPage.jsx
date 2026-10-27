@@ -32,7 +32,7 @@ import {
     X,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ADMIN_SETTINGS_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCT_DETAILS_URL, getImageUrl, migrateImagePath } from "../config.js";
+import { ADMIN_SETTINGS_URL, BLOG_DATA_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCT_DETAILS_URL, RECIPE_DATA_URL, getImageUrl, migrateImagePath } from "../config.js";
 import { hasTrackedStock, isProductAvailable, isProductOutOfStock } from "../utils/productAvailability.js";
 import AdminJsonEditor from "./AdminJsonEditor.jsx";
 import "./admin.css";
@@ -40,7 +40,9 @@ import "./admin.css";
 const DRAFT_KEY = "elacher-ghor-admin-draft-v1";
 const CONTENT_FILES = {
     home: { label: "Products", path: "data/home.json", url: HOME_DATA_URL },
-    editorial: { label: "Recipes, blogs & CSR", path: "data/editorial.json", url: EDITORIAL_DATA_URL },
+    recipe: { label: "Recipes", path: "data/recipe.json", url: RECIPE_DATA_URL },
+    blog: { label: "Blogs", path: "data/blog.json", url: BLOG_DATA_URL },
+    editorial: { label: "CSR content", path: "data/editorial.json", url: EDITORIAL_DATA_URL },
 };
 const ADMIN_SETTINGS_FILE = { label: "Admin settings", path: "data/admin-settings.json", url: ADMIN_SETTINGS_URL };
 const ALL_DATA_FILES = { ...CONTENT_FILES, adminSettings: ADMIN_SETTINGS_FILE };
@@ -64,6 +66,23 @@ const BASE_URL = import.meta.env.BASE_URL;
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 const today = () => new Date().toISOString().slice(0, 10);
+const mergePostsBySlug = (...collections) => {
+    const posts = new Map();
+    collections.flat().filter((item) => item && typeof item === "object" && item.slug).forEach((item) => {
+        posts.set(item.slug, { ...(posts.get(item.slug) || {}), ...item });
+    });
+    return [...posts.values()];
+};
+
+function getEditorialAdminEntries(data, kind) {
+    if (kind === "recipes") {
+        return [
+            ...(data?.recipe?.recipes || []).map((item) => ({ item, collection: "recipes" })),
+            ...(data?.recipe?.localRecipes || []).map((item) => ({ item, collection: "localRecipes" })),
+        ];
+    }
+    return (data?.blog?.blogs || []).map((item) => ({ item, collection: "blogs" }));
+}
 const slugify = (value) => String(value || "").trim().toLocaleLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -90,7 +109,33 @@ function getEmptyStateData(core, savedDraft) {
     const data = { ...core, productDetails: { ...(core.productDetails || {}) } };
     if (!savedDraft || typeof savedDraft !== "object") return migrateDraftImagePaths(data);
     for (const key of Object.keys(CONTENT_FILES)) {
-        if (savedDraft[key] && typeof savedDraft[key] === "object") data[key] = savedDraft[key];
+        if (savedDraft[key] && typeof savedDraft[key] === "object") {
+            data[key] = key === "editorial" ? { ...core.editorial, ...savedDraft.editorial } : savedDraft[key];
+        }
+    }
+    const legacyEditorial = savedDraft.editorial || {};
+    if (!savedDraft.recipe && (legacyEditorial.recipes || legacyEditorial.sourceRecipes || core.recipe?.recipes)) {
+        const oldRecipes = [...(legacyEditorial.sourceRecipes || []), ...(legacyEditorial.recipes || [])];
+        const archiveSlugs = new Set((core.recipe?.recipes || []).map((item) => item.slug));
+        data.recipe = {
+            ...core.recipe,
+            recipes: mergePostsBySlug(oldRecipes.filter((item) => archiveSlugs.has(item.slug)), core.recipe?.recipes || []),
+            localRecipes: mergePostsBySlug(oldRecipes.filter((item) => !archiveSlugs.has(item.slug)), core.recipe?.localRecipes || []),
+        };
+    }
+    if (savedDraft.blog && typeof savedDraft.blog === "object") {
+        data.blog = {
+            ...core.blog,
+            ...savedDraft.blog,
+            blogs: mergePostsBySlug(core.blog?.blogs || [], savedDraft.blog.blogs || []),
+        };
+    } else if (legacyEditorial.blogs || core.blog?.blogs) {
+        data.blog = { ...core.blog, blogs: mergePostsBySlug(legacyEditorial.blogs || [], core.blog?.blogs || []) };
+    }
+    if (savedDraft.editorial) {
+        const oldContentKeys = new Set(["recipes", "sourceRecipes", "blogs", "recipesPage", "blogsPage"]);
+        const editorialContent = Object.fromEntries(Object.entries(savedDraft.editorial).filter(([key]) => !oldContentKeys.has(key)));
+        data.editorial = { ...core.editorial, ...editorialContent };
     }
     if (savedDraft.adminSettings && typeof savedDraft.adminSettings === "object") data.adminSettings = savedDraft.adminSettings;
     if (savedDraft.productDetails && typeof savedDraft.productDetails === "object") {
@@ -297,7 +342,13 @@ function AdminPage() {
 
     const updateData = (key, value) => setData((current) => ({ ...current, [key]: value }));
     const updateHomeProducts = (updater) => setData((current) => ({ ...current, home: { ...current.home, products: updater(current.home.products || []) } }));
-    const updateEditorialList = (key, updater) => setData((current) => ({ ...current, editorial: { ...current.editorial, [key]: updater(current.editorial[key] || []) } }));
+    const updateEditorialList = (kind, collection, updater) => {
+        const fileKey = kind === "recipes" ? "recipe" : "blog";
+        setData((current) => ({
+            ...current,
+            [fileKey]: { ...current[fileKey], [collection]: updater(current[fileKey]?.[collection] || []) },
+        }));
+    };
 
     const changedFiles = useMemo(() => {
         if (!data || !originals) return [];
@@ -545,7 +596,10 @@ function AdminPage() {
     };
 
     const makeEditorialTemplate = (kind) => {
-        const current = data.editorial?.[kind] || [];
+        const fileKey = kind === "recipes" ? "recipe" : "blog";
+        const current = kind === "recipes"
+            ? [...(data.recipe?.recipes || []), ...(data.recipe?.localRecipes || [])]
+            : data[fileKey]?.blogs || [];
         const sample = current[0] || {};
         const item = Object.fromEntries(Object.entries(sample).map(([key, value]) => {
             if (key === "date") return [key, today()];
@@ -572,32 +626,43 @@ function AdminPage() {
         return item;
     };
 
-    const saveEditorialItem = (kind, item, originalSlug) => {
+    const saveEditorialItem = (kind, item, originalSlug, originalCollection) => {
         const slug = slugify(item.slug || item.title);
         if (!item.title?.trim() || !item.excerpt?.trim() || !item.image?.trim() || !item.imageAlt?.trim() || !slug) {
             setNotice("Add a title, short description, image, image alt text, and a valid URL slug before saving this post.");
             return false;
         }
-        const others = (data.editorial[kind] || []).filter((post) => post.slug !== originalSlug);
-        if (others.some((post) => post.slug === slug)) {
+        const fileKey = kind === "recipes" ? "recipe" : "blog";
+        const collectionsToCheck = kind === "recipes" ? ["recipes", "localRecipes"] : ["blogs"];
+        const duplicateExists = collectionsToCheck.some((collection) => (data[fileKey]?.[collection] || []).some((post) =>
+            post.slug === slug && !(collection === originalCollection && post.slug === originalSlug)
+        ));
+        if (duplicateExists) {
             setNotice(`The URL slug “${slug}” is already in use.`);
             return false;
         }
+        const targetCollection = originalSlug ? originalCollection : kind === "recipes" ? "localRecipes" : "blogs";
         const savedItem = { ...item, slug, status: String(item.status || "draft").toLowerCase() === "published" ? "published" : "draft" };
-        setData((current) => ({ ...current, editorial: { ...current.editorial, [kind]: originalSlug ? current.editorial[kind].map((post) => post.slug === originalSlug ? savedItem : post) : [savedItem, ...current.editorial[kind]] } }));
+        setData((current) => {
+            const collectionItems = current[fileKey]?.[targetCollection] || [];
+            const nextItems = originalSlug
+                ? collectionItems.map((post) => post.slug === originalSlug ? savedItem : post)
+                : [savedItem, ...collectionItems];
+            return { ...current, [fileKey]: { ...current[fileKey], [targetCollection]: nextItems } };
+        });
         setEditorialModal(null);
-        setNotice(`${savedItem.title} is ${savedItem.status} in the draft. Select Save Changes to write editorial.json.`);
+        setNotice(`${savedItem.title} is ${savedItem.status} in the draft. Select Save Changes to write ${fileKey}.json.`);
         return true;
     };
 
-    const deleteEditorialItem = (kind, item) => {
+    const deleteEditorialItem = (kind, item, collection) => {
         if (!window.confirm(`Delete “${item.title}” from ${kind}?`)) return;
-        updateEditorialList(kind, (items) => items.filter((post) => post.slug !== item.slug));
+        updateEditorialList(kind, collection, (items) => items.filter((post) => post.slug !== item.slug));
         setNotice(`${item.title} removed from the draft. Select Save Changes to apply the deletion.`);
     };
 
     const currentTitle = PAGE_TITLES[section] || "Dashboard";
-    const selectedFile = section === "products" ? "home" : section === "editorial" ? "editorial" : section === "settings" ? "adminSettings" : null;
+    const selectedFile = section === "products" ? "home" : section === "editorial" ? (editorialKind === "recipes" ? "recipe" : "blog") : section === "settings" ? "adminSettings" : null;
     const lowStockCount = lowStockProducts.length;
     const notificationCount = lowStockProducts.length + outOfStockProducts.length;
     const sectionLinks = (id) => id === "dashboard" ? "/admin" : `/admin/${id}`;
@@ -622,7 +687,7 @@ function AdminPage() {
 
             <div className="admin-main">
                 <header className="admin-topbar">
-                    <div className="admin-topbar__left"><button className="admin-icon-button admin-menu-toggle" type="button" aria-label="Open navigation" onClick={() => setMobileMenuOpen((open) => !open)}><Menu size={19} /></button><div><span className="admin-topbar__crumb">ELAICHI GHAR ADMIN</span><strong>{currentTitle}</strong></div></div>
+                    <div className="admin-topbar__left"><button className="admin-icon-button admin-menu-toggle" type="button" aria-label="Open navigation" onClick={() => setMobileMenuOpen((open) => !open)}><Menu size={19} /></button><div><span className="admin-topbar__crumb">ELAICHI GHAR · ADMIN</span><strong>{currentTitle}</strong><small>{PAGE_TITLES[section]}</small></div></div>
                     <div className="admin-topbar__actions">
                         <span className="admin-local-pill"><i />LOCAL EDITOR</span>
                         <div className="admin-popover-wrap"><button className="admin-icon-button admin-notification-button" type="button" aria-label={`${notificationCount} stock alerts`} onClick={() => { setNotificationsOpen((open) => !open); setProfileOpen(false); }}><Bell size={18} />{notificationCount > 0 && <i>{notificationCount}</i>}</button>{notificationsOpen && <div className="admin-popover admin-notifications"><strong>Stock notifications</strong>{lowStockProducts.length ? lowStockProducts.map((product) => <Link to="/admin/inventory" key={product.id} onClick={() => setNotificationsOpen(false)}><span>{product.name}</span><small>{product.stockQty} remaining</small></Link>) : <p>No low-stock alerts for tracked products.</p>}{outOfStockProducts.length > 0 && <small>{outOfStockProducts.length} product{outOfStockProducts.length === 1 ? " is" : "s are"} out of stock.</small>}</div>}</div>
@@ -631,7 +696,7 @@ function AdminPage() {
                 </header>
 
                 <main className="admin-content">
-                    <div className="admin-page-heading"><div><p className="admin-eyebrow"><Leaf size={13} /> ELAICHI GHAR · ADMIN</p><h1>{currentTitle}</h1><p className="admin-page-subtitle">{section === "dashboard" ? "A clear view of your website content and the data currently available." : PAGE_TITLES[section]}</p></div><div className="admin-page-actions"><Link className="admin-button admin-button--quiet" to="/" target="_blank"><ExternalLink size={15} /> View storefront</Link>{selectedFile && <button className="admin-button admin-button--quiet" type="button" onClick={() => downloadJson(selectedFile)}><FileText size={15} /> Download JSON</button>}{section !== "dashboard" && <button className="admin-button admin-button--primary" type="button" onClick={saveChanges} disabled={!isDirty || isSaving}>{isSaving ? <span className="admin-spinner" /> : <Save size={15} />}{isSaving ? "Saving…" : "Save changes"}</button>}</div></div>
+                    <div className="admin-page-heading"><div className="admin-page-actions"><Link className="admin-button admin-button--quiet" to="/" target="_blank"><ExternalLink size={15} /> View storefront</Link>{selectedFile && <button className="admin-button admin-button--quiet" type="button" onClick={() => downloadJson(selectedFile)}><FileText size={15} /> Download JSON</button>}{section !== "dashboard" && <button className="admin-button admin-button--primary" type="button" onClick={saveChanges} disabled={!isDirty || isSaving}>{isSaving ? <span className="admin-spinner" /> : <Save size={15} />}{isSaving ? "Saving…" : "Save changes"}</button>}</div></div>
 
                     <div className="admin-connection-bar"><span className={isDirty ? "admin-dot admin-dot--unsaved" : "admin-dot"} /><span>{isDirty ? "Unsaved changes" : "All JSON data matches the saved files"}</span><span className="admin-connection-bar__divider" /><span>{import.meta.env.DEV ? "Local JSON writer ready" : projectDirectory ? `Folder: ${projectDirectory.name}` : "Browser draft only"}</span>{!import.meta.env.DEV && <button type="button" onClick={connectFolder}>{projectDirectory ? "Change folder" : "Connect project folder"}</button>}<span className="admin-connection-bar__spacer" />{isDirty && <span className="admin-change-count">{changedFiles.length + deletedProductIds.length} file change{changedFiles.length + deletedProductIds.length === 1 ? "" : "s"}</span>}</div>
                     {notice && <div className="admin-toast" role="status"><Check size={16} />{notice}<button type="button" aria-label="Dismiss message" onClick={() => setNotice("")}><X size={15} /></button></div>}
@@ -641,7 +706,7 @@ function AdminPage() {
                     {section === "orders" && <EmptyManagementSection title="Orders" icon={ShoppingCart} description="Order records are not available in this project yet. The shopping bag is saved in each visitor’s browser and there is no checkout or order API." columns={["Order ID", "Customer", "Date", "Items", "Total", "Payment", "Status"]} />}
                     {section === "customers" && <EmptyManagementSection title="Customers" icon={Users} description="This project does not have registered customer accounts or a customer database. The bag is local to each visitor’s device." columns={["Name", "Email", "Registered", "Orders", "Total spent"]} />}
                     {section === "inventory" && <InventorySection products={products} details={data.productDetails} threshold={threshold} search={inventorySearch} setSearch={setInventorySearch} onStockChange={updateStock} />}
-                    {section === "editorial" && <EditorialSection data={data.editorial} kind={editorialKind} setKind={setEditorialKind} search={editorialSearch} setSearch={setEditorialSearch} onAdd={() => setEditorialModal({ kind: editorialKind, item: makeEditorialTemplate(editorialKind), originalSlug: "" })} onEdit={(item) => setEditorialModal({ kind: editorialKind, item: clone({ ...item, status: item.status || "published" }), originalSlug: item.slug })} onPreview={(item) => setEditorialPreview({ kind: editorialKind, item })} onDelete={(item) => deleteEditorialItem(editorialKind, item)} />}
+                    {section === "editorial" && <EditorialSection data={data} kind={editorialKind} setKind={setEditorialKind} search={editorialSearch} setSearch={setEditorialSearch} onAdd={() => setEditorialModal({ kind: editorialKind, item: makeEditorialTemplate(editorialKind), originalSlug: "" })} onEdit={(item, collection) => setEditorialModal({ kind: editorialKind, item: clone({ ...item, status: item.status || "published" }), originalSlug: item.slug, originalCollection: collection })} onPreview={(item) => setEditorialPreview({ kind: editorialKind, item })} onDelete={(item, collection) => deleteEditorialItem(editorialKind, item, collection)} />}
                     {section === "settings" && <SettingsSection settings={settings} setSettings={(next) => updateData("adminSettings", { ...data.adminSettings, lowStockThreshold: Math.max(0, Number(next.lowStockThreshold) || 0) })} isDirty={isSettingsDirty} onSave={saveChanges} />}
                     <footer className="admin-footer-note"><CircleAlert size={15} /><span>This admin route has no authentication. Do not publish confidential customer data or use it to store secrets. Orders and customer accounts need a backend data source.</span></footer>
                 </main>
@@ -649,15 +714,15 @@ function AdminPage() {
 
             <datalist id="admin-image-assets">{imagePaths.map((path) => <option key={path} value={path} />)}</datalist>
             {productModal && <ProductEditor product={productModal.product} detail={productModal.detail} existingIds={products.map((product) => product.id)} onClose={() => setProductModal(null)} onSave={saveProductDraft} onUploadImage={uploadImage} isSaving={isSaving} />}
-            {editorialModal && <EditorialEditor modal={editorialModal} onClose={() => setEditorialModal(null)} onPreview={(item) => setEditorialPreview({ kind: editorialModal.kind, item })} onSave={(item) => saveEditorialItem(editorialModal.kind, item, editorialModal.originalSlug)} onUploadImage={uploadImage} />}
+                    {editorialModal && <EditorialEditor modal={editorialModal} onClose={() => setEditorialModal(null)} onPreview={(item) => setEditorialPreview({ kind: editorialModal.kind, item })} onSave={(item) => saveEditorialItem(editorialModal.kind, item, editorialModal.originalSlug, editorialModal.originalCollection)} onUploadImage={uploadImage} />}
             {editorialPreview && <EditorialPreview kind={editorialPreview.kind} item={editorialPreview.item} onClose={() => setEditorialPreview(null)} />}
         </div>
     );
 }
 
 function DashboardSection({ data, products, lowStockProducts, threshold, onNavigate }) {
-    const recipeCount = data.editorial?.recipes?.length || 0;
-    const blogCount = data.editorial?.blogs?.length || 0;
+    const recipeCount = getEditorialAdminEntries(data, "recipes").length;
+    const blogCount = getEditorialAdminEntries(data, "blogs").length;
     return (
         <>
             <section className="admin-stats-grid" aria-label="Store overview">
@@ -721,17 +786,82 @@ function InventorySection({ products, details, threshold, search, setSearch, onS
 
 function EditorialSection({ data, kind, setKind, search, setSearch, onAdd, onEdit, onPreview, onDelete }) {
     const title = kind === "recipes" ? "Recipes" : "Blog stories";
-    const entries = (data[kind] || []).filter((item) => `${item.title || ""} ${item.category || ""} ${item.slug || ""}`.toLowerCase().includes(search.toLowerCase()));
-    return <section className="admin-panel admin-management-panel"><div className="admin-editorial-tabs"><div><button className={kind === "recipes" ? "is-active" : ""} type="button" onClick={() => { setKind("recipes"); setSearch(""); }}>Recipes <b>{data.recipes?.length || 0}</b></button><button className={kind === "blogs" ? "is-active" : ""} type="button" onClick={() => { setKind("blogs"); setSearch(""); }}>Blogs <b>{data.blogs?.length || 0}</b></button></div><button type="button" className="admin-button admin-button--primary" onClick={onAdd}><Plus size={16} />Add {kind === "recipes" ? "recipe" : "blog story"}</button></div><div className="admin-toolbar"><label className="admin-search-field"><Search size={17} /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={`Search ${title.toLowerCase()}`} aria-label={`Search ${title}`} /></label><p className="admin-data-source-note"><BookOpenText size={14} />Edits are saved in <code>public/data/editorial.json</code>. Draft posts stay hidden on the public site.</p></div><div className="admin-table-wrap"><table className="admin-table admin-editorial-table"><thead><tr><th>Post</th><th>Category</th><th>URL slug</th><th>Status</th><th>Actions</th></tr></thead><tbody>{entries.map((item) => <tr key={item.slug || item.title}><td><span className="admin-product-cell"><img src={getImageUrl(item.image)} alt="" title={item.imageTitle || item.title || "Editorial image"} /><span><strong>{item.title || "Untitled"}</strong><small>{item.excerpt || "No description"}</small></span></span></td><td>{item.category || "—"}</td><td><code>/{kind}/{item.slug || "add-slug"}</code></td><td><span className={`admin-tag ${String(item.status || "published").toLowerCase() === "draft" ? "admin-tag--warning" : "admin-tag--success"}`}>{String(item.status || "published").toLowerCase() === "draft" ? "Draft" : "Published"}</span></td><td><span className="admin-row-actions"><button className="admin-icon-button" type="button" aria-label={`Preview ${item.title}`} onClick={() => onPreview(item)}><Eye size={15} /></button><button className="admin-icon-button" type="button" aria-label={`Edit ${item.title}`} onClick={() => onEdit(item)}><Pencil size={15} /></button><button className="admin-icon-button admin-icon-button--danger" type="button" aria-label={`Delete ${item.title}`} onClick={() => onDelete(item)}><Trash2 size={15} /></button></span></td></tr>)}</tbody></table>{entries.length === 0 && <EmptyState icon={BookOpenText} title={`No ${title.toLowerCase()} found`}><span>{search ? "Try a different search." : `Add your first ${kind === "recipes" ? "recipe" : "blog story"} to begin.`}</span></EmptyState>}</div></section>;
+    const fileKey = kind === "recipes" ? "recipe" : "blog";
+    const allEntries = getEditorialAdminEntries(data, kind);
+    const entries = allEntries.filter(({ item }) => `${item.title || ""} ${item.category || ""} ${item.slug || ""}`.toLowerCase().includes(search.toLowerCase()));
+    const recipeCount = getEditorialAdminEntries(data, "recipes").length;
+    const blogCount = getEditorialAdminEntries(data, "blogs").length;
+    const currentCount = kind === "recipes" ? recipeCount : blogCount;
+    const sourceNote = kind === "recipes"
+        ? `The file contains ${data.recipe?.recipes?.length || 0} archive recipes and ${data.recipe?.localRecipes?.length || 0} local additions.`
+        : `Showing ${currentCount} records from public/data/${fileKey}.json.`;
+    return <section className="admin-panel admin-management-panel"><div className="admin-editorial-tabs"><div><button className={kind === "recipes" ? "is-active" : ""} type="button" onClick={() => { setKind("recipes"); setSearch(""); }}>Recipes <b>{recipeCount}</b></button><button className={kind === "blogs" ? "is-active" : ""} type="button" onClick={() => { setKind("blogs"); setSearch(""); }}>Blogs <b>{blogCount}</b></button></div><button type="button" className="admin-button admin-button--primary" onClick={onAdd}><Plus size={16} />Add {kind === "recipes" ? "recipe" : "blog story"}</button></div><div className="admin-toolbar"><label className="admin-search-field"><Search size={17} /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={`Search ${title.toLowerCase()}`} aria-label={`Search ${title}`} /></label><p className="admin-data-source-note"><BookOpenText size={14} />{sourceNote} Draft posts stay hidden on the public site.</p></div><div className="admin-table-wrap"><table className="admin-table admin-editorial-table"><thead><tr><th>Post</th><th>Category</th><th>URL slug</th><th>Status</th><th>Actions</th></tr></thead><tbody>{entries.map(({ item, collection }) => <tr key={`${collection}-${item.slug || item.title}`}><td><span className="admin-product-cell"><img src={getImageUrl(item.image)} alt="" title={item.imageTitle || item.title || "Editorial image"} /><span><strong>{item.title || "Untitled"}</strong><small>{item.excerpt || "No description"}</small></span></span></td><td>{item.category || "—"}</td><td><code>/{kind}/{item.slug || "add-slug"}</code></td><td><span className={`admin-tag ${String(item.status || "published").toLowerCase() === "draft" ? "admin-tag--warning" : "admin-tag--success"}`}>{String(item.status || "published").toLowerCase() === "draft" ? "Draft" : "Published"}</span></td><td><span className="admin-row-actions"><button className="admin-icon-button" type="button" aria-label={`Preview ${item.title}`} onClick={() => onPreview(item)}><Eye size={15} /></button><button className="admin-icon-button" type="button" aria-label={`Edit ${item.title}`} onClick={() => onEdit(item, collection)}><Pencil size={15} /></button><button className="admin-icon-button admin-icon-button--danger" type="button" aria-label={`Delete ${item.title}`} onClick={() => onDelete(item, collection)}><Trash2 size={15} /></button></span></td></tr>)}</tbody></table>{entries.length === 0 && <EmptyState icon={BookOpenText} title={`No ${title.toLowerCase()} found`}><span>{search ? "Try a different search." : `Add your first ${kind === "recipes" ? "recipe" : "blog story"} to begin.`}</span></EmptyState>}</div></section>;
+}
+
+function BlogSectionsEditor({ sections, onChange }) {
+    const articleSections = Array.isArray(sections) ? sections : [];
+    const updateSection = (index, updates) => onChange(articleSections.map((section, sectionIndex) => {
+        if (sectionIndex !== index) return section;
+        const normalized = section && typeof section === "object" ? section : { heading: "", paragraphs: [String(section || "")] };
+        return { ...normalized, ...updates };
+    }));
+    const updateParagraph = (sectionIndex, paragraphIndex, value) => {
+        const section = articleSections[sectionIndex];
+        const paragraphs = Array.isArray(section?.paragraphs) ? section.paragraphs : [];
+        updateSection(sectionIndex, { paragraphs: paragraphs.map((paragraph, index) => index === paragraphIndex ? value : paragraph) });
+    };
+
+    return (
+        <section className="admin-blog-content-editor" aria-labelledby="blog-content-heading">
+            <header className="admin-blog-content-editor__header">
+                <div>
+                    <h3 id="blog-content-heading">Article content</h3>
+                    <p>Add headings and paragraphs; they appear in this order on the public blog page.</p>
+                </div>
+                <button className="admin-add-button" type="button" onClick={() => onChange([...articleSections, { heading: "", paragraphs: [""] }])}>
+                    + Add section
+                </button>
+            </header>
+            {articleSections.length === 0 ? (
+                <p className="admin-blog-content-editor__empty">This post has no body sections yet. Add a section to start writing the article.</p>
+            ) : articleSections.map((section, sectionIndex) => {
+                const normalized = section && typeof section === "object" ? section : { heading: "", paragraphs: [String(section || "")] };
+                const paragraphs = Array.isArray(normalized.paragraphs) ? normalized.paragraphs : [];
+                return (
+                    <article className="admin-blog-section-editor" key={`section-${sectionIndex}`}>
+                        <div className="admin-blog-section-editor__top">
+                            <strong>Section {String(sectionIndex + 1).padStart(2, "0")}</strong>
+                            <button className="admin-remove-button" type="button" onClick={() => onChange(articleSections.filter((_, index) => index !== sectionIndex))}>Remove section</button>
+                        </div>
+                        <label className="admin-form-field">
+                            <span>Section heading</span>
+                            <input type="text" value={normalized.heading || ""} onChange={(event) => updateSection(sectionIndex, { heading: event.target.value })} placeholder="A useful heading" />
+                        </label>
+                        {paragraphs.map((paragraph, paragraphIndex) => (
+                            <div className="admin-blog-paragraph-editor" key={`paragraph-${paragraphIndex}`}>
+                                <label className="admin-form-field">
+                                    <span>Paragraph {paragraphIndex + 1}</span>
+                                    <textarea rows={4} value={paragraph} onChange={(event) => updateParagraph(sectionIndex, paragraphIndex, event.target.value)} placeholder="Write this part of the article…" />
+                                </label>
+                                <button className="admin-remove-button" type="button" onClick={() => updateSection(sectionIndex, { paragraphs: paragraphs.filter((_, index) => index !== paragraphIndex) })}>Remove paragraph</button>
+                            </div>
+                        ))}
+                        <button className="admin-add-button" type="button" onClick={() => updateSection(sectionIndex, { paragraphs: [...paragraphs, ""] })}>+ Add paragraph</button>
+                    </article>
+                );
+            })}
+        </section>
+    );
 }
 
 function EditorialEditor({ modal, onClose, onPreview, onSave, onUploadImage }) {
     const [item, setItem] = useState(modal.item);
     const [error, setError] = useState("");
     const updateItem = (next) => { setItem(next); setError(""); };
-    const editableFields = Object.fromEntries(Object.entries(item).filter(([key]) => key !== "status"));
+    const isBlog = modal.kind === "blogs";
+    const editableFields = Object.fromEntries(Object.entries(item).filter(([key]) => key !== "status" && (!isBlog || key !== "sections")));
     const status = item.status || "draft";
-    return <div className="admin-modal-backdrop" role="presentation"><section className="admin-modal admin-modal--wide" role="dialog" aria-modal="true" aria-labelledby="editorial-editor-title"><header className="admin-modal__header"><div><p className="admin-eyebrow">{modal.kind === "recipes" ? "RECIPE EDITOR" : "BLOG EDITOR"}</p><h2 id="editorial-editor-title">{modal.originalSlug ? "Edit post" : "Create a post"}</h2></div><button className="admin-icon-button" type="button" aria-label="Close" onClick={onClose}><X size={19} /></button></header><p className="admin-data-source-note">Required: title, short description, image, image alt text, and URL slug. Preview before saving. Draft posts stay off the customer-facing page.</p><label className="admin-form-field"><span>Publication status</span><select value={status} onChange={(event) => updateItem({ ...item, status: event.target.value })}><option value="draft">Draft</option><option value="published">Published</option></select></label>{error && <p className="admin-inline-error"><CircleAlert size={15} />{error}</p>}<div className="admin-editor-fields admin-editor-fields--modal"><AdminJsonEditor value={editableFields} onChange={(next) => setItem((current) => ({ ...next, status: current.status || "draft" }))} onUploadImage={onUploadImage} /></div><footer className="admin-modal__footer"><button className="admin-button admin-button--quiet" type="button" onClick={() => onPreview(item)}><Eye size={15} />Preview</button><span /><button className="admin-button admin-button--quiet" type="button" onClick={onClose}>Cancel</button><button className="admin-button admin-button--primary" type="button" onClick={() => { const saved = onSave(item); if (saved) setError(""); else setError("Please check the required fields, including image alt text, and URL slug. A duplicate slug may also be in use."); }}><Check size={15} />Save post draft</button></footer></section></div>;
+    return <div className="admin-modal-backdrop" role="presentation"><section className="admin-modal admin-modal--wide" role="dialog" aria-modal="true" aria-labelledby="editorial-editor-title"><header className="admin-modal__header"><div><p className="admin-eyebrow">{modal.kind === "recipes" ? "RECIPE EDITOR" : "BLOG EDITOR"}</p><h2 id="editorial-editor-title">{modal.originalSlug ? "Edit post" : "Create a post"}</h2></div><button className="admin-icon-button" type="button" aria-label="Close" onClick={onClose}><X size={19} /></button></header><p className="admin-data-source-note">Required: title, short description, image, image alt text, and URL slug. Preview before saving. Draft posts stay off the customer-facing page.</p><label className="admin-form-field"><span>Publication status</span><select value={status} onChange={(event) => updateItem({ ...item, status: event.target.value })}><option value="draft">Draft</option><option value="published">Published</option></select></label>{error && <p className="admin-inline-error"><CircleAlert size={15} />{error}</p>}<div className="admin-editor-fields admin-editor-fields--modal"><AdminJsonEditor value={editableFields} onChange={(next) => setItem((current) => ({ ...next, ...(isBlog ? { sections: current.sections || [] } : {}), status: current.status || "draft" }))} onUploadImage={onUploadImage} />{isBlog && <BlogSectionsEditor sections={item.sections} onChange={(sections) => updateItem({ ...item, sections })} />}</div><footer className="admin-modal__footer"><button className="admin-button admin-button--quiet" type="button" onClick={() => onPreview(item)}><Eye size={15} />Preview</button><span /><button className="admin-button admin-button--quiet" type="button" onClick={onClose}>Cancel</button><button className="admin-button admin-button--primary" type="button" onClick={() => { const saved = onSave(item); if (saved) setError(""); else setError("Please check the required fields, including image alt text, and URL slug. A duplicate slug may also be in use."); }}><Check size={15} />Save post draft</button></footer></section></div>;
 }
 
 function EmptyManagementSection({ title, icon: Icon, description, columns }) {

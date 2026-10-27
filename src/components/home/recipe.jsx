@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ASSET_BASE_URL, HOME_DATA_URL, getAppPath } from "../../config";
 import "./recipe.css";
@@ -101,6 +102,12 @@ const Recipe = () => {
                         </article>
                     ))}
                 </div>
+            </div>
+
+            <div className="recipe-section__footer">
+                <Link to={getAppPath("/recipes")}>
+                    See more recipes <ArrowRight size={17} aria-hidden="true" />
+                </Link>
             </div>
         </section>
     );

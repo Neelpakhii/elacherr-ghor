@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EDITORIAL_DATA_URL } from "../config";
+import { BLOG_DATA_URL, EDITORIAL_DATA_URL, RECIPE_DATA_URL } from "../config";
 
 export default function useEditorialData() {
     const [data, setData] = useState(null);
@@ -8,17 +8,20 @@ export default function useEditorialData() {
     useEffect(() => {
         const controller = new AbortController();
 
-        fetch(EDITORIAL_DATA_URL, { signal: controller.signal })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Editorial content could not be loaded.");
-                }
-                return response.json();
-            })
-            .then((content) => setData({
-                ...content,
-                recipes: (content.recipes || []).filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
-                blogs: (content.blogs || []).filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
+        const loadJson = async (url) => {
+            const response = await fetch(url, { signal: controller.signal });
+            if (!response.ok) throw new Error(`Could not load ${url}.`);
+            return response.json();
+        };
+
+        Promise.all([loadJson(RECIPE_DATA_URL), loadJson(BLOG_DATA_URL), loadJson(EDITORIAL_DATA_URL)])
+            .then(([recipes, blogs, editorial]) => setData({
+                ...editorial,
+                ...recipes,
+                ...blogs,
+                recipes: [...(recipes.recipes || []), ...(recipes.localRecipes || [])]
+                    .filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
+                blogs: (blogs.blogs || []).filter((item) => String(item.status || "published").toLowerCase() !== "draft"),
             }))
             .catch((loadError) => {
                 if (loadError.name !== "AbortError") {

@@ -1,6 +1,6 @@
 import { ArrowLeft, Clock3 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { getAppPath } from "../../config";
+import { getAppPath, getImageUrl } from "../../config";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
@@ -30,7 +30,7 @@ const BlogDetailPage = () => {
                     <div className="article-byline"><span>{formatDate(article.date)}</span><span><Clock3 size={15} /> {article.readTime}</span></div>
                 </div>
                 <figure className="article-cover">
-                    <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} />
+                    <img src={getImageUrl(article.image)} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} />
                 </figure>
                 <div className="article-body">
                     <p className="article-opening">{article.excerpt}</p>

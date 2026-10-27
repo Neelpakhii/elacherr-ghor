@@ -1,5 +1,6 @@
 .product-card {
     overflow: hidden;
+    border-radius: 12px;
     background: #fff;
     color: #343a32;
     font-family: "Montserrat", sans-serif;
@@ -59,6 +60,13 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 1.35;
+}
+
+.product-card__weight {
+    color: #687b43;
+    font-size: .82em;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .product-card__name-link {

@@ -10,7 +10,7 @@
     width: min(100%, 1180px);
     margin: 0 auto;
     padding: clamp(32px, 5vw, 60px);
-    border-radius: 6px;
+    border-radius: 12px;
     background: #fff;
     box-shadow: 0 14px 40px rgba(30, 38, 24, 0.16);
     color: #343a32;

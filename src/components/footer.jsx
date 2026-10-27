@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HOME_DATA_URL, getAppHref } from "../config";
+import { HOME_DATA_URL, getAppHref, getImageUrl } from "../config";
 import "./footer.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -37,6 +37,7 @@ const SocialIcon = ({ name }) => {
 
 const Footer = () => {
     const [footer, setFooter] = useState(null);
+    const [brand, setBrand] = useState(null);
 
     useEffect(() => {
         fetch(HOME_DATA_URL)
@@ -47,7 +48,10 @@ const Footer = () => {
 
                 return response.json();
             })
-            .then((data) => setFooter(data.footer || null))
+            .then((data) => {
+                setFooter(data.footer || null);
+                setBrand(data.navbar || null);
+            })
             .catch((error) => {
                 console.error("Footer error:", error);
             });
@@ -59,6 +63,33 @@ const Footer = () => {
         <footer className="site-footer">
             <div className="site-footer__main">
                 <div className="site-footer__columns">
+                    <div className="site-footer__brand">
+                        {brand?.logo && (
+                            <a className="site-footer__brand-link" href={getAppHref("/")} aria-label="Elacher Ghor home">
+                                <img
+                                    src={getImageUrl(brand.logo)}
+                                    alt="Elacher Ghor"
+                                    title={brand.logoTitle || "Elacher Ghor logo"}
+                                />
+                            </a>
+                        )}
+
+                        <nav className="site-footer__social" aria-label="Social media">
+                            {footer.socialLinks?.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.url}
+                                    aria-label={social.name}
+                                    title={social.name}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <SocialIcon name={social.name} />
+                                </a>
+                            ))}
+                        </nav>
+                    </div>
+
                     <section className="site-footer__column">
                         <h2>{footer.contactHeading}</h2>
                         <address>{footer.address}</address>
@@ -102,38 +133,23 @@ const Footer = () => {
                                 </li>
                             ))}
                         </ul>
-
-                        {footer.credit && (
-                            <p className="site-footer__credit">
-                                {footer.credit.text}{" "}
-                                <a href={footer.credit.url} aria-label="Website designer">
-                                    {footer.credit.mark}
-                                </a>
-                            </p>
-                        )}
                     </nav>
                 </div>
             </div>
 
-            <div className="site-footer__social">
-                {footer.socialLinks?.map((social) => (
-                    <a
-                        key={social.name}
-                        href={social.url}
-                        aria-label={social.name}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <SocialIcon name={social.name} />
-                    </a>
-                ))}
-            </div>
-
             <div className="site-footer__bottom">
                 <div className="site-footer__bottom-inner">
-                    <p>
+                    <p className="site-footer__copyright">
                         © {CURRENT_YEAR} {footer.copyrightName}
                     </p>
+                    {footer.credit && (
+                        <p className="site-footer__credit">
+                            {footer.credit.text}{" "}
+                            <a href={footer.credit.url} aria-label="Website designer">
+                                {footer.credit.mark}
+                            </a>
+                        </p>
+                    )}
                 </div>
             </div>
         </footer>

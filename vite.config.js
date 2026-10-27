@@ -12,6 +12,8 @@ function localAdminJsonWriter() {
     "data/about.json",
     "data/shop.json",
     "data/editorial.json",
+    "data/recipe.json",
+    "data/blog.json",
     "data/admin-settings.json",
   ]);
   const allowedFile = (filePath) => coreFiles.has(filePath)

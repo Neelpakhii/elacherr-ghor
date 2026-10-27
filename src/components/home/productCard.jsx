@@ -10,6 +10,7 @@ const ProductCard = ({ product }) => {
     const { addItem } = useBag();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
+    const weightLabel = product.weight?.replace(/\s+/g, "");
     const detailPath = getAppPath(`/products/${product.id}`);
     const unavailable = !isProductAvailable(product);
 
@@ -46,7 +47,10 @@ const ProductCard = ({ product }) => {
                 <p className="product-card__eyebrow">Alleppey Premium Cardamom</p>
                 {unavailable && <p className="product-card__availability">Currently unavailable</p>}
                 <Link className="product-card__name-link" to={detailPath}>
-                    <h3 className="product-card__name">{product.name}</h3>
+                    <h3 className="product-card__name">
+                        {product.name}
+                        {weightLabel && <span className="product-card__weight"> ({weightLabel})</span>}
+                    </h3>
                 </Link>
 
                 {product.price != null && (

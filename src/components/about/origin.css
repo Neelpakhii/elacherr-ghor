@@ -10,7 +10,7 @@
     width: min(100%, 1180px);
     margin: 0 auto;
     padding: clamp(32px, 5vw, 60px);
-    border-radius: 6px;
+    border-radius: 12px;
     background: white;
     color: #343a32;
     text-align: center;

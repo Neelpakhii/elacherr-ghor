@@ -121,6 +121,30 @@
     line-height: 1.85;
 }
 
+.information-faq__video {
+    width: min(calc(100% - 5px), 640px);
+    margin: 0 0 24px 5px;
+}
+
+.information-faq__video iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    border: 0;
+    border-radius: 12px;
+    background: #e8ebe5;
+}
+
+.information-faq__video a {
+    display: inline-block;
+    margin-top: 9px;
+    color: #526d48;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .information-policy-section {
     padding: 26px 5px;
     border-bottom: 1px solid #dfe3db;
@@ -228,6 +252,11 @@
     .information-faq summary {
         min-height: 62px;
         font-size: 15px;
+    }
+
+    .information-faq__video {
+        width: 100%;
+        margin-left: 0;
     }
 
     .information-policy-section {

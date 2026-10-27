@@ -10,6 +10,7 @@ const RecipeDetailPage = () => {
     const { data, error } = useEditorialData();
     const [checkedIngredients, setCheckedIngredients] = useState([]);
     const recipe = data?.recipes?.find((item) => item.slug === slug);
+    const hasCompleteMethod = Boolean(recipe?.ingredients?.length && recipe?.steps?.length);
 
     const toggleIngredient = (ingredient) => {
         setCheckedIngredients((current) => current.includes(ingredient)
@@ -30,21 +31,23 @@ const RecipeDetailPage = () => {
             </div>
             <header className="recipe-detail-hero">
                 <div className="recipe-detail-hero__copy">
-                    <p className="editorial-eyebrow editorial-eyebrow--green">{recipe.category} · From our kitchen</p>
+                    <p className="editorial-eyebrow editorial-eyebrow--green">{recipe.category} · Recipe collection</p>
                     <h1>{recipe.title}</h1>
                     <p className="recipe-detail-hero__excerpt">{recipe.excerpt}</p>
-                    <div className="recipe-meta">
-                        <span><Clock3 size={17} /> {recipe.prepTime} prep</span>
-                        <span><Clock3 size={17} /> {recipe.cookTime} cook</span>
-                        <span><Users size={17} /> {recipe.servings}</span>
-                    </div>
+                    {(recipe.prepTime || recipe.cookTime || recipe.servings) && (
+                        <div className="recipe-meta">
+                            {recipe.prepTime && <span><Clock3 size={17} /> {recipe.prepTime} prep</span>}
+                            {recipe.cookTime && <span><Clock3 size={17} /> {recipe.cookTime} cook</span>}
+                            {recipe.servings && <span><Users size={17} /> {recipe.servings}</span>}
+                        </div>
+                    )}
                 </div>
                 <figure className="recipe-detail-hero__image">
                     <img src={getImageUrl(recipe.image)} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} />
                 </figure>
             </header>
 
-            <div className="recipe-detail-layout">
+            {hasCompleteMethod ? <div className="recipe-detail-layout">
                 <aside className="ingredients-panel">
                     <p className="editorial-eyebrow editorial-eyebrow--green">Gather around</p>
                     <h2>Ingredients</h2>
@@ -78,7 +81,16 @@ const RecipeDetailPage = () => {
                     {recipe.tip && <aside className="recipe-tip"><strong>A little tip</strong><p>{recipe.tip}</p></aside>}
                     <Link className="editorial-text-link" to={getAppPath("/recipes")}>Explore more recipes <ArrowLeft size={16} /></Link>
                 </section>
-            </div>
+            </div> : (
+                <section className="editorial-section recipe-archive-detail">
+                    <div className="editorial-section__heading">
+                        <p className="editorial-eyebrow editorial-eyebrow--green">Recipe overview</p>
+                        <h2>Made to be shared</h2>
+                        <p>{recipe.excerpt}</p>
+                    </div>
+                    <Link className="editorial-text-link" to={getAppPath("/recipes")}>Explore all recipes <ArrowLeft size={16} /></Link>
+                </section>
+            )}
         </main>
     );
 };

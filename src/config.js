@@ -7,6 +7,8 @@ export const ABOUT_URL = `${basePath}data/about.json`;
 export const SHOP_URL = `${basePath}data/shop.json`;
 export const PRODUCT_DETAILS_URL = `${basePath}data/products/`;
 export const EDITORIAL_DATA_URL = `${basePath}data/editorial.json`;
+export const RECIPE_DATA_URL = `${basePath}data/recipe.json`;
+export const BLOG_DATA_URL = `${basePath}data/blog.json`;
 export const ADMIN_SETTINGS_URL = `${basePath}data/admin-settings.json`;
 
 // These assets were converted from PNG to WebP. Map old URLs too, because an

@@ -27,6 +27,8 @@ const siteBase = process.env.VITE_SITE_URL?.replace(/\/+$/, "")
 const sitemapBase = siteBase || "https://neelpakhii.github.io/elacherr-ghor";
 
 const home = await readJson("public/data/home.json");
+const recipeData = await readJson("public/data/recipe.json");
+const blogData = await readJson("public/data/blog.json");
 const editorial = await readJson("public/data/editorial.json");
 
 const routes = new Map();
@@ -45,12 +47,12 @@ addRoute("/shop", {
     description: `Explore ${home.products?.length || "our"} graded cardamom products from Elacher Ghor, with product details, prices, and availability.`,
 });
 addRoute("/recipes", {
-    title: `${editorial.recipesPage?.title || "Cardamom Recipes"} | Elacher Ghor`,
-    description: editorial.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
+    title: `${recipeData.recipesPage?.title || "Cardamom Recipes"} | Elacher Ghor`,
+    description: recipeData.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
 });
 addRoute("/blogs", {
-    title: `${editorial.blogsPage?.title || "Cardamom Stories"} | Elacher Ghor`,
-    description: editorial.blogsPage?.description || "Read stories and useful guides about cardamom.",
+    title: `${blogData.blogsPage?.title || "Cardamom Stories"} | Elacher Ghor`,
+    description: blogData.blogsPage?.description || "Read stories and useful guides about cardamom.",
 });
 addRoute("/csr", {
     title: `${editorial.csrPage?.title || "Community and Responsibility"} | Elacher Ghor`,
@@ -58,7 +60,7 @@ addRoute("/csr", {
 });
 addRoute("/pages/faqs", {
     title: "Frequently Asked Questions | Elacher Ghor",
-    description: "Find answers about Elacher Ghor cardamom grades, storage, recipes, shopping bag behavior, and how to contact customer care before arranging a purchase.",
+    description: "Find answers about Elacher Ghor cardamom, Aroma-Lock packaging, grades, selection, storage, and freshness.",
 });
 addRoute("/policies/refund-policy", {
     title: "Return and Refund Policy | Elacher Ghor",
@@ -84,7 +86,7 @@ addRoute("/blogs/recipes", { ...routes.get("/recipes"), canonical: "/recipes" })
 addRoute("/blogs/p", { ...routes.get("/blogs"), canonical: "/blogs" });
 addRoute("/recipe", {
     title: "Cardamom Recipes | Elacher Ghor",
-    description: editorial.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
+    description: recipeData.recipesPage?.description || "Explore recipes made with aromatic green cardamom.",
     canonical: "/recipes",
     noIndex: true,
 });
@@ -119,7 +121,7 @@ for (const product of home.products || []) {
     });
 }
 
-for (const recipe of editorial.recipes || []) {
+for (const recipe of [...(recipeData.recipes || []), ...(recipeData.localRecipes || [])]) {
     if (!/^[a-z0-9-]+$/i.test(recipe.slug || "")) continue;
     addRoute(`/recipes/${recipe.slug}`, {
         title: `${recipe.title || "Cardamom Recipe"} | Elacher Ghor`,
@@ -127,7 +129,7 @@ for (const recipe of editorial.recipes || []) {
     });
 }
 
-for (const story of editorial.blogs || []) {
+for (const story of blogData.blogs || []) {
     if (!/^[a-z0-9-]+$/i.test(story.slug || "")) continue;
     addRoute(`/blogs/${story.slug}`, {
         title: `${story.title || "Cardamom Story"} | Elacher Ghor`,

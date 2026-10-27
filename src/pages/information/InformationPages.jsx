@@ -6,28 +6,49 @@ import "./informationPages.css";
 
 const faqItems = [
     {
-        question: "What do the cardamom grades mean?",
-        answer: "The grade names describe pod size. Elacher Ghor’s product pages show the size range for each grade so you can choose what suits your kitchen.",
+        question: "What is Elacher Ghor’s Aroma-Lock Pack, and why does it matter?",
+        answer: "Cardamom’s signature fragrance comes from the natural oils inside each pod. Elacher Ghor’s resealable Aroma-Lock packaging is designed to help protect that aroma between uses. Close the pack after opening to help keep the cardamom fresh.",
+        video: "ZG5toIfI0uU",
     },
     {
-        question: "Does a different grade mean a different quality?",
-        answer: "The grades are based on size. The website describes quality as consistent across its cardamom grades.",
+        question: "Why choose branded cardamom instead of loose pods?",
+        answer: "Branded packs make it easier to identify the grade and check the product information on the label. Elacher Ghor selects and grades cardamom by pod size, helping you choose a pack that suits the way you cook.",
+        video: "gm3CCtznbZ0",
     },
     {
-        question: "How should I store cardamom?",
-        answer: "Keep cardamom in a tightly closed container in a cool, dry place, away from direct sunlight and moisture.",
+        question: "Does Elacher Ghor cardamom contain additives?",
+        answer: "Elacher Ghor presents its cardamom as 100% natural. Check the ingredients and product details printed on your pack for the information that applies to the specific product you have purchased.",
+        video: "cJukGtkotjk",
     },
     {
-        question: "How can I use cardamom?",
-        answer: "Cardamom can add fragrance to tea, desserts, and everyday cooking. Visit Recipes for ideas using Elacher Ghor cardamom.",
+        question: "What makes Alleppey Green Cardamom distinctive?",
+        answer: "Growing conditions in the Alleppey region contribute to the character of its green cardamom. Elacher Ghor’s About page shares more about the region and its Geographical Indication recognition.",
+        video: "fE74nLSkFHA",
     },
     {
-        question: "Does adding a product to my bag place an order?",
-        answer: "No. The bag is stored in your browser and this website does not currently take checkout details or payment. Contact customer care to ask about purchasing a product.",
+        question: "Why are Elacher Ghor cardamom packs different colours?",
+        answer: "The colours help identify the grade and pod-size range. Purple, pink, green, orange, and red packs represent different sizes; check each product listing for its exact range. Pod size can vary naturally, while the characteristic cardamom flavour comes from its aromatic seeds.",
+        video: "am3hVLKzTAA",
     },
     {
-        question: "How can I contact customer care?",
-        answer: "Email elacher@ghor.com or call +91 9835110687. For a purchase inquiry, include the product name and any order details you have.",
+        question: "Which cardamom grade should I choose?",
+        answer: "Choose a grade based on the pod size and how you plan to use it. Larger grades work well when you want whole pods to stand out in tea, desserts, or cooking; other sizes may suit grinding and blends. Compare the grade details on the Shop page.",
+        video: "PCiu7hCo-6U",
+    },
+    {
+        question: "How should I store cardamom to keep its aroma?",
+        answer: "Close the resealable pack after each use and store it in a cool, dry place away from heat, sunlight, and moisture. This helps protect the cardamom’s natural fragrance.",
+        video: "mduJOBhteSs",
+    },
+    {
+        question: "Why can cardamom pods lose their green colour?",
+        answer: "Cardamom’s colour can change naturally over time. A change in appearance does not by itself tell you everything about freshness; keep the pack sealed and check the aroma and the product’s best-before information.",
+        video: "04WgN67E_8k",
+    },
+    {
+        question: "Why are the pods in a pack not all exactly the same size?",
+        answer: "Cardamom is graded by size, but it is a natural agricultural product and individual pods can still vary. The grade description gives you the intended size range for the pack.",
+        video: "4ziTlfKpZx4",
     },
 ];
 
@@ -123,19 +144,31 @@ export function FaqPage() {
     return (
         <section className="information-page" aria-labelledby="information-title">
             <div className="information-page__inner">
-                <nav className="information-breadcrumb" aria-label="Breadcrumb">
-                    <Link to={getAppPath("/")}>Home</Link><ChevronRight size={14} /><span>FAQs</span>
-                </nav>
                 <header className="information-header">
                     <p className="information-eyebrow"><Leaf size={14} /> Elacher Ghor · Help centre</p>
                     <h1 id="information-title">Frequently asked questions</h1>
-                    <p>Helpful answers about our cardamom grades, using the website, and getting in touch.</p>
+                    <p>From choosing a cardamom grade to keeping its aroma fresh, find helpful answers about Elacher Ghor and our products.</p>
                 </header>
                 <div className="information-faq-list">
                     {faqItems.map((item, index) => (
                         <details className="information-faq" key={item.question} open={index === 0}>
                             <summary>{item.question}<span aria-hidden="true">+</span></summary>
                             <p>{item.answer}</p>
+                            {item.video && (
+                                <div className="information-faq__video">
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${item.video}`}
+                                        title={`Elacher Ghor FAQ video: ${item.question}`}
+                                        loading="lazy"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    />
+                                    <a href={`https://www.youtube.com/watch?v=${item.video}`} target="_blank" rel="noreferrer">
+                                        Open video on YouTube
+                                    </a>
+                                </div>
+                            )}
                         </details>
                     ))}
                 </div>

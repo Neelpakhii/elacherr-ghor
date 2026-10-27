@@ -1,0 +1,794 @@
+{
+  "blogsPage": {
+    "eyebrow": "Notes from the spice shelf",
+    "title": "Stories with a little more warmth.",
+    "description": "A journal about choosing, cooking with and caring for one of the most aromatic spices in the kitchen.",
+    "heroImage": "https://images.unsplash.com/photo-1642255521852-7e7c742ac58f?auto=format&fit=crop&w=2000&q=85",
+    "heroImageAlt": "Fresh green cardamom pods ready for the kitchen",
+    "heroImageCredit": "Karyna Panchenko",
+    "heroImageCreditUrl": "https://unsplash.com/photos/bF404j83DH0"
+  },
+  "blogs": [
+    {
+      "slug": "why-diwali-and-cardamom-elaichi-have-always-gone-together",
+      "title": "Why Diwali and Cardamom (Elaichi) Have Always Gone Together",
+      "category": "Culture & gifting",
+      "date": "2026-10-09",
+      "readTime": "6 min read",
+      "excerpt": "Cardamom, or elaichi, runs through Diwali: in festive sweets like kheer, barfi and ladoo, on the Lakshmi puja thali, and…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Why_Diwali_and_Cardamom_Elaichi_Have_Always_Gone_Together_1200x1200.png?v=1791549118",
+      "imageAlt": "Image accompanying “Why Diwali and Cardamom (Elaichi) Have Always Gone Together”.",
+      "imageTitle": "Why Diwali and Cardamom (Elaichi) Have Always Gone Together",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "ancient-indian-wellness-habits-and-the-queen-of-spices-that-never-left-them",
+      "title": "Ancient Indian Wellness Habits, and the Queen of Spices That Never Left Them",
+      "category": "Wellness",
+      "date": "2026-10-09",
+      "readTime": "6 min read",
+      "excerpt": "Indian households built wellness into the ordinary day: rising early, drinking something warm first, cooking with whole spices, closing meals…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Ancient_Indian_Wellness_Habits_and_the_Queen_of_Spices_That_Never_Left_Them_1200x1200.png?v=1791548164",
+      "imageAlt": "Image accompanying “Ancient Indian Wellness Habits, and the Queen of Spices That Never Left Them”.",
+      "imageTitle": "Ancient Indian Wellness Habits, and the Queen of Spices That Never Left Them",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-market-analysis-august-2026-quality-trends-demand-growth-and-price-forecast-for-indian-green-cardamom",
+      "title": "Cardamom Market Analysis August 2026: Quality Trends, Demand Growth, and Price Forecast for Indian Green Cardamom",
+      "category": "Industry & trade",
+      "date": "2026-09-10",
+      "readTime": "10 min read",
+      "excerpt": "Comprehensive cardamom market analysis: quality trends improving, domestic demand surging, and strategic supply window for buyers. Full market report with…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/img_20260910_7548fc6d-3865-42d2-a442-43358d850a60_1200x1200.png?v=1789112453",
+      "imageAlt": "Image accompanying “Cardamom Market Analysis August 2026: Quality Trends, Demand Growth, and Price Forecast for Indian Green Cardamom”.",
+      "imageTitle": "Cardamom Market Analysis August 2026: Quality Trends, Demand Growth, and Price Forecast for Indian Green Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "how-to-identify-fresh-high-quality-cardamom-3-simple-checks-before-you-buy",
+      "title": "How to Identify Fresh, High-Quality Cardamom: 3 Simple Checks Before You Buy",
+      "category": "Buying guide",
+      "date": "2026-08-21",
+      "readTime": "3 min read",
+      "excerpt": "Buying cardamom may seem simple, but choosing the right one can make a real difference to the aroma and flavour…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_New-01_c4ea575e-1608-4490-b61a-18bd16e55c2d_1200x1200.jpg?v=1788352811",
+      "imageAlt": "Image accompanying “How to Identify Fresh, High-Quality Cardamom: 3 Simple Checks Before You Buy”.",
+      "imageTitle": "How to Identify Fresh, High-Quality Cardamom: 3 Simple Checks Before You Buy",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-in-baking-the-spice-your-cakes-and-cookies-have-been-missing",
+      "title": "Cardamom in Baking: The Spice Your Cakes and Cookies Have Been Missing",
+      "category": "In the kitchen",
+      "date": "2026-08-21",
+      "readTime": "4 min read",
+      "excerpt": "Think of your favourite cake, cookie or bun. Now add the warm, rich aroma of freshly crushed cardamom. Suddenly, something…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_New-02_1200x1200.jpg?v=1787298934",
+      "imageAlt": "Image accompanying “Cardamom in Baking: The Spice Your Cakes and Cookies Have Been Missing”.",
+      "imageTitle": "Cardamom in Baking: The Spice Your Cakes and Cookies Have Been Missing",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "why-origin-matters-in-green-cardamom",
+      "title": "Why Origin Matters in Green Cardamom",
+      "category": "Buying guide",
+      "date": "2026-08-21",
+      "readTime": "5 min read",
+      "excerpt": "Ask most people what makes one spice better than another, and they will talk about brand, or price, or how…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_New-03_8eb84282-3361-42e0-b74b-4ff12e752abe_1200x1200.jpg?v=1788352884",
+      "imageAlt": "Image accompanying “Why Origin Matters in Green Cardamom”.",
+      "imageTitle": "Why Origin Matters in Green Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-rakhi-a-first-of-its-kind-rakhi-that-brings-aroma-tradition-and-blessings-together",
+      "title": "Cardamom Rakhi: A First-of-Its-Kind Rakhi That Brings Aroma, Tradition and Blessings Together",
+      "category": "Culture & gifting",
+      "date": "2026-08-06",
+      "readTime": "3 min read",
+      "excerpt": "The Cardamom Rakhi is a beautiful fusion of heritage, innovation and craftsmanship. Imagine receiving a Rakhi that looks elegant, has…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/1_eeff77b0-ae5c-49b8-a8b9-bf363f9872c0_1200x1200.jpg?v=1786016825",
+      "imageAlt": "Image accompanying “Cardamom Rakhi: A First-of-Its-Kind Rakhi That Brings Aroma, Tradition and Blessings Together”.",
+      "imageTitle": "Cardamom Rakhi: A First-of-Its-Kind Rakhi That Brings Aroma, Tradition and Blessings Together",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-spice-that-never-forgets-to-say-welcome",
+      "title": "The Spice That Never Forgets to Say Welcome",
+      "category": "Culture & gifting",
+      "date": "2026-07-13",
+      "readTime": "3 min read",
+      "excerpt": "Long before cardamom became a kitchen staple, it held a place of honour in the tradition of welcome. From a…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture2_b03bf60e-b84d-4457-ba87-5e367b6a377b_1200x1200.jpg?v=1783935063",
+      "imageAlt": "Image accompanying “The Spice That Never Forgets to Say Welcome”.",
+      "imageTitle": "The Spice That Never Forgets to Say Welcome",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "why-the-worlds-best-chefs-trust-only-one-cardamom",
+      "title": "Why the World's Best Chefs Trust Only One Cardamom",
+      "category": "Cardamom stories",
+      "date": "2026-07-13",
+      "readTime": "3 min read",
+      "excerpt": "Ask any seasoned chef what separates an ordinary dish from an unforgettable one, and the answer often comes down to…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Picture1_e817124b-6a9b-4af4-aea1-17b8b6160adf_1200x1200.jpg?v=1783935081",
+      "imageAlt": "Image accompanying “Why the World's Best Chefs Trust Only One Cardamom”.",
+      "imageTitle": "Why the World's Best Chefs Trust Only One Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "5-unexpected-foods-that-taste-better-with-cardamom",
+      "title": "5 Unexpected Foods That Taste Better With Cardamom",
+      "category": "In the kitchen",
+      "date": "2026-06-30",
+      "readTime": "4 min read",
+      "excerpt": "Cardamom belongs to the second kind. A single pod, barely the size of a fingernail, carries enough oil to quietly…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Untitled-1_1200x1200.jpg?v=1782800469",
+      "imageAlt": "Image accompanying “5 Unexpected Foods That Taste Better With Cardamom”.",
+      "imageTitle": "5 Unexpected Foods That Taste Better With Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "a-pinch-of-cardamom-small-change-big-impact",
+      "title": "A pinch of cardamom: Small change, big impact",
+      "category": "Cardamom stories",
+      "date": "2026-05-18",
+      "readTime": "2 min read",
+      "excerpt": "In cooking, it’s often the smallest ingredients that create the biggest impact. Cardamom is a perfect example of this. Just…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_8_1200x1200.jpg?v=1779088665",
+      "imageAlt": "Image accompanying “A pinch of cardamom: Small change, big impact”.",
+      "imageTitle": "A pinch of cardamom: Small change, big impact",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "green-cardamom-and-wellness-a-natural-choice-for-everyday-living",
+      "title": "Green cardamom and wellness: A natural choice for everyday living",
+      "category": "Wellness",
+      "date": "2026-05-18",
+      "readTime": "2 min read",
+      "excerpt": "As people move towards healthier lifestyles, natural ingredients are gaining importance. Green cardamom, long used in Indian households, is now…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_7_1200x1200.jpg?v=1779088627",
+      "imageAlt": "Image accompanying “Green cardamom and wellness: A natural choice for everyday living”.",
+      "imageTitle": "Green cardamom and wellness: A natural choice for everyday living",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "easy-recipes-using-green-cardamom-for-everyday-cooking",
+      "title": "Easy recipes using green cardamom for everyday cooking",
+      "category": "In the kitchen",
+      "date": "2026-04-29",
+      "readTime": "2 min read",
+      "excerpt": "Green cardamom is one of the most versatile spices in Indian cooking. It transforms a dish completely. From traditional recipes…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/EAC_blog_4_1200x1200.jpg?v=1777465524",
+      "imageAlt": "Image accompanying “Easy recipes using green cardamom for everyday cooking”.",
+      "imageTitle": "Easy recipes using green cardamom for everyday cooking",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "green-cardamom-after-meals-is-a-timeless-tradition",
+      "title": "Green cardamom after meals is a timeless tradition",
+      "category": "In the kitchen",
+      "date": "2026-04-29",
+      "readTime": "2 min read",
+      "excerpt": "In many Indian households, meals don’t truly end until a small ritual is completed, having a pod of green cardamom.…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/EAC_Blog_5_db45674b-9b45-4a3f-8cbb-309c0bf99ff1_1200x1200.jpg?v=1777465844",
+      "imageAlt": "Image accompanying “Green cardamom after meals is a timeless tradition”.",
+      "imageTitle": "Green cardamom after meals is a timeless tradition",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "start-your-day-with-green-cardamom-a-simple-wellness-habit",
+      "title": "Start your day with green cardamom. A simple wellness habit",
+      "category": "Wellness",
+      "date": "2026-03-25",
+      "readTime": "2 min read",
+      "excerpt": "Mornings in India often begin with familiar routines, the aroma of chai, the quiet calm before the day unfolds. Adding…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Emperor_Akbar_Cardamom_SEO_Blog_03_1200x1200.jpg?v=1774434932",
+      "imageAlt": "Image accompanying “Start your day with green cardamom. A simple wellness habit”.",
+      "imageTitle": "Start your day with green cardamom. A simple wellness habit",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-in-everyday-life-a-superfood-you-already-have",
+      "title": "Cardamom in everyday life, a superfood you already have.",
+      "category": "In the kitchen",
+      "date": "2026-03-25",
+      "readTime": "2 min read",
+      "excerpt": "In Indian kitchens, some ingredients don’t just add flavour, they carry a story. Cardamom is one of them. From festive…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Emperor_Akbar_Cardamom_SEO_Blog_02_1200x1200.jpg?v=1774434907",
+      "imageAlt": "Image accompanying “Cardamom in everyday life, a superfood you already have.”.",
+      "imageTitle": "Cardamom in everyday life, a superfood you already have.",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "it-s-the-little-things-that-make-the-difference",
+      "title": "It’s the Little Things That Make the Difference",
+      "category": "Culture & gifting",
+      "date": "2026-03-25",
+      "readTime": "3 min read",
+      "excerpt": "There’s something about small habits.They simply slip into your day, quietly becoming a part of how you live. Like that…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Emperor_Akbar_Cardamom_SEO_Blog_01_1200x1200.jpg?v=1774434871",
+      "imageAlt": "Image accompanying “It’s the Little Things That Make the Difference”.",
+      "imageTitle": "It’s the Little Things That Make the Difference",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-shagun-of-prosperity",
+      "title": "Emperor Akbar Cardamom - Shagun of Prosperity",
+      "category": "Culture & gifting",
+      "date": "2025-12-05",
+      "readTime": "2 min read",
+      "excerpt": "In our tradition and culture, gifts carry more than just material value; they carry blessings, meaning and emotion. Among them,…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Shagun_800x600_7731d336-5027-4b6c-9d19-c53a242869dc_1200x1200.jpg?v=1765025400",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom - Shagun of Prosperity”.",
+      "imageTitle": "Emperor Akbar Cardamom - Shagun of Prosperity",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "what-makes-alleppey-green-cardamom-so-special-compared-to-guatemalan-cardamom",
+      "title": "What makes Alleppey Green Cardamom so special compared to Guatemalan Cardamom?",
+      "category": "Cardamom stories",
+      "date": "2025-12-05",
+      "readTime": "3 min read",
+      "excerpt": "Alleppey Green Cardamom isn’t famous just because of its variety, it is the perfect combination of soil, weather and expert…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_02_Image_1200x1200.jpg?v=1765025462",
+      "imageAlt": "Image accompanying “What makes Alleppey Green Cardamom so special compared to Guatemalan Cardamom?”.",
+      "imageTitle": "What makes Alleppey Green Cardamom so special compared to Guatemalan Cardamom?",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "alleppey-green-cardamom-the-spice-with-a-story",
+      "title": "Alleppey Green Cardamom: The spice with a story",
+      "category": "Cardamom stories",
+      "date": "2025-12-05",
+      "readTime": "4 min read",
+      "excerpt": "When people hear the name “Alleppey Green Cardamom,” they often imagine it being grown in the lush fields of Alleppey.…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_01_Image_02014e2e-6c03-46d1-b4eb-cb059a5c2f9e_1200x1200.jpg?v=1765025494",
+      "imageAlt": "Image accompanying “Alleppey Green Cardamom: The spice with a story”.",
+      "imageTitle": "Alleppey Green Cardamom: The spice with a story",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "can-cardamom-help-you-sleep-better",
+      "title": "Can Cardamom Help You Sleep Better?",
+      "category": "Wellness",
+      "date": "2025-10-13",
+      "readTime": "2 min read",
+      "excerpt": "We’ve all had those nights tossing, turning, staring at the ceiling, waiting for sleep to arrive. In today’s fast-paced world,…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Sleep_Better_Blog_Image_1200x1200.jpg?v=1760361923",
+      "imageAlt": "Image accompanying “Can Cardamom Help You Sleep Better?”.",
+      "imageTitle": "Can Cardamom Help You Sleep Better?",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "from-dallah-to-cup-why-quality-cardamom-defines-arabic-coffee",
+      "title": "From Dallah to Cup: Why Quality Cardamom Defines Arabic Coffee",
+      "category": "In the kitchen",
+      "date": "2025-08-08",
+      "readTime": "3 min read",
+      "excerpt": "In the Arab world, coffee is more than just a drink. It is a tradition, a gesture of hospitality and…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Gahwa_Blog_02_517f2073-0310-47c4-97bc-c4222a60acec_1200x1200.jpg?v=1754638624",
+      "imageAlt": "Image accompanying “From Dallah to Cup: Why Quality Cardamom Defines Arabic Coffee”.",
+      "imageTitle": "From Dallah to Cup: Why Quality Cardamom Defines Arabic Coffee",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "surprising-health-benefits-of-green-cardamom",
+      "title": "Surprising Health Benefits of Green Cardamom",
+      "category": "Wellness",
+      "date": "2025-08-08",
+      "readTime": "4 min read",
+      "excerpt": "When you think of cardamom, your mind probably jumps to a hot cup of masala chai or the aroma of…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/cardamom_1200x1200.jpg?v=1754639238",
+      "imageAlt": "Image accompanying “Surprising Health Benefits of Green Cardamom”.",
+      "imageTitle": "Surprising Health Benefits of Green Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "what-every-retailer-should-ask-before-choosing-a-cardamom-supplier",
+      "title": "What Every Retailer Should Ask Before Choosing a Cardamom Supplier",
+      "category": "Industry & trade",
+      "date": "2025-07-15",
+      "readTime": "5 min read",
+      "excerpt": "Cardamom, often hailed as the \"Queen of Spices,\" is a prized ingredient with a rich history and versatile applications in…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Choosing-a-Cardamom-Supplier-800-x-600_7b6c6e54-427f-4079-9bfe-a340f8bc7f94_1200x1200.jpg?v=1752564718",
+      "imageAlt": "Image accompanying “What Every Retailer Should Ask Before Choosing a Cardamom Supplier”.",
+      "imageTitle": "What Every Retailer Should Ask Before Choosing a Cardamom Supplier",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "5-days-5-rituals-1-magical-ingredient-a-wellness-journey-with-emperor-akbar-cardamom",
+      "title": "5 Days. 5 Rituals. 1 Magical Ingredient. A Wellness Journey with Emperor Akbar Cardamom",
+      "category": "Wellness",
+      "date": "2025-06-16",
+      "readTime": "3 min read",
+      "excerpt": "In a world that moves fast, where wellness is often reduced to hacks and shortcuts, we invite you to slow…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Yoga_day_Linkedin_post-04_1200x1200.jpg?v=1750078246",
+      "imageAlt": "Image accompanying “5 Days. 5 Rituals. 1 Magical Ingredient. A Wellness Journey with Emperor Akbar Cardamom”.",
+      "imageTitle": "5 Days. 5 Rituals. 1 Magical Ingredient. A Wellness Journey with Emperor Akbar Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "how-cardamom-elevates-indian-cuisine-a-little-pod-with-magical-flavour",
+      "title": "How Cardamom Elevates Indian Cuisine: A Little Pod with Magical Flavour",
+      "category": "In the kitchen",
+      "date": "2025-06-07",
+      "readTime": "4 min read",
+      "excerpt": "When you think of Indian cuisine, what comes to mind? Rich curries, aromatic biryanis, piping hot chai? Look a little…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/How_Cardamom_Elevates_Indian_Cuisine_1200x1200.jpg?v=1749281380",
+      "imageAlt": "Image accompanying “How Cardamom Elevates Indian Cuisine: A Little Pod with Magical Flavour”.",
+      "imageTitle": "How Cardamom Elevates Indian Cuisine: A Little Pod with Magical Flavour",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "shagun-of-prosperity",
+      "title": "Shagun of Prosperity",
+      "category": "Culture & gifting",
+      "date": "2025-01-02",
+      "readTime": "4 min read",
+      "excerpt": "At Emperor Akbar Cardamom, we are delighted to announce the launch of our latest campaign, ‘Shagun of Prosperity’. This campaign…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_Banner_900_x_600_02_Shagun_of_Prosperity_1200x1200.jpg?v=1735824852",
+      "imageAlt": "Image accompanying “Shagun of Prosperity”.",
+      "imageTitle": "Shagun of Prosperity",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-a-gift-of-timeless-elegance",
+      "title": "Emperor Akbar Cardamom - A Gift of Timeless Elegance",
+      "category": "Culture & gifting",
+      "date": "2025-01-02",
+      "readTime": "4 min read",
+      "excerpt": "At Emperor Akbar Cardamom, we believe that gifting should be a heartfelt experience, one that reflects thoughtfulness, care and meaning.…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Blog_Banner_900_x_600_01_Gifting_Blog_1200x1200.jpg?v=1735824706",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom - A Gift of Timeless Elegance”.",
+      "imageTitle": "Emperor Akbar Cardamom - A Gift of Timeless Elegance",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-partners-with-renowned-chefs-to-celebrate-aroma",
+      "title": "Emperor Akbar Cardamom Partners with Renowned Chefs to Celebrate Aroma",
+      "category": "Cardamom stories",
+      "date": "2024-10-30",
+      "readTime": "2 min read",
+      "excerpt": "Emperor Akbar Cardamom, a flagship brand of Samex India Private Limited, known for its high-quality cardamom sourced from the finest…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/chef_chabchoul_chef_hala_ayash_chef_ammar_1200x1200.jpg?v=1730267113",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom Partners with Renowned Chefs to Celebrate Aroma”.",
+      "imageTitle": "Emperor Akbar Cardamom Partners with Renowned Chefs to Celebrate Aroma",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-manufacturers-in-india-cultivating-the-queen-of-spices",
+      "title": "Cardamom Manufacturers in India: Cultivating the Queen of Spices",
+      "category": "Industry & trade",
+      "date": "2024-09-27",
+      "readTime": "3 min read",
+      "excerpt": "India, the land of spices, holds a special place in the global spice market, and among its most prized exports…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Image_2_1200x1200.jpg?v=1727443821",
+      "imageAlt": "Image accompanying “Cardamom Manufacturers in India: Cultivating the Queen of Spices”.",
+      "imageTitle": "Cardamom Manufacturers in India: Cultivating the Queen of Spices",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-exporters-in-kerala-the-spice-route-of-the-world",
+      "title": "Cardamom Exporters in Kerala: The Spice Route of the World",
+      "category": "Industry & trade",
+      "date": "2024-09-27",
+      "readTime": "3 min read",
+      "excerpt": "Kerala, often referred to as the \"Spice Garden of India,\" has long been celebrated for its rich heritage in spice…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Image_1_1200x1200.jpg?v=1727443557",
+      "imageAlt": "Image accompanying “Cardamom Exporters in Kerala: The Spice Route of the World”.",
+      "imageTitle": "Cardamom Exporters in Kerala: The Spice Route of the World",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-colour-grading-guide-to-buying-cardamom",
+      "title": "The Colour Grading Guide to Buying Cardamom",
+      "category": "Buying guide",
+      "date": "2024-06-19",
+      "readTime": "6 min read",
+      "excerpt": "‘One size fits all’ goes the old cliché. However, in so many of life’s situations, that is never an ideal.…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/The_Colour_Grading_Guide_to_Buying_Cardamom_1200x1200.jpg?v=1718802641",
+      "imageAlt": "Image accompanying “The Colour Grading Guide to Buying Cardamom”.",
+      "imageTitle": "The Colour Grading Guide to Buying Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-small-wonder-called-alleppey-green-cardamom",
+      "title": "The Small Wonder Called Alleppey Green Cardamom",
+      "category": "Cardamom stories",
+      "date": "2024-05-06",
+      "readTime": "3 min read",
+      "excerpt": "Sometimes, small and seemingly insignificant things do things that are far beyond their capacity and stature. Take the flimsy little…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/WhatsApp_Image_2024-05-06_at_11.26.46_cf3440f8_1200x1200.jpg?v=1715690307",
+      "imageAlt": "Image accompanying “The Small Wonder Called Alleppey Green Cardamom”.",
+      "imageTitle": "The Small Wonder Called Alleppey Green Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "discover-the-finest-best-green-elaichi-in-india-for-exquisite-culinary-delights",
+      "title": "Discover the Finest: Best Green Elaichi in India for Exquisite Culinary Delights",
+      "category": "Cardamom stories",
+      "date": "2024-01-06",
+      "readTime": "4 min read",
+      "excerpt": "As consumers savour the exquisite aroma and rich flavours in their culinary creations, they are partaking in a legacy that…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1060990562_1200x1200.jpg?v=1715690299",
+      "imageAlt": "Image accompanying “Discover the Finest: Best Green Elaichi in India for Exquisite Culinary Delights”.",
+      "imageTitle": "Discover the Finest: Best Green Elaichi in India for Exquisite Culinary Delights",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "spice-exporters-in-india-unveiling-the-majesty-of-emperor-akbar-cardamom",
+      "title": "Spice Exporters in India: Unveiling the Majesty of Emperor Akbar Cardamom",
+      "category": "Industry & trade",
+      "date": "2023-11-29",
+      "readTime": "4 min read",
+      "excerpt": "The vast landscape of spice exporters in India, Emperor Akbar Cardamom emerges as a beacon of quality, trust, and excellence.",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Exporter-Cardamom_01_1200x1200.jpg?v=1715690234",
+      "imageAlt": "Image accompanying “Spice Exporters in India: Unveiling the Majesty of Emperor Akbar Cardamom”.",
+      "imageTitle": "Spice Exporters in India: Unveiling the Majesty of Emperor Akbar Cardamom",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "unveiling-the-finest-aroma-best-cardamom-in-mumbai-india",
+      "title": "Unveiling the Finest Aroma: Best Cardamom in Mumbai, India",
+      "category": "Cardamom stories",
+      "date": "2023-11-29",
+      "readTime": "4 min read",
+      "excerpt": "As the best cardamom in Mumbai, Emperor Akbar Cardamom embraces the city's love for exquisite taste and aromatic indulgence.",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Best_Cardamom_in_Mumbai_1200x1200.jpg?v=1715690223",
+      "imageAlt": "Image accompanying “Unveiling the Finest Aroma: Best Cardamom in Mumbai, India”.",
+      "imageTitle": "Unveiling the Finest Aroma: Best Cardamom in Mumbai, India",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-largest-exporter-of-green-cardamom-from-india",
+      "title": "Emperor Akbar Cardamom - Largest exporter of green cardamom from India",
+      "category": "Industry & trade",
+      "date": "2023-09-26",
+      "readTime": "3 min read",
+      "excerpt": "Discover the rich aroma, flavor, and heritage that accompany every pack and embark on a culinary adventure with India's premier…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/largest-exporter-of-green-cardamom-from-india_1200x1200.jpg?v=1715690211",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom - Largest exporter of green cardamom from India”.",
+      "imageTitle": "Emperor Akbar Cardamom - Largest exporter of green cardamom from India",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-indias-biggest-green-cardamom-supplier",
+      "title": "Emperor Akbar Cardamom - India's Biggest Green Cardamom Supplier",
+      "category": "Industry & trade",
+      "date": "2023-07-31",
+      "readTime": "4 min read",
+      "excerpt": "Experience the finest selection of green cardamom as you journey with Emperor Akbar Cardamom. As the biggest supplier of green…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/EAC_Blog_India_s_Biggest_Green_Cardamom_Supplier_1200x1200.jpg?v=1715690201",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom - India's Biggest Green Cardamom Supplier”.",
+      "imageTitle": "Emperor Akbar Cardamom - India's Biggest Green Cardamom Supplier",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "aroma-of-life-celebrate-birthdays-with-emperor-akbar-cardamom-delights",
+      "title": "Aroma of Life: Celebrate Birthdays with Emperor Akbar Cardamom Delights",
+      "category": "Culture & gifting",
+      "date": "2023-07-31",
+      "readTime": "3 min read",
+      "excerpt": "Birthdays are special occasions that deserve to be celebrated in the most delightful way. And what better way to elevate…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/swedish-cardamom-buns_1200x1200.jpg?v=1715690188",
+      "imageAlt": "Image accompanying “Aroma of Life: Celebrate Birthdays with Emperor Akbar Cardamom Delights”.",
+      "imageTitle": "Aroma of Life: Celebrate Birthdays with Emperor Akbar Cardamom Delights",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "emperor-akbar-cardamom-a-royal-journey-from-harvest-to-export",
+      "title": "Emperor Akbar Cardamom - A Royal Journey from Harvest to Export",
+      "category": "Industry & trade",
+      "date": "2023-07-03",
+      "readTime": "4 min read",
+      "excerpt": "Welcome to the world of cardamom, where Emperor Akbar Cardamom reigns supreme as the top exporter in India and the…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/Export_1200x1200.jpg?v=1715690179",
+      "imageAlt": "Image accompanying “Emperor Akbar Cardamom - A Royal Journey from Harvest to Export”.",
+      "imageTitle": "Emperor Akbar Cardamom - A Royal Journey from Harvest to Export",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "say-goodbye-to-bad-habits-and-inculcate-the-habit-of-health-in-your-diet-today",
+      "title": "Say Goodbye To Bad Habits And Inculcate The Habit Of Health In Your Diet Today",
+      "category": "Wellness",
+      "date": "2023-06-21",
+      "readTime": "4 min read",
+      "excerpt": "People tend to become slaves of their own habits - whether they’re good or bad. What remains essential for a…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/say-goodbye-to-bad-habits-and-inculcate-the-habit-of-health-in-your-diet-today_1200x1200.jpg?v=1715690164",
+      "imageAlt": "Image accompanying “Say Goodbye To Bad Habits And Inculcate The Habit Of Health In Your Diet Today”.",
+      "imageTitle": "Say Goodbye To Bad Habits And Inculcate The Habit Of Health In Your Diet Today",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "quality-with-responsibility",
+      "title": "QUALITY WITH RESPONSIBILITY",
+      "category": "Buying guide",
+      "date": "2021-08-05",
+      "readTime": "5 min read",
+      "excerpt": "Here is a case where there’s world-class responsibility inside the pack, as well as on the pack itself!",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/QUALITY_WITH_RESPONSIBILITY_8891b856-dd7d-4a42-95d7-0f023a3f0709_1200x1200.jpg?v=1653472460",
+      "imageAlt": "Image accompanying “QUALITY WITH RESPONSIBILITY”.",
+      "imageTitle": "QUALITY WITH RESPONSIBILITY",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-united-colours-of-cardamom",
+      "title": "THE UNITED COLOURS OF CARDAMOM",
+      "category": "Buying guide",
+      "date": "2021-08-05",
+      "readTime": "5 min read",
+      "excerpt": "Size wise, the cardamom pods are sealed into colour-coded packaging for easy identification. Pick your colour!",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/THE_UNITED_COLOURS_OF_CARDAMOM_1200x1200.jpg?v=1653474811",
+      "imageAlt": "Image accompanying “THE UNITED COLOURS OF CARDAMOM”.",
+      "imageTitle": "THE UNITED COLOURS OF CARDAMOM",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-secret-of-the-world-s-best-alleppey-green-cardamom",
+      "title": "THE SECRET OF THE WORLD’S BEST ALLEPPEY GREEN CARDAMOM",
+      "category": "Cardamom stories",
+      "date": "2021-08-05",
+      "readTime": "3 min read",
+      "excerpt": "The superior quality green cardamom that comes from Alleppey simply cannot come from anywhere else! And hence, Emperor Akbar’s produce…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_387538261_1200x1200.jpg?v=1628102261",
+      "imageAlt": "Image accompanying “THE SECRET OF THE WORLD’S BEST ALLEPPEY GREEN CARDAMOM”.",
+      "imageTitle": "THE SECRET OF THE WORLD’S BEST ALLEPPEY GREEN CARDAMOM",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-perfect-gift-of-health",
+      "title": "THE PERFECT GIFT OF HEALTH",
+      "category": "Wellness",
+      "date": "2021-08-05",
+      "readTime": "3 min read",
+      "excerpt": "With the focus shifting so conclusively to health, perhaps the best gift you can give anyone today is a ‘Gift…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/THE_PERFECT_GIFT_OF_HEALTH_1200x1200.jpg?v=1653474768",
+      "imageAlt": "Image accompanying “THE PERFECT GIFT OF HEALTH”.",
+      "imageTitle": "THE PERFECT GIFT OF HEALTH",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "the-art-of-buying-cardamom",
+      "title": "THE ART OF BUYING CARDAMOM",
+      "category": "Buying guide",
+      "date": "2021-08-04",
+      "readTime": "7 min read",
+      "excerpt": "As a discerning buyer and someone concerned for your family’s health and wellbeing, here’s what you should know when it…",
+      "image": "https://www.emperorakbar.com/cdn/shop/articles/shutterstock_1823890088_1200x1200.jpg?v=1680864192",
+      "imageAlt": "Image accompanying “THE ART OF BUYING CARDAMOM”.",
+      "imageTitle": "THE ART OF BUYING CARDAMOM",
+      "sections": [],
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "slug": "choose-fragrant-cardamom",
+      "title": "Four small signs of fragrant cardamom",
+      "category": "Buying guide",
+      "date": "2026-09-18",
+      "readTime": "4 min read",
+      "excerpt": "A simple guide to looking, smelling and storing cardamom so its character stays part of the meal.",
+      "image": "https://images.unsplash.com/photo-1642255521852-7e7c742ac58f?auto=format&fit=crop&w=1400&q=85",
+      "imageAlt": "Green cardamom pods with aromatic whole spices",
+      "imageCredit": "Karyna Panchenko",
+      "imageCreditUrl": "https://unsplash.com/photos/bF404j83DH0",
+      "sections": [
+        {
+          "heading": "Start with the pod",
+          "paragraphs": [
+            "Choose pods that feel intact and substantial for their size. Natural variation in colour is normal; freshness is better judged by the pod's aroma and condition than by a single shade of green.",
+            "If the pods are badly crushed or very dry, some of their aroma may already have escaped."
+          ]
+        },
+        {
+          "heading": "Let the aroma tell you more",
+          "paragraphs": [
+            "Crush one pod gently between your fingers. A good pod should open with a lively, sweet, citrus-like fragrance. A faint or flat smell can be a sign that it has been stored for a long time or left exposed to air."
+          ]
+        },
+        {
+          "heading": "Keep it whole until you need it",
+          "paragraphs": [
+            "Whole pods protect their seeds from air and light. Store them in a tightly closed container in a cool, dry cupboard, then crack or grind only the amount you plan to use."
+          ]
+        },
+        {
+          "heading": "A little goes a long way",
+          "paragraphs": [
+            "Cardamom can be gently fragrant or boldly aromatic depending on how much you use. Start small, taste, and add more if the dish needs it."
+          ]
+        }
+      ],
+      "featured": true
+    },
+    {
+      "slug": "whole-or-ground-cardamom",
+      "title": "Whole or ground? How to use cardamom in the kitchen",
+      "category": "Kitchen notes",
+      "date": "2026-08-27",
+      "readTime": "5 min read",
+      "excerpt": "Choose the right form for chai, a slow-cooked curry, a delicate dessert or a quick weekday bake.",
+      "image": "https://sandhyahariharan.co.uk/wp-content/uploads/2023/02/ground-cardamom-step-by-step-5.jpg",
+      "imageAlt": "A spiced tea served in a cup",
+      "imageCredit": "Ananthan Chithiraikani",
+      "imageCreditUrl": "https://unsplash.com/photos/DPBWHb2X81w",
+      "sections": [
+        {
+          "heading": "Whole pods for a slow infusion",
+          "paragraphs": [
+            "Use whole, lightly cracked pods when you want cardamom to perfume a liquid over time. They work beautifully in chai, rice, custards and slow-simmered sauces, and can be removed before serving."
+          ]
+        },
+        {
+          "heading": "Ground seeds for an even finish",
+          "paragraphs": [
+            "Freshly ground seeds blend smoothly into cake batter, cookie dough and spice mixes. Grind only what you need so the aroma does not fade while it waits in the jar."
+          ]
+        },
+        {
+          "heading": "Match the form to the dish",
+          "paragraphs": [
+            "A whole pod gives a gentle, gradual note. Ground cardamom reaches every bite and tastes more immediate. When a recipe is flexible, begin with a small amount and adjust to taste."
+          ]
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "slug": "cardamom-in-everyday-rituals",
+      "title": "The everyday rituals that begin with elaichi",
+      "category": "Culture & ritual",
+      "date": "2026-08-05",
+      "readTime": "4 min read",
+      "excerpt": "A crushed pod in morning tea, a pinch in payasam: cardamom makes ordinary pauses feel considered.",
+      "image": "https://images.unsplash.com/photo-1683533698664-12ee473e8c9d?auto=format&fit=crop&w=1400&q=85",
+      "imageAlt": "A warm cup of Indian chai with spices",
+      "imageCredit": "Ananthan Chithiraikani",
+      "imageCreditUrl": "https://unsplash.com/photos/DPBWHb2X81w",
+      "sections": [
+        {
+          "heading": "A familiar cup, made your own",
+          "paragraphs": [
+            "In many homes, cardamom is part of the tea tin and the morning routine. A pod or two can make the kitchen smell welcoming before the first cup reaches the table."
+          ]
+        },
+        {
+          "heading": "The finishing touch in sweets",
+          "paragraphs": [
+            "A small pinch of ground elaichi can lift rice pudding, milk sweets and festive bakes. Add it near the end of cooking so its delicate fragrance stays present."
+          ]
+        },
+        {
+          "heading": "Share the moment",
+          "paragraphs": [
+            "The best rituals are rarely complicated. Brew an extra cup, set out a small plate of something sweet and let the conversation take its time."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cardamom-in-savoury-cooking",
+      "title": "Cardamom belongs in savoury cooking, too",
+      "category": "In the kitchen",
+      "date": "2026-07-12",
+      "readTime": "5 min read",
+      "excerpt": "From fragrant rice to a slow-cooked stew, whole pods add a floral, warm note beyond dessert.",
+      "image": "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=1400&q=85",
+      "imageAlt": "Biryani rice layered with herbs and spices",
+      "imageCredit": "Mario Raj",
+      "imageCreditUrl": "https://unsplash.com/photos/a-white-bowl-filled-with-rice-and-meat-ysmeQt1dzcw",
+      "sections": [
+        {
+          "heading": "Let the whole spice bloom",
+          "paragraphs": [
+            "Add lightly bruised pods to warm oil or ghee with other whole spices. A short, gentle sizzle helps release their fragrance before the rice, vegetables or broth go in."
+          ]
+        },
+        {
+          "heading": "Keep the balance",
+          "paragraphs": [
+            "Cardamom is distinctive, so pair it with intention. Cinnamon, cloves, cumin and black pepper make familiar companions, but the right balance depends on the dish."
+          ]
+        },
+        {
+          "heading": "Finish with freshness",
+          "paragraphs": [
+            "For a brighter note, crush a seed or two and stir them in just before serving. The aroma will meet the steam as the dish reaches the table."
+          ]
+        }
+      ]
+    }
+  ]
+}

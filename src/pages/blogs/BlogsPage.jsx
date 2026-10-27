@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getAppPath } from "../../config";
+import { getAppPath, getImageUrl } from "../../config";
 import useEditorialData from "../../hooks/useEditorialData.js";
 import "../editorial.css";
 
 const EMPTY_LIST = [];
+const BLOGS_PER_BATCH = 6;
 
 const formatDate = (value) => new Intl.DateTimeFormat("en", {
     month: "long",
@@ -17,6 +18,7 @@ const BlogsPage = () => {
     const { data, error } = useEditorialData();
     const [category, setCategory] = useState("All stories");
     const [query, setQuery] = useState("");
+    const [visibleCount, setVisibleCount] = useState(BLOGS_PER_BATCH);
     const articles = data?.blogs ?? EMPTY_LIST;
     const page = data?.blogsPage;
     const categories = useMemo(
@@ -34,6 +36,7 @@ const BlogsPage = () => {
     }, [articles, category, query]);
     const featured = visibleArticles.find((article) => article.featured) || visibleArticles[0];
     const remaining = visibleArticles.filter((article) => article.slug !== featured?.slug);
+    const shownArticles = remaining.slice(0, visibleCount);
 
     if (error) return <main className="editorial-message" role="alert">{error}</main>;
     if (!page) return <main className="editorial-message" aria-live="polite">Loading stories…</main>;
@@ -59,16 +62,22 @@ const BlogsPage = () => {
                         <h2>Good things to know</h2>
                         <p>Stories, useful guides and ideas to bring more aroma to the everyday.</p>
                     </div>
-                    <label className="editorial-search">
+                    <form className="editorial-search" role="search" onSubmit={(event) => event.preventDefault()}>
                         <Search size={18} aria-hidden="true" />
                         <input
                             type="search"
                             value={query}
-                            onChange={(event) => setQuery(event.target.value)}
+                            onChange={(event) => {
+                                setQuery(event.target.value);
+                                setVisibleCount(BLOGS_PER_BATCH);
+                            }}
                             placeholder="Search the journal"
                             aria-label="Search journal articles"
                         />
-                    </label>
+                        <button type="submit" aria-label="Search journal articles">
+                            <ArrowRight size={22} aria-hidden="true" />
+                        </button>
+                    </form>
                 </div>
                 <div className="journal-filter-row" aria-label="Filter stories by topic">
                     {categories.map((item) => (
@@ -76,7 +85,10 @@ const BlogsPage = () => {
                             type="button"
                             key={item}
                             className={category === item ? "is-active" : ""}
-                            onClick={() => setCategory(item)}
+                            onClick={() => {
+                                setCategory(item);
+                                setVisibleCount(BLOGS_PER_BATCH);
+                            }}
                             aria-pressed={category === item}
                         >
                             {item}
@@ -87,7 +99,7 @@ const BlogsPage = () => {
                 {featured ? (
                     <article className="journal-featured">
                         <Link className="journal-featured__image" to={getAppPath(`/blogs/${featured.slug}`)}>
-                            <img src={featured.image} alt={featured.imageAlt || featured.title || "Featured cardamom story"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom story"} loading="lazy" />
+                            <img src={getImageUrl(featured.image)} alt={featured.imageAlt || featured.title || "Featured cardamom story"} title={featured.imageTitle || featured.imageAlt || featured.title || "Featured cardamom story"} loading="lazy" />
                         </Link>
                         <div className="journal-featured__body">
                             <p className="editorial-card-kicker">{featured.category} <span>·</span> {featured.readTime}</p>
@@ -103,12 +115,12 @@ const BlogsPage = () => {
                     <p className="editorial-empty">No stories match that search. Try another topic.</p>
                 )}
 
-                {remaining.length > 0 && (
+                {shownArticles.length > 0 && (
                     <div className="editorial-card-grid editorial-card-grid--journal">
-                        {remaining.map((article) => (
+                        {shownArticles.map((article) => (
                             <article className="editorial-card" key={article.slug}>
                                 <Link className="editorial-card__image" to={getAppPath(`/blogs/${article.slug}`)}>
-                                    <img src={article.image} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} loading="lazy" />
+                                    <img src={getImageUrl(article.image)} alt={article.imageAlt || article.title || "Cardamom story"} title={article.imageTitle || article.imageAlt || article.title || "Cardamom story"} loading="lazy" />
                                 </Link>
                                 <div className="editorial-card__body">
                                     <p className="editorial-card-kicker">{article.category} <span>·</span> {article.readTime}</p>
@@ -121,6 +133,18 @@ const BlogsPage = () => {
                                 </div>
                             </article>
                         ))}
+                    </div>
+                )}
+
+                {remaining.length > visibleCount && (
+                    <div className="editorial-more-actions">
+                        <button
+                            className="editorial-button editorial-button--green"
+                            type="button"
+                            onClick={() => setVisibleCount((count) => Math.min(count + BLOGS_PER_BATCH, remaining.length))}
+                        >
+                            Read more stories <ArrowRight size={17} />
+                        </button>
                     </div>
                 )}
             </section>

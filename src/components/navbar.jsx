@@ -13,6 +13,7 @@ const navLinks = [
     { name: "Recipes", path: "/recipes" },
     { name: "Blogs", path: "/blogs" },
     { name: "CSR", path: "/csr" },
+    { name: "FAQs", path: "/pages/faqs", end: true },
 ];
 
 const Navbar = () => {
@@ -30,8 +31,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { itemCount } = useBag();
     const pathname = location.pathname.replace(/\/+$/, "") || "/";
-    const isEditorialDetail = pathname.startsWith("/recipes/")
-        || (pathname.startsWith("/blogs/") && !["/blogs/recipes", "/blogs/p"].includes(pathname));
     const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(pathname);
     const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
     const searchResults = useMemo(() => {
@@ -117,7 +116,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${isEditorialDetail ? "navbar--solid-at-top" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
+        <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${menuOpen ? "menu-open" : ""} ${searchOpen ? "search-open" : ""}`}>
             <div className="navbar-logo">
                 <NavLink to={getAppPath("/")} aria-label="Elacher Ghor Home" onClick={handlePageNavigation}>
                     {logo && <img src={logo} alt="Elacher Ghor" title={logoTitle} />}
@@ -127,7 +126,7 @@ const Navbar = () => {
             <div className="navbar-actions">
                 <button
                     type="button"
-                    className="navbar-icon"
+                    className="navbar-icon navbar-search-trigger"
                     aria-label={searchOpen ? "Close search" : "Search products"}
                     aria-expanded={searchOpen}
                     aria-controls="navbar-search-panel"
@@ -137,6 +136,7 @@ const Navbar = () => {
                     }}
                 >
                     {searchOpen ? <X /> : <Search />}
+                    <span className="navbar-search-label">Search recipes, products...</span>
                 </button>
 
                 <span className="navbar-profile-icon" role="img" aria-label="Profile" title="Profile">

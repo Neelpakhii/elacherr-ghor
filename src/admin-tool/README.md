@@ -6,7 +6,11 @@ Open `/admin` while running the project locally. Sidebar links open the dashboar
 
 - Products and stock: `public/data/home.json`
 - Product grade and description: `public/data/products/<id>.json`
-- Homepage, About, shop banner, recipes, blogs and CSR: existing JSON files under `public/data/`
+- Homepage content and product listings: `public/data/home.json`
+- Recipes: `public/data/recipe.json` (51 archive entries plus three pre-existing local additions)
+- Blog stories: `public/data/blog.json`
+- CSR content: `public/data/editorial.json`
+- About and shop banner: `public/data/about.json` and `public/data/shop.json`
 - Low-stock threshold: `public/data/admin-settings.json`, used by the dashboard and inventory view
 
 Product edits update the existing storefront JSON. New products create their matching detail JSON file; deleting a product removes it from the shop and removes that detail file when changes are saved. Setting stock to zero marks the product unavailable on the homepage, Shop and search pages.
