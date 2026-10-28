@@ -14,6 +14,11 @@
 .site-footer__main {
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
+    background-image:
+        linear-gradient(rgba(244, 244, 242, 0.90), rgba(244, 244, 242, 0.92)),
+        var(--site-footer-image);
+    background-position: center;
+    background-size: cover;
 }
 
 .site-footer__columns {
@@ -57,10 +62,14 @@
     text-transform: uppercase;
 }
 
+.site-footer__quick-links {
+    padding-left: clamp(24px, 3vw, 44px);
+}
+
 .site-footer__column address,
 .site-footer__column p,
 .site-footer__column li {
-    color: #858585;
+    color: #565d56;
     font-family: "Montserrat";
     font-size: 15px;
     font-style: normal;
@@ -205,6 +214,10 @@
 
     .site-footer__column h2 {
         margin-bottom: 20px;
+    }
+
+    .site-footer__quick-links {
+        padding-left: 0;
     }
 
     .site-footer__column address,

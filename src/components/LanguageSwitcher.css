@@ -1,59 +1,111 @@
 .language-switcher {
     position: relative;
-    display: inline-flex;
+    flex: 0 0 64px;
+    width: 64px;
+    min-width: 0;
+    z-index: 1006;
+}
+
+.language-switcher .language-switcher__trigger {
+    display: flex;
     align-items: center;
-    flex: 0 0 94px;
-    width: 94px;
-    height: 38px;
-    gap: 6px;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    height: 40px;
     padding: 0 9px;
-    border: 1px solid rgba(52, 58, 50, 0.18);
+    border: 1px solid rgba(52, 58, 50, 0.2);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.52);
-    color: #3d493f;
-    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+    background: rgba(255, 255, 255, 0.58);
+    color: #354638;
+    font: 500 11px/1.2 "Montserrat", "Segoe UI", sans-serif;
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.language-switcher:focus-within,
-.language-switcher:hover {
-    border-color: rgba(104, 123, 67, 0.62);
-    background: rgba(255, 255, 255, 0.94);
+.language-switcher__trigger:hover,
+.language-switcher__trigger[aria-expanded="true"],
+.language-switcher__trigger:focus-visible {
+    border-color: #91a174;
+    background: #fffefa;
+    box-shadow: 0 4px 14px rgba(24, 53, 39, 0.1);
 }
 
-.language-switcher > svg {
+.language-switcher__trigger > svg:first-child {
     flex: 0 0 16px;
     width: 16px;
     height: 16px;
-    stroke: currentColor;
     stroke-width: 1.7;
-    pointer-events: none;
 }
 
-.language-switcher .gtranslate_wrapper {
-    display: flex;
-    flex: 1 1 auto;
-    align-items: center;
-    min-width: 0;
-    height: 100%;
+.language-switcher__trigger > svg:last-child {
+    flex: 0 0 13px;
+    opacity: 0.7;
 }
 
-.language-switcher .gtranslate_wrapper select {
-    width: 100%;
-    min-width: 0;
-    height: 100%;
-    appearance: none;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-    font: 500 10px/1.2 "Montserrat", "Segoe UI", sans-serif;
-    padding: 0 12px 0 0;
-}
-
-.language-switcher .gtranslate_wrapper select option {
+.language-switcher__menu {
+    position: absolute;
+    top: calc(100% + 9px);
+    right: 0;
+    width: 148px;
+    max-height: min(360px, 65vh);
+    padding: 6px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid #e4e8df;
+    border-radius: 14px;
     background: #fffefa;
-    color: #30352c;
+    box-shadow: 0 16px 38px rgba(25, 43, 31, 0.2);
+    z-index: 1300;
+}
+
+.language-switcher .language-switcher__option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    min-height: 38px;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #354638;
+    font: 500 13px/1.35 "Noto Sans Bengali", "Noto Sans Devanagari", "Segoe UI", sans-serif;
+    text-align: left;
+    cursor: pointer;
+}
+
+.language-switcher .language-switcher__option:hover,
+.language-switcher .language-switcher__option.is-selected {
+    background: #edf2e9;
+    color: #214735;
+}
+
+.language-switcher .language-switcher__option.is-selected {
+    font-weight: 700;
+}
+
+.language-switcher .language-switcher__option > span {
+    min-width: 0;
+    text-align: start;
+}
+
+.language-switcher .language-switcher__option > svg {
+    flex: 0 0 15px;
+    color: #66804e;
+}
+
+/* GTranslate still needs its native select to perform the translation. Keep
+   it in the DOM for programmatic selection while presenting our styled menu. */
+.language-switcher .gtranslate_wrapper {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
 }
 
 .language-switcher__status {
@@ -65,60 +117,100 @@
     white-space: nowrap;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1200px) {
     .language-switcher {
-        flex-basis: 80px;
-        width: 80px;
-        gap: 5px;
-        padding: 0 7px;
+        flex-basis: 58px;
+        width: 58px;
     }
 
-    .language-switcher .gtranslate_wrapper select {
-        font-size: 9px;
+    .language-switcher .language-switcher__trigger {
+        gap: 6px;
+        padding: 0 7px;
+        font-size: 10px;
     }
+}
+
+/* Navbar hero-state rules turn all navbar buttons white. Keep this control's
+   text dark because its trigger and menu use a light cream surface. */
+.navbar .navbar-actions .language-switcher__trigger,
+.navbar .navbar-actions .language-switcher__option {
+    color: #354638 !important;
+}
+
+.navbar .navbar-actions .language-switcher__trigger:hover,
+.navbar .navbar-actions .language-switcher__trigger[aria-expanded="true"] {
+    background: #fffefa !important;
+    color: #214735 !important;
+    transform: none !important;
+}
+
+.navbar .navbar-actions .language-switcher__option {
+    background: transparent !important;
+    transform: none !important;
+}
+
+.navbar .navbar-actions .language-switcher__option:hover,
+.navbar .navbar-actions .language-switcher__option.is-selected {
+    background: #edf2e9 !important;
+    color: #214735 !important;
+}
+
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    background: rgba(255, 255, 255, 0.13) !important;
+    box-shadow: none !important;
+    color: #fff !important;
+}
+
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger:hover,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger[aria-expanded="true"] {
+    border-color: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: #fff !important;
 }
 
 @media (max-width: 900px) {
     .language-switcher {
-        flex-basis: 70px;
-        width: 70px;
-        height: 35px;
-        gap: 4px;
-        padding: 0 6px;
+        flex-basis: 56px;
+        width: 56px;
     }
 
-    .language-switcher > svg {
-        flex-basis: 14px;
-        width: 14px;
-        height: 14px;
+    .language-switcher .language-switcher__trigger {
+        height: 36px;
+        gap: 6px;
+        padding: 0 8px;
+        font-size: 10px;
     }
-
 }
 
 @media (max-width: 480px) {
     .language-switcher {
-        flex-basis: 64px;
-        width: 64px;
-        height: 33px;
-        gap: 3px;
-        padding: 0 5px;
+        flex-basis: 52px;
+        width: 52px;
     }
 
-    .language-switcher .gtranslate_wrapper select {
-        font-size: 8px;
+    .language-switcher .language-switcher__trigger {
+        height: 34px;
+        gap: 4px;
+        padding: 0 6px;
+        font-size: 9px;
     }
 
-    .language-switcher > svg {
-        flex-basis: 13px;
-        width: 13px;
-        height: 13px;
+    .language-switcher__menu {
+        width: 148px;
     }
 }
 
 @media (max-width: 360px) {
     .language-switcher {
-        flex-basis: 58px;
-        width: 58px;
+        flex-basis: 48px;
+        width: 48px;
+    }
+
+    .language-switcher .language-switcher__trigger {
+        gap: 4px;
+        padding: 0 6px;
+        font-size: 8px;
     }
 }
 

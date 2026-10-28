@@ -60,7 +60,12 @@ const Footer = () => {
     if (!footer) return null;
 
     return (
-        <footer className="site-footer">
+        <footer
+            className="site-footer"
+            style={{
+                "--site-footer-image": `url("${getImageUrl("/images/footer/elacher_ghor_footer.webp")}")`,
+            }}
+        >
             <div className="site-footer__main">
                 <div className="site-footer__columns">
                     <div className="site-footer__brand">
@@ -113,7 +118,7 @@ const Footer = () => {
                         )}
                     </section>
 
-                    <nav className="site-footer__column" aria-label="Quick links">
+                    <nav className="site-footer__column site-footer__quick-links" aria-label="Quick links">
                         <h2>{footer.quickLinksHeading}</h2>
                         <ul>
                             {footer.quickLinks?.map((link) => (

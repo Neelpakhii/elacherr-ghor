@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
+import { ArrowRight, Leaf, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../config";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useCurrency } from "../context/CurrencyContext.jsx";
@@ -48,6 +48,10 @@ const Navbar = () => {
         setMenuOpen(false);
         setSearchFocused(false);
     };
+
+    useEffect(() => {
+        if (searchFocused) searchInputRef.current?.focus();
+    }, [searchFocused]);
 
     const handlePageNavigation = () => {
         closeOverlays();
@@ -127,55 +131,86 @@ const Navbar = () => {
 
             <div className="navbar-actions">
                 <div className="navbar-search-tools">
-                <div className="navbar-search" ref={searchContainerRef}>
-                    <form className="navbar-search__form" role="search" onSubmit={submitSearch}>
+                <div className={`navbar-search${searchFocused ? " is-open" : ""}`} ref={searchContainerRef}>
+                    <button
+                        className="navbar-search__trigger"
+                        type="button"
+                        aria-label="Open search"
+                        aria-expanded={searchFocused}
+                        aria-controls="navbar-search-drawer"
+                        onClick={() => {
+                            setMenuOpen(false);
+                            setSearchFocused(true);
+                        }}
+                    >
                         <Search aria-hidden="true" />
-                        <input
-                            ref={searchInputRef}
-                            type="search"
-                            value={searchQuery}
-                            onChange={(event) => setSearchQuery(event.target.value)}
-                            onFocus={() => {
-                                setMenuOpen(false);
-                                setSearchFocused(true);
-                            }}
-                            placeholder="Search recipes, products..."
-                            aria-label="Search recipes and products"
-                            aria-expanded={Boolean(searchFocused && normalizedSearchQuery)}
-                            aria-controls="navbar-search-results"
-                        />
-                    </form>
+                    </button>
 
-                    {searchFocused && normalizedSearchQuery && (
-                        <div className="navbar-search__results" id="navbar-search-results">
-                            <div className="navbar-search__results-heading">
-                                <span>{productsLoading ? "Searching…" : `${searchResults.length} ${searchResults.length === 1 ? "result" : "results"}`}</span>
-                                <button type="button" onClick={submitSearch}>See all</button>
-                            </div>
-                            {productsError && <p className="navbar-search__message" role="alert">We couldn’t load products. Please try again.</p>}
-                            {!productsLoading && !productsError && searchResults.length > 0 && searchResults.map((product) => (
-                                <Link
-                                    className="navbar-search-result"
-                                    key={product.id}
-                                    to={getAppPath(`/products/${product.id}`)}
-                                    onClick={() => {
-                                        setSearchQuery("");
-                                        handlePageNavigation();
-                                    }}
-                                >
-                                    <span className="navbar-search-result__image">
-                                        {product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}
-                                    </span>
-                                    <span className="navbar-search-result__details">
-                                        <span className="navbar-search-result__name">{product.name}</span>
-                                        <span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span>
-                                    </span>
-                                    <ArrowRight aria-hidden="true" />
-                                </Link>
-                            ))}
-                            {!productsLoading && !productsError && searchResults.length === 0 && (
-                                <p className="navbar-search__message">No products found for “{searchQuery.trim()}”.</p>
-                            )}
+                    {searchFocused && (
+                        <div className="navbar-search__overlay">
+                            <button className="navbar-search__backdrop" type="button" aria-label="Close search" onClick={() => setSearchFocused(false)} />
+                            <section className="navbar-search__drawer" id="navbar-search-drawer" role="dialog" aria-modal="true" aria-label="Search store">
+                                <Leaf className="navbar-search__watermark" aria-hidden="true" />
+                                <div className="navbar-search__drawer-header">
+                                    <div className="navbar-search__drawer-heading">
+                                        <p className="navbar-search__eyebrow"><Leaf size={15} aria-hidden="true" /> ELAICHI GHOR · CARDAMOM</p>
+                                        <h2>Find your favourite</h2>
+                                        <p className="navbar-search__subtitle">Search our cardamom grades and recipes.</p>
+                                    </div>
+                                    <button className="navbar-search__close" type="button" aria-label="Close search" onClick={() => setSearchFocused(false)}>
+                                        <X aria-hidden="true" />
+                                    </button>
+                                </div>
+                                <form className="navbar-search__form" role="search" onSubmit={submitSearch}>
+                                    <Search aria-hidden="true" />
+                                    <input
+                                        ref={searchInputRef}
+                                        type="search"
+                                        value={searchQuery}
+                                        onChange={(event) => setSearchQuery(event.target.value)}
+                                        placeholder="Search recipes, products..."
+                                        aria-label="Search recipes and products"
+                                        aria-expanded={Boolean(normalizedSearchQuery)}
+                                        aria-controls="navbar-search-results"
+                                    />
+                                    {searchQuery && <button className="navbar-search__clear" type="button" aria-label="Clear search" onClick={() => setSearchQuery("")}><X aria-hidden="true" /></button>}
+                                </form>
+
+                                {normalizedSearchQuery ? (
+                                    <div className="navbar-search__results" id="navbar-search-results">
+                                        <div className="navbar-search__results-heading">
+                                            <span>{productsLoading ? "Searching…" : `${searchResults.length} ${searchResults.length === 1 ? "result" : "results"}`}</span>
+                                            <button type="button" onClick={submitSearch}>See all</button>
+                                        </div>
+                                        {productsError && <p className="navbar-search__message" role="alert">We couldn’t load products. Please try again.</p>}
+                                        {!productsLoading && !productsError && searchResults.length > 0 && searchResults.map((product) => (
+                                            <Link
+                                                className="navbar-search-result"
+                                                key={product.id}
+                                                to={getAppPath(`/products/${product.id}`)}
+                                                onClick={() => {
+                                                    setSearchQuery("");
+                                                    handlePageNavigation();
+                                                }}
+                                            >
+                                                <span className="navbar-search-result__image">
+                                                    {product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}
+                                                </span>
+                                                <span className="navbar-search-result__details">
+                                                    <span className="navbar-search-result__name">{product.name}</span>
+                                                    <span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span>
+                                                </span>
+                                                <ArrowRight aria-hidden="true" />
+                                            </Link>
+                                        ))}
+                                        {!productsLoading && !productsError && searchResults.length === 0 && (
+                                            <p className="navbar-search__message">No products found for “{searchQuery.trim()}”.</p>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <p className="navbar-search__message navbar-search__message--hint">Search our cardamom grades and recipes.</p>
+                                )}
+                            </section>
                         </div>
                     )}
                 </div>
