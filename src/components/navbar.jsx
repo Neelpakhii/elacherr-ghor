@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../config";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import useBag from "../hooks/useBag.js";
 import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
@@ -123,6 +124,7 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-actions">
+                <div className="navbar-search-tools">
                 <div className="navbar-search" ref={searchContainerRef}>
                     <form className="navbar-search__form" role="search" onSubmit={submitSearch}>
                         <Search aria-hidden="true" />
@@ -175,10 +177,13 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
+                    <LanguageSwitcher />
+                </div>
 
-                <span className="navbar-profile-icon" role="img" aria-label="Profile" title="Profile">
+                <div className="navbar-action-icons">
+                    <span className="navbar-profile-icon" role="img" aria-label="Profile" title="Profile">
                     <UserRound aria-hidden="true" />
-                </span>
+                    </span>
 
                 <NavLink
                     to={getAppPath("/bag")}
@@ -202,7 +207,8 @@ const Navbar = () => {
                     }}
                 >
                     {menuOpen ? <X /> : <Menu />}
-                </button>
+                    </button>
+                </div>
             </div>
 
             <nav id="main-navigation" className={`navbar-menu ${menuOpen ? "show" : ""}`} aria-label="Main navigation">

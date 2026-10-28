@@ -17,7 +17,7 @@
     padding: 5px 26px;
     display: grid;
     grid-template-rows: minmax(0, 1fr);
-    grid-template-columns: 138px minmax(0, 1fr) 282px;
+    grid-template-columns: 138px minmax(0, 1fr) 400px;
     align-items: center;
     gap: clamp(12px, 1.6vw, 24px);
     z-index: 1000;
@@ -89,7 +89,8 @@
     grid-row: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 30px;
     gap: clamp(12px, 1.6vw, 30px);
     min-width: 0;
     white-space: nowrap;
@@ -171,8 +172,24 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 11px;
+    gap: 10px;
     min-width: 0;
+}
+
+.navbar-search-tools {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    min-width: 0;
+}
+
+.navbar-action-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: 10px;
 }
 
 .navbar-actions button,
@@ -399,6 +416,12 @@
     background: rgba(255, 255, 255, 0.22) !important;
 }
 
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .language-switcher {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
+}
+
 .navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-profile-icon {
     border-left-color: rgba(255, 255, 255, 0.45) !important;
 }
@@ -415,7 +438,7 @@
     transform: none;
 }
 
-.navbar-actions svg {
+.navbar-action-icons svg {
     width: 22px;
     height: 22px;
     stroke: currentColor;
@@ -464,8 +487,8 @@
         --navbar-height: 68px;
         width: calc(100% - 40px);
         padding: 4px 18px;
-        grid-template-columns: 105px minmax(0, 1fr) 235px;
-        gap: 12px;
+        grid-template-columns: 90px minmax(0, 1fr) 270px;
+        gap: 10px;
     }
 
     .navbar-logo img {
@@ -478,42 +501,35 @@
     }
 
     .navbar-menu a {
-        font-size: 14px;
+        font-size: 12px;
         letter-spacing: 0.3px;
     }
 
     .navbar-actions {
-        gap: 8px;
+        gap: 6px;
     }
 
     .navbar-actions button,
     .navbar-actions a,
     .navbar-profile-icon {
-        width: 23px;
+        width: 22px;
     }
 
-    .navbar-actions svg {
+    .navbar-action-icons svg {
         width: 19px;
         height: 19px;
     }
 
     .navbar-search {
-        flex-basis: 148px;
-        width: 148px;
+        flex-basis: 112px;
+        width: 112px;
     }
 
-    .navbar-toggle {
-        display: none !important;
-    }
-
-    .navbar-backdrop {
-        display: none !important;
-    }
 }
 
 /* MOBILE */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .navbar {
         --navbar-top: 10px;
         --navbar-height: 64px;
@@ -540,9 +556,20 @@
         gap: 10px;
     }
 
+    .navbar-search-tools {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .navbar-action-icons {
+        gap: 9px;
+    }
+
     .navbar-search {
-        flex-basis: 116px;
+        flex: 1 1 116px;
         width: 116px;
+        max-width: 192px;
     }
 
     .navbar-search__form {
@@ -568,7 +595,7 @@
         height: 36px;
     }
 
-    .navbar-actions svg {
+    .navbar-action-icons svg {
         width: 20px;
         height: 20px;
     }
@@ -709,6 +736,7 @@
     .navbar-search {
         flex-basis: 96px;
         width: 96px;
+        max-width: 128px;
     }
 
     .navbar-search__form {
@@ -756,19 +784,37 @@
 @media (max-width: 360px) {
     .navbar {
         padding: 4px 9px;
+        gap: 6px;
     }
 
     .navbar-logo img {
+        width: 70px;
+    }
+
+    .navbar-search-tools {
+        gap: 3px;
+    }
+
+    .navbar-search {
+        flex-basis: 76px;
         width: 76px;
     }
 
     .navbar-actions {
-        gap: 5px;
+        gap: 3px;
+    }
+
+    .navbar-action-icons {
+        gap: 3px;
     }
 
     .navbar-actions button,
     .navbar-actions a {
         width: 20px;
+    }
+
+    .navbar-toggle {
+        width: 24px;
     }
 }
 

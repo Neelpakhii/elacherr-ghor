@@ -1,0 +1,129 @@
+.language-switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 94px;
+    width: 94px;
+    height: 38px;
+    gap: 6px;
+    padding: 0 9px;
+    border: 1px solid rgba(52, 58, 50, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.52);
+    color: #3d493f;
+    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+}
+
+.language-switcher:focus-within,
+.language-switcher:hover {
+    border-color: rgba(104, 123, 67, 0.62);
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.language-switcher > svg {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    pointer-events: none;
+}
+
+.language-switcher .gtranslate_wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    min-width: 0;
+    height: 100%;
+}
+
+.language-switcher .gtranslate_wrapper select {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: 500 10px/1.2 "Montserrat", "Segoe UI", sans-serif;
+    padding: 0 12px 0 0;
+}
+
+.language-switcher .gtranslate_wrapper select option {
+    background: #fffefa;
+    color: #30352c;
+}
+
+.language-switcher__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+    .language-switcher {
+        flex-basis: 80px;
+        width: 80px;
+        gap: 5px;
+        padding: 0 7px;
+    }
+
+    .language-switcher .gtranslate_wrapper select {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 900px) {
+    .language-switcher {
+        flex-basis: 70px;
+        width: 70px;
+        height: 35px;
+        gap: 4px;
+        padding: 0 6px;
+    }
+
+    .language-switcher > svg {
+        flex-basis: 14px;
+        width: 14px;
+        height: 14px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .language-switcher {
+        flex-basis: 64px;
+        width: 64px;
+        height: 33px;
+        gap: 3px;
+        padding: 0 5px;
+    }
+
+    .language-switcher .gtranslate_wrapper select {
+        font-size: 8px;
+    }
+
+    .language-switcher > svg {
+        flex-basis: 13px;
+        width: 13px;
+        height: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .language-switcher {
+        flex-basis: 58px;
+        width: 58px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .language-switcher {
+        transition: none;
+    }
+}
