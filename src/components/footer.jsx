@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FileText, Leaf, Mail, MapPin, Phone, RotateCcw, Truck } from "lucide-react";
 import { HOME_DATA_URL, getAppHref, getImageUrl } from "../config";
 import "./footer.css";
 
@@ -63,7 +64,7 @@ const Footer = () => {
         <footer
             className="site-footer"
             style={{
-                "--site-footer-image": `url("${getImageUrl("/images/footer/elacher_ghor_footer.webp")}")`,
+                "--site-footer-image": `url("${getImageUrl("/images/footer/Elegant Cardamom Botanical Banner.png")}")`,
             }}
         >
             <div className="site-footer__main">
@@ -78,6 +79,8 @@ const Footer = () => {
                                 />
                             </a>
                         )}
+                        <p className="site-footer__brand-name">Elacher Ghor</p>
+                        <p className="site-footer__tagline">Pure Cardamom. Naturally Yours.</p>
 
                         <nav className="site-footer__social" aria-label="Social media">
                             {footer.socialLinks?.map((social) => (
@@ -97,23 +100,22 @@ const Footer = () => {
 
                     <section className="site-footer__column">
                         <h2>{footer.contactHeading}</h2>
-                        <address>{footer.address}</address>
+                        <address className="site-footer__contact-item">
+                            <MapPin aria-hidden="true" />
+                            <span>{footer.address}</span>
+                        </address>
 
                         {footer.phone && (
-                            <p>
-                                Customer Care:{" "}
-                                <a href={`tel:${footer.phone.replace(/\s/g, "")}`}>
-                                    {footer.phone}
-                                </a>
+                            <p className="site-footer__contact-item">
+                                <Phone aria-hidden="true" />
+                                <span>Customer Care: <a href={`tel:${footer.phone.replace(/\s/g, "")}`}>{footer.phone}</a></span>
                             </p>
                         )}
 
                         {footer.email && (
-                            <p>
-                                E-mail:{" "}
-                                <a href={`mailto:${footer.email}`}>
-                                    {footer.email}
-                                </a>
+                            <p className="site-footer__contact-item">
+                                <Mail aria-hidden="true" />
+                                <span>E-mail: <a href={`mailto:${footer.email}`}>{footer.email}</a></span>
                             </p>
                         )}
                     </section>
@@ -123,7 +125,7 @@ const Footer = () => {
                         <ul>
                             {footer.quickLinks?.map((link) => (
                                 <li key={link.label}>
-                                    <a href={getAppHref(link.url)}>{link.label}</a>
+                                    <a href={getAppHref(link.url)}><Leaf aria-hidden="true" /><span>{link.label}</span></a>
                                 </li>
                             ))}
                         </ul>
@@ -134,7 +136,10 @@ const Footer = () => {
                         <ul>
                             {footer.policies?.map((link) => (
                                 <li key={link.label}>
-                                    <a href={getAppHref(link.url)}>{link.label}</a>
+                                    <a href={getAppHref(link.url)}>
+                                        {/shipping/i.test(link.label) ? <Truck aria-hidden="true" /> : /refund/i.test(link.label) ? <RotateCcw aria-hidden="true" /> : <FileText aria-hidden="true" />}
+                                        <span>{link.label}</span>
+                                    </a>
                                 </li>
                             ))}
                         </ul>

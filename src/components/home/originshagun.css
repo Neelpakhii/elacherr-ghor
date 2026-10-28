@@ -14,7 +14,7 @@
 .origin-shagun__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
+    gap: clamp(14px, 1.4vw, 22px);
 }
 
 
@@ -29,6 +29,7 @@
     min-height: 440px;
     overflow: hidden;
     isolation: isolate;
+    border-radius: 18px;
     background: #17251c;
     color: #fff;
     text-align: center;

@@ -10,17 +10,17 @@ import WorldBestCardamom from "../../components/home/worldBestCardamom";
 
 const About = ()=>{
     return(
-        <>
-        <AboutImage/>
-        <Origin/>
-        <Award/>
-        <Story/>
-        <Pioneer/>
-        <CertifyBest/>
-        <ThreeStar/>
-        <WorldBestCardamom/>
-        <Newsletter/>
-        </>
+        <div className="about-page">
+            <AboutImage/>
+            <Origin/>
+            <Award/>
+            <Story/>
+            <Pioneer/>
+            <CertifyBest/>
+            <ThreeStar/>
+            <WorldBestCardamom/>
+            <Newsletter/>
+        </div>
     )
 }
 export default About;

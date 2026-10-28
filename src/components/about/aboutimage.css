@@ -1,3 +1,7 @@
+.about-page img:not(.about-image__photo):not(.certify-best__image):not(.three-star__image) {
+    border-radius: 12px;
+}
+
 .about-image {
     width: 100%;
     overflow: hidden;

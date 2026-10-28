@@ -4,6 +4,10 @@
     background-color: var(--home-ash-white);
 }
 
+.home-page img:not(.hero-image) {
+    border-radius: 12px;
+}
+
 .home-page .product-section,
 .home-page .grade-selector,
 .home-page .newsletter {
