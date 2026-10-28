@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
 import { HOME_DATA_URL, PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../config";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { useCurrency } from "../context/CurrencyContext.jsx";
 import useBag from "../hooks/useBag.js";
 import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
@@ -32,6 +33,7 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { itemCount } = useBag();
+    const { formatPrice } = useCurrency();
     const pathname = location.pathname.replace(/\/+$/, "") || "/";
     const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(pathname);
     const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
@@ -166,7 +168,7 @@ const Navbar = () => {
                                     </span>
                                     <span className="navbar-search-result__details">
                                         <span className="navbar-search-result__name">{product.name}</span>
-                                        <span className="navbar-search-result__price">Rs. {Number(product.price).toLocaleString("en-IN", { maximumFractionDigits: 2 })}</span>
+                                        <span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span>
                                     </span>
                                     <ArrowRight aria-hidden="true" />
                                 </Link>

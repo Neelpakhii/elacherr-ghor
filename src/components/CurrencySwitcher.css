@@ -1,0 +1,193 @@
+.currency-switcher {
+    position: relative;
+    flex: 0 0 auto;
+    z-index: 1005;
+}
+
+.currency-switcher-floating {
+    position: fixed;
+    left: 22px;
+    bottom: 22px;
+    z-index: 1100;
+}
+
+.currency-switcher-floating .currency-switcher__trigger {
+    min-width: 66px;
+    height: 40px !important;
+    padding: 0 10px !important;
+    border-color: rgba(52, 58, 50, 0.24) !important;
+    background: #fffefa !important;
+    box-shadow: 0 5px 18px rgba(20, 34, 25, 0.18);
+    font-size: 11px;
+}
+
+.currency-switcher-floating .currency-switcher__panel {
+    top: auto;
+    right: auto;
+    bottom: calc(100% + 10px);
+    left: 0;
+}
+
+.currency-switcher__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: auto !important;
+    min-width: 50px;
+    height: 38px !important;
+    padding: 0 6px !important;
+    border: 1px solid rgba(52, 58, 50, 0.18) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.52) !important;
+    color: inherit !important;
+    font: 600 10px/1 "Montserrat", "Segoe UI", sans-serif;
+    cursor: pointer;
+}
+
+.currency-switcher__trigger:hover,
+.currency-switcher__trigger:focus-visible {
+    border-color: rgba(104, 123, 67, 0.62) !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+}
+
+.currency-switcher__panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(340px, calc(100vw - 24px));
+    padding: 12px;
+    border: 1px solid #e0e4dc;
+    border-radius: 14px;
+    background: #fffefa;
+    color: #30352c;
+    box-shadow: 0 14px 34px rgba(20, 34, 25, 0.2);
+}
+
+.currency-switcher__search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #dfe3da;
+    border-radius: 8px;
+    color: #637452;
+}
+
+.currency-switcher__search input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #30352c;
+    font: 400 13px/1.3 "Montserrat", "Segoe UI", sans-serif;
+}
+
+.currency-switcher__hint,
+.currency-switcher__footnote {
+    margin: 9px 2px;
+    color: #758071;
+    font: 500 10px/1.4 "Montserrat", "Segoe UI", sans-serif;
+}
+
+.currency-switcher__retry {
+    margin-left: 7px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #244936;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.currency-switcher__list {
+    max-height: min(330px, 48vh);
+    overflow: auto;
+    overscroll-behavior: contain;
+}
+
+.currency-switcher__option {
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) 16px;
+    gap: 8px;
+    align-items: center;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 36px;
+    padding: 7px 8px !important;
+    border: 0 !important;
+    border-radius: 7px !important;
+    background: transparent !important;
+    color: #374238 !important;
+    text-align: left;
+    cursor: pointer;
+}
+
+.currency-switcher__option:hover,
+.currency-switcher__option.is-selected {
+    background: #edf2e9 !important;
+}
+
+.currency-switcher__code {
+    color: #244936;
+    font: 700 11px/1.3 "Montserrat", "Segoe UI", sans-serif;
+}
+
+.currency-switcher__name {
+    overflow: hidden;
+    color: #677167;
+    font: 400 11px/1.3 "Montserrat", "Segoe UI", sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.currency-switcher__option > svg {
+    color: #567443;
+}
+
+.currency-switcher__empty {
+    padding: 16px 8px;
+    color: #758071;
+    font-size: 12px;
+    text-align: center;
+}
+
+.currency-switcher__footnote {
+    margin-bottom: 0;
+    padding-top: 8px;
+    border-top: 1px solid #edf0e9;
+}
+
+@media (max-width: 900px) {
+    .currency-switcher__trigger {
+        min-width: 44px;
+        height: 34px !important;
+        padding: 0 5px !important;
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    .currency-switcher-floating {
+        left: 14px;
+        bottom: 14px;
+    }
+
+    .currency-switcher-floating .currency-switcher__panel {
+        width: min(340px, calc(100vw - 28px));
+    }
+}
+
+@media (max-width: 360px) {
+    .currency-switcher__trigger {
+        min-width: 39px;
+        gap: 1px;
+        padding: 0 3px !important;
+        font-size: 8px;
+    }
+}

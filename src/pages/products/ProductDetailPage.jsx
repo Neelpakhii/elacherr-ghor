@@ -3,6 +3,7 @@ import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { useCurrency } from "../../context/CurrencyContext.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productDetail.css";
@@ -14,6 +15,7 @@ const ProductDetailPage = () => {
     const [variantState, setVariantState] = useState({ productId, weight: "" });
     const [addedProductId, setAddedProductId] = useState(null);
     const { addItem } = useBag();
+    const { formatPrice } = useCurrency();
     const navigate = useNavigate();
 
     const currentResult = productResult?.productId === productId ? productResult : null;
@@ -116,9 +118,9 @@ const ProductDetailPage = () => {
                                 </select>
                             </label>
                         )}
-                        <div className="product-detail-hero__price">
-                            <strong>Rs. {Number(selectedVariant?.price || 0).toFixed(2)}</strong>
-                            {selectedVariant?.originalPrice != null && <del>Rs. {Number(selectedVariant.originalPrice).toFixed(2)}</del>}
+                        <div className="product-detail-hero__price notranslate" translate="no">
+                            <strong>{formatPrice(selectedVariant?.price)}</strong>
+                            {selectedVariant?.originalPrice != null && <del>{formatPrice(selectedVariant.originalPrice)}</del>}
                             {discount > 0 && <span className="product-detail-hero__discount">{discount}% OFF</span>}
                         </div>
                         <p className="product-detail-hero__description">

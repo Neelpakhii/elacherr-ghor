@@ -8,6 +8,21 @@ const LanguageSwitcher = () => {
     const [failed, setFailed] = useState(false);
 
     useEffect(() => {
+        const supportedLanguages = new Set(["en", "bn", "gu", "hi", "kn", "ml", "mr", "ne", "pa", "sd", "ta", "te", "ur"]);
+        const rememberLanguage = (event) => {
+            if (!event.target?.closest?.(".gtranslate_wrapper select")) return;
+            const rawValue = String(event.target.value || "");
+            const selected = rawValue.split("|").pop().trim().toLowerCase();
+            const language = supportedLanguages.has(selected) ? selected : "en";
+            try {
+                window.localStorage.setItem("elacher-ghor-language", language);
+            } catch {
+                // Keep the selected locale for the current page.
+            }
+            window.dispatchEvent(new CustomEvent("elacher:language-change", { detail: { language } }));
+        };
+        document.addEventListener("change", rememberLanguage, true);
+
         window.gtranslateSettings = {
             default_language: "en",
             // GTranslate's currently published language list includes these
@@ -26,6 +41,7 @@ const LanguageSwitcher = () => {
             script.onerror = () => setFailed(true);
             document.body.appendChild(script);
         }
+        return () => document.removeEventListener("change", rememberLanguage, true);
     }, []);
 
     return (

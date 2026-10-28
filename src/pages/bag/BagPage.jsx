@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { useCurrency } from "../../context/CurrencyContext.jsx";
 import { getBagLineKey } from "../../utils/productVariants.js";
 import "./bag.css";
 
-const formatPrice = (value) => `Rs. ${Number(value || 0).toFixed(2)}`;
-
 const BagPage = () => {
     const { items, itemCount, subtotal, removeItem, setQuantity } = useBag();
+    const { formatPrice } = useCurrency();
 
     return (
         <section className="bag-page">
@@ -41,7 +41,7 @@ const BagPage = () => {
                                         <p className="bag-item__eyebrow">Alleppey Premium Cardamom</p>
                                         <h2><Link to={getAppPath(`/products/${product.id}`)}>{product.name}</Link></h2>
                                         {product.weight && <p className="bag-item__weight">Pack size: {product.weight}</p>}
-                                        <p className="bag-item__price">{formatPrice(product.price)}</p>
+                                        <p className="bag-item__price notranslate" translate="no">{formatPrice(product.price)}</p>
                                         <div className="bag-item__controls">
                                             <div className="bag-quantity" aria-label={`Quantity: ${quantity}`}>
                                                 <button type="button" aria-label={`Remove one ${product.name}`} disabled={quantity <= 1} onClick={() => setQuantity(lineKey, quantity - 1)}><Minus size={14} /></button>
@@ -51,14 +51,14 @@ const BagPage = () => {
                                             <button className="bag-item__remove" type="button" onClick={() => removeItem(lineKey)}><Trash2 size={15} /> Remove</button>
                                         </div>
                                     </div>
-                                    <p className="bag-item__total">{formatPrice(Number(product.price || 0) * quantity)}</p>
+                                    <p className="bag-item__total notranslate" translate="no">{formatPrice(Number(product.price || 0) * quantity)}</p>
                                 </article>
                             );})}
                         </div>
 
                         <aside className="bag-summary" aria-label="Bag summary">
                             <p className="bag-summary__eyebrow">Order summary</p>
-                            <div className="bag-summary__row"><span>Subtotal</span><strong>{formatPrice(subtotal)}</strong></div>
+                            <div className="bag-summary__row"><span>Subtotal</span><strong className="notranslate" translate="no">{formatPrice(subtotal)}</strong></div>
                             <p className="bag-summary__note">Shipping and any applicable charges can be confirmed when placing your order.</p>
                             <Link className="bag-button bag-button--primary" to={getAppPath("/shop")}>Add more products</Link>
                             <p className="bag-summary__saved">Your bag is saved in this browser.</p>

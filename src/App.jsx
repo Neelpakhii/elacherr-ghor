@@ -1,7 +1,9 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar.jsx";
+import CurrencySwitcher from "./components/CurrencySwitcher.jsx";
 import Footer from "./components/footer.jsx";
 import { BagProvider } from "./context/BagContext.jsx";
+import { CurrencyProvider } from "./context/CurrencyContext.jsx";
 import Home from "./pages/home/home.jsx";
 import About from "./pages/about/about.jsx"
 import Shop from "./pages/shop/shop.jsx";
@@ -25,8 +27,10 @@ function App() {
 
   return (
     <BagProvider>
+    <CurrencyProvider>
       <ScrollToTop />
       {!isAdminPage && <Navbar />}
+      {!isAdminPage && <div className="currency-switcher-floating"><CurrencySwitcher /></div>}
       <main className={isAdminPage ? "app-main--admin" : ""}>
         <Routes>
           <Route path="/admin" element={<AdminPage />} />
@@ -53,6 +57,7 @@ function App() {
         </Routes>
       </main>
       {!isAdminPage && <Footer />}
+    </CurrencyProvider>
     </BagProvider>
   );
 }

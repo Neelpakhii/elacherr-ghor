@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
+import { useCurrency } from "../../context/CurrencyContext.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productCard.css";
@@ -13,6 +14,7 @@ const ProductCard = ({ product }) => {
     const selectedVariant = getProductVariant(product, selectedWeight);
     const discount = getDiscountPercentage(selectedVariant.price, selectedVariant.originalPrice);
     const { addItem } = useBag();
+    const { formatPrice } = useCurrency();
     const navigate = useNavigate();
     const imageSrc = getImageUrl(product.image);
     const weightLabel = selectedVariant.weight?.replace(/\s+/g, "");
@@ -68,12 +70,12 @@ const ProductCard = ({ product }) => {
                 )}
 
                 {selectedVariant.price != null && (
-                    <p className="product-card__price">
-                        Rs. {Number(selectedVariant.price).toFixed(2)}
+                    <p className="product-card__price notranslate" translate="no">
+                        {formatPrice(selectedVariant.price)}
 
                         {selectedVariant.originalPrice != null && (
                             <span className="product-card__original-price">
-                                Rs. {Number(selectedVariant.originalPrice).toFixed(2)}
+                                {formatPrice(selectedVariant.originalPrice)}
                             </span>
                         )}
                         {discount > 0 && <span className="product-card__discount">{discount}% OFF</span>}
