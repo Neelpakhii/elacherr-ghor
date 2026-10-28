@@ -64,7 +64,7 @@ const Footer = () => {
         <footer
             className="site-footer"
             style={{
-                "--site-footer-image": `url("${getImageUrl("/images/footer/Elegant Cardamom Botanical Banner.png")}")`,
+                "--site-footer-image": `url("${getImageUrl("/images/footer/elacher_ghor_footer_banner.webp")}")`,
             }}
         >
             <div className="site-footer__main">
