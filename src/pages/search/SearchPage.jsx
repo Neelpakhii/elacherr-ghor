@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { HOME_DATA_URL } from "../../config";
+import { PRODUCTS_DATA_URL } from "../../config";
 import ProductCard from "../../components/home/productCard.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./search.css";
@@ -19,7 +19,7 @@ const SearchPage = () => {
 
     useEffect(() => {
         const controller = new AbortController();
-        fetch(HOME_DATA_URL, { signal: controller.signal })
+        fetch(PRODUCTS_DATA_URL, { signal: controller.signal })
             .then((response) => {
                 if (!response.ok) throw new Error("Could not load products.");
                 return response.json();

@@ -1,0 +1,196 @@
+{
+  "products": [
+    {
+      "id": "purple",
+      "name": "Purple Grade (8 mm & above) Cardamom",
+      "weight": "100 g",
+      "price": 479,
+      "originalPrice": 999,
+      "image": "/images/home/purple-card.webp",
+      "available": true,
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 479,
+          "originalPrice": 999
+        },
+        {
+          "weight": "250 g",
+          "price": 1198,
+          "originalPrice": 2498
+        },
+        {
+          "weight": "500 g",
+          "price": 2395,
+          "originalPrice": 4995
+        }
+      ],
+      "grade": "8 mm & above",
+      "description": "A carefully graded selection for those who prefer larger cardamom pods. Bring its distinctive aroma to chai, sweets, and everyday cooking.",
+      "highlights": [
+        "Graded by pod size for easy selection",
+        "A versatile addition to tea, sweets, and everyday recipes",
+        "Price and availability shown on this page"
+      ]
+    },
+    {
+      "id": "pink",
+      "name": "Pink Grade (7.5 mm & above) Cardamom",
+      "weight": "100 g",
+      "price": 439,
+      "originalPrice": 949,
+      "image": "/images/home/pink-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 439,
+          "originalPrice": 949
+        },
+        {
+          "weight": "250 g",
+          "price": 1098,
+          "originalPrice": 2373
+        },
+        {
+          "weight": "500 g",
+          "price": 2195,
+          "originalPrice": 4745
+        }
+      ],
+      "grade": "7.5 mm & above",
+      "description": "A carefully graded selection of premium cardamom with a distinctive aroma. Enjoy it in chai, sweets, and everyday cooking.",
+      "highlights": [
+        "Graded by pod size for easy selection",
+        "A versatile addition to tea, sweets, and everyday recipes",
+        "Price and availability shown on this page"
+      ]
+    },
+    {
+      "id": "green",
+      "name": "Green Grade (7-8mm) Cardamom",
+      "weight": "100 g",
+      "price": 399,
+      "originalPrice": 899,
+      "image": "/images/home/green-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 399,
+          "originalPrice": 899
+        },
+        {
+          "weight": "250 g",
+          "price": 998,
+          "originalPrice": 2248
+        },
+        {
+          "weight": "500 g",
+          "price": 1995,
+          "originalPrice": 4495
+        }
+      ],
+      "grade": "7–8 mm",
+      "description": "A versatile green cardamom grade for kitchens that reach for its fragrant flavour every day. Use it in tea, sweets, and savoury recipes.",
+      "highlights": [
+        "Graded by pod size for easy selection",
+        "Works beautifully in tea, sweets, and everyday recipes",
+        "Price and availability shown on this page"
+      ]
+    },
+    {
+      "id": "orange",
+      "name": "Orange Grade (6.5-7.5mm) Cardamom",
+      "weight": "500 g",
+      "price": 1899,
+      "originalPrice": 3000,
+      "image": "/images/home/orange-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 380,
+          "originalPrice": 600
+        },
+        {
+          "weight": "250 g",
+          "price": 950,
+          "originalPrice": 1500
+        },
+        {
+          "weight": "500 g",
+          "price": 1899,
+          "originalPrice": 3000
+        }
+      ],
+      "grade": "6.5–7.5 mm",
+      "description": "A carefully graded cardamom selection for tea, sweets, and everyday cooking. Find the size that suits the way you like to use cardamom.",
+      "highlights": [
+        "Graded by pod size for easy selection",
+        "A versatile addition to tea, sweets, and everyday recipes",
+        "Price and availability shown on this page"
+      ]
+    },
+    {
+      "id": "red",
+      "name": "Red Grade (6-7mm) Cardamom",
+      "weight": "250 g",
+      "price": 999,
+      "originalPrice": 1500,
+      "image": "/images/home/red-card.webp",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 400,
+          "originalPrice": 600
+        },
+        {
+          "weight": "250 g",
+          "price": 999,
+          "originalPrice": 1500
+        },
+        {
+          "weight": "500 g",
+          "price": 1998,
+          "originalPrice": 3000
+        }
+      ],
+      "grade": "6–7 mm",
+      "description": "A carefully graded cardamom selection with the familiar fragrance and flavour that belongs in tea, sweets, and daily cooking.",
+      "highlights": [
+        "Graded by pod size for easy selection",
+        "A versatile addition to tea, sweets, and everyday recipes",
+        "Price and availability shown on this page"
+      ]
+    },
+    {
+      "id": "yellow-grade-9-mm-above-cardamom",
+      "name": "Yellow Grade (9 mm & above) Cardamom",
+      "category": "Cardamom",
+      "weight": "250 g",
+      "price": 1199,
+      "image": "/images/admin-uploads/yellow-cardamom-pouch-and-bowl-1792145329272.webp",
+      "available": true,
+      "originalPrice": 1500,
+      "imageAlt": "yellow",
+      "variants": [
+        {
+          "weight": "100 g",
+          "price": 480,
+          "originalPrice": 600
+        },
+        {
+          "weight": "250 g",
+          "price": 1199,
+          "originalPrice": 1500
+        },
+        {
+          "weight": "500 g",
+          "price": 2398,
+          "originalPrice": 3000
+        }
+      ],
+      "grade": "9.1",
+      "description": "yellow grade pack",
+      "highlights": []
+    }
+  ]
+}

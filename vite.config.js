@@ -9,6 +9,7 @@ const projectRoot = dirname(fileURLToPath(import.meta.url));
 function localAdminJsonWriter() {
   const coreFiles = new Set([
     "data/home.json",
+    "data/products.json",
     "data/about.json",
     "data/shop.json",
     "data/editorial.json",
@@ -16,8 +17,7 @@ function localAdminJsonWriter() {
     "data/blog.json",
     "data/admin-settings.json",
   ]);
-  const allowedFile = (filePath) => coreFiles.has(filePath)
-    || /^data\/products\/[a-z0-9-]+\.json$/i.test(filePath);
+  const allowedFile = (filePath) => coreFiles.has(filePath);
 
   return {
     name: "local-admin-json-writer",
@@ -148,8 +148,8 @@ function localAdminJsonWriter() {
               return { targetPath, content: entry.content };
             });
             const resolvedDeletes = deletes.map((relativePath) => {
-              if (typeof relativePath !== "string" || !/^data\/products\/[a-z0-9-]+\.json$/i.test(relativePath)) {
-                throw new Error("Only product detail files can be removed.");
+              if (typeof relativePath !== "string" || !/^data\/[a-z0-9-]+\.json$/i.test(relativePath)) {
+                throw new Error("That content file cannot be removed.");
               }
               const targetPath = resolve(publicRoot, relativePath);
               if (!targetPath.startsWith(`${publicRoot}${sep}`)) throw new Error("That file path is not allowed.");

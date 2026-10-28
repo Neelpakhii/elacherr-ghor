@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { HOME_DATA_URL, PRODUCT_DETAILS_URL, getAppPath, getImageUrl } from "../../config";
+import { PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../../config";
 import useBag from "../../hooks/useBag.js";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
@@ -36,16 +36,13 @@ const ProductDetailPage = () => {
 
         const loadProduct = async () => {
             try {
-                const response = await fetch(HOME_DATA_URL, { signal: controller.signal });
+                const response = await fetch(PRODUCTS_DATA_URL, { signal: controller.signal });
                 if (!response.ok) throw new Error("Could not load the product list.");
                 const data = await response.json();
                 const found = data.products?.find((item) => item.id === productId);
                 if (!found) throw new Error("We couldn’t find that product.");
-
-                const detailsResponse = await fetch(`${PRODUCT_DETAILS_URL}${encodeURIComponent(productId)}.json`, { signal: controller.signal });
-                const detailsData = detailsResponse.ok ? await detailsResponse.json() : null;
                 if (controller.signal.aborted) return;
-                setProductResult({ productId, product: found, details: detailsData, error: "" });
+                setProductResult({ productId, product: found, details: found, error: "" });
             } catch (loadError) {
                 if (loadError.name !== "AbortError" && !controller.signal.aborted) {
                     setProductResult({

@@ -4,9 +4,8 @@ Open `/admin` while running the project locally. Sidebar links open the dashboar
 
 ## Data connected today
 
-- Products and stock: `public/data/home.json`
-- Product grade and description: `public/data/products/<id>.json`
-- Homepage content and product listings: `public/data/home.json`
+- Products, grades, descriptions, prices, pack sizes, images, availability, and stock: `public/data/products.json`
+- Homepage content: `public/data/home.json`
 - Recipes: `public/data/recipe.json` (51 archive entries plus three pre-existing local additions)
 - Blog stories: `public/data/blog.json`
 - CSR content: `public/data/editorial.json`

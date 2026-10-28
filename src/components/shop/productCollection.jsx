@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { HOME_DATA_URL } from "../../config";
+import { PRODUCTS_DATA_URL } from "../../config";
 import ProductCard from "../home/productCard.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productCollection.css";
@@ -94,7 +94,7 @@ const ProductCollection = () => {
 
         const loadProducts = async () => {
             try {
-                const response = await fetch(HOME_DATA_URL, {
+                const response = await fetch(PRODUCTS_DATA_URL, {
                     signal: controller.signal,
                 });
 

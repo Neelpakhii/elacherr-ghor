@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { HOME_DATA_URL, getAppPath } from "../../config.js";
+import { PRODUCTS_DATA_URL, getAppPath } from "../../config.js";
 import ProductCard from "./productCard.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
 import "./productSection.css";
@@ -11,7 +11,7 @@ const ProductSection = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch(HOME_DATA_URL)
+        fetch(PRODUCTS_DATA_URL)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Could not load products.");

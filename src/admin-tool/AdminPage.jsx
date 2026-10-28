@@ -32,14 +32,15 @@ import {
     X,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ADMIN_SETTINGS_URL, BLOG_DATA_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCT_DETAILS_URL, RECIPE_DATA_URL, getImageUrl, migrateImagePath } from "../config.js";
+import { ADMIN_SETTINGS_URL, BLOG_DATA_URL, EDITORIAL_DATA_URL, HOME_DATA_URL, PRODUCTS_DATA_URL, RECIPE_DATA_URL, getImageUrl, migrateImagePath } from "../config.js";
 import { hasTrackedStock, isProductAvailable, isProductOutOfStock } from "../utils/productAvailability.js";
 import AdminJsonEditor from "./AdminJsonEditor.jsx";
 import "./admin.css";
 
 const DRAFT_KEY = "elacher-ghor-admin-draft-v1";
 const CONTENT_FILES = {
-    home: { label: "Products", path: "data/home.json", url: HOME_DATA_URL },
+    home: { label: "Homepage content", path: "data/home.json", url: HOME_DATA_URL },
+    products: { label: "Products", path: "data/products.json", url: PRODUCTS_DATA_URL },
     recipe: { label: "Recipes", path: "data/recipe.json", url: RECIPE_DATA_URL },
     blog: { label: "Blogs", path: "data/blog.json", url: BLOG_DATA_URL },
     editorial: { label: "CSR content", path: "data/editorial.json", url: EDITORIAL_DATA_URL },
@@ -106,12 +107,30 @@ function migrateDraftImagePaths(value) {
 }
 
 function getEmptyStateData(core, savedDraft) {
-    const data = { ...core, productDetails: { ...(core.productDetails || {}) } };
+    const data = { ...core };
     if (!savedDraft || typeof savedDraft !== "object") return migrateDraftImagePaths(data);
     for (const key of Object.keys(CONTENT_FILES)) {
-        if (savedDraft[key] && typeof savedDraft[key] === "object") {
+        if (Array.isArray(core[key]) && Array.isArray(savedDraft[key])) {
+            data[key] = savedDraft[key];
+        } else if (savedDraft[key] && typeof savedDraft[key] === "object" && !Array.isArray(savedDraft[key])) {
             data[key] = key === "editorial" ? { ...core.editorial, ...savedDraft.editorial } : savedDraft[key];
         }
+    }
+    // Migrate older browser drafts that kept product records in home.json and
+    // product details in a separate productDetails map.
+    if (!Array.isArray(savedDraft.products?.products) && Array.isArray(savedDraft.home?.products)) {
+        const savedProducts = savedDraft.home.products;
+        const details = savedDraft.productDetails || {};
+        const savedById = new Map(savedProducts.map((product) => [product.id, { ...product, ...(details[product.id] || {}) }]));
+        for (const product of data.products?.products || []) {
+            if (!savedById.has(product.id)) savedById.set(product.id, product);
+            else savedById.set(product.id, { ...product, ...savedById.get(product.id) });
+        }
+        data.products = { ...(data.products || {}), products: [...savedById.values()] };
+    }
+    if (data.home && Object.hasOwn(data.home, "products")) {
+        data.home = { ...data.home };
+        delete data.home.products;
     }
     const legacyEditorial = savedDraft.editorial || {};
     if (!savedDraft.recipe && (legacyEditorial.recipes || legacyEditorial.sourceRecipes || core.recipe?.recipes)) {
@@ -138,12 +157,6 @@ function getEmptyStateData(core, savedDraft) {
         data.editorial = { ...core.editorial, ...editorialContent };
     }
     if (savedDraft.adminSettings && typeof savedDraft.adminSettings === "object") data.adminSettings = savedDraft.adminSettings;
-    if (savedDraft.productDetails && typeof savedDraft.productDetails === "object") {
-        data.productDetails = { ...data.productDetails, ...savedDraft.productDetails };
-    }
-    for (const [key, value] of Object.entries(savedDraft)) {
-        if (key.startsWith("product:") && value && typeof value === "object") data.productDetails[key.slice("product:".length)] = value;
-    }
     return migrateDraftImagePaths(data);
 }
 
@@ -296,9 +309,6 @@ function AdminPage() {
             try {
                 const entries = await Promise.all(Object.entries(ALL_DATA_FILES).map(async ([key, file]) => [key, await fetchJson(file.url)]));
                 const core = Object.fromEntries(entries);
-                const detailEntries = await Promise.all((core.home.products || []).map(async (product) => [product.id, await fetchJson(`${PRODUCT_DETAILS_URL}${encodeURIComponent(product.id)}.json`, true)]));
-                core.productDetails = Object.fromEntries(detailEntries.map(([id, detail]) => [id, detail || { id, grade: "", description: "", highlights: [] }]));
-
                 let savedDraft = {};
                 try { savedDraft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}"); }
                 catch { localStorage.removeItem(DRAFT_KEY); }
@@ -329,7 +339,7 @@ function AdminPage() {
         catch { setNotice("Browser draft storage is full. Download your JSON to keep the changes."); }
     }, [data]);
 
-    const products = data?.home?.products || [];
+    const products = data?.products?.products || [];
     const settings = data?.adminSettings || { lowStockThreshold: 5 };
     const threshold = Math.max(0, Number(settings.lowStockThreshold ?? 5) || 0);
     const lowStockProducts = products.filter((product) => isLowStock(product, threshold));
@@ -338,10 +348,10 @@ function AdminPage() {
     const isDirty = Boolean(data && originals && JSON.stringify(data) !== JSON.stringify(originals));
     const isSettingsDirty = Boolean(data && originals && JSON.stringify(data.adminSettings) !== JSON.stringify(originals.adminSettings));
     const productCategories = [...new Set(products.map((product) => product.category || "Cardamom"))].sort();
-    const productGrades = [...new Set(products.map((product) => data?.productDetails?.[product.id]?.grade || product.grade).filter(Boolean))].sort();
+    const productGrades = [...new Set(products.map((product) => product.grade).filter(Boolean))].sort();
 
     const updateData = (key, value) => setData((current) => ({ ...current, [key]: value }));
-    const updateHomeProducts = (updater) => setData((current) => ({ ...current, home: { ...current.home, products: updater(current.home.products || []) } }));
+    const updateProducts = (updater) => setData((current) => ({ ...current, products: { ...current.products, products: updater(current.products?.products || []) } }));
     const updateEditorialList = (kind, collection, updater) => {
         const fileKey = kind === "recipes" ? "recipe" : "blog";
         setData((current) => ({
@@ -356,24 +366,11 @@ function AdminPage() {
         for (const [key, file] of Object.entries(ALL_DATA_FILES)) {
             if (JSON.stringify(data[key]) !== JSON.stringify(originals[key])) changed.push({ path: file.path, content: data[key] });
         }
-        const currentIds = new Set((data.home.products || []).map((product) => product.id));
-        for (const id of currentIds) {
-            const next = data.productDetails?.[id];
-            if (next && JSON.stringify(next) !== JSON.stringify(originals.productDetails?.[id])) {
-                changed.push({ path: `data/products/${id}.json`, content: next });
-            }
-        }
         return changed;
     }, [data, originals]);
 
-    const deletedProductIds = useMemo(() => {
-        if (!data || !originals) return [];
-        const remaining = new Set((data.home.products || []).map((product) => product.id));
-        return (originals.home.products || []).map((product) => product.id).filter((id) => !remaining.has(id));
-    }, [data, originals]);
-
     const saveChanges = async () => {
-        if (!changedFiles.length && !deletedProductIds.length) return;
+        if (!changedFiles.length) return;
         setIsSaving(true);
         setNotice("");
         try {
@@ -381,7 +378,7 @@ function AdminPage() {
                 const response = await fetch(`${BASE_URL}__local-admin/save-files`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ writes: changedFiles, deletes: deletedProductIds.map((id) => `data/products/${id}.json`) }),
+                    body: JSON.stringify({ writes: changedFiles }),
                 });
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.error || "The local file writer could not save the changes.");
@@ -391,11 +388,9 @@ function AdminPage() {
                 if (permission !== "granted") permission = await projectDirectory.requestPermission({ mode: "readwrite" });
                 if (permission !== "granted") throw new Error("Folder permission was not granted.");
                 for (const file of changedFiles) await writeJsonFile(projectDirectory, `public/${file.path}`, file.content);
-                const productDirectory = await projectDirectory.getDirectoryHandle("public").then((root) => root.getDirectoryHandle("data")).then((directory) => directory.getDirectoryHandle("products"));
-                for (const id of deletedProductIds) await productDirectory.removeEntry(`${id}.json`).catch((error) => { if (error.name !== "NotFoundError") throw error; });
             }
             setOriginals(clone(data));
-            setNotice(`Saved ${changedFiles.length} JSON file${changedFiles.length === 1 ? "" : "s"}${deletedProductIds.length ? ` and removed ${deletedProductIds.length} product detail file${deletedProductIds.length === 1 ? "" : "s"}` : ""}. Refresh the storefront to see the changes.`);
+            setNotice(`Saved ${changedFiles.length} JSON file${changedFiles.length === 1 ? "" : "s"}. Refresh the storefront to see the changes.`);
         } catch (error) {
             setNotice(error.message || "Could not save the website data.");
         } finally {
@@ -519,23 +514,17 @@ function AdminPage() {
             delete nextProduct.stockQty;
             delete nextProduct.stockUpdatedAt;
         }
-        const previousDetails = data.productDetails?.[form.id] || {};
-        const detail = {
-            ...previousDetails,
-            id: form.id,
+        const nextProductRecord = {
+            ...nextProduct,
             grade: form.grade.trim(),
             description: form.description.trim(),
             highlights: form.highlights.split("\n").map((line) => line.trim()).filter(Boolean),
         };
         const nextData = {
             ...data,
-            home: { ...data.home, products: previous ? data.home.products.map((product) => product.id === previous.id ? nextProduct : product) : [...data.home.products, nextProduct] },
-            productDetails: { ...data.productDetails, [form.id]: detail },
+            products: { ...data.products, products: previous ? data.products.products.map((product) => product.id === previous.id ? nextProductRecord : product) : [...data.products.products, nextProductRecord] },
         };
-        const files = [
-            { path: `data/products/${form.id}.json`, content: detail },
-            { path: "data/home.json", content: nextData.home },
-        ];
+        const files = [{ path: "data/products.json", content: nextData.products }];
         setIsSaving(true);
         setNotice("");
         try {
@@ -571,7 +560,7 @@ function AdminPage() {
             const hiddenReason = !isProductAvailable(nextProduct)
                 ? " It is currently marked unavailable or has zero stock, so it will not appear on Shop until availability is turned on and stock is above zero."
                 : " Refresh the Shop page to see it.";
-            setNotice(`${previous ? "Product updated" : "Product added"} and saved to public/data/home.json and its product detail JSON.${hiddenReason}`);
+            setNotice(`${previous ? "Product updated" : "Product added"} and saved to public/data/products.json.${hiddenReason}`);
         } catch (error) {
             setNotice(error.message || "The product could not be saved to the website JSON files.");
         } finally {
@@ -580,17 +569,13 @@ function AdminPage() {
     };
 
     const deleteProduct = (product) => {
-        if (!window.confirm(`Delete ${product.name}? This removes it from the shop and removes its product detail JSON when you save changes.`)) return;
-        setData((current) => {
-            const productDetails = { ...current.productDetails };
-            delete productDetails[product.id];
-            return { ...current, home: { ...current.home, products: current.home.products.filter((item) => item.id !== product.id) }, productDetails };
-        });
+        if (!window.confirm(`Delete ${product.name}? This removes it from the product catalogue when you save changes.`)) return;
+        setData((current) => ({ ...current, products: { ...current.products, products: current.products.products.filter((item) => item.id !== product.id) } }));
         setNotice(`${product.name} removed from the draft. Select Save Changes to apply the deletion.`);
     };
 
     const updateStock = (productId, value) => {
-        updateHomeProducts((items) => items.map((product) => {
+        updateProducts((items) => items.map((product) => {
             if (product.id !== productId) return product;
             if (value === "") {
                 const next = { ...product };
@@ -670,7 +655,7 @@ function AdminPage() {
     };
 
     const currentTitle = PAGE_TITLES[section] || "Dashboard";
-    const selectedFile = section === "products" ? "home" : section === "editorial" ? (editorialKind === "recipes" ? "recipe" : "blog") : section === "settings" ? "adminSettings" : null;
+    const selectedFile = section === "products" ? "products" : section === "editorial" ? (editorialKind === "recipes" ? "recipe" : "blog") : section === "settings" ? "adminSettings" : null;
     const lowStockCount = lowStockProducts.length;
     const notificationCount = lowStockProducts.length + outOfStockProducts.length;
     const sectionLinks = (id) => id === "dashboard" ? "/admin" : `/admin/${id}`;
@@ -706,14 +691,14 @@ function AdminPage() {
                 <main className="admin-content">
                     <div className="admin-page-heading"><div className="admin-page-actions"><Link className="admin-button admin-button--quiet" to="/" target="_blank"><ExternalLink size={15} /> View storefront</Link>{selectedFile && <button className="admin-button admin-button--quiet" type="button" onClick={() => downloadJson(selectedFile)}><FileText size={15} /> Download JSON</button>}{section !== "dashboard" && <button className="admin-button admin-button--primary" type="button" onClick={saveChanges} disabled={!isDirty || isSaving}>{isSaving ? <span className="admin-spinner" /> : <Save size={15} />}{isSaving ? "Saving…" : "Save changes"}</button>}</div></div>
 
-                    <div className="admin-connection-bar"><span className={isDirty ? "admin-dot admin-dot--unsaved" : "admin-dot"} /><span>{isDirty ? "Unsaved changes" : "All JSON data matches the saved files"}</span><span className="admin-connection-bar__divider" /><span>{import.meta.env.DEV ? "Local JSON writer ready" : projectDirectory ? `Folder: ${projectDirectory.name}` : "Browser draft only"}</span>{!import.meta.env.DEV && <button type="button" onClick={connectFolder}>{projectDirectory ? "Change folder" : "Connect project folder"}</button>}<span className="admin-connection-bar__spacer" />{isDirty && <span className="admin-change-count">{changedFiles.length + deletedProductIds.length} file change{changedFiles.length + deletedProductIds.length === 1 ? "" : "s"}</span>}</div>
+                    <div className="admin-connection-bar"><span className={isDirty ? "admin-dot admin-dot--unsaved" : "admin-dot"} /><span>{isDirty ? "Unsaved changes" : "All JSON data matches the saved files"}</span><span className="admin-connection-bar__divider" /><span>{import.meta.env.DEV ? "Local JSON writer ready" : projectDirectory ? `Folder: ${projectDirectory.name}` : "Browser draft only"}</span>{!import.meta.env.DEV && <button type="button" onClick={connectFolder}>{projectDirectory ? "Change folder" : "Connect project folder"}</button>}<span className="admin-connection-bar__spacer" />{isDirty && <span className="admin-change-count">{changedFiles.length} file change{changedFiles.length === 1 ? "" : "s"}</span>}</div>
                     {notice && <div className="admin-toast" role="status"><Check size={16} />{notice}<button type="button" aria-label="Dismiss message" onClick={() => setNotice("")}><X size={15} /></button></div>}
 
                     {section === "dashboard" && <DashboardSection data={data} products={products} lowStockProducts={lowStockProducts} threshold={threshold} onNavigate={(id) => navigate(sectionLinks(id))} />}
-                    {section === "products" && <ProductsSection products={products} details={data.productDetails} categories={productCategories} grades={productGrades} threshold={threshold} search={productSearch} setSearch={setProductSearch} category={productCategory} setCategory={setProductCategory} grade={productGrade} setGrade={setProductGrade} availability={productAvailability} setAvailability={setProductAvailability} onAdd={() => setProductModal({ product: null, detail: null })} onEdit={(product) => setProductModal({ product, detail: data.productDetails?.[product.id] })} onDelete={deleteProduct} />}
+                    {section === "products" && <ProductsSection products={products} categories={productCategories} grades={productGrades} threshold={threshold} search={productSearch} setSearch={setProductSearch} category={productCategory} setCategory={setProductCategory} grade={productGrade} setGrade={setProductGrade} availability={productAvailability} setAvailability={setProductAvailability} onAdd={() => setProductModal({ product: null, detail: null })} onEdit={(product) => setProductModal({ product, detail: product })} onDelete={deleteProduct} />}
                     {section === "orders" && <EmptyManagementSection title="Orders" icon={ShoppingCart} description="Order records are not available in this project yet. The shopping bag is saved in each visitor’s browser and there is no checkout or order API." columns={["Order ID", "Customer", "Date", "Items", "Total", "Payment", "Status"]} />}
                     {section === "customers" && <EmptyManagementSection title="Customers" icon={Users} description="This project does not have registered customer accounts or a customer database. The bag is local to each visitor’s device." columns={["Name", "Email", "Registered", "Orders", "Total spent"]} />}
-                    {section === "inventory" && <InventorySection products={products} details={data.productDetails} threshold={threshold} search={inventorySearch} setSearch={setInventorySearch} onStockChange={updateStock} />}
+                    {section === "inventory" && <InventorySection products={products} threshold={threshold} search={inventorySearch} setSearch={setInventorySearch} onStockChange={updateStock} />}
                     {section === "editorial" && <EditorialSection data={data} kind={editorialKind} setKind={setEditorialKind} search={editorialSearch} setSearch={setEditorialSearch} onAdd={() => setEditorialModal({ kind: editorialKind, item: makeEditorialTemplate(editorialKind), originalSlug: "" })} onEdit={(item, collection) => setEditorialModal({ kind: editorialKind, item: clone({ ...item, status: item.status || "published" }), originalSlug: item.slug, originalCollection: collection })} onPreview={(item) => setEditorialPreview({ kind: editorialKind, item })} onDelete={(item, collection) => deleteEditorialItem(editorialKind, item, collection)} />}
                     {section === "settings" && <SettingsSection settings={settings} setSettings={(next) => updateData("adminSettings", { ...data.adminSettings, lowStockThreshold: Math.max(0, Number(next.lowStockThreshold) || 0) })} isDirty={isSettingsDirty} onSave={saveChanges} />}
                     <footer className="admin-footer-note"><CircleAlert size={15} /><span>This admin route has no authentication. Do not publish confidential customer data or use it to store secrets. Orders and customer accounts need a backend data source.</span></footer>
@@ -761,9 +746,9 @@ function PanelHeading({ title, detail, action, onAction }) {
     return <header className="admin-panel-heading"><div><h2>{title}</h2>{detail && <p>{detail}</p>}</div>{action && <button type="button" onClick={onAction}>{action}<ArrowUpRight size={14} /></button>}</header>;
 }
 
-function ProductsSection({ products, details, categories, grades, threshold, search, setSearch, category, setCategory, grade, setGrade, availability, setAvailability, onAdd, onEdit, onDelete }) {
+function ProductsSection({ products, categories, grades, threshold, search, setSearch, category, setCategory, grade, setGrade, availability, setAvailability, onAdd, onEdit, onDelete }) {
     const filtered = products.filter((product) => {
-        const productGrade = details?.[product.id]?.grade || product.grade || "";
+        const productGrade = product.grade || "";
         const available = isProductAvailable(product);
         const text = `${product.name} ${product.id} ${product.sku || ""}`.toLocaleLowerCase();
         return (!search || text.includes(search.toLocaleLowerCase()))
@@ -774,21 +759,21 @@ function ProductsSection({ products, details, categories, grades, threshold, sea
     return (
         <section className="admin-panel admin-management-panel">
             <div className="admin-toolbar"><label className="admin-search-field"><Search size={17} /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search products" aria-label="Search products" /></label><select value={category} onChange={(event) => setCategory(event.target.value)} aria-label="Filter by category"><option value="all">All categories</option>{categories.map((item) => <option key={item}>{item}</option>)}</select><select value={grade} onChange={(event) => setGrade(event.target.value)} aria-label="Filter by grade"><option value="all">All grades</option>{grades.map((item) => <option key={item}>{item}</option>)}</select><select value={availability} onChange={(event) => setAvailability(event.target.value)} aria-label="Filter by availability"><option value="all">Any availability</option><option value="available">Available</option><option value="unavailable">Unavailable</option></select><button className="admin-button admin-button--primary" type="button" onClick={onAdd}><Plus size={16} />Add product</button></div>
-            <p className="admin-data-source-note"><Package size={14} />Product records and stock quantities use <code>public/data/home.json</code>. Detail copy and grades use each product’s existing <code>public/data/products/&lt;id&gt;.json</code> file.</p>
+            <p className="admin-data-source-note"><Package size={14} />Product details, prices, pack sizes, availability, stock, and grades are stored together in sequence in <code>public/data/products.json</code>.</p>
             <div className="admin-table-wrap"><table className="admin-table admin-product-table"><thead><tr><th>Product</th><th>Category</th><th>Grade</th><th>Price</th><th>Stock</th><th>Availability</th><th>Actions</th></tr></thead><tbody>{filtered.map((product) => {
                 const available = isProductAvailable(product);
                 const stock = hasTrackedStock(product) ? Number(product.stockQty) : null;
-        return <tr key={product.id}><td><span className="admin-product-cell"><img src={getImageUrl(product.image)} alt="" title={product.imageTitle || product.name} /><span><strong>{product.name}</strong><small>ID: {product.id}{product.sku ? ` · SKU ${product.sku}` : ""}</small></span></span></td><td>{product.category || "Cardamom"}</td><td>{details?.[product.id]?.grade || product.grade || "—"}</td><td>{currency(product.price)}</td><td>{stock == null ? <span className="admin-tag admin-tag--neutral">Not tracked</span> : stock === 0 ? <span className="admin-tag admin-tag--danger">Out of stock</span> : stock <= threshold ? <span className="admin-tag admin-tag--warning">{stock} left</span> : stock}</td><td><span className={`admin-tag ${available ? "admin-tag--success" : "admin-tag--neutral"}`}>{available ? "Available" : "Unavailable"}</span></td><td><span className="admin-row-actions"><button className="admin-icon-button" type="button" title="Edit product" aria-label={`Edit ${product.name}`} onClick={() => onEdit(product)}><Pencil size={15} /></button><button className="admin-icon-button admin-icon-button--danger" type="button" title="Delete product" aria-label={`Delete ${product.name}`} onClick={() => onDelete(product)}><Trash2 size={15} /></button></span></td></tr>;
+                return <tr key={product.id}><td><span className="admin-product-cell"><img src={getImageUrl(product.image)} alt="" title={product.imageTitle || product.name} /><span><strong>{product.name}</strong><small>ID: {product.id}{product.sku ? ` · SKU ${product.sku}` : ""}</small></span></span></td><td>{product.category || "Cardamom"}</td><td>{product.grade || "—"}</td><td>{currency(product.price)}</td><td>{stock == null ? <span className="admin-tag admin-tag--neutral">Not tracked</span> : stock === 0 ? <span className="admin-tag admin-tag--danger">Out of stock</span> : stock <= threshold ? <span className="admin-tag admin-tag--warning">{stock} left</span> : stock}</td><td><span className={`admin-tag ${available ? "admin-tag--success" : "admin-tag--neutral"}`}>{available ? "Available" : "Unavailable"}</span></td><td><span className="admin-row-actions"><button className="admin-icon-button" type="button" title="Edit product" aria-label={`Edit ${product.name}`} onClick={() => onEdit(product)}><Pencil size={15} /></button><button className="admin-icon-button admin-icon-button--danger" type="button" title="Delete product" aria-label={`Delete ${product.name}`} onClick={() => onDelete(product)}><Trash2 size={15} /></button></span></td></tr>;
             })}</tbody></table>{filtered.length === 0 && <EmptyState icon={Search} title="No products match these filters"><span>Clear the search or choose another category, grade, or availability.</span></EmptyState>}</div>
         </section>
     );
 }
 
-function InventorySection({ products, details, threshold, search, setSearch, onStockChange }) {
+function InventorySection({ products, threshold, search, setSearch, onStockChange }) {
     const filtered = products.filter((product) => `${product.name} ${product.id} ${product.sku || ""}`.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
-    return <section className="admin-panel admin-management-panel"><div className="admin-toolbar"><label className="admin-search-field"><Search size={17} /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search inventory" aria-label="Search inventory" /></label><span className="admin-threshold-badge"><Boxes size={15} />Low-stock threshold: {threshold}</span></div><p className="admin-data-source-note"><Warehouse size={14} />Stock is stored with each product in <code>public/data/home.json</code>. Blank stock means untracked; quantities at or below {threshold} trigger an alert.</p><div className="admin-table-wrap"><table className="admin-table admin-inventory-table"><thead><tr><th>Product</th><th>SKU</th><th>Grade</th><th>Current stock</th><th>Status</th><th>Last updated</th></tr></thead><tbody>{filtered.map((product) => {
+    return <section className="admin-panel admin-management-panel"><div className="admin-toolbar"><label className="admin-search-field"><Search size={17} /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search inventory" aria-label="Search inventory" /></label><span className="admin-threshold-badge"><Boxes size={15} />Low-stock threshold: {threshold}</span></div><p className="admin-data-source-note"><Warehouse size={14} />Product and stock records are stored together in <code>public/data/products.json</code>. Blank stock means untracked; quantities at or below {threshold} trigger an alert.</p><div className="admin-table-wrap"><table className="admin-table admin-inventory-table"><thead><tr><th>Product</th><th>SKU</th><th>Grade</th><th>Current stock</th><th>Status</th><th>Last updated</th></tr></thead><tbody>{filtered.map((product) => {
         const tracked = hasTrackedStock(product); const stock = tracked ? Number(product.stockQty) : null; const low = isLowStock(product, threshold); const out = isProductOutOfStock(product);
-        return <tr key={product.id}><td><span className="admin-product-cell"><img src={getImageUrl(product.image)} alt="" title={product.imageTitle || product.name} /><span><strong>{product.name}</strong><small>{product.category || "Cardamom"}</small></span></span></td><td>{product.sku || "—"}</td><td>{details?.[product.id]?.grade || "—"}</td><td><label className="admin-stock-input"><input type="number" min="0" step="1" value={tracked ? stock : ""} placeholder="Not tracked" onChange={(event) => onStockChange(product.id, event.target.value)} aria-label={`Stock quantity for ${product.name}`} /><span>units</span></label></td><td><span className={`admin-tag ${out ? "admin-tag--danger" : low ? "admin-tag--warning" : tracked ? "admin-tag--success" : "admin-tag--neutral"}`}>{out ? "Out of stock" : low ? "Low stock" : tracked ? "In stock" : "Not tracked"}</span></td><td>{product.stockUpdatedAt || "—"}</td></tr>;
+        return <tr key={product.id}><td><span className="admin-product-cell"><img src={getImageUrl(product.image)} alt="" title={product.imageTitle || product.name} /><span><strong>{product.name}</strong><small>{product.category || "Cardamom"}</small></span></span></td><td>{product.sku || "—"}</td><td>{product.grade || "—"}</td><td><label className="admin-stock-input"><input type="number" min="0" step="1" value={tracked ? stock : ""} placeholder="Not tracked" onChange={(event) => onStockChange(product.id, event.target.value)} aria-label={`Stock quantity for ${product.name}`} /><span>units</span></label></td><td><span className={`admin-tag ${out ? "admin-tag--danger" : low ? "admin-tag--warning" : tracked ? "admin-tag--success" : "admin-tag--neutral"}`}>{out ? "Out of stock" : low ? "Low stock" : tracked ? "In stock" : "Not tracked"}</span></td><td>{product.stockUpdatedAt || "—"}</td></tr>;
     })}</tbody></table>{filtered.length === 0 && <EmptyState icon={Search} title="No products found"><span>Try another name or product ID.</span></EmptyState>}</div><p className="admin-inventory-save-hint">Stock edits are drafts until you select <strong>Save changes</strong> at the top of the page.</p></section>;
 }
 

@@ -27,6 +27,8 @@ const siteBase = process.env.VITE_SITE_URL?.replace(/\/+$/, "")
 const sitemapBase = siteBase || "https://neelpakhii.github.io/elacherr-ghor";
 
 const home = await readJson("public/data/home.json");
+const productData = await readJson("public/data/products.json");
+const products = productData.products || [];
 const recipeData = await readJson("public/data/recipe.json");
 const blogData = await readJson("public/data/blog.json");
 const editorial = await readJson("public/data/editorial.json");
@@ -44,7 +46,7 @@ addRoute("/about", {
 });
 addRoute("/shop", {
     title: "Shop Premium Cardamom | Elacher Ghor",
-    description: `Explore ${home.products?.length || "our"} graded cardamom products from Elacher Ghor, with product details, prices, and availability.`,
+    description: `Explore ${products.length || "our"} graded cardamom products from Elacher Ghor, with product details, prices, and availability.`,
 });
 addRoute("/recipes", {
     title: `${recipeData.recipesPage?.title || "Cardamom Recipes"} | Elacher Ghor`,
@@ -107,17 +109,11 @@ addRoute("/search", {
     noIndex: true,
 });
 
-for (const product of home.products || []) {
+for (const product of products) {
     if (!/^[a-z0-9-]+$/i.test(product.id || "")) continue;
-    let detail = {};
-    try {
-        detail = await readJson(`public/data/products/${product.id}.json`);
-    } catch {
-        // Products without a separate details file still get a route shell.
-    }
     addRoute(`/products/${product.id}`, {
         title: `${product.name || "Cardamom"} | Elacher Ghor`,
-        description: detail.description || product.description || `${product.name || "Premium cardamom"} from Elacher Ghor. View product details, price, and availability.`,
+        description: product.description || `${product.name || "Premium cardamom"} from Elacher Ghor. View product details, price, and availability.`,
     });
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Search, UserRound, ShoppingBag, Menu, X } from "lucide-react";
-import { HOME_DATA_URL, getAppPath, getImageUrl } from "../config";
+import { HOME_DATA_URL, PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../config";
 import useBag from "../hooks/useBag.js";
 import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
@@ -53,15 +53,18 @@ const Navbar = () => {
 
     useEffect(() => {
         const controller = new AbortController();
-        fetch(HOME_DATA_URL, { signal: controller.signal })
-            .then((response) => {
-                if (!response.ok) throw new Error("Failed to load navbar data");
-                return response.json();
+        Promise.all([
+            fetch(HOME_DATA_URL, { signal: controller.signal }),
+            fetch(PRODUCTS_DATA_URL, { signal: controller.signal }),
+        ])
+            .then(async ([homeResponse, productsResponse]) => {
+                if (!homeResponse.ok || !productsResponse.ok) throw new Error("Failed to load navbar data");
+                return [await homeResponse.json(), await productsResponse.json()];
             })
-            .then((data) => {
-                setLogo(getImageUrl(data.navbar?.logo));
-                setLogoTitle(data.navbar?.logoTitle || "Elacher Ghor home");
-                setProducts(Array.isArray(data.products) ? data.products : []);
+            .then(([homeData, productsData]) => {
+                setLogo(getImageUrl(homeData.navbar?.logo));
+                setLogoTitle(homeData.navbar?.logoTitle || "Elacher Ghor home");
+                setProducts(Array.isArray(productsData.products) ? productsData.products : []);
             })
             .catch((error) => {
                 if (error.name !== "AbortError") {
