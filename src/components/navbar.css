@@ -310,7 +310,7 @@
 .navbar-actions .navbar-search__backdrop:hover {
     background: rgba(13, 22, 17, 0.54) !important;
     color: transparent !important;
-    transform: translateY(-50%) !important;
+    transform: none !important;
 }
 
 .navbar-search__drawer {
@@ -581,6 +581,7 @@
 }
 
 .navbar-search-result__add:hover { background: #edf3eb; }
+.navbar-search-result__add.is-added { border-color: #b9ceb2; background: #edf5e9; color: #3d7042; }
 .navbar-search-result__add svg { display: none; }
 
 @media (max-width: 900px) {
@@ -645,6 +646,31 @@
 .navbar .navbar-actions .navbar-search__drawer .navbar-search__form {
     background: #fffefa !important;
     color: #344539 !important;
+}
+
+/* Keep the open search drawer readable when the pointer leaves the navbar. */
+.navbar .navbar-search__drawer,
+.navbar .navbar-search__drawer p,
+.navbar .navbar-search__drawer span,
+.navbar .navbar-search__drawer a,
+.navbar .navbar-search__drawer button,
+.navbar .navbar-search__drawer input {
+    color: #344539 !important;
+}
+
+.navbar .navbar-search__drawer .navbar-search__subtitle,
+.navbar .navbar-search__drawer .navbar-search__message,
+.navbar .navbar-search__drawer .navbar-search-result__price {
+    color: #7a8479 !important;
+}
+
+.navbar .navbar-search__drawer .navbar-search__form input::placeholder {
+    color: #929b91 !important;
+    opacity: 1;
+}
+
+.navbar .navbar-search__drawer .navbar-search__results-heading button {
+    color: #526f42 !important;
 }
 
 .navbar-search-result__image {

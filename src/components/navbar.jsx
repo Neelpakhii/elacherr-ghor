@@ -30,6 +30,7 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchFocused, setSearchFocused] = useState(false);
     const [recentProductIds, setRecentProductIds] = useState(getRecentlySearchedProductIds);
+    const [addedSearchProductId, setAddedSearchProductId] = useState(null);
 
     useEffect(() => {
         const syncRecentProducts = (event) => setRecentProductIds(Array.isArray(event.detail) ? event.detail : getRecentlySearchedProductIds());
@@ -142,6 +143,8 @@ const Navbar = () => {
         event.stopPropagation();
         addItem(product);
         setRecentProductIds(recordRecentlySearchedProduct(product.id));
+        setAddedSearchProductId(product.id);
+        window.setTimeout(() => setAddedSearchProductId((current) => current === product.id ? null : current), 1500);
     };
 
     return (
@@ -211,7 +214,7 @@ const Navbar = () => {
                                                     <span className="navbar-search-result__image">{product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}</span>
                                                     <span className="navbar-search-result__details"><span className="navbar-search-result__name">{product.name}</span><span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span></span>
                                                 </Link>
-                                                <button className="navbar-search-result__add" type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>Add to bag</span></button>
+                                                <button className={`navbar-search-result__add${addedSearchProductId === product.id ? " is-added" : ""}`} type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>{addedSearchProductId === product.id ? "Added to bag" : "Add to bag"}</span></button>
                                             </div>
                                         ))}
                                         {!productsLoading && !productsError && searchResults.length === 0 && (
@@ -227,7 +230,7 @@ const Navbar = () => {
                                                     <span className="navbar-search-result__image">{product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}</span>
                                                     <span className="navbar-search-result__details"><span className="navbar-search-result__name">{product.name}</span><span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span></span>
                                                 </Link>
-                                                <button className="navbar-search-result__add" type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>Add to bag</span></button>
+                                                <button className={`navbar-search-result__add${addedSearchProductId === product.id ? " is-added" : ""}`} type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>{addedSearchProductId === product.id ? "Added to bag" : "Add to bag"}</span></button>
                                             </div>
                                         ))}
                                     </div>
