@@ -310,7 +310,7 @@
 .navbar-actions .navbar-search__backdrop:hover {
     background: rgba(13, 22, 17, 0.54) !important;
     color: transparent !important;
-    transform: none !important;
+    transform: translateY(-50%) !important;
 }
 
 .navbar-search__drawer {
@@ -396,6 +396,7 @@
     border-radius: 50%;
     background: #fffefa;
     color: #4d5b4d;
+    cursor: pointer;
 }
 
 .navbar-actions .navbar-search__close:hover {
@@ -445,6 +446,10 @@
 .navbar-search__clear svg {
     width: 17px;
     height: 17px;
+}
+
+.navbar-search__form input[type="search"]::-webkit-search-cancel-button {
+    cursor: pointer;
 }
 
 .navbar-search__form:focus-within {
@@ -520,15 +525,95 @@
 }
 
 .navbar-search-result {
+    position: relative;
     min-height: 62px;
-    display: grid;
-    grid-template-columns: 50px minmax(0, 1fr) 16px;
+    display: flex;
     align-items: center;
+    box-sizing: border-box;
+    max-width: 100%;
     gap: 11px;
     padding: 8px 2px;
     border-top: 1px solid #edf0e9;
     color: inherit;
     text-decoration: none;
+}
+
+.navbar-search-result__link {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    justify-content: initial !important;
+    flex-shrink: 1;
+    overflow: hidden;
+    padding-right: 52px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar-search-result__add {
+    position: absolute;
+    top: 50% !important;
+    right: 10px;
+    z-index: 1;
+    flex: none;
+    width: auto !important;
+    height: auto !important;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 7px 9px;
+    border: 1px solid #d4dfd0;
+    background: #fff;
+    color: #304b3b;
+    cursor: pointer;
+    font: 700 9px "Montserrat", "Segoe UI", sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    transform: translateY(-50%) !important;
+}
+
+.navbar-search-result__add:hover { background: #edf3eb; }
+.navbar-search-result__add svg { display: none; }
+
+@media (max-width: 900px) {
+    .navbar-search-result {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 36px;
+        gap: 6px;
+    }
+
+    .navbar-search-result__link {
+        grid-column: 1;
+        width: 100% !important;
+        padding-right: 0;
+    }
+
+    .navbar-search-result__add {
+        position: static;
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        width: 36px !important;
+        min-width: 36px;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border-radius: 50%;
+        transform: none !important;
+    }
+
+    .navbar-search-result__add span { display: none; }
+    .navbar-search-result__add svg { display: block; }
 }
 
 /* Search suggestions are full-width rows, not the compact navbar icon links. */
@@ -581,15 +666,20 @@
 
 .navbar-search-result__details {
     min-width: 0;
+    max-width: 100%;
+    padding-right: 4px;
+    overflow: hidden;
     display: grid;
     gap: 3px;
 }
 
 .navbar-search-result__name {
     overflow: hidden;
+    min-width: 0;
     color: #364b37;
     font: 600 12px/1.4 "Montserrat", "Segoe UI", sans-serif;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .navbar-search-result__price {
@@ -597,11 +687,6 @@
     font: 400 11px/1.4 "Montserrat", "Segoe UI", sans-serif;
 }
 
-.navbar-search-result > svg {
-    width: 16px;
-    height: 16px;
-    color: #778568;
-}
 
 .navbar-search__message {
     padding: 18px 6px;
@@ -1137,6 +1222,24 @@
 }
 
 /* ACCESSIBILITY */
+
+/* Keep the language control text-only; it must not inherit navbar action surfaces. */
+.navbar .navbar-actions .language-switcher,
+.navbar .navbar-actions .language-switcher .language-switcher__trigger,
+.navbar .navbar-actions .language-switcher .language-switcher__trigger:hover,
+.navbar .navbar-actions .language-switcher .language-switcher__trigger[aria-expanded="true"],
+.navbar.scrolled .navbar-actions .language-switcher,
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger,
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger:hover,
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger[aria-expanded="true"],
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher .language-switcher__trigger,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher .language-switcher__trigger:hover,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher .language-switcher__trigger[aria-expanded="true"] {
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
 
 .navbar a:focus-visible,
 .navbar button:focus-visible {

@@ -4,6 +4,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { PRODUCTS_DATA_URL } from "../../config";
 import ProductCard from "../../components/home/productCard.jsx";
 import { isProductAvailable } from "../../utils/productAvailability.js";
+import { clearRecentlySearchedProducts, getRecentlySearchedProductIds, recordRecentlySearchedProduct } from "../../utils/recentSearchProducts.js";
 import "./search.css";
 
 const SearchPage = () => {
@@ -12,10 +13,21 @@ const SearchPage = () => {
     const query = searchParams.get("q") || "";
     const [draft, setDraft] = useState({ locationKey: location.key, value: query });
     const input = draft.locationKey === location.key ? draft.value : query;
-    const activeSearchTerm = query.trim();
+    const activeSearchTerm = input.trim();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [recentProductIds, setRecentProductIds] = useState(getRecentlySearchedProductIds);
+
+    useEffect(() => {
+        const syncRecentProducts = (event) => setRecentProductIds(Array.isArray(event.detail) ? event.detail : getRecentlySearchedProductIds());
+        window.addEventListener("elacher:recent-search-products-change", syncRecentProducts);
+        window.addEventListener("storage", syncRecentProducts);
+        return () => {
+            window.removeEventListener("elacher:recent-search-products-change", syncRecentProducts);
+            window.removeEventListener("storage", syncRecentProducts);
+        };
+    }, []);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -42,10 +54,19 @@ const SearchPage = () => {
         return products.filter((product) => `${product.name || ""} ${product.id || ""}`.toLocaleLowerCase().includes(term));
     }, [activeSearchTerm, products]);
 
+    const recentlySearchedProducts = useMemo(() => {
+        const productsById = new Map(products.map((product) => [product.id, product]));
+        return recentProductIds.map((id) => productsById.get(id)).filter(Boolean);
+    }, [products, recentProductIds]);
+
     const submitSearch = (event) => {
         event.preventDefault();
         const next = input.trim();
         setSearchParams(next ? { q: next } : {});
+    };
+
+    const rememberSearchProduct = (product) => {
+        setRecentProductIds(recordRecentlySearchedProduct(product.id));
     };
 
     return (
@@ -69,7 +90,7 @@ const SearchPage = () => {
                 {activeSearchTerm && <p className="search-page__count">{loading ? "Searching…" : `${results.length} ${results.length === 1 ? "product" : "products"} for “${activeSearchTerm}”`}</p>}
                 {activeSearchTerm && !loading && error && <p className="search-page__message" role="alert">{error}</p>}
                 {activeSearchTerm && !loading && !error && results.length > 0 && (
-                    <div className="search-page__grid">{results.map((product) => <ProductCard key={product.id} product={product} headingLevel={2} />)}</div>
+                    <div className="search-page__grid">{results.map((product) => <ProductCard key={product.id} product={product} onProductClick={rememberSearchProduct} />)}</div>
                 )}
                 {activeSearchTerm && !loading && !error && results.length === 0 && (
                     <div className="search-page__empty">
@@ -77,7 +98,16 @@ const SearchPage = () => {
                         <p>Try a grade colour such as purple, pink, green, orange, or red.</p>
                     </div>
                 )}
-                {!activeSearchTerm && (
+                {!activeSearchTerm && !loading && !error && recentlySearchedProducts.length > 0 && (
+                    <section className="search-page__recent" aria-labelledby="recently-searched-products">
+                        <div className="search-page__recent-heading"><h2 id="recently-searched-products">Recently searched products</h2><button type="button" onClick={() => setRecentProductIds(clearRecentlySearchedProducts())}>Clear</button></div>
+                        <div className="search-page__grid">
+                            {recentlySearchedProducts.map((product) => <ProductCard key={product.id} product={product} onProductClick={rememberSearchProduct} />)}
+                        </div>
+                    </section>
+                )}
+                {!activeSearchTerm && !loading && error && <p className="search-page__message" role="alert">{error}</p>}
+                {!activeSearchTerm && !loading && !error && recentlySearchedProducts.length === 0 && (
                     <div className="search-page__empty">
                         <h2>Find your perfect grade</h2>
                         <p>Enter a cardamom grade or colour above to see matching products.</p>

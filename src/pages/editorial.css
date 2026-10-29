@@ -449,6 +449,30 @@
     background: var(--editorial-paper);
 }
 
+/* Keep the recipe listing's featured and standard cards visually consistent. */
+.recipes-page .editorial-featured-card,
+.recipes-page .editorial-card {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+/* Crop the white edge built into the featured rasmalai image. */
+.recipes-page .editorial-featured-card__image img {
+    transform: scale(1.18);
+    transform-origin: center;
+}
+
+.recipes-page .editorial-featured-card__image:hover img {
+    transform: scale(1.22);
+}
+
+/* Apply the same treatment to the blog listing's feature and article cards. */
+.blogs-page .journal-featured,
+.blogs-page .editorial-card {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
 .editorial-featured-card__image,
 .journal-featured__image,
 .editorial-card__image {
@@ -1050,6 +1074,7 @@
 .csr-community__image img {
     width: 100%;
     aspect-ratio: 1.15 / 1;
+    border-radius: 16px;
     object-fit: cover;
 }
 

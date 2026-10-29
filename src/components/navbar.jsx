@@ -5,6 +5,7 @@ import { HOME_DATA_URL, PRODUCTS_DATA_URL, getAppPath, getImageUrl } from "../co
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useCurrency } from "../context/CurrencyContext.jsx";
 import useBag from "../hooks/useBag.js";
+import { clearRecentlySearchedProducts, getRecentlySearchedProductIds, recordRecentlySearchedProduct } from "../utils/recentSearchProducts.js";
 import scrollToTop from "../utils/scrollToTop.js";
 import "./navbar.css";
 
@@ -28,11 +29,22 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchFocused, setSearchFocused] = useState(false);
+    const [recentProductIds, setRecentProductIds] = useState(getRecentlySearchedProductIds);
+
+    useEffect(() => {
+        const syncRecentProducts = (event) => setRecentProductIds(Array.isArray(event.detail) ? event.detail : getRecentlySearchedProductIds());
+        window.addEventListener("elacher:recent-search-products-change", syncRecentProducts);
+        window.addEventListener("storage", syncRecentProducts);
+        return () => {
+            window.removeEventListener("elacher:recent-search-products-change", syncRecentProducts);
+            window.removeEventListener("storage", syncRecentProducts);
+        };
+    }, []);
     const searchInputRef = useRef(null);
     const searchContainerRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
-    const { itemCount } = useBag();
+    const { itemCount, addItem } = useBag();
     const { formatPrice } = useCurrency();
     const pathname = location.pathname.replace(/\/+$/, "") || "/";
     const hasImageHero = ["/", "/about", "/shop", "/recipes", "/blogs", "/csr", "/pages/csr", "/blogs/recipes", "/blogs/p"].includes(pathname);
@@ -43,6 +55,10 @@ const Navbar = () => {
             .filter((product) => `${product.name || ""} ${product.id || ""}`.toLocaleLowerCase().includes(normalizedSearchQuery))
             .slice(0, 5);
     }, [normalizedSearchQuery, products]);
+    const recentlySearchedProducts = useMemo(() => {
+        const productsById = new Map(products.map((product) => [product.id, product]));
+        return recentProductIds.map((id) => productsById.get(id)).filter(Boolean);
+    }, [products, recentProductIds]);
 
     const closeOverlays = () => {
         setMenuOpen(false);
@@ -121,6 +137,13 @@ const Navbar = () => {
         navigate(getAppPath(`/search?q=${encodeURIComponent(query)}`));
     };
 
+    const addSearchProductToBag = (event, product) => {
+        event.preventDefault();
+        event.stopPropagation();
+        addItem(product);
+        setRecentProductIds(recordRecentlySearchedProduct(product.id));
+    };
+
     return (
         <header className={`navbar ${isScrolled ? "scrolled" : ""} ${hasImageHero ? "navbar--hero" : ""} ${menuOpen ? "menu-open" : ""}`}>
             <div className="navbar-logo">
@@ -173,7 +196,6 @@ const Navbar = () => {
                                         aria-expanded={Boolean(normalizedSearchQuery)}
                                         aria-controls="navbar-search-results"
                                     />
-                                    {searchQuery && <button className="navbar-search__clear" type="button" aria-label="Clear search" onClick={() => setSearchQuery("")}><X aria-hidden="true" /></button>}
                                 </form>
 
                                 {normalizedSearchQuery ? (
@@ -184,28 +206,30 @@ const Navbar = () => {
                                         </div>
                                         {productsError && <p className="navbar-search__message" role="alert">We couldn’t load products. Please try again.</p>}
                                         {!productsLoading && !productsError && searchResults.length > 0 && searchResults.map((product) => (
-                                            <Link
-                                                className="navbar-search-result"
-                                                key={product.id}
-                                                to={getAppPath(`/products/${product.id}`)}
-                                                onClick={() => {
-                                                    setSearchQuery("");
-                                                    handlePageNavigation();
-                                                }}
-                                            >
-                                                <span className="navbar-search-result__image">
-                                                    {product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}
-                                                </span>
-                                                <span className="navbar-search-result__details">
-                                                    <span className="navbar-search-result__name">{product.name}</span>
-                                                    <span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span>
-                                                </span>
-                                                <ArrowRight aria-hidden="true" />
-                                            </Link>
+                                            <div className="navbar-search-result" key={product.id}>
+                                                <Link className="navbar-search-result__link" to={getAppPath(`/products/${product.id}`)} onClick={() => { setRecentProductIds(recordRecentlySearchedProduct(product.id)); setSearchQuery(""); handlePageNavigation(); }}>
+                                                    <span className="navbar-search-result__image">{product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}</span>
+                                                    <span className="navbar-search-result__details"><span className="navbar-search-result__name">{product.name}</span><span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span></span>
+                                                </Link>
+                                                <button className="navbar-search-result__add" type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>Add to bag</span></button>
+                                            </div>
                                         ))}
                                         {!productsLoading && !productsError && searchResults.length === 0 && (
                                             <p className="navbar-search__message">No products found for “{searchQuery.trim()}”.</p>
                                         )}
+                                    </div>
+                                ) : !productsLoading && recentlySearchedProducts.length > 0 ? (
+                                    <div className="navbar-search__results" id="navbar-search-results">
+                                        <div className="navbar-search__results-heading"><span>Recently searched products</span><button type="button" onClick={() => setRecentProductIds(clearRecentlySearchedProducts())}>Clear</button></div>
+                                        {recentlySearchedProducts.map((product) => (
+                                            <div className="navbar-search-result" key={product.id}>
+                                                <Link className="navbar-search-result__link" to={getAppPath(`/products/${product.id}`)} onClick={() => { setRecentProductIds(recordRecentlySearchedProduct(product.id)); handlePageNavigation(); }}>
+                                                    <span className="navbar-search-result__image">{product.image && <img src={getImageUrl(product.image)} alt="" loading="lazy" />}</span>
+                                                    <span className="navbar-search-result__details"><span className="navbar-search-result__name">{product.name}</span><span className="navbar-search-result__price notranslate" translate="no">{formatPrice(product.price)}</span></span>
+                                                </Link>
+                                                <button className="navbar-search-result__add" type="button" aria-label={`Add ${product.name} to bag`} onClick={(event) => addSearchProductToBag(event, product)}><ShoppingBag size={16} aria-hidden="true" /><span>Add to bag</span></button>
+                                            </div>
+                                        ))}
                                     </div>
                                 ) : (
                                     <p className="navbar-search__message navbar-search__message--hint">Search our cardamom grades and recipes.</p>

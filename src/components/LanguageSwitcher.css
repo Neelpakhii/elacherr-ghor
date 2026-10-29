@@ -1,7 +1,7 @@
 .language-switcher {
     position: relative;
-    flex: 0 0 64px;
-    width: 64px;
+    flex: 0 0 110px;
+    width: 110px;
     min-width: 0;
     z-index: 1006;
 }
@@ -10,36 +10,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 9px;
     width: 100%;
     height: 40px;
     padding: 0 9px;
-    border: 1px solid rgba(52, 58, 50, 0.2);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.58);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: #354638;
-    font: 500 11px/1.2 "Montserrat", "Segoe UI", sans-serif;
+    font: 600 14px/1.2 "Montserrat", "Segoe UI", sans-serif;
     cursor: pointer;
-    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    transition: color 180ms ease;
 }
 
 .language-switcher__trigger:hover,
 .language-switcher__trigger[aria-expanded="true"],
 .language-switcher__trigger:focus-visible {
-    border-color: #91a174;
-    background: #fffefa;
-    box-shadow: 0 4px 14px rgba(24, 53, 39, 0.1);
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
 }
 
-.language-switcher__trigger > svg:first-child {
-    flex: 0 0 16px;
-    width: 16px;
-    height: 16px;
-    stroke-width: 1.7;
+.language-switcher__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.language-switcher__trigger > svg:last-child {
-    flex: 0 0 13px;
+.language-switcher__trigger > svg {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
     opacity: 0.7;
 }
 
@@ -119,14 +120,14 @@
 
 @media (min-width: 769px) and (max-width: 1200px) {
     .language-switcher {
-        flex-basis: 58px;
-        width: 58px;
+        flex-basis: 102px;
+        width: 102px;
     }
 
     .language-switcher .language-switcher__trigger {
         gap: 6px;
         padding: 0 7px;
-        font-size: 10px;
+        font-size: 13px;
     }
 }
 
@@ -169,31 +170,53 @@
     color: #fff !important;
 }
 
+/* The language control intentionally stays text-only in every navbar state. */
+.navbar .navbar-actions .language-switcher,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .language-switcher {
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.navbar .navbar-actions .language-switcher__trigger,
+.navbar .navbar-actions .language-switcher__trigger:hover,
+.navbar .navbar-actions .language-switcher__trigger[aria-expanded="true"],
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger,
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger:hover,
+.navbar.scrolled .navbar-actions .language-switcher .language-switcher__trigger[aria-expanded="true"],
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger:hover,
+.navbar.navbar--hero:not(.scrolled):not(.menu-open):not(:hover) .navbar-actions .language-switcher__trigger[aria-expanded="true"] {
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 @media (max-width: 900px) {
     .language-switcher {
-        flex-basis: 56px;
-        width: 56px;
+        flex-basis: 96px;
+        width: 96px;
     }
 
     .language-switcher .language-switcher__trigger {
         height: 36px;
         gap: 6px;
         padding: 0 8px;
-        font-size: 10px;
+        font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .language-switcher {
-        flex-basis: 52px;
-        width: 52px;
+        flex-basis: 108px;
+        width: 108px;
     }
 
     .language-switcher .language-switcher__trigger {
         height: 34px;
         gap: 4px;
         padding: 0 6px;
-        font-size: 9px;
+        font-size: 11px;
     }
 
     .language-switcher__menu {
@@ -203,14 +226,14 @@
 
 @media (max-width: 360px) {
     .language-switcher {
-        flex-basis: 48px;
-        width: 48px;
+        flex-basis: 94px;
+        width: 94px;
     }
 
     .language-switcher .language-switcher__trigger {
         gap: 4px;
         padding: 0 6px;
-        font-size: 8px;
+        font-size: 10px;
     }
 }
 

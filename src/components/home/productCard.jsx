@@ -7,7 +7,7 @@ import { isProductAvailable } from "../../utils/productAvailability.js";
 import { getDiscountPercentage, getProductVariant, getProductVariants, withProductVariant } from "../../utils/productVariants.js";
 import "./productCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onProductClick }) => {
     const [added, setAdded] = useState(false);
     const variants = getProductVariants(product);
     const [selectedWeight, setSelectedWeight] = useState(product.weight || variants[0]?.weight || "");
@@ -34,9 +34,11 @@ const ProductCard = ({ product }) => {
         navigate(getAppPath("/bag"));
     };
 
+    const handleProductClick = () => onProductClick?.(product);
+
     return (
         <article className="product-card">
-            <Link className="product-card__image-wrap" to={detailPath} aria-label={`View ${product.name}`}>
+            <Link className="product-card__image-wrap" to={detailPath} aria-label={`View ${product.name}`} onClick={handleProductClick}>
                 {imageSrc ? (
                     <img
                         className="product-card__image"
@@ -53,7 +55,7 @@ const ProductCard = ({ product }) => {
             <div className="product-card__content">
                 <p className="product-card__eyebrow">Alleppey Premium Cardamom</p>
                 {unavailable && <p className="product-card__availability">Currently unavailable</p>}
-                <Link className="product-card__name-link" to={detailPath}>
+                <Link className="product-card__name-link" to={detailPath} onClick={handleProductClick}>
                     <h3 className="product-card__name">
                         {product.name}
                         {weightLabel && <span className="product-card__weight"> ({weightLabel})</span>}

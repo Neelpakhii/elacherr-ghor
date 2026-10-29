@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Languages } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import "./LanguageSwitcher.css";
 
 const GT_SCRIPT_ID = "elacher-ghtranslate-dropdown";
@@ -110,6 +110,10 @@ const LanguageSwitcher = () => {
             setFailed(true);
             return;
         }
+        if (code === language) {
+            setOpen(false);
+            return;
+        }
         select.value = option.value;
         select.dispatchEvent(new Event("change", { bubbles: true }));
         setLanguage(code);
@@ -117,7 +121,7 @@ const LanguageSwitcher = () => {
     };
 
     return (
-        <div className="language-switcher" ref={rootRef}>
+        <div className="language-switcher notranslate" translate="no" ref={rootRef}>
             <button
                 className="language-switcher__trigger"
                 type="button"
@@ -127,7 +131,7 @@ const LanguageSwitcher = () => {
                 title="Translate this website"
                 onClick={() => setOpen((current) => !current)}
             >
-                <Languages size={17} aria-hidden="true" />
+                <span className="language-switcher__label" lang={activeLanguage.code}>{activeLanguage.label}</span>
                 <ChevronDown size={13} aria-hidden="true" />
             </button>
             {open && (
