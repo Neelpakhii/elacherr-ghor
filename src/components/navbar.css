@@ -1039,8 +1039,8 @@
     }
 
     .navbar.scrolled.menu-open .navbar-actions .language-switcher .language-switcher__trigger {
-        border-color: rgba(52, 58, 50, 0.2) !important;
-        background: rgba(255, 255, 255, 0.72) !important;
+        border: 0 !important;
+        background: transparent !important;
         color: #30352c !important;
         box-shadow: none;
     }
