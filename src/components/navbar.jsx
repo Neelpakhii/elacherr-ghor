@@ -245,9 +245,9 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-action-icons">
-                    <span className="navbar-profile-icon" role="img" aria-label="Profile" title="Profile">
+                    <NavLink to={getAppPath("/profile")} className="navbar-profile-icon" aria-label="Profile" title="Profile" onClick={handlePageNavigation}>
                     <UserRound aria-hidden="true" />
-                    </span>
+                    </NavLink>
 
                 <NavLink
                     to={getAppPath("/bag")}

@@ -36,7 +36,7 @@
 .search-page__recent h2 { margin: 0; color: #263b2e; font: 600 clamp(24px, 3vw, 32px)/1.2 "Montserrat", sans-serif; }
 .search-page__recent-heading button { border: 0; background: transparent; color: #687b43; cursor: pointer; font: 700 11px "Montserrat", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .search-page__message { padding: 42px 10px; color: #68746a; text-align: center; }
-.search-page__empty { margin-top: 36px; padding: 42px 20px; border: 1px solid #e0e3dc; background: rgba(255,255,255,.6); text-align: center; }
+.search-page__empty { margin-top: 36px; padding: 42px 20px; border: 1px solid #e0e3dc; border-radius: 16px; background: rgba(255,255,255,.6); text-align: center; }
 .search-page__empty h2 { margin: 0; font: 600 28px "Montserrat", sans-serif; }
 .search-page__empty p { margin: 10px 0 0; color: #737c72; font-size: 14px; }
 

@@ -172,6 +172,7 @@
 .bag-summary__saved { margin: 13px 0 0; color: #8b9289; font-size: 11px; text-align: center; }
 
 .bag-empty {
+    border-radius: 16px;
     max-width: 620px;
     margin: 30px auto 0;
     padding: 54px 28px;

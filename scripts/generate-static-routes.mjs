@@ -35,6 +35,7 @@ const editorial = await readJson("public/data/editorial.json");
 
 const routes = new Map();
 const addRoute = (path, metadata) => routes.set(path, metadata);
+addRoute("/profile", { title: "My Profile | Elacher Ghor", description: "Your Elacher Ghor profile preview.", noindex: true });
 
 addRoute("/", {
     title: "Elacher Ghor | Recipes, Stories & CSR",

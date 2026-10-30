@@ -1,0 +1,13 @@
+{
+  "name": "Pintu Sarkar",
+  "email": "pintusarkar@gmail.com",
+  "phone": "+91 98765 43210",
+  "address": "24 Garden Lane",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "postcode": "700001",
+  "country": "India",
+  "emailUpdates": false,
+  "savedAddress": true,
+  "additionalAddresses": []
+}

@@ -42,7 +42,7 @@ const RecipeDetailPage = () => {
                         </div>
                     )}
                 </div>
-                <figure className="recipe-detail-hero__image">
+                <figure className={`recipe-detail-hero__image${recipe.slug === "cardamom-rasmalai" ? " recipe-detail-hero__image--rasmalai" : ""}`}>
                     <img src={getImageUrl(recipe.image)} alt={recipe.imageAlt || recipe.title || "Cardamom recipe"} title={recipe.imageTitle || recipe.imageAlt || recipe.title || "Cardamom recipe"} />
                 </figure>
             </header>

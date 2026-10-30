@@ -10,6 +10,7 @@ export const EDITORIAL_DATA_URL = `${basePath}data/editorial.json`;
 export const RECIPE_DATA_URL = `${basePath}data/recipe.json`;
 export const BLOG_DATA_URL = `${basePath}data/blog.json`;
 export const ADMIN_SETTINGS_URL = `${basePath}data/admin-settings.json`;
+export const PROFILE_DATA_URL = `${basePath}data/profile.json`;
 
 // These assets were converted from PNG to WebP. Map old URLs too, because an
 // admin browser draft can outlive the original files in public/images.

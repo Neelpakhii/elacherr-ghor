@@ -648,6 +648,7 @@
 .recipe-detail-page,
 .article-page {
     padding: 164px 0 96px;
+    background: var(--site-ash-white, #f4f4f2);
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {
@@ -721,6 +722,7 @@
 }
 
 .recipe-detail-hero__image img {
+    border-radius: 16px;
     width: 100%;
     aspect-ratio: 1.35 / 1;
     object-fit: cover;
@@ -728,6 +730,19 @@
 
 .recipe-detail-hero__image figcaption {
     padding-top: 4px;
+}
+
+/* This photograph includes white bands within the source image. */
+.recipe-detail-hero__image--rasmalai {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.recipe-detail-hero__image--rasmalai img {
+    display: block;
+    border-radius: 0;
+    transform: scale(1.22);
+    transform-origin: center;
 }
 
 .recipe-detail-layout {
@@ -740,6 +755,7 @@
 }
 
 .ingredients-panel {
+    border-radius: 16px;
     position: sticky;
     top: 28px;
     padding: 28px;
@@ -819,6 +835,7 @@
 }
 
 .recipe-tip {
+    border-radius: 16px;
     margin-top: 32px;
     padding: 20px 23px;
     border-left: 3px solid var(--editorial-gold);
@@ -901,6 +918,7 @@
 }
 
 .article-cover img {
+    border-radius: 16px;
     width: 100%;
     max-height: 560px;
     object-fit: cover;

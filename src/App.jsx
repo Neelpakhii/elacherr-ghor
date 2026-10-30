@@ -15,6 +15,7 @@ import CsrPage from "./pages/csr/CsrPage.jsx";
 import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
 import BagPage from "./pages/bag/BagPage.jsx";
 import SearchPage from "./pages/search/SearchPage.jsx";
+import Profile from "./pages/profile/profile.jsx";
 import ProductDetailPage from "./pages/products/ProductDetailPage.jsx";
 import { FaqPage, PolicyPage } from "./pages/information/InformationPages.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/bag" element={<BagPage />} />
           <Route path="/cart" element={<Navigate to={getAppPath("/bag")} replace />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/recipes" element={<RecipesPage />} />
           <Route path="/recipe" element={<Navigate to={getAppPath("/recipes")} replace />} />
           <Route path="/blogs/recipes" element={<RecipesPage />} />
